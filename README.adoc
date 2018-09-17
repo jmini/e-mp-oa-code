@@ -23,6 +23,10 @@ link:http://github.com/eclipse/microprofile-open-api[Eclipse MicroProfile OpenAP
 It contains some API and a TCK.
 This repository contains some projects/experiments for this project.
 
+* `empoa-simple-models-impl`: a naive implementation of the interfaces in the `org.eclipse.microprofile.openapi.models` packages.
+* `empoa-generator`: a project that help to generate code in the other one.
+
+
 //end::description[]
 Read more on the link:{homepage}[project home page].
 
