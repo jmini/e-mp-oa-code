@@ -106,6 +106,13 @@ public class OpenAPIImpl implements OpenAPI {
         return this;
     }
 
+    @Override
+    public void removeServer(org.eclipse.microprofile.openapi.models.servers.Server server) {
+        if (_servers != null) {
+            _servers.remove(server);
+        }
+    }
+
     private java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> _security;
 
     @Override
@@ -133,6 +140,13 @@ public class OpenAPIImpl implements OpenAPI {
         return this;
     }
 
+    @Override
+    public void removeSecurityRequirement(org.eclipse.microprofile.openapi.models.security.SecurityRequirement securityRequirement) {
+        if (_security != null) {
+            _security.remove(securityRequirement);
+        }
+    }
+
     private java.util.List<org.eclipse.microprofile.openapi.models.tags.Tag> _tags;
 
     @Override
@@ -158,6 +172,13 @@ public class OpenAPIImpl implements OpenAPI {
         }
         _tags.add(tag);
         return this;
+    }
+
+    @Override
+    public void removeTag(org.eclipse.microprofile.openapi.models.tags.Tag tag) {
+        if (_tags != null) {
+            _tags.remove(tag);
+        }
     }
 
     private org.eclipse.microprofile.openapi.models.Paths _paths;

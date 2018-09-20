@@ -284,6 +284,13 @@ public class PathItemImpl implements PathItem {
         return this;
     }
 
+    @Override
+    public void removeServer(org.eclipse.microprofile.openapi.models.servers.Server server) {
+        if (_servers != null) {
+            _servers.remove(server);
+        }
+    }
+
     private java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> _parameters;
 
     @Override
@@ -309,6 +316,13 @@ public class PathItemImpl implements PathItem {
         }
         _parameters.add(parameter);
         return this;
+    }
+
+    @Override
+    public void removeParameter(org.eclipse.microprofile.openapi.models.parameters.Parameter parameter) {
+        if (_parameters != null) {
+            _parameters.remove(parameter);
+        }
     }
 
 }

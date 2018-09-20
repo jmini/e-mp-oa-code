@@ -166,7 +166,7 @@ public class OpenAPISpec {
         members.add(new Member("Info", Info.class.getCanonicalName()));
         members.add(new Member("ExternalDocs", ExternalDocumentation.class.getCanonicalName()));
         members.add(new ListMember("Servers", Server.class.getCanonicalName()));
-        members.add(new ListMember("Security", SecurityRequirement.class.getCanonicalName(), "addSecurityRequirement"));
+        members.add(new ListMember("Security", SecurityRequirement.class.getCanonicalName(), "addSecurityRequirement", "removeSecurityRequirement"));
         members.add(new ListMember("Tags", Tag.class.getCanonicalName()));
         members.add(new Member("Paths", Paths.class.getCanonicalName()));
         members.add(new AdditionalMethod(Type.OpenAPI_path));
@@ -186,7 +186,7 @@ public class OpenAPISpec {
         members.add(new Member("Responses", APIResponses.class.getCanonicalName()));
         members.add(new MapMember("Callbacks", Callback.class.getCanonicalName(), true, true));
         members.add(new Member("Deprecated", Boolean.class.getSimpleName()));
-        members.add(new ListMember("Security", SecurityRequirement.class.getName(), "addSecurityRequirement"));
+        members.add(new ListMember("Security", SecurityRequirement.class.getName(), "addSecurityRequirement", "removeSecurityRequirement"));
         members.add(new ListMember("Servers", Server.class.getCanonicalName()));
         return new Element(Operation.class.getName(), true, false, members);
     }

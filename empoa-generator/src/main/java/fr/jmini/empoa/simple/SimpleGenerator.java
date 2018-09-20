@@ -155,6 +155,13 @@ public class SimpleGenerator {
             sb.append("        return this;\n");
             sb.append("    }\n");
             sb.append("\n");
+            sb.append("    @Override\n");
+            sb.append("    public void " + listMember.removeName + "(" + listMember.itemFqType + " " + itemVarName + ") {\n");
+            sb.append("        if (" + memberName + " != null) {\n");
+            sb.append("            " + memberName + ".remove(" + itemVarName + ");\n");
+            sb.append("        }\n");
+            sb.append("    }\n");
+            sb.append("\n");
         }
     }
 

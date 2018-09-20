@@ -52,6 +52,13 @@ public class OperationImpl implements Operation {
         return this;
     }
 
+    @Override
+    public void removeTag(String string) {
+        if (_tags != null) {
+            _tags.remove(string);
+        }
+    }
+
     private String _summary;
 
     @Override
@@ -149,6 +156,13 @@ public class OperationImpl implements Operation {
         }
         _parameters.add(parameter);
         return this;
+    }
+
+    @Override
+    public void removeParameter(org.eclipse.microprofile.openapi.models.parameters.Parameter parameter) {
+        if (_parameters != null) {
+            _parameters.remove(parameter);
+        }
     }
 
     private org.eclipse.microprofile.openapi.models.parameters.RequestBody _requestBody;
@@ -259,6 +273,13 @@ public class OperationImpl implements Operation {
         return this;
     }
 
+    @Override
+    public void removeSecurityRequirement(org.eclipse.microprofile.openapi.models.security.SecurityRequirement securityRequirement) {
+        if (_security != null) {
+            _security.remove(securityRequirement);
+        }
+    }
+
     private java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> _servers;
 
     @Override
@@ -284,6 +305,13 @@ public class OperationImpl implements Operation {
         }
         _servers.add(server);
         return this;
+    }
+
+    @Override
+    public void removeServer(org.eclipse.microprofile.openapi.models.servers.Server server) {
+        if (_servers != null) {
+            _servers.remove(server);
+        }
     }
 
 }

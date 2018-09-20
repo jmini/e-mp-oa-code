@@ -128,6 +128,13 @@ public class SchemaImpl implements Schema {
         return this;
     }
 
+    @Override
+    public void removeEnumeration(Object object) {
+        if (_enumeration != null) {
+            _enumeration.remove(object);
+        }
+    }
+
     private java.math.BigDecimal _multipleOf;
 
     @Override
@@ -387,6 +394,13 @@ public class SchemaImpl implements Schema {
         }
         _required.add(string);
         return this;
+    }
+
+    @Override
+    public void removeRequired(String string) {
+        if (_required != null) {
+            _required.remove(string);
+        }
     }
 
     private SchemaType _type;
@@ -688,6 +702,13 @@ public class SchemaImpl implements Schema {
         return this;
     }
 
+    @Override
+    public void removeAllOf(org.eclipse.microprofile.openapi.models.media.Schema schema) {
+        if (_allOf != null) {
+            _allOf.remove(schema);
+        }
+    }
+
     private java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> _anyOf;
 
     @Override
@@ -715,6 +736,13 @@ public class SchemaImpl implements Schema {
         return this;
     }
 
+    @Override
+    public void removeAnyOf(org.eclipse.microprofile.openapi.models.media.Schema schema) {
+        if (_anyOf != null) {
+            _anyOf.remove(schema);
+        }
+    }
+
     private java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> _oneOf;
 
     @Override
@@ -740,6 +768,13 @@ public class SchemaImpl implements Schema {
         }
         _oneOf.add(schema);
         return this;
+    }
+
+    @Override
+    public void removeOneOf(org.eclipse.microprofile.openapi.models.media.Schema schema) {
+        if (_oneOf != null) {
+            _oneOf.remove(schema);
+        }
     }
 
 }

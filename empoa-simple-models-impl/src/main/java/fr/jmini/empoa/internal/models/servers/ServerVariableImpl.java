@@ -52,6 +52,13 @@ public class ServerVariableImpl implements ServerVariable {
         return this;
     }
 
+    @Override
+    public void removeEnumeration(String string) {
+        if (_enumeration != null) {
+            _enumeration.remove(string);
+        }
+    }
+
     private String _defaultValue;
 
     @Override
