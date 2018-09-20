@@ -17,11 +17,12 @@ public class EncodingImpl implements Encoding {
     }
 
     @Override
-    public void addExtension(String key, Object object) {
+    public Encoding addExtension(String key, Object object) {
         if (_extensions == null) {
             _extensions = new java.util.LinkedHashMap<>();
         }
         _extensions.put(key, object);
+        return this;
     }
 
     private String _contentType;
@@ -57,6 +58,15 @@ public class EncodingImpl implements Encoding {
     @Override
     public Encoding headers(java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> headers) {
         setHeaders(headers);
+        return this;
+    }
+
+    @Override
+    public Encoding addHeader(String key, org.eclipse.microprofile.openapi.models.headers.Header header) {
+        if (_headers == null) {
+            _headers = new java.util.LinkedHashMap<>();
+        }
+        _headers.put(key, header);
         return this;
     }
 

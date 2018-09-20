@@ -10,8 +10,7 @@ public class AdditionalMethod implements IMember {
     }
 
     public static enum Type {
-        PathItem_readOperations,
-        PathItem_readOperationsMap,
+        PathItem_getOperations,
         OpenAPI_path,
         SecurityRequirement_addScheme_singleton,
         SecurityRequirement_addScheme_empty

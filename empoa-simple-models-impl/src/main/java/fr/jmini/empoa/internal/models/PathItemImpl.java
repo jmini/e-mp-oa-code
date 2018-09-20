@@ -39,11 +39,12 @@ public class PathItemImpl implements PathItem {
     }
 
     @Override
-    public void addExtension(String key, Object object) {
+    public PathItem addExtension(String key, Object object) {
         if (_extensions == null) {
             _extensions = new java.util.LinkedHashMap<>();
         }
         _extensions.put(key, object);
+        return this;
     }
 
     private String _summary;
@@ -227,37 +228,7 @@ public class PathItemImpl implements PathItem {
     }
 
     @Override
-    public java.util.List<org.eclipse.microprofile.openapi.models.Operation> readOperations() {
-        java.util.List<org.eclipse.microprofile.openapi.models.Operation> list = new java.util.ArrayList<>();
-        if (getGET() != null) {
-            list.add(getGET());
-        }
-        if (getPUT() != null) {
-            list.add(getPUT());
-        }
-        if (getPOST() != null) {
-            list.add(getPOST());
-        }
-        if (getDELETE() != null) {
-            list.add(getDELETE());
-        }
-        if (getOPTIONS() != null) {
-            list.add(getOPTIONS());
-        }
-        if (getHEAD() != null) {
-            list.add(getHEAD());
-        }
-        if (getPATCH() != null) {
-            list.add(getPATCH());
-        }
-        if (getTRACE() != null) {
-            list.add(getTRACE());
-        }
-        return java.util.Collections.unmodifiableList(list);
-    }
-
-    @Override
-    public java.util.Map<HttpMethod, org.eclipse.microprofile.openapi.models.Operation> readOperationsMap() {
+    public java.util.Map<HttpMethod, org.eclipse.microprofile.openapi.models.Operation> getOperations() {
         java.util.Map<HttpMethod, org.eclipse.microprofile.openapi.models.Operation> map = new java.util.LinkedHashMap<>();
         if (getGET() != null) {
             map.put(HttpMethod.GET, getGET());

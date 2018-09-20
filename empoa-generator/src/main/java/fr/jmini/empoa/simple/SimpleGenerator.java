@@ -73,7 +73,7 @@ public class SimpleGenerator {
             sb.append("\n");
         }
         if (element.extensible) {
-            Member refMember = new MapMember("extensions", "Object", false, true, true);
+            Member refMember = new MapMember("extensions", "Object", false, true, false);
             generateMember(sb, refMember);
         }
         for (IMember member : element.members) {
@@ -160,41 +160,9 @@ public class SimpleGenerator {
 
     private void generateAdditionalMethod(StringBuilder sb, Type type) {
         switch (type) {
-        case PathItem_readOperations:
+        case PathItem_getOperations:
             sb.append("    @Override\n");
-            sb.append("    public java.util.List<org.eclipse.microprofile.openapi.models.Operation> readOperations() {\n");
-            sb.append("        java.util.List<org.eclipse.microprofile.openapi.models.Operation> list = new java.util.ArrayList<>();\n");
-            sb.append("        if (getGET() != null) {\n");
-            sb.append("            list.add(getGET());\n");
-            sb.append("        }\n");
-            sb.append("        if (getPUT() != null) {\n");
-            sb.append("            list.add(getPUT());\n");
-            sb.append("        }\n");
-            sb.append("        if (getPOST() != null) {\n");
-            sb.append("            list.add(getPOST());\n");
-            sb.append("        }\n");
-            sb.append("        if (getDELETE() != null) {\n");
-            sb.append("            list.add(getDELETE());\n");
-            sb.append("        }\n");
-            sb.append("        if (getOPTIONS() != null) {\n");
-            sb.append("            list.add(getOPTIONS());\n");
-            sb.append("        }\n");
-            sb.append("        if (getHEAD() != null) {\n");
-            sb.append("            list.add(getHEAD());\n");
-            sb.append("        }\n");
-            sb.append("        if (getPATCH() != null) {\n");
-            sb.append("            list.add(getPATCH());\n");
-            sb.append("        }\n");
-            sb.append("        if (getTRACE() != null) {\n");
-            sb.append("            list.add(getTRACE());\n");
-            sb.append("        }\n");
-            sb.append("        return java.util.Collections.unmodifiableList(list);\n");
-            sb.append("    }\n");
-            sb.append("\n");
-            break;
-        case PathItem_readOperationsMap:
-            sb.append("    @Override\n");
-            sb.append("    public java.util.Map<HttpMethod, org.eclipse.microprofile.openapi.models.Operation> readOperationsMap() {\n");
+            sb.append("    public java.util.Map<HttpMethod, org.eclipse.microprofile.openapi.models.Operation> getOperations() {\n");
             sb.append("        java.util.Map<HttpMethod, org.eclipse.microprofile.openapi.models.Operation> map = new java.util.LinkedHashMap<>();\n");
             sb.append("        if (getGET() != null) {\n");
             sb.append("            map.put(HttpMethod.GET, getGET());\n");

@@ -39,11 +39,12 @@ public class RequestBodyImpl implements RequestBody {
     }
 
     @Override
-    public void addExtension(String key, Object object) {
+    public RequestBody addExtension(String key, Object object) {
         if (_extensions == null) {
             _extensions = new java.util.LinkedHashMap<>();
         }
         _extensions.put(key, object);
+        return this;
     }
 
     private String _description;

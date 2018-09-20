@@ -18,11 +18,12 @@ public class ServerVariablesImpl extends java.util.LinkedHashMap<String, org.ecl
     }
 
     @Override
-    public void addExtension(String key, Object object) {
+    public ServerVariables addExtension(String key, Object object) {
         if (_extensions == null) {
             _extensions = new java.util.LinkedHashMap<>();
         }
         _extensions.put(key, object);
+        return this;
     }
 
     @Override

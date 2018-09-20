@@ -17,11 +17,12 @@ public class OperationImpl implements Operation {
     }
 
     @Override
-    public void addExtension(String key, Object object) {
+    public Operation addExtension(String key, Object object) {
         if (_extensions == null) {
             _extensions = new java.util.LinkedHashMap<>();
         }
         _extensions.put(key, object);
+        return this;
     }
 
     private java.util.List<String> _tags;
@@ -201,6 +202,15 @@ public class OperationImpl implements Operation {
     @Override
     public Operation callbacks(java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> callbacks) {
         setCallbacks(callbacks);
+        return this;
+    }
+
+    @Override
+    public Operation addCallback(String key, org.eclipse.microprofile.openapi.models.callbacks.Callback callback) {
+        if (_callbacks == null) {
+            _callbacks = new java.util.LinkedHashMap<>();
+        }
+        _callbacks.put(key, callback);
         return this;
     }
 

@@ -184,7 +184,7 @@ public class OpenAPISpec {
         members.add(new ListMember("Parameters", Parameter.class.getCanonicalName()));
         members.add(new Member("RequestBody", RequestBody.class.getCanonicalName()));
         members.add(new Member("Responses", APIResponses.class.getCanonicalName()));
-        members.add(new MapMember("Callbacks", Callback.class.getCanonicalName(), true, false));
+        members.add(new MapMember("Callbacks", Callback.class.getCanonicalName(), true, true));
         members.add(new Member("Deprecated", Boolean.class.getSimpleName()));
         members.add(new ListMember("Security", SecurityRequirement.class.getName(), "addSecurityRequirement"));
         members.add(new ListMember("Servers", Server.class.getCanonicalName()));
@@ -203,8 +203,7 @@ public class OpenAPISpec {
         members.add(new Member("HEAD", Operation.class.getCanonicalName()));
         members.add(new Member("PATCH", Operation.class.getCanonicalName()));
         members.add(new Member("TRACE", Operation.class.getCanonicalName()));
-        members.add(new AdditionalMethod(Type.PathItem_readOperations));
-        members.add(new AdditionalMethod(Type.PathItem_readOperationsMap));
+        members.add(new AdditionalMethod(Type.PathItem_getOperations));
         members.add(new ListMember("Servers", Server.class.getCanonicalName()));
         members.add(new ListMember("Parameters", Parameter.class.getCanonicalName()));
         return new Element(PathItem.class.getName(), true, true, members);
@@ -296,7 +295,7 @@ public class OpenAPISpec {
     public static Element createEncoding() {
         List<IMember> members = new ArrayList<>();
         members.add(new Member("ContentType", String.class.getSimpleName()));
-        members.add(new MapMember("Headers", Header.class.getName(), true, false));
+        members.add(new MapMember("Headers", Header.class.getName(), true, true));
         members.add(new Member("Style", Encoding.Style.class.getCanonicalName()));
         members.add(new Member("Explode", Boolean.class.getSimpleName()));
         members.add(new Member("AllowReserved", Boolean.class.getSimpleName()));
@@ -402,7 +401,7 @@ public class OpenAPISpec {
     public static Element createAPIResponses() {
         List<IMember> members = new ArrayList<>();
         members.add(new Member("DefaultValue", APIResponse.class.getCanonicalName(), "getDefault"));
-        return new Element(APIResponses.class.getName(), false, false, members, APIResponse.class.getCanonicalName(), "addApiResponse");
+        return new Element(APIResponses.class.getName(), true, false, members, APIResponse.class.getCanonicalName(), "addAPIResponse");
     }
 
     public static Element createOAuthFlow() {

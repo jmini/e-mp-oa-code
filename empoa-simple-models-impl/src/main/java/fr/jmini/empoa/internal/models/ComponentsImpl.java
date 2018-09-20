@@ -17,11 +17,12 @@ public class ComponentsImpl implements Components {
     }
 
     @Override
-    public void addExtension(String key, Object object) {
+    public Components addExtension(String key, Object object) {
         if (_extensions == null) {
             _extensions = new java.util.LinkedHashMap<>();
         }
         _extensions.put(key, object);
+        return this;
     }
 
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> _schemas;

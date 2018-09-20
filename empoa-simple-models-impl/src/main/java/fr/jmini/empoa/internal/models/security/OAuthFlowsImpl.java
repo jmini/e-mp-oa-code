@@ -17,11 +17,12 @@ public class OAuthFlowsImpl implements OAuthFlows {
     }
 
     @Override
-    public void addExtension(String key, Object object) {
+    public OAuthFlows addExtension(String key, Object object) {
         if (_extensions == null) {
             _extensions = new java.util.LinkedHashMap<>();
         }
         _extensions.put(key, object);
+        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.security.OAuthFlow _implicit;
