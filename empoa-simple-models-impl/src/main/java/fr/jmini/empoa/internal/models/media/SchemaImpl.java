@@ -466,33 +466,42 @@ public class SchemaImpl implements Schema {
         return this;
     }
 
-    private Object _additionalProperties;
+    private org.eclipse.microprofile.openapi.models.media.Schema _additionalPropertiesSchema;
 
     @Override
-    public Object getAdditionalProperties() {
-        return _additionalProperties;
+    public org.eclipse.microprofile.openapi.models.media.Schema getAdditionalPropertiesSchema() {
+        return _additionalPropertiesSchema;
     }
 
     @Override
-    public void setAdditionalProperties(org.eclipse.microprofile.openapi.models.media.Schema additionalProperties) {
-        _additionalProperties = additionalProperties;
-    }
-
-    @Override
-    public Schema additionalProperties(org.eclipse.microprofile.openapi.models.media.Schema additionalProperties) {
-        setAdditionalProperties(additionalProperties);
+    public Schema additionalPropertiesSchema(org.eclipse.microprofile.openapi.models.media.Schema additionalPropertiesSchema) {
+        setAdditionalPropertiesSchema(additionalPropertiesSchema);
         return this;
     }
 
     @Override
-    public void setAdditionalProperties(Boolean additionalProperties) {
-        _additionalProperties = additionalProperties;
+    public void setAdditionalPropertiesBoolean(Boolean additionalProperties) {
+        _additionalPropertiesSchema = null;
+        _additionalPropertiesBoolean = additionalProperties;
+    }
+
+    private Boolean _additionalPropertiesBoolean;
+
+    @Override
+    public Boolean getAdditionalPropertiesBoolean() {
+        return _additionalPropertiesBoolean;
     }
 
     @Override
-    public Schema additionalProperties(Boolean additionalProperties) {
-        setAdditionalProperties(additionalProperties);
+    public Schema additionalPropertiesBoolean(Boolean additionalPropertiesBoolean) {
+        setAdditionalPropertiesBoolean(additionalPropertiesBoolean);
         return this;
+    }
+
+    @Override
+    public void setAdditionalPropertiesSchema(Schema additionalProperties) {
+        _additionalPropertiesBoolean = null;
+        _additionalPropertiesSchema = additionalProperties;
     }
 
     private String _description;

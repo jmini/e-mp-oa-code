@@ -225,7 +225,22 @@ public class SimpleGenerator {
             sb.append("        return addScheme(key, new java.util.ArrayList<>());\n");
             sb.append("    }\n");
             sb.append("\n");
-            sb.append("");
+            break;
+        case Schema_setAdditionalPropertiesBoolean:
+            sb.append("    @Override\n");
+            sb.append("    public void setAdditionalPropertiesSchema(Schema additionalProperties) {\n");
+            sb.append("        _additionalPropertiesBoolean = null;\n");
+            sb.append("        _additionalPropertiesSchema = additionalProperties;\n");
+            sb.append("    }\n");
+            sb.append("\n");
+            break;
+        case Schema_setAdditionalPropertiesSchema:
+            sb.append("    @Override\n");
+            sb.append("    public void setAdditionalPropertiesBoolean(Boolean additionalProperties) {\n");
+            sb.append("        _additionalPropertiesSchema = null;\n");
+            sb.append("        _additionalPropertiesBoolean = additionalProperties;\n");
+            sb.append("    }\n");
+            sb.append("\n");
             break;
         default:
             throw new IllegalArgumentException("Unexpected type " + type);

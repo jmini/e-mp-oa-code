@@ -13,6 +13,8 @@ public class AdditionalMethod implements IMember {
         PathItem_getOperations,
         OpenAPI_path,
         SecurityRequirement_addScheme_singleton,
-        SecurityRequirement_addScheme_empty
+        SecurityRequirement_addScheme_empty,
+        Schema_setAdditionalPropertiesSchema,
+        Schema_setAdditionalPropertiesBoolean
     }
 }

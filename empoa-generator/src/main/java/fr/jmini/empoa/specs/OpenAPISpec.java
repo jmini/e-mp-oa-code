@@ -334,9 +334,10 @@ public class OpenAPISpec {
         members.add(new Member("Type", Schema.SchemaType.class.getSimpleName()));
         members.add(new Member("Not", Schema.class.getCanonicalName()));
         members.add(new MapMember("Properties", Schema.class.getCanonicalName()));
-        members.add(new Member("AdditionalProperties", Object.class.getSimpleName(), true, true, false, false));
-        members.add(new Member("AdditionalProperties", Schema.class.getCanonicalName(), false, false, true, true));
-        members.add(new Member("AdditionalProperties", Boolean.class.getSimpleName(), false, false, true, true));
+        members.add(new Member("AdditionalPropertiesSchema", Schema.class.getCanonicalName(), true, true, false, true));
+        members.add(new AdditionalMethod(Type.Schema_setAdditionalPropertiesSchema));
+        members.add(new Member("AdditionalPropertiesBoolean", Boolean.class.getSimpleName(), true, true, false, true));
+        members.add(new AdditionalMethod(Type.Schema_setAdditionalPropertiesBoolean));
         members.add(new Member("Description", String.class.getSimpleName()));
         members.add(new Member("Format", String.class.getSimpleName()));
         members.add(new Member("Nullable", Boolean.class.getSimpleName()));
