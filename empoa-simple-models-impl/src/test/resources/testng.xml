@@ -9,4 +9,10 @@
       </classes>
    </test>
 
+   <test name = "additionaltests">
+      <classes>
+         <class name = "org.eclipse.microprofile.openapi.tck.ExtendedTCKTest" />
+      </classes>
+   </test>
+
 </suite>
