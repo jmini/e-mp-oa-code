@@ -26,22 +26,14 @@ public class APIResponsesImpl extends java.util.LinkedHashMap<String, org.eclips
         return this;
     }
 
-    private org.eclipse.microprofile.openapi.models.responses.APIResponse _defaultValue;
-
     @Override
-    public org.eclipse.microprofile.openapi.models.responses.APIResponse getDefault() {
-        return _defaultValue;
+    public org.eclipse.microprofile.openapi.models.responses.APIResponse getDefaultValue() {
+        return get(DEFAULT);
     }
 
     @Override
     public void setDefaultValue(org.eclipse.microprofile.openapi.models.responses.APIResponse defaultValue) {
-        _defaultValue = defaultValue;
-    }
-
-    @Override
-    public APIResponses defaultValue(org.eclipse.microprofile.openapi.models.responses.APIResponse defaultValue) {
-        setDefaultValue(defaultValue);
-        return this;
+        addAPIResponse(DEFAULT, defaultValue);
     }
 
     @Override

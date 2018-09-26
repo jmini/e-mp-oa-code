@@ -15,6 +15,8 @@ public class AdditionalMethod implements IMember {
         SecurityRequirement_addScheme_singleton,
         SecurityRequirement_addScheme_empty,
         Schema_setAdditionalPropertiesSchema,
-        Schema_setAdditionalPropertiesBoolean
+        Schema_setAdditionalPropertiesBoolean,
+        APIResponses_getDefaultValue,
+        APIResponses_setDefaultValue,
     }
 }

@@ -401,7 +401,8 @@ public class OpenAPISpec {
 
     public static Element createAPIResponses() {
         List<IMember> members = new ArrayList<>();
-        members.add(new Member("DefaultValue", APIResponse.class.getCanonicalName(), "getDefault"));
+        members.add(new AdditionalMethod(Type.APIResponses_getDefaultValue));
+        members.add(new AdditionalMethod(Type.APIResponses_setDefaultValue));
         return new Element(APIResponses.class.getName(), true, false, members, APIResponse.class.getCanonicalName(), "addAPIResponse");
     }
 

@@ -169,8 +169,8 @@ public class SimpleGenerator {
         switch (type) {
         case PathItem_getOperations:
             sb.append("    @Override\n");
-            sb.append("    public java.util.Map<HttpMethod, org.eclipse.microprofile.openapi.models.Operation> getOperations() {\n");
-            sb.append("        java.util.Map<HttpMethod, org.eclipse.microprofile.openapi.models.Operation> map = new java.util.LinkedHashMap<>();\n");
+            sb.append("    public java.util.Map<HttpMethod, " + org.eclipse.microprofile.openapi.models.Operation.class.getCanonicalName() + "> getOperations() {\n");
+            sb.append("        java.util.Map<HttpMethod, " + org.eclipse.microprofile.openapi.models.Operation.class.getCanonicalName() + "> map = new java.util.LinkedHashMap<>();\n");
             sb.append("        if (getGET() != null) {\n");
             sb.append("            map.put(HttpMethod.GET, getGET());\n");
             sb.append("        }\n");
@@ -201,7 +201,7 @@ public class SimpleGenerator {
             break;
         case OpenAPI_path:
             sb.append("    @Override\n");
-            sb.append("    public OpenAPI path(String name, org.eclipse.microprofile.openapi.models.PathItem path) {\n");
+            sb.append("    public " + org.eclipse.microprofile.openapi.models.OpenAPI.class.getSimpleName() + " path(String name, org.eclipse.microprofile.openapi.models.PathItem path) {\n");
             sb.append("        if(getPaths() == null) {\n");
             sb.append("            setPaths(new PathsImpl());\n");
             sb.append("        }\n");
@@ -212,7 +212,7 @@ public class SimpleGenerator {
             break;
         case SecurityRequirement_addScheme_singleton:
             sb.append("    @Override\n");
-            sb.append("    public SecurityRequirement addScheme(String key, String scope) {\n");
+            sb.append("    public " + org.eclipse.microprofile.openapi.models.security.SecurityRequirement.class.getSimpleName() + " addScheme(String key, String scope) {\n");
             sb.append("        java.util.List<String> list = new java.util.ArrayList<>();\n");
             sb.append("        list.add(scope);\n");
             sb.append("        return addScheme(key, list);\n");
@@ -221,14 +221,14 @@ public class SimpleGenerator {
             break;
         case SecurityRequirement_addScheme_empty:
             sb.append("    @Override\n");
-            sb.append("    public SecurityRequirement addScheme(String key) {\n");
+            sb.append("    public " + org.eclipse.microprofile.openapi.models.security.SecurityRequirement.class.getSimpleName() + " addScheme(String key) {\n");
             sb.append("        return addScheme(key, new java.util.ArrayList<>());\n");
             sb.append("    }\n");
             sb.append("\n");
             break;
         case Schema_setAdditionalPropertiesBoolean:
             sb.append("    @Override\n");
-            sb.append("    public void setAdditionalPropertiesSchema(Schema additionalProperties) {\n");
+            sb.append("    public void setAdditionalPropertiesSchema(" + org.eclipse.microprofile.openapi.models.media.Schema.class.getSimpleName() + " additionalProperties) {\n");
             sb.append("        _additionalPropertiesBoolean = null;\n");
             sb.append("        _additionalPropertiesSchema = additionalProperties;\n");
             sb.append("    }\n");
@@ -239,6 +239,20 @@ public class SimpleGenerator {
             sb.append("    public void setAdditionalPropertiesBoolean(Boolean additionalProperties) {\n");
             sb.append("        _additionalPropertiesSchema = null;\n");
             sb.append("        _additionalPropertiesBoolean = additionalProperties;\n");
+            sb.append("    }\n");
+            sb.append("\n");
+            break;
+        case APIResponses_getDefaultValue:
+            sb.append("    @Override\n");
+            sb.append("    public " + org.eclipse.microprofile.openapi.models.responses.APIResponse.class.getCanonicalName() + " getDefaultValue() {\n");
+            sb.append("        return get(DEFAULT);\n");
+            sb.append("    }\n");
+            sb.append("\n");
+            break;
+        case APIResponses_setDefaultValue:
+            sb.append("    @Override\n");
+            sb.append("    public void setDefaultValue(" + org.eclipse.microprofile.openapi.models.responses.APIResponse.class.getCanonicalName() + " defaultValue) {\n");
+            sb.append("        addAPIResponse(DEFAULT, defaultValue);\n");
             sb.append("    }\n");
             sb.append("\n");
             break;
