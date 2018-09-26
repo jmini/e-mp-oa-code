@@ -1,0 +1,19 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Suite">
+
+   <test name = "tcktests">
+      <classes>
+         <!-- When https://github.com/eclipse/microprofile-open-api/issues/270 is solved, replace with the official test class: -->
+         <class name = "org.eclipse.microprofile.openapi.tck.ModelConstructionPatchedTest" />
+      </classes>
+   </test>
+
+   <test name = "additionaltests">
+      <classes>
+         <class name = "fr.jmini.empoa.internal.OASFactoryResolverImplTest" />
+      </classes>
+   </test>
+
+</suite>
