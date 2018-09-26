@@ -9,4 +9,10 @@
       </classes>
    </test>
 
+   <test name = "additionaltests">
+      <classes>
+         <class name = "fr.jmini.empoa.internal.OASFactoryResolverImplTest" />
+      </classes>
+   </test>
+
 </suite>
