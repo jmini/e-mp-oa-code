@@ -12,12 +12,6 @@ public class SecuritySchemeImpl implements SecurityScheme {
     }
 
     @Override
-    public SecurityScheme ref(String ref) {
-        setRef(ref);
-        return this;
-    }
-
-    @Override
     public void setRef(String ref) {
         if (ref != null && !ref.contains("#") && !ref.contains("/")) {
             _ref = "#/components/securitySchemes/" + ref;
@@ -59,12 +53,6 @@ public class SecuritySchemeImpl implements SecurityScheme {
         _type = type;
     }
 
-    @Override
-    public SecurityScheme type(org.eclipse.microprofile.openapi.models.security.SecurityScheme.Type type) {
-        setType(type);
-        return this;
-    }
-
     private String _description;
 
     @Override
@@ -75,12 +63,6 @@ public class SecuritySchemeImpl implements SecurityScheme {
     @Override
     public void setDescription(String description) {
         _description = description;
-    }
-
-    @Override
-    public SecurityScheme description(String description) {
-        setDescription(description);
-        return this;
     }
 
     private String _name;
@@ -95,12 +77,6 @@ public class SecuritySchemeImpl implements SecurityScheme {
         _name = name;
     }
 
-    @Override
-    public SecurityScheme name(String name) {
-        setName(name);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.security.SecurityScheme.In _in;
 
     @Override
@@ -111,12 +87,6 @@ public class SecuritySchemeImpl implements SecurityScheme {
     @Override
     public void setIn(org.eclipse.microprofile.openapi.models.security.SecurityScheme.In in) {
         _in = in;
-    }
-
-    @Override
-    public SecurityScheme in(org.eclipse.microprofile.openapi.models.security.SecurityScheme.In in) {
-        setIn(in);
-        return this;
     }
 
     private String _scheme;
@@ -131,12 +101,6 @@ public class SecuritySchemeImpl implements SecurityScheme {
         _scheme = scheme;
     }
 
-    @Override
-    public SecurityScheme scheme(String scheme) {
-        setScheme(scheme);
-        return this;
-    }
-
     private String _bearerFormat;
 
     @Override
@@ -147,12 +111,6 @@ public class SecuritySchemeImpl implements SecurityScheme {
     @Override
     public void setBearerFormat(String bearerFormat) {
         _bearerFormat = bearerFormat;
-    }
-
-    @Override
-    public SecurityScheme bearerFormat(String bearerFormat) {
-        setBearerFormat(bearerFormat);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.security.OAuthFlows _flows;
@@ -167,12 +125,6 @@ public class SecuritySchemeImpl implements SecurityScheme {
         _flows = flows;
     }
 
-    @Override
-    public SecurityScheme flows(org.eclipse.microprofile.openapi.models.security.OAuthFlows flows) {
-        setFlows(flows);
-        return this;
-    }
-
     private String _openIdConnectUrl;
 
     @Override
@@ -183,12 +135,6 @@ public class SecuritySchemeImpl implements SecurityScheme {
     @Override
     public void setOpenIdConnectUrl(String openIdConnectUrl) {
         _openIdConnectUrl = openIdConnectUrl;
-    }
-
-    @Override
-    public SecurityScheme openIdConnectUrl(String openIdConnectUrl) {
-        setOpenIdConnectUrl(openIdConnectUrl);
-        return this;
     }
 
 }

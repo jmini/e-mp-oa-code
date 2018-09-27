@@ -37,12 +37,6 @@ public class XMLImpl implements XML {
         _name = name;
     }
 
-    @Override
-    public XML name(String name) {
-        setName(name);
-        return this;
-    }
-
     private String _namespace;
 
     @Override
@@ -53,12 +47,6 @@ public class XMLImpl implements XML {
     @Override
     public void setNamespace(String namespace) {
         _namespace = namespace;
-    }
-
-    @Override
-    public XML namespace(String namespace) {
-        setNamespace(namespace);
-        return this;
     }
 
     private String _prefix;
@@ -73,12 +61,6 @@ public class XMLImpl implements XML {
         _prefix = prefix;
     }
 
-    @Override
-    public XML prefix(String prefix) {
-        setPrefix(prefix);
-        return this;
-    }
-
     private Boolean _attribute;
 
     @Override
@@ -91,12 +73,6 @@ public class XMLImpl implements XML {
         _attribute = attribute;
     }
 
-    @Override
-    public XML attribute(Boolean attribute) {
-        setAttribute(attribute);
-        return this;
-    }
-
     private Boolean _wrapped;
 
     @Override
@@ -107,12 +83,6 @@ public class XMLImpl implements XML {
     @Override
     public void setWrapped(Boolean wrapped) {
         _wrapped = wrapped;
-    }
-
-    @Override
-    public XML wrapped(Boolean wrapped) {
-        setWrapped(wrapped);
-        return this;
     }
 
 }

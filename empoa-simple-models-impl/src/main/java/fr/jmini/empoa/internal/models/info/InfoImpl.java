@@ -37,12 +37,6 @@ public class InfoImpl implements Info {
         _title = title;
     }
 
-    @Override
-    public Info title(String title) {
-        setTitle(title);
-        return this;
-    }
-
     private String _description;
 
     @Override
@@ -53,12 +47,6 @@ public class InfoImpl implements Info {
     @Override
     public void setDescription(String description) {
         _description = description;
-    }
-
-    @Override
-    public Info description(String description) {
-        setDescription(description);
-        return this;
     }
 
     private String _termsOfService;
@@ -73,12 +61,6 @@ public class InfoImpl implements Info {
         _termsOfService = termsOfService;
     }
 
-    @Override
-    public Info termsOfService(String termsOfService) {
-        setTermsOfService(termsOfService);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.info.Contact _contact;
 
     @Override
@@ -89,12 +71,6 @@ public class InfoImpl implements Info {
     @Override
     public void setContact(org.eclipse.microprofile.openapi.models.info.Contact contact) {
         _contact = contact;
-    }
-
-    @Override
-    public Info contact(org.eclipse.microprofile.openapi.models.info.Contact contact) {
-        setContact(contact);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.info.License _license;
@@ -109,12 +85,6 @@ public class InfoImpl implements Info {
         _license = license;
     }
 
-    @Override
-    public Info license(org.eclipse.microprofile.openapi.models.info.License license) {
-        setLicense(license);
-        return this;
-    }
-
     private String _version;
 
     @Override
@@ -125,12 +95,6 @@ public class InfoImpl implements Info {
     @Override
     public void setVersion(String version) {
         _version = version;
-    }
-
-    @Override
-    public Info version(String version) {
-        setVersion(version);
-        return this;
     }
 
 }

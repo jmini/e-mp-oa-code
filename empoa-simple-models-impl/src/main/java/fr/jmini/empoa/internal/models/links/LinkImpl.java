@@ -12,12 +12,6 @@ public class LinkImpl implements Link {
     }
 
     @Override
-    public Link ref(String ref) {
-        setRef(ref);
-        return this;
-    }
-
-    @Override
     public void setRef(String ref) {
         if (ref != null && !ref.contains("#") && !ref.contains("/")) {
             _ref = "#/components/links/" + ref;
@@ -59,12 +53,6 @@ public class LinkImpl implements Link {
         _server = server;
     }
 
-    @Override
-    public Link server(org.eclipse.microprofile.openapi.models.servers.Server server) {
-        setServer(server);
-        return this;
-    }
-
     private String _operationRef;
 
     @Override
@@ -75,12 +63,6 @@ public class LinkImpl implements Link {
     @Override
     public void setOperationRef(String operationRef) {
         _operationRef = operationRef;
-    }
-
-    @Override
-    public Link operationRef(String operationRef) {
-        setOperationRef(operationRef);
-        return this;
     }
 
     private Object _requestBody;
@@ -95,12 +77,6 @@ public class LinkImpl implements Link {
         _requestBody = requestBody;
     }
 
-    @Override
-    public Link requestBody(Object requestBody) {
-        setRequestBody(requestBody);
-        return this;
-    }
-
     private String _operationId;
 
     @Override
@@ -113,12 +89,6 @@ public class LinkImpl implements Link {
         _operationId = operationId;
     }
 
-    @Override
-    public Link operationId(String operationId) {
-        setOperationId(operationId);
-        return this;
-    }
-
     private java.util.Map<String, Object> _parameters;
 
     @Override
@@ -129,12 +99,6 @@ public class LinkImpl implements Link {
     @Override
     public void setParameters(java.util.Map<String, Object> parameters) {
         _parameters = parameters;
-    }
-
-    @Override
-    public Link parameters(java.util.Map<String, Object> parameters) {
-        setParameters(parameters);
-        return this;
     }
 
     @Override
@@ -156,12 +120,6 @@ public class LinkImpl implements Link {
     @Override
     public void setDescription(String description) {
         _description = description;
-    }
-
-    @Override
-    public Link description(String description) {
-        setDescription(description);
-        return this;
     }
 
 }

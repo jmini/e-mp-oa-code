@@ -12,12 +12,6 @@ public class PathItemImpl implements PathItem {
     }
 
     @Override
-    public PathItem ref(String ref) {
-        setRef(ref);
-        return this;
-    }
-
-    @Override
     public void setRef(String ref) {
         if (ref != null && !ref.contains("#") && !ref.contains("/")) {
             _ref = "#/components/pathItems/" + ref;
@@ -59,12 +53,6 @@ public class PathItemImpl implements PathItem {
         _summary = summary;
     }
 
-    @Override
-    public PathItem summary(String summary) {
-        setSummary(summary);
-        return this;
-    }
-
     private String _description;
 
     @Override
@@ -75,12 +63,6 @@ public class PathItemImpl implements PathItem {
     @Override
     public void setDescription(String description) {
         _description = description;
-    }
-
-    @Override
-    public PathItem description(String description) {
-        setDescription(description);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.Operation _gET;
@@ -95,12 +77,6 @@ public class PathItemImpl implements PathItem {
         _gET = gET;
     }
 
-    @Override
-    public PathItem GET(org.eclipse.microprofile.openapi.models.Operation gET) {
-        setGET(gET);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.Operation _pUT;
 
     @Override
@@ -111,12 +87,6 @@ public class PathItemImpl implements PathItem {
     @Override
     public void setPUT(org.eclipse.microprofile.openapi.models.Operation pUT) {
         _pUT = pUT;
-    }
-
-    @Override
-    public PathItem PUT(org.eclipse.microprofile.openapi.models.Operation pUT) {
-        setPUT(pUT);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.Operation _pOST;
@@ -131,12 +101,6 @@ public class PathItemImpl implements PathItem {
         _pOST = pOST;
     }
 
-    @Override
-    public PathItem POST(org.eclipse.microprofile.openapi.models.Operation pOST) {
-        setPOST(pOST);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.Operation _dELETE;
 
     @Override
@@ -147,12 +111,6 @@ public class PathItemImpl implements PathItem {
     @Override
     public void setDELETE(org.eclipse.microprofile.openapi.models.Operation dELETE) {
         _dELETE = dELETE;
-    }
-
-    @Override
-    public PathItem DELETE(org.eclipse.microprofile.openapi.models.Operation dELETE) {
-        setDELETE(dELETE);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.Operation _oPTIONS;
@@ -167,12 +125,6 @@ public class PathItemImpl implements PathItem {
         _oPTIONS = oPTIONS;
     }
 
-    @Override
-    public PathItem OPTIONS(org.eclipse.microprofile.openapi.models.Operation oPTIONS) {
-        setOPTIONS(oPTIONS);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.Operation _hEAD;
 
     @Override
@@ -183,12 +135,6 @@ public class PathItemImpl implements PathItem {
     @Override
     public void setHEAD(org.eclipse.microprofile.openapi.models.Operation hEAD) {
         _hEAD = hEAD;
-    }
-
-    @Override
-    public PathItem HEAD(org.eclipse.microprofile.openapi.models.Operation hEAD) {
-        setHEAD(hEAD);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.Operation _pATCH;
@@ -203,12 +149,6 @@ public class PathItemImpl implements PathItem {
         _pATCH = pATCH;
     }
 
-    @Override
-    public PathItem PATCH(org.eclipse.microprofile.openapi.models.Operation pATCH) {
-        setPATCH(pATCH);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.Operation _tRACE;
 
     @Override
@@ -219,12 +159,6 @@ public class PathItemImpl implements PathItem {
     @Override
     public void setTRACE(org.eclipse.microprofile.openapi.models.Operation tRACE) {
         _tRACE = tRACE;
-    }
-
-    @Override
-    public PathItem TRACE(org.eclipse.microprofile.openapi.models.Operation tRACE) {
-        setTRACE(tRACE);
-        return this;
     }
 
     @Override
@@ -270,12 +204,6 @@ public class PathItemImpl implements PathItem {
     }
 
     @Override
-    public PathItem servers(java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> servers) {
-        setServers(servers);
-        return this;
-    }
-
-    @Override
     public PathItem addServer(org.eclipse.microprofile.openapi.models.servers.Server server) {
         if (_servers == null) {
             _servers = new java.util.ArrayList<>();
@@ -301,12 +229,6 @@ public class PathItemImpl implements PathItem {
     @Override
     public void setParameters(java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> parameters) {
         _parameters = parameters;
-    }
-
-    @Override
-    public PathItem parameters(java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> parameters) {
-        setParameters(parameters);
-        return this;
     }
 
     @Override

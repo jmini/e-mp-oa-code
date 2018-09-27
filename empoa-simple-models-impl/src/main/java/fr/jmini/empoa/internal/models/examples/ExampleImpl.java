@@ -12,12 +12,6 @@ public class ExampleImpl implements Example {
     }
 
     @Override
-    public Example ref(String ref) {
-        setRef(ref);
-        return this;
-    }
-
-    @Override
     public void setRef(String ref) {
         if (ref != null && !ref.contains("#") && !ref.contains("/")) {
             _ref = "#/components/examples/" + ref;
@@ -59,12 +53,6 @@ public class ExampleImpl implements Example {
         _summary = summary;
     }
 
-    @Override
-    public Example summary(String summary) {
-        setSummary(summary);
-        return this;
-    }
-
     private String _description;
 
     @Override
@@ -75,12 +63,6 @@ public class ExampleImpl implements Example {
     @Override
     public void setDescription(String description) {
         _description = description;
-    }
-
-    @Override
-    public Example description(String description) {
-        setDescription(description);
-        return this;
     }
 
     private Object _value;
@@ -95,12 +77,6 @@ public class ExampleImpl implements Example {
         _value = value;
     }
 
-    @Override
-    public Example value(Object value) {
-        setValue(value);
-        return this;
-    }
-
     private String _externalValue;
 
     @Override
@@ -111,12 +87,6 @@ public class ExampleImpl implements Example {
     @Override
     public void setExternalValue(String externalValue) {
         _externalValue = externalValue;
-    }
-
-    @Override
-    public Example externalValue(String externalValue) {
-        setExternalValue(externalValue);
-        return this;
     }
 
 }

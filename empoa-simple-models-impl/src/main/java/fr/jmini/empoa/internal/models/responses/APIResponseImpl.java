@@ -12,12 +12,6 @@ public class APIResponseImpl implements APIResponse {
     }
 
     @Override
-    public APIResponse ref(String ref) {
-        setRef(ref);
-        return this;
-    }
-
-    @Override
     public void setRef(String ref) {
         if (ref != null && !ref.contains("#") && !ref.contains("/")) {
             _ref = "#/components/responses/" + ref;
@@ -59,12 +53,6 @@ public class APIResponseImpl implements APIResponse {
         _description = description;
     }
 
-    @Override
-    public APIResponse description(String description) {
-        setDescription(description);
-        return this;
-    }
-
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> _headers;
 
     @Override
@@ -75,12 +63,6 @@ public class APIResponseImpl implements APIResponse {
     @Override
     public void setHeaders(java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> headers) {
         _headers = headers;
-    }
-
-    @Override
-    public APIResponse headers(java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> headers) {
-        setHeaders(headers);
-        return this;
     }
 
     @Override
@@ -104,12 +86,6 @@ public class APIResponseImpl implements APIResponse {
         _content = content;
     }
 
-    @Override
-    public APIResponse content(org.eclipse.microprofile.openapi.models.media.Content content) {
-        setContent(content);
-        return this;
-    }
-
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.links.Link> _links;
 
     @Override
@@ -120,12 +96,6 @@ public class APIResponseImpl implements APIResponse {
     @Override
     public void setLinks(java.util.Map<String, org.eclipse.microprofile.openapi.models.links.Link> links) {
         _links = links;
-    }
-
-    @Override
-    public APIResponse links(java.util.Map<String, org.eclipse.microprofile.openapi.models.links.Link> links) {
-        setLinks(links);
-        return this;
     }
 
     @Override

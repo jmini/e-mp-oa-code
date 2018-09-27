@@ -117,14 +117,6 @@ public class SimpleGenerator {
             sb.append("    }\n");
             sb.append("\n");
         }
-        if (member.hasBuilder) {
-            sb.append("    @Override\n");
-            sb.append("    public " + simpleName + " " + member.builderName + "(" + member.fqType + " " + varName + ") {\n");
-            sb.append("        " + member.setterName + "(" + varName + ");\n");
-            sb.append("        return this;\n");
-            sb.append("    }\n");
-            sb.append("\n");
-        }
         if (member instanceof MapMember) {
             MapMember mapMember = (MapMember) member;
             if (mapMember.hasAdd) {

@@ -37,12 +37,6 @@ public class ContactImpl implements Contact {
         _name = name;
     }
 
-    @Override
-    public Contact name(String name) {
-        setName(name);
-        return this;
-    }
-
     private String _url;
 
     @Override
@@ -55,12 +49,6 @@ public class ContactImpl implements Contact {
         _url = url;
     }
 
-    @Override
-    public Contact url(String url) {
-        setUrl(url);
-        return this;
-    }
-
     private String _email;
 
     @Override
@@ -71,12 +59,6 @@ public class ContactImpl implements Contact {
     @Override
     public void setEmail(String email) {
         _email = email;
-    }
-
-    @Override
-    public Contact email(String email) {
-        setEmail(email);
-        return this;
     }
 
 }

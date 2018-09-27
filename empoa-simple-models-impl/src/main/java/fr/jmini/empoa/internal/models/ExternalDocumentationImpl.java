@@ -37,12 +37,6 @@ public class ExternalDocumentationImpl implements ExternalDocumentation {
         _description = description;
     }
 
-    @Override
-    public ExternalDocumentation description(String description) {
-        setDescription(description);
-        return this;
-    }
-
     private String _url;
 
     @Override
@@ -53,12 +47,6 @@ public class ExternalDocumentationImpl implements ExternalDocumentation {
     @Override
     public void setUrl(String url) {
         _url = url;
-    }
-
-    @Override
-    public ExternalDocumentation url(String url) {
-        setUrl(url);
-        return this;
     }
 
 }

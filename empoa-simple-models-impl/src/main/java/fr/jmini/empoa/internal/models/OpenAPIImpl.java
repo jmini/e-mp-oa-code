@@ -37,12 +37,6 @@ public class OpenAPIImpl implements OpenAPI {
         _openapi = openapi;
     }
 
-    @Override
-    public OpenAPI openapi(String openapi) {
-        setOpenapi(openapi);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.info.Info _info;
 
     @Override
@@ -53,12 +47,6 @@ public class OpenAPIImpl implements OpenAPI {
     @Override
     public void setInfo(org.eclipse.microprofile.openapi.models.info.Info info) {
         _info = info;
-    }
-
-    @Override
-    public OpenAPI info(org.eclipse.microprofile.openapi.models.info.Info info) {
-        setInfo(info);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.ExternalDocumentation _externalDocs;
@@ -73,12 +61,6 @@ public class OpenAPIImpl implements OpenAPI {
         _externalDocs = externalDocs;
     }
 
-    @Override
-    public OpenAPI externalDocs(org.eclipse.microprofile.openapi.models.ExternalDocumentation externalDocs) {
-        setExternalDocs(externalDocs);
-        return this;
-    }
-
     private java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> _servers;
 
     @Override
@@ -89,12 +71,6 @@ public class OpenAPIImpl implements OpenAPI {
     @Override
     public void setServers(java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> servers) {
         _servers = servers;
-    }
-
-    @Override
-    public OpenAPI servers(java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> servers) {
-        setServers(servers);
-        return this;
     }
 
     @Override
@@ -126,12 +102,6 @@ public class OpenAPIImpl implements OpenAPI {
     }
 
     @Override
-    public OpenAPI security(java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> security) {
-        setSecurity(security);
-        return this;
-    }
-
-    @Override
     public OpenAPI addSecurityRequirement(org.eclipse.microprofile.openapi.models.security.SecurityRequirement securityRequirement) {
         if (_security == null) {
             _security = new java.util.ArrayList<>();
@@ -157,12 +127,6 @@ public class OpenAPIImpl implements OpenAPI {
     @Override
     public void setTags(java.util.List<org.eclipse.microprofile.openapi.models.tags.Tag> tags) {
         _tags = tags;
-    }
-
-    @Override
-    public OpenAPI tags(java.util.List<org.eclipse.microprofile.openapi.models.tags.Tag> tags) {
-        setTags(tags);
-        return this;
     }
 
     @Override
@@ -194,12 +158,6 @@ public class OpenAPIImpl implements OpenAPI {
     }
 
     @Override
-    public OpenAPI paths(org.eclipse.microprofile.openapi.models.Paths paths) {
-        setPaths(paths);
-        return this;
-    }
-
-    @Override
     public OpenAPI path(String name, org.eclipse.microprofile.openapi.models.PathItem path) {
         if(getPaths() == null) {
             setPaths(new PathsImpl());
@@ -218,12 +176,6 @@ public class OpenAPIImpl implements OpenAPI {
     @Override
     public void setComponents(org.eclipse.microprofile.openapi.models.Components components) {
         _components = components;
-    }
-
-    @Override
-    public OpenAPI components(org.eclipse.microprofile.openapi.models.Components components) {
-        setComponents(components);
-        return this;
     }
 
 }

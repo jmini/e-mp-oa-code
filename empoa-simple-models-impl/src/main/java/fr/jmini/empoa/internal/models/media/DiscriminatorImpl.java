@@ -16,12 +16,6 @@ public class DiscriminatorImpl implements Discriminator {
         _propertyName = propertyName;
     }
 
-    @Override
-    public Discriminator propertyName(String propertyName) {
-        setPropertyName(propertyName);
-        return this;
-    }
-
     private java.util.Map<String, String> _mapping;
 
     @Override
@@ -32,12 +26,6 @@ public class DiscriminatorImpl implements Discriminator {
     @Override
     public void setMapping(java.util.Map<String, String> mapping) {
         _mapping = mapping;
-    }
-
-    @Override
-    public Discriminator mapping(java.util.Map<String, String> mapping) {
-        setMapping(mapping);
-        return this;
     }
 
     @Override

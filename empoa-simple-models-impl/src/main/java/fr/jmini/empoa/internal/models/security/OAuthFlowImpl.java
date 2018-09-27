@@ -37,12 +37,6 @@ public class OAuthFlowImpl implements OAuthFlow {
         _authorizationUrl = authorizationUrl;
     }
 
-    @Override
-    public OAuthFlow authorizationUrl(String authorizationUrl) {
-        setAuthorizationUrl(authorizationUrl);
-        return this;
-    }
-
     private String _tokenUrl;
 
     @Override
@@ -53,12 +47,6 @@ public class OAuthFlowImpl implements OAuthFlow {
     @Override
     public void setTokenUrl(String tokenUrl) {
         _tokenUrl = tokenUrl;
-    }
-
-    @Override
-    public OAuthFlow tokenUrl(String tokenUrl) {
-        setTokenUrl(tokenUrl);
-        return this;
     }
 
     private String _refreshUrl;
@@ -73,12 +61,6 @@ public class OAuthFlowImpl implements OAuthFlow {
         _refreshUrl = refreshUrl;
     }
 
-    @Override
-    public OAuthFlow refreshUrl(String refreshUrl) {
-        setRefreshUrl(refreshUrl);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.security.Scopes _scopes;
 
     @Override
@@ -89,12 +71,6 @@ public class OAuthFlowImpl implements OAuthFlow {
     @Override
     public void setScopes(org.eclipse.microprofile.openapi.models.security.Scopes scopes) {
         _scopes = scopes;
-    }
-
-    @Override
-    public OAuthFlow scopes(org.eclipse.microprofile.openapi.models.security.Scopes scopes) {
-        setScopes(scopes);
-        return this;
     }
 
 }

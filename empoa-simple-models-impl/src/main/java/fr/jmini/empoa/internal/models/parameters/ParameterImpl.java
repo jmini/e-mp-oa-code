@@ -12,12 +12,6 @@ public class ParameterImpl implements Parameter {
     }
 
     @Override
-    public Parameter ref(String ref) {
-        setRef(ref);
-        return this;
-    }
-
-    @Override
     public void setRef(String ref) {
         if (ref != null && !ref.contains("#") && !ref.contains("/")) {
             _ref = "#/components/parameters/" + ref;
@@ -59,12 +53,6 @@ public class ParameterImpl implements Parameter {
         _name = name;
     }
 
-    @Override
-    public Parameter name(String name) {
-        setName(name);
-        return this;
-    }
-
     private In _in;
 
     @Override
@@ -75,12 +63,6 @@ public class ParameterImpl implements Parameter {
     @Override
     public void setIn(In in) {
         _in = in;
-    }
-
-    @Override
-    public Parameter in(In in) {
-        setIn(in);
-        return this;
     }
 
     private String _description;
@@ -95,12 +77,6 @@ public class ParameterImpl implements Parameter {
         _description = description;
     }
 
-    @Override
-    public Parameter description(String description) {
-        setDescription(description);
-        return this;
-    }
-
     private Boolean _required;
 
     @Override
@@ -111,12 +87,6 @@ public class ParameterImpl implements Parameter {
     @Override
     public void setRequired(Boolean required) {
         _required = required;
-    }
-
-    @Override
-    public Parameter required(Boolean required) {
-        setRequired(required);
-        return this;
     }
 
     private Boolean _deprecated;
@@ -131,12 +101,6 @@ public class ParameterImpl implements Parameter {
         _deprecated = deprecated;
     }
 
-    @Override
-    public Parameter deprecated(Boolean deprecated) {
-        setDeprecated(deprecated);
-        return this;
-    }
-
     private Boolean _allowEmptyValue;
 
     @Override
@@ -147,12 +111,6 @@ public class ParameterImpl implements Parameter {
     @Override
     public void setAllowEmptyValue(Boolean allowEmptyValue) {
         _allowEmptyValue = allowEmptyValue;
-    }
-
-    @Override
-    public Parameter allowEmptyValue(Boolean allowEmptyValue) {
-        setAllowEmptyValue(allowEmptyValue);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.parameters.Parameter.Style _style;
@@ -167,12 +125,6 @@ public class ParameterImpl implements Parameter {
         _style = style;
     }
 
-    @Override
-    public Parameter style(org.eclipse.microprofile.openapi.models.parameters.Parameter.Style style) {
-        setStyle(style);
-        return this;
-    }
-
     private Boolean _explode;
 
     @Override
@@ -183,12 +135,6 @@ public class ParameterImpl implements Parameter {
     @Override
     public void setExplode(Boolean explode) {
         _explode = explode;
-    }
-
-    @Override
-    public Parameter explode(Boolean explode) {
-        setExplode(explode);
-        return this;
     }
 
     private Boolean _allowReserved;
@@ -203,12 +149,6 @@ public class ParameterImpl implements Parameter {
         _allowReserved = allowReserved;
     }
 
-    @Override
-    public Parameter allowReserved(Boolean allowReserved) {
-        setAllowReserved(allowReserved);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.media.Schema _schema;
 
     @Override
@@ -221,12 +161,6 @@ public class ParameterImpl implements Parameter {
         _schema = schema;
     }
 
-    @Override
-    public Parameter schema(org.eclipse.microprofile.openapi.models.media.Schema schema) {
-        setSchema(schema);
-        return this;
-    }
-
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> _examples;
 
     @Override
@@ -237,12 +171,6 @@ public class ParameterImpl implements Parameter {
     @Override
     public void setExamples(java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> examples) {
         _examples = examples;
-    }
-
-    @Override
-    public Parameter examples(java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> examples) {
-        setExamples(examples);
-        return this;
     }
 
     @Override
@@ -266,12 +194,6 @@ public class ParameterImpl implements Parameter {
         _example = example;
     }
 
-    @Override
-    public Parameter example(Object example) {
-        setExample(example);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.media.Content _content;
 
     @Override
@@ -282,12 +204,6 @@ public class ParameterImpl implements Parameter {
     @Override
     public void setContent(org.eclipse.microprofile.openapi.models.media.Content content) {
         _content = content;
-    }
-
-    @Override
-    public Parameter content(org.eclipse.microprofile.openapi.models.media.Content content) {
-        setContent(content);
-        return this;
     }
 
 }

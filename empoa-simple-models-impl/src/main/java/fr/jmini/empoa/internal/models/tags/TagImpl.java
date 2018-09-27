@@ -37,12 +37,6 @@ public class TagImpl implements Tag {
         _name = name;
     }
 
-    @Override
-    public Tag name(String name) {
-        setName(name);
-        return this;
-    }
-
     private String _description;
 
     @Override
@@ -55,12 +49,6 @@ public class TagImpl implements Tag {
         _description = description;
     }
 
-    @Override
-    public Tag description(String description) {
-        setDescription(description);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.ExternalDocumentation _externalDocs;
 
     @Override
@@ -71,12 +59,6 @@ public class TagImpl implements Tag {
     @Override
     public void setExternalDocs(org.eclipse.microprofile.openapi.models.ExternalDocumentation externalDocs) {
         _externalDocs = externalDocs;
-    }
-
-    @Override
-    public Tag externalDocs(org.eclipse.microprofile.openapi.models.ExternalDocumentation externalDocs) {
-        setExternalDocs(externalDocs);
-        return this;
     }
 
 }

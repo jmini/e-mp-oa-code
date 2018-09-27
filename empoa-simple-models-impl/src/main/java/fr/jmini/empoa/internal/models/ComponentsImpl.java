@@ -38,12 +38,6 @@ public class ComponentsImpl implements Components {
     }
 
     @Override
-    public Components schemas(java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> schemas) {
-        setSchemas(schemas);
-        return this;
-    }
-
-    @Override
     public Components addSchema(String key, org.eclipse.microprofile.openapi.models.media.Schema schema) {
         if (_schemas == null) {
             _schemas = new java.util.LinkedHashMap<>();
@@ -62,12 +56,6 @@ public class ComponentsImpl implements Components {
     @Override
     public void setResponses(java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> responses) {
         _responses = responses;
-    }
-
-    @Override
-    public Components responses(java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> responses) {
-        setResponses(responses);
-        return this;
     }
 
     @Override
@@ -92,12 +80,6 @@ public class ComponentsImpl implements Components {
     }
 
     @Override
-    public Components parameters(java.util.Map<String, org.eclipse.microprofile.openapi.models.parameters.Parameter> parameters) {
-        setParameters(parameters);
-        return this;
-    }
-
-    @Override
     public Components addParameter(String key, org.eclipse.microprofile.openapi.models.parameters.Parameter parameter) {
         if (_parameters == null) {
             _parameters = new java.util.LinkedHashMap<>();
@@ -116,12 +98,6 @@ public class ComponentsImpl implements Components {
     @Override
     public void setExamples(java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> examples) {
         _examples = examples;
-    }
-
-    @Override
-    public Components examples(java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> examples) {
-        setExamples(examples);
-        return this;
     }
 
     @Override
@@ -146,12 +122,6 @@ public class ComponentsImpl implements Components {
     }
 
     @Override
-    public Components requestBodies(java.util.Map<String, org.eclipse.microprofile.openapi.models.parameters.RequestBody> requestBodies) {
-        setRequestBodies(requestBodies);
-        return this;
-    }
-
-    @Override
     public Components addRequestBody(String key, org.eclipse.microprofile.openapi.models.parameters.RequestBody requestBody) {
         if (_requestBodies == null) {
             _requestBodies = new java.util.LinkedHashMap<>();
@@ -170,12 +140,6 @@ public class ComponentsImpl implements Components {
     @Override
     public void setHeaders(java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> headers) {
         _headers = headers;
-    }
-
-    @Override
-    public Components headers(java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> headers) {
-        setHeaders(headers);
-        return this;
     }
 
     @Override
@@ -200,12 +164,6 @@ public class ComponentsImpl implements Components {
     }
 
     @Override
-    public Components securitySchemes(java.util.Map<String, org.eclipse.microprofile.openapi.models.security.SecurityScheme> securitySchemes) {
-        setSecuritySchemes(securitySchemes);
-        return this;
-    }
-
-    @Override
     public Components addSecurityScheme(String key, org.eclipse.microprofile.openapi.models.security.SecurityScheme securityScheme) {
         if (_securitySchemes == null) {
             _securitySchemes = new java.util.LinkedHashMap<>();
@@ -227,12 +185,6 @@ public class ComponentsImpl implements Components {
     }
 
     @Override
-    public Components links(java.util.Map<String, org.eclipse.microprofile.openapi.models.links.Link> links) {
-        setLinks(links);
-        return this;
-    }
-
-    @Override
     public Components addLink(String key, org.eclipse.microprofile.openapi.models.links.Link link) {
         if (_links == null) {
             _links = new java.util.LinkedHashMap<>();
@@ -251,12 +203,6 @@ public class ComponentsImpl implements Components {
     @Override
     public void setCallbacks(java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> callbacks) {
         _callbacks = callbacks;
-    }
-
-    @Override
-    public Components callbacks(java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> callbacks) {
-        setCallbacks(callbacks);
-        return this;
     }
 
     @Override

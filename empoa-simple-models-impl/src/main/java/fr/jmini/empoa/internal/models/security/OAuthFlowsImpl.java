@@ -37,12 +37,6 @@ public class OAuthFlowsImpl implements OAuthFlows {
         _implicit = implicit;
     }
 
-    @Override
-    public OAuthFlows implicit(org.eclipse.microprofile.openapi.models.security.OAuthFlow implicit) {
-        setImplicit(implicit);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.security.OAuthFlow _password;
 
     @Override
@@ -53,12 +47,6 @@ public class OAuthFlowsImpl implements OAuthFlows {
     @Override
     public void setPassword(org.eclipse.microprofile.openapi.models.security.OAuthFlow password) {
         _password = password;
-    }
-
-    @Override
-    public OAuthFlows password(org.eclipse.microprofile.openapi.models.security.OAuthFlow password) {
-        setPassword(password);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.security.OAuthFlow _clientCredentials;
@@ -73,12 +61,6 @@ public class OAuthFlowsImpl implements OAuthFlows {
         _clientCredentials = clientCredentials;
     }
 
-    @Override
-    public OAuthFlows clientCredentials(org.eclipse.microprofile.openapi.models.security.OAuthFlow clientCredentials) {
-        setClientCredentials(clientCredentials);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.security.OAuthFlow _authorizationCode;
 
     @Override
@@ -89,12 +71,6 @@ public class OAuthFlowsImpl implements OAuthFlows {
     @Override
     public void setAuthorizationCode(org.eclipse.microprofile.openapi.models.security.OAuthFlow authorizationCode) {
         _authorizationCode = authorizationCode;
-    }
-
-    @Override
-    public OAuthFlows authorizationCode(org.eclipse.microprofile.openapi.models.security.OAuthFlow authorizationCode) {
-        setAuthorizationCode(authorizationCode);
-        return this;
     }
 
 }

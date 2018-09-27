@@ -37,12 +37,6 @@ public class EncodingImpl implements Encoding {
         _contentType = contentType;
     }
 
-    @Override
-    public Encoding contentType(String contentType) {
-        setContentType(contentType);
-        return this;
-    }
-
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> _headers;
 
     @Override
@@ -53,12 +47,6 @@ public class EncodingImpl implements Encoding {
     @Override
     public void setHeaders(java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> headers) {
         _headers = headers;
-    }
-
-    @Override
-    public Encoding headers(java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> headers) {
-        setHeaders(headers);
-        return this;
     }
 
     @Override
@@ -82,12 +70,6 @@ public class EncodingImpl implements Encoding {
         _style = style;
     }
 
-    @Override
-    public Encoding style(org.eclipse.microprofile.openapi.models.media.Encoding.Style style) {
-        setStyle(style);
-        return this;
-    }
-
     private Boolean _explode;
 
     @Override
@@ -100,12 +82,6 @@ public class EncodingImpl implements Encoding {
         _explode = explode;
     }
 
-    @Override
-    public Encoding explode(Boolean explode) {
-        setExplode(explode);
-        return this;
-    }
-
     private Boolean _allowReserved;
 
     @Override
@@ -116,12 +92,6 @@ public class EncodingImpl implements Encoding {
     @Override
     public void setAllowReserved(Boolean allowReserved) {
         _allowReserved = allowReserved;
-    }
-
-    @Override
-    public Encoding allowReserved(Boolean allowReserved) {
-        setAllowReserved(allowReserved);
-        return this;
     }
 
 }

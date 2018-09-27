@@ -12,12 +12,6 @@ public class HeaderImpl implements Header {
     }
 
     @Override
-    public Header ref(String ref) {
-        setRef(ref);
-        return this;
-    }
-
-    @Override
     public void setRef(String ref) {
         if (ref != null && !ref.contains("#") && !ref.contains("/")) {
             _ref = "#/components/headers/" + ref;
@@ -59,12 +53,6 @@ public class HeaderImpl implements Header {
         _description = description;
     }
 
-    @Override
-    public Header description(String description) {
-        setDescription(description);
-        return this;
-    }
-
     private Boolean _required;
 
     @Override
@@ -75,12 +63,6 @@ public class HeaderImpl implements Header {
     @Override
     public void setRequired(Boolean required) {
         _required = required;
-    }
-
-    @Override
-    public Header required(Boolean required) {
-        setRequired(required);
-        return this;
     }
 
     private Boolean _deprecated;
@@ -95,12 +77,6 @@ public class HeaderImpl implements Header {
         _deprecated = deprecated;
     }
 
-    @Override
-    public Header deprecated(Boolean deprecated) {
-        setDeprecated(deprecated);
-        return this;
-    }
-
     private Boolean _allowEmptyValue;
 
     @Override
@@ -111,12 +87,6 @@ public class HeaderImpl implements Header {
     @Override
     public void setAllowEmptyValue(Boolean allowEmptyValue) {
         _allowEmptyValue = allowEmptyValue;
-    }
-
-    @Override
-    public Header allowEmptyValue(Boolean allowEmptyValue) {
-        setAllowEmptyValue(allowEmptyValue);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.headers.Header.Style _style;
@@ -131,12 +101,6 @@ public class HeaderImpl implements Header {
         _style = style;
     }
 
-    @Override
-    public Header style(org.eclipse.microprofile.openapi.models.headers.Header.Style style) {
-        setStyle(style);
-        return this;
-    }
-
     private Boolean _explode;
 
     @Override
@@ -147,12 +111,6 @@ public class HeaderImpl implements Header {
     @Override
     public void setExplode(Boolean explode) {
         _explode = explode;
-    }
-
-    @Override
-    public Header explode(Boolean explode) {
-        setExplode(explode);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.media.Schema _schema;
@@ -167,12 +125,6 @@ public class HeaderImpl implements Header {
         _schema = schema;
     }
 
-    @Override
-    public Header schema(org.eclipse.microprofile.openapi.models.media.Schema schema) {
-        setSchema(schema);
-        return this;
-    }
-
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> _examples;
 
     @Override
@@ -183,12 +135,6 @@ public class HeaderImpl implements Header {
     @Override
     public void setExamples(java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> examples) {
         _examples = examples;
-    }
-
-    @Override
-    public Header examples(java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> examples) {
-        setExamples(examples);
-        return this;
     }
 
     @Override
@@ -212,12 +158,6 @@ public class HeaderImpl implements Header {
         _example = example;
     }
 
-    @Override
-    public Header example(Object example) {
-        setExample(example);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.media.Content _content;
 
     @Override
@@ -228,12 +168,6 @@ public class HeaderImpl implements Header {
     @Override
     public void setContent(org.eclipse.microprofile.openapi.models.media.Content content) {
         _content = content;
-    }
-
-    @Override
-    public Header content(org.eclipse.microprofile.openapi.models.media.Content content) {
-        setContent(content);
-        return this;
     }
 
 }

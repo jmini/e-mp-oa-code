@@ -13,12 +13,6 @@ public class CallbackImpl extends java.util.LinkedHashMap<String, org.eclipse.mi
     }
 
     @Override
-    public Callback ref(String ref) {
-        setRef(ref);
-        return this;
-    }
-
-    @Override
     public void setRef(String ref) {
         if (ref != null && !ref.contains("#") && !ref.contains("/")) {
             _ref = "#/components/callbacks/" + ref;

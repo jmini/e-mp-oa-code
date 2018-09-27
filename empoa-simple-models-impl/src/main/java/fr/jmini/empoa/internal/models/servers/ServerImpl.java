@@ -37,12 +37,6 @@ public class ServerImpl implements Server {
         _url = url;
     }
 
-    @Override
-    public Server url(String url) {
-        setUrl(url);
-        return this;
-    }
-
     private String _description;
 
     @Override
@@ -55,12 +49,6 @@ public class ServerImpl implements Server {
         _description = description;
     }
 
-    @Override
-    public Server description(String description) {
-        setDescription(description);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.servers.ServerVariables _variables;
 
     @Override
@@ -71,12 +59,6 @@ public class ServerImpl implements Server {
     @Override
     public void setVariables(org.eclipse.microprofile.openapi.models.servers.ServerVariables variables) {
         _variables = variables;
-    }
-
-    @Override
-    public Server variables(org.eclipse.microprofile.openapi.models.servers.ServerVariables variables) {
-        setVariables(variables);
-        return this;
     }
 
 }

@@ -12,12 +12,6 @@ public class SchemaImpl implements Schema {
     }
 
     @Override
-    public Schema ref(String ref) {
-        setRef(ref);
-        return this;
-    }
-
-    @Override
     public void setRef(String ref) {
         if (ref != null && !ref.contains("#") && !ref.contains("/")) {
             _ref = "#/components/schemas/" + ref;
@@ -59,12 +53,6 @@ public class SchemaImpl implements Schema {
         _discriminator = discriminator;
     }
 
-    @Override
-    public Schema discriminator(org.eclipse.microprofile.openapi.models.media.Discriminator discriminator) {
-        setDiscriminator(discriminator);
-        return this;
-    }
-
     private String _title;
 
     @Override
@@ -75,12 +63,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setTitle(String title) {
         _title = title;
-    }
-
-    @Override
-    public Schema title(String title) {
-        setTitle(title);
-        return this;
     }
 
     private Object _defaultValue;
@@ -95,12 +77,6 @@ public class SchemaImpl implements Schema {
         _defaultValue = defaultValue;
     }
 
-    @Override
-    public Schema defaultValue(Object defaultValue) {
-        setDefaultValue(defaultValue);
-        return this;
-    }
-
     private java.util.List<Object> _enumeration;
 
     @Override
@@ -111,12 +87,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setEnumeration(java.util.List<Object> enumeration) {
         _enumeration = enumeration;
-    }
-
-    @Override
-    public Schema enumeration(java.util.List<Object> enumeration) {
-        setEnumeration(enumeration);
-        return this;
     }
 
     @Override
@@ -147,12 +117,6 @@ public class SchemaImpl implements Schema {
         _multipleOf = multipleOf;
     }
 
-    @Override
-    public Schema multipleOf(java.math.BigDecimal multipleOf) {
-        setMultipleOf(multipleOf);
-        return this;
-    }
-
     private java.math.BigDecimal _maximum;
 
     @Override
@@ -163,12 +127,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setMaximum(java.math.BigDecimal maximum) {
         _maximum = maximum;
-    }
-
-    @Override
-    public Schema maximum(java.math.BigDecimal maximum) {
-        setMaximum(maximum);
-        return this;
     }
 
     private Boolean _exclusiveMaximum;
@@ -183,12 +141,6 @@ public class SchemaImpl implements Schema {
         _exclusiveMaximum = exclusiveMaximum;
     }
 
-    @Override
-    public Schema exclusiveMaximum(Boolean exclusiveMaximum) {
-        setExclusiveMaximum(exclusiveMaximum);
-        return this;
-    }
-
     private java.math.BigDecimal _minimum;
 
     @Override
@@ -199,12 +151,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setMinimum(java.math.BigDecimal minimum) {
         _minimum = minimum;
-    }
-
-    @Override
-    public Schema minimum(java.math.BigDecimal minimum) {
-        setMinimum(minimum);
-        return this;
     }
 
     private Boolean _exclusiveMinimum;
@@ -219,12 +165,6 @@ public class SchemaImpl implements Schema {
         _exclusiveMinimum = exclusiveMinimum;
     }
 
-    @Override
-    public Schema exclusiveMinimum(Boolean exclusiveMinimum) {
-        setExclusiveMinimum(exclusiveMinimum);
-        return this;
-    }
-
     private Integer _maxLength;
 
     @Override
@@ -235,12 +175,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setMaxLength(Integer maxLength) {
         _maxLength = maxLength;
-    }
-
-    @Override
-    public Schema maxLength(Integer maxLength) {
-        setMaxLength(maxLength);
-        return this;
     }
 
     private Integer _minLength;
@@ -255,12 +189,6 @@ public class SchemaImpl implements Schema {
         _minLength = minLength;
     }
 
-    @Override
-    public Schema minLength(Integer minLength) {
-        setMinLength(minLength);
-        return this;
-    }
-
     private String _pattern;
 
     @Override
@@ -271,12 +199,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setPattern(String pattern) {
         _pattern = pattern;
-    }
-
-    @Override
-    public Schema pattern(String pattern) {
-        setPattern(pattern);
-        return this;
     }
 
     private Integer _maxItems;
@@ -291,12 +213,6 @@ public class SchemaImpl implements Schema {
         _maxItems = maxItems;
     }
 
-    @Override
-    public Schema maxItems(Integer maxItems) {
-        setMaxItems(maxItems);
-        return this;
-    }
-
     private Integer _minItems;
 
     @Override
@@ -307,12 +223,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setMinItems(Integer minItems) {
         _minItems = minItems;
-    }
-
-    @Override
-    public Schema minItems(Integer minItems) {
-        setMinItems(minItems);
-        return this;
     }
 
     private Boolean _uniqueItems;
@@ -327,12 +237,6 @@ public class SchemaImpl implements Schema {
         _uniqueItems = uniqueItems;
     }
 
-    @Override
-    public Schema uniqueItems(Boolean uniqueItems) {
-        setUniqueItems(uniqueItems);
-        return this;
-    }
-
     private Integer _maxProperties;
 
     @Override
@@ -343,12 +247,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setMaxProperties(Integer maxProperties) {
         _maxProperties = maxProperties;
-    }
-
-    @Override
-    public Schema maxProperties(Integer maxProperties) {
-        setMaxProperties(maxProperties);
-        return this;
     }
 
     private Integer _minProperties;
@@ -363,12 +261,6 @@ public class SchemaImpl implements Schema {
         _minProperties = minProperties;
     }
 
-    @Override
-    public Schema minProperties(Integer minProperties) {
-        setMinProperties(minProperties);
-        return this;
-    }
-
     private java.util.List<String> _required;
 
     @Override
@@ -379,12 +271,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setRequired(java.util.List<String> required) {
         _required = required;
-    }
-
-    @Override
-    public Schema required(java.util.List<String> required) {
-        setRequired(required);
-        return this;
     }
 
     @Override
@@ -415,12 +301,6 @@ public class SchemaImpl implements Schema {
         _type = type;
     }
 
-    @Override
-    public Schema type(SchemaType type) {
-        setType(type);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.media.Schema _not;
 
     @Override
@@ -433,12 +313,6 @@ public class SchemaImpl implements Schema {
         _not = not;
     }
 
-    @Override
-    public Schema not(org.eclipse.microprofile.openapi.models.media.Schema not) {
-        setNot(not);
-        return this;
-    }
-
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> _properties;
 
     @Override
@@ -449,12 +323,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setProperties(java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> properties) {
         _properties = properties;
-    }
-
-    @Override
-    public Schema properties(java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> properties) {
-        setProperties(properties);
-        return this;
     }
 
     @Override
@@ -474,12 +342,6 @@ public class SchemaImpl implements Schema {
     }
 
     @Override
-    public Schema additionalPropertiesSchema(org.eclipse.microprofile.openapi.models.media.Schema additionalPropertiesSchema) {
-        setAdditionalPropertiesSchema(additionalPropertiesSchema);
-        return this;
-    }
-
-    @Override
     public void setAdditionalPropertiesBoolean(Boolean additionalProperties) {
         _additionalPropertiesSchema = null;
         _additionalPropertiesBoolean = additionalProperties;
@@ -490,12 +352,6 @@ public class SchemaImpl implements Schema {
     @Override
     public Boolean getAdditionalPropertiesBoolean() {
         return _additionalPropertiesBoolean;
-    }
-
-    @Override
-    public Schema additionalPropertiesBoolean(Boolean additionalPropertiesBoolean) {
-        setAdditionalPropertiesBoolean(additionalPropertiesBoolean);
-        return this;
     }
 
     @Override
@@ -516,12 +372,6 @@ public class SchemaImpl implements Schema {
         _description = description;
     }
 
-    @Override
-    public Schema description(String description) {
-        setDescription(description);
-        return this;
-    }
-
     private String _format;
 
     @Override
@@ -532,12 +382,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setFormat(String format) {
         _format = format;
-    }
-
-    @Override
-    public Schema format(String format) {
-        setFormat(format);
-        return this;
     }
 
     private Boolean _nullable;
@@ -552,12 +396,6 @@ public class SchemaImpl implements Schema {
         _nullable = nullable;
     }
 
-    @Override
-    public Schema nullable(Boolean nullable) {
-        setNullable(nullable);
-        return this;
-    }
-
     private Boolean _readOnly;
 
     @Override
@@ -568,12 +406,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setReadOnly(Boolean readOnly) {
         _readOnly = readOnly;
-    }
-
-    @Override
-    public Schema readOnly(Boolean readOnly) {
-        setReadOnly(readOnly);
-        return this;
     }
 
     private Boolean _writeOnly;
@@ -588,12 +420,6 @@ public class SchemaImpl implements Schema {
         _writeOnly = writeOnly;
     }
 
-    @Override
-    public Schema writeOnly(Boolean writeOnly) {
-        setWriteOnly(writeOnly);
-        return this;
-    }
-
     private Object _example;
 
     @Override
@@ -604,12 +430,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setExample(Object example) {
         _example = example;
-    }
-
-    @Override
-    public Schema example(Object example) {
-        setExample(example);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.ExternalDocumentation _externalDocs;
@@ -624,12 +444,6 @@ public class SchemaImpl implements Schema {
         _externalDocs = externalDocs;
     }
 
-    @Override
-    public Schema externalDocs(org.eclipse.microprofile.openapi.models.ExternalDocumentation externalDocs) {
-        setExternalDocs(externalDocs);
-        return this;
-    }
-
     private Boolean _deprecated;
 
     @Override
@@ -640,12 +454,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setDeprecated(Boolean deprecated) {
         _deprecated = deprecated;
-    }
-
-    @Override
-    public Schema deprecated(Boolean deprecated) {
-        setDeprecated(deprecated);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.media.XML _xml;
@@ -660,12 +468,6 @@ public class SchemaImpl implements Schema {
         _xml = xml;
     }
 
-    @Override
-    public Schema xml(org.eclipse.microprofile.openapi.models.media.XML xml) {
-        setXml(xml);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.media.Schema _items;
 
     @Override
@@ -678,12 +480,6 @@ public class SchemaImpl implements Schema {
         _items = items;
     }
 
-    @Override
-    public Schema items(org.eclipse.microprofile.openapi.models.media.Schema items) {
-        setItems(items);
-        return this;
-    }
-
     private java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> _allOf;
 
     @Override
@@ -694,12 +490,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setAllOf(java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> allOf) {
         _allOf = allOf;
-    }
-
-    @Override
-    public Schema allOf(java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> allOf) {
-        setAllOf(allOf);
-        return this;
     }
 
     @Override
@@ -731,12 +521,6 @@ public class SchemaImpl implements Schema {
     }
 
     @Override
-    public Schema anyOf(java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> anyOf) {
-        setAnyOf(anyOf);
-        return this;
-    }
-
-    @Override
     public Schema addAnyOf(org.eclipse.microprofile.openapi.models.media.Schema schema) {
         if (_anyOf == null) {
             _anyOf = new java.util.ArrayList<>();
@@ -762,12 +546,6 @@ public class SchemaImpl implements Schema {
     @Override
     public void setOneOf(java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> oneOf) {
         _oneOf = oneOf;
-    }
-
-    @Override
-    public Schema oneOf(java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> oneOf) {
-        setOneOf(oneOf);
-        return this;
     }
 
     @Override

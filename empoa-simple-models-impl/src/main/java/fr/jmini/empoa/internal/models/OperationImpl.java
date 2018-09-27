@@ -38,12 +38,6 @@ public class OperationImpl implements Operation {
     }
 
     @Override
-    public Operation tags(java.util.List<String> tags) {
-        setTags(tags);
-        return this;
-    }
-
-    @Override
     public Operation addTag(String string) {
         if (_tags == null) {
             _tags = new java.util.ArrayList<>();
@@ -71,12 +65,6 @@ public class OperationImpl implements Operation {
         _summary = summary;
     }
 
-    @Override
-    public Operation summary(String summary) {
-        setSummary(summary);
-        return this;
-    }
-
     private String _description;
 
     @Override
@@ -87,12 +75,6 @@ public class OperationImpl implements Operation {
     @Override
     public void setDescription(String description) {
         _description = description;
-    }
-
-    @Override
-    public Operation description(String description) {
-        setDescription(description);
-        return this;
     }
 
     private org.eclipse.microprofile.openapi.models.ExternalDocumentation _externalDocs;
@@ -107,12 +89,6 @@ public class OperationImpl implements Operation {
         _externalDocs = externalDocs;
     }
 
-    @Override
-    public Operation externalDocs(org.eclipse.microprofile.openapi.models.ExternalDocumentation externalDocs) {
-        setExternalDocs(externalDocs);
-        return this;
-    }
-
     private String _operationId;
 
     @Override
@@ -125,12 +101,6 @@ public class OperationImpl implements Operation {
         _operationId = operationId;
     }
 
-    @Override
-    public Operation operationId(String operationId) {
-        setOperationId(operationId);
-        return this;
-    }
-
     private java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> _parameters;
 
     @Override
@@ -141,12 +111,6 @@ public class OperationImpl implements Operation {
     @Override
     public void setParameters(java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> parameters) {
         _parameters = parameters;
-    }
-
-    @Override
-    public Operation parameters(java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> parameters) {
-        setParameters(parameters);
-        return this;
     }
 
     @Override
@@ -177,12 +141,6 @@ public class OperationImpl implements Operation {
         _requestBody = requestBody;
     }
 
-    @Override
-    public Operation requestBody(org.eclipse.microprofile.openapi.models.parameters.RequestBody requestBody) {
-        setRequestBody(requestBody);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.responses.APIResponses _responses;
 
     @Override
@@ -195,12 +153,6 @@ public class OperationImpl implements Operation {
         _responses = responses;
     }
 
-    @Override
-    public Operation responses(org.eclipse.microprofile.openapi.models.responses.APIResponses responses) {
-        setResponses(responses);
-        return this;
-    }
-
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> _callbacks;
 
     @Override
@@ -211,12 +163,6 @@ public class OperationImpl implements Operation {
     @Override
     public void setCallbacks(java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> callbacks) {
         _callbacks = callbacks;
-    }
-
-    @Override
-    public Operation callbacks(java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> callbacks) {
-        setCallbacks(callbacks);
-        return this;
     }
 
     @Override
@@ -240,12 +186,6 @@ public class OperationImpl implements Operation {
         _deprecated = deprecated;
     }
 
-    @Override
-    public Operation deprecated(Boolean deprecated) {
-        setDeprecated(deprecated);
-        return this;
-    }
-
     private java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> _security;
 
     @Override
@@ -256,12 +196,6 @@ public class OperationImpl implements Operation {
     @Override
     public void setSecurity(java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> security) {
         _security = security;
-    }
-
-    @Override
-    public Operation security(java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> security) {
-        setSecurity(security);
-        return this;
     }
 
     @Override
@@ -290,12 +224,6 @@ public class OperationImpl implements Operation {
     @Override
     public void setServers(java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> servers) {
         _servers = servers;
-    }
-
-    @Override
-    public Operation servers(java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> servers) {
-        setServers(servers);
-        return this;
     }
 
     @Override

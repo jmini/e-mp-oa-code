@@ -12,12 +12,6 @@ public class RequestBodyImpl implements RequestBody {
     }
 
     @Override
-    public RequestBody ref(String ref) {
-        setRef(ref);
-        return this;
-    }
-
-    @Override
     public void setRef(String ref) {
         if (ref != null && !ref.contains("#") && !ref.contains("/")) {
             _ref = "#/components/requestBodies/" + ref;
@@ -59,12 +53,6 @@ public class RequestBodyImpl implements RequestBody {
         _description = description;
     }
 
-    @Override
-    public RequestBody description(String description) {
-        setDescription(description);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.media.Content _content;
 
     @Override
@@ -77,12 +65,6 @@ public class RequestBodyImpl implements RequestBody {
         _content = content;
     }
 
-    @Override
-    public RequestBody content(org.eclipse.microprofile.openapi.models.media.Content content) {
-        setContent(content);
-        return this;
-    }
-
     private Boolean _required;
 
     @Override
@@ -93,12 +75,6 @@ public class RequestBodyImpl implements RequestBody {
     @Override
     public void setRequired(Boolean required) {
         _required = required;
-    }
-
-    @Override
-    public RequestBody required(Boolean required) {
-        setRequired(required);
-        return this;
     }
 
 }

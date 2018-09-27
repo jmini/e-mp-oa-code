@@ -37,12 +37,6 @@ public class LicenseImpl implements License {
         _name = name;
     }
 
-    @Override
-    public License name(String name) {
-        setName(name);
-        return this;
-    }
-
     private String _url;
 
     @Override
@@ -53,12 +47,6 @@ public class LicenseImpl implements License {
     @Override
     public void setUrl(String url) {
         _url = url;
-    }
-
-    @Override
-    public License url(String url) {
-        setUrl(url);
-        return this;
     }
 
 }

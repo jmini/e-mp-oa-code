@@ -38,12 +38,6 @@ public class ServerVariableImpl implements ServerVariable {
     }
 
     @Override
-    public ServerVariable enumeration(java.util.List<String> enumeration) {
-        setEnumeration(enumeration);
-        return this;
-    }
-
-    @Override
     public ServerVariable addEnumeration(String string) {
         if (_enumeration == null) {
             _enumeration = new java.util.ArrayList<>();
@@ -71,12 +65,6 @@ public class ServerVariableImpl implements ServerVariable {
         _defaultValue = defaultValue;
     }
 
-    @Override
-    public ServerVariable defaultValue(String defaultValue) {
-        setDefaultValue(defaultValue);
-        return this;
-    }
-
     private String _description;
 
     @Override
@@ -87,12 +75,6 @@ public class ServerVariableImpl implements ServerVariable {
     @Override
     public void setDescription(String description) {
         _description = description;
-    }
-
-    @Override
-    public ServerVariable description(String description) {
-        setDescription(description);
-        return this;
     }
 
 }
