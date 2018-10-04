@@ -41,6 +41,13 @@ public class HeaderImpl implements Header {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private String _description;
 
     @Override
@@ -144,6 +151,13 @@ public class HeaderImpl implements Header {
         }
         _examples.put(key, example);
         return this;
+    }
+
+    @Override
+    public void removeExample(String key) {
+        if (_examples != null) {
+            _examples.remove(key);
+        }
     }
 
     private Object _example;

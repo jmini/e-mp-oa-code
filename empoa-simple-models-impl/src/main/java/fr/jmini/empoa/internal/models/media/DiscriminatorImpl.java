@@ -37,4 +37,11 @@ public class DiscriminatorImpl implements Discriminator {
         return this;
     }
 
+    @Override
+    public void removeMapping(String key) {
+        if (_mapping != null) {
+            _mapping.remove(key);
+        }
+    }
+
 }

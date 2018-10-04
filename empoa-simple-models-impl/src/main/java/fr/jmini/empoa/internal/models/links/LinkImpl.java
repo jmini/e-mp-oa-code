@@ -41,6 +41,13 @@ public class LinkImpl implements Link {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private org.eclipse.microprofile.openapi.models.servers.Server _server;
 
     @Override
@@ -108,6 +115,13 @@ public class LinkImpl implements Link {
         }
         _parameters.put(key, object);
         return this;
+    }
+
+    @Override
+    public void removeParameter(String key) {
+        if (_parameters != null) {
+            _parameters.remove(key);
+        }
     }
 
     private String _description;

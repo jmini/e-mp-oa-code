@@ -25,6 +25,13 @@ public class ComponentsImpl implements Components {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> _schemas;
 
     @Override
@@ -44,6 +51,13 @@ public class ComponentsImpl implements Components {
         }
         _schemas.put(key, schema);
         return this;
+    }
+
+    @Override
+    public void removeSchema(String key) {
+        if (_schemas != null) {
+            _schemas.remove(key);
+        }
     }
 
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> _responses;
@@ -67,6 +81,13 @@ public class ComponentsImpl implements Components {
         return this;
     }
 
+    @Override
+    public void removeResponse(String key) {
+        if (_responses != null) {
+            _responses.remove(key);
+        }
+    }
+
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.parameters.Parameter> _parameters;
 
     @Override
@@ -86,6 +107,13 @@ public class ComponentsImpl implements Components {
         }
         _parameters.put(key, parameter);
         return this;
+    }
+
+    @Override
+    public void removeParameter(String key) {
+        if (_parameters != null) {
+            _parameters.remove(key);
+        }
     }
 
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> _examples;
@@ -109,6 +137,13 @@ public class ComponentsImpl implements Components {
         return this;
     }
 
+    @Override
+    public void removeExample(String key) {
+        if (_examples != null) {
+            _examples.remove(key);
+        }
+    }
+
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.parameters.RequestBody> _requestBodies;
 
     @Override
@@ -128,6 +163,13 @@ public class ComponentsImpl implements Components {
         }
         _requestBodies.put(key, requestBody);
         return this;
+    }
+
+    @Override
+    public void removeRequestBody(String key) {
+        if (_requestBodies != null) {
+            _requestBodies.remove(key);
+        }
     }
 
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> _headers;
@@ -151,6 +193,13 @@ public class ComponentsImpl implements Components {
         return this;
     }
 
+    @Override
+    public void removeHeader(String key) {
+        if (_headers != null) {
+            _headers.remove(key);
+        }
+    }
+
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.security.SecurityScheme> _securitySchemes;
 
     @Override
@@ -170,6 +219,13 @@ public class ComponentsImpl implements Components {
         }
         _securitySchemes.put(key, securityScheme);
         return this;
+    }
+
+    @Override
+    public void removeSecurityScheme(String key) {
+        if (_securitySchemes != null) {
+            _securitySchemes.remove(key);
+        }
     }
 
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.links.Link> _links;
@@ -193,6 +249,13 @@ public class ComponentsImpl implements Components {
         return this;
     }
 
+    @Override
+    public void removeLink(String key) {
+        if (_links != null) {
+            _links.remove(key);
+        }
+    }
+
     private java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> _callbacks;
 
     @Override
@@ -212,6 +275,13 @@ public class ComponentsImpl implements Components {
         }
         _callbacks.put(key, callback);
         return this;
+    }
+
+    @Override
+    public void removeCallback(String key) {
+        if (_callbacks != null) {
+            _callbacks.remove(key);
+        }
     }
 
 }

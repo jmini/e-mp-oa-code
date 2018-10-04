@@ -25,6 +25,13 @@ public class TagImpl implements Tag {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private String _name;
 
     @Override

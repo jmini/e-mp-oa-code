@@ -25,6 +25,13 @@ public class ServerVariableImpl implements ServerVariable {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private java.util.List<String> _enumeration;
 
     @Override

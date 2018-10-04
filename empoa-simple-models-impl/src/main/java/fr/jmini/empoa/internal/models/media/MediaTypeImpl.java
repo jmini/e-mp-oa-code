@@ -25,6 +25,13 @@ public class MediaTypeImpl implements MediaType {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private org.eclipse.microprofile.openapi.models.media.Schema _schema;
 
     @Override
@@ -58,6 +65,13 @@ public class MediaTypeImpl implements MediaType {
         return this;
     }
 
+    @Override
+    public void removeExample(String key) {
+        if (_examples != null) {
+            _examples.remove(key);
+        }
+    }
+
     private Object _example;
 
     @Override
@@ -89,6 +103,13 @@ public class MediaTypeImpl implements MediaType {
         }
         _encoding.put(key, encoding);
         return this;
+    }
+
+    @Override
+    public void removeEncoding(String key) {
+        if (_encoding != null) {
+            _encoding.remove(key);
+        }
     }
 
 }

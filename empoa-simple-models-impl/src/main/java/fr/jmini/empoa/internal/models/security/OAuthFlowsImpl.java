@@ -25,6 +25,13 @@ public class OAuthFlowsImpl implements OAuthFlows {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private org.eclipse.microprofile.openapi.models.security.OAuthFlow _implicit;
 
     @Override

@@ -25,6 +25,13 @@ public class OperationImpl implements Operation {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private java.util.List<String> _tags;
 
     @Override
@@ -172,6 +179,13 @@ public class OperationImpl implements Operation {
         }
         _callbacks.put(key, callback);
         return this;
+    }
+
+    @Override
+    public void removeCallback(String key) {
+        if (_callbacks != null) {
+            _callbacks.remove(key);
+        }
     }
 
     private Boolean _deprecated;

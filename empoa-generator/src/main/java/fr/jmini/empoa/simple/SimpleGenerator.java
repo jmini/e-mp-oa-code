@@ -91,6 +91,36 @@ public class SimpleGenerator {
             sb.append("        return this;\n");
             sb.append("    }\n");
             sb.append("\n");
+            sb.append("    @Override\n");
+            sb.append("    public void " + element.mapRemoveName + "(String key) {\n");
+            sb.append("        this.remove(key);\n");
+            sb.append("    }\n");
+            sb.append("\n");
+            sb.append("    @Override\n");
+            sb.append("    public java.util.Map<String, " + element.mapOfItemFq + "> " + element.mapGetAllName + "() {\n");
+            sb.append("        return java.util.Collections.unmodifiableMap(this);\n");
+            sb.append("    }\n");
+            sb.append("\n");
+            sb.append("    @Override\n");
+            sb.append("    public void " + element.mapSetAllName + "(java.util.Map<String, " + element.mapOfItemFq + "> items) {\n");
+            sb.append("        this.clear();\n");
+            sb.append("        if (items != null) {\n");
+            sb.append("            items.entrySet()\n");
+            sb.append("                    .stream()\n");
+            sb.append("                    .forEach(e -> this.put(e.getKey(), e.getValue()));\n");
+            sb.append("        }\n");
+            sb.append("    }\n");
+            sb.append("\n");
+            sb.append("    @Override\n");
+            sb.append("    public boolean " + element.mapHasName + "(String key) {\n");
+            sb.append("        return this.containsKey(key);\n");
+            sb.append("    }\n");
+            sb.append("\n");
+            sb.append("    @Override\n");
+            sb.append("    public " + element.mapOfItemFq + " " + element.mapGetName + "(String key) {\n");
+            sb.append("        return this.get(key);\n");
+            sb.append("    }\n");
+            sb.append("\n");
         }
         sb.append("}\n");
         return sb.toString();
@@ -134,6 +164,13 @@ public class SimpleGenerator {
                 sb.append("    }\n");
                 sb.append("\n");
             }
+            sb.append("    @Override\n");
+            sb.append("    public void " + mapMember.removeName + "(String key) {\n");
+            sb.append("        if (" + memberName + " != null) {\n");
+            sb.append("            " + memberName + ".remove(key);\n");
+            sb.append("        }\n");
+            sb.append("    }\n");
+            sb.append("\n");
         }
         if (member instanceof ListMember) {
             ListMember listMember = (ListMember) member;

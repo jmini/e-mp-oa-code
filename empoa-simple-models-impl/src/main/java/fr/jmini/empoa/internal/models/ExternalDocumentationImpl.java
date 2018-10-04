@@ -25,6 +25,13 @@ public class ExternalDocumentationImpl implements ExternalDocumentation {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private String _description;
 
     @Override

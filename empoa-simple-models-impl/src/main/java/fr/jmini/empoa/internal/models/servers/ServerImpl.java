@@ -25,6 +25,13 @@ public class ServerImpl implements Server {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private String _url;
 
     @Override

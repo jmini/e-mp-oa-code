@@ -41,6 +41,13 @@ public class SecuritySchemeImpl implements SecurityScheme {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private org.eclipse.microprofile.openapi.models.security.SecurityScheme.Type _type;
 
     @Override

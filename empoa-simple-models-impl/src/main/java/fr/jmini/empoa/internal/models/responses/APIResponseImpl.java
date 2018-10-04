@@ -41,6 +41,13 @@ public class APIResponseImpl implements APIResponse {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private String _description;
 
     @Override
@@ -74,6 +81,13 @@ public class APIResponseImpl implements APIResponse {
         return this;
     }
 
+    @Override
+    public void removeHeader(String key) {
+        if (_headers != null) {
+            _headers.remove(key);
+        }
+    }
+
     private org.eclipse.microprofile.openapi.models.media.Content _content;
 
     @Override
@@ -105,6 +119,13 @@ public class APIResponseImpl implements APIResponse {
         }
         _links.put(key, link);
         return this;
+    }
+
+    @Override
+    public void removeLink(String key) {
+        if (_links != null) {
+            _links.remove(key);
+        }
     }
 
 }

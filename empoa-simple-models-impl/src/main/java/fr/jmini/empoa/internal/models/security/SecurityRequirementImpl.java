@@ -23,4 +23,34 @@ public class SecurityRequirementImpl extends java.util.LinkedHashMap<String, jav
         return this;
     }
 
+    @Override
+    public void removeScheme(String key) {
+        this.remove(key);
+    }
+
+    @Override
+    public java.util.Map<String, java.util.List<String>> getSchemes() {
+        return java.util.Collections.unmodifiableMap(this);
+    }
+
+    @Override
+    public void setSchemes(java.util.Map<String, java.util.List<String>> items) {
+        this.clear();
+        if (items != null) {
+            items.entrySet()
+                    .stream()
+                    .forEach(e -> this.put(e.getKey(), e.getValue()));
+        }
+    }
+
+    @Override
+    public boolean hasScheme(String key) {
+        return this.containsKey(key);
+    }
+
+    @Override
+    public java.util.List<String> getScheme(String key) {
+        return this.get(key);
+    }
+
 }

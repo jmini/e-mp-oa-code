@@ -27,9 +27,46 @@ public class ServerVariablesImpl extends java.util.LinkedHashMap<String, org.ecl
     }
 
     @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
+    @Override
     public ServerVariables addServerVariable(String key, org.eclipse.microprofile.openapi.models.servers.ServerVariable serverVariable) {
         this.put(key, serverVariable);
         return this;
+    }
+
+    @Override
+    public void removeServerVariable(String key) {
+        this.remove(key);
+    }
+
+    @Override
+    public java.util.Map<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> getServerVariables() {
+        return java.util.Collections.unmodifiableMap(this);
+    }
+
+    @Override
+    public void setServerVariables(java.util.Map<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> items) {
+        this.clear();
+        if (items != null) {
+            items.entrySet()
+                    .stream()
+                    .forEach(e -> this.put(e.getKey(), e.getValue()));
+        }
+    }
+
+    @Override
+    public boolean hasServerVariable(String key) {
+        return this.containsKey(key);
+    }
+
+    @Override
+    public org.eclipse.microprofile.openapi.models.servers.ServerVariable getServerVariable(String key) {
+        return this.get(key);
     }
 
 }

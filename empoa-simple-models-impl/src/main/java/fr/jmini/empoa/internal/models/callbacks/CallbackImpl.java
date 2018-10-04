@@ -43,9 +43,46 @@ public class CallbackImpl extends java.util.LinkedHashMap<String, org.eclipse.mi
     }
 
     @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
+    @Override
     public Callback addPathItem(String key, org.eclipse.microprofile.openapi.models.PathItem pathItem) {
         this.put(key, pathItem);
         return this;
+    }
+
+    @Override
+    public void removePathItem(String key) {
+        this.remove(key);
+    }
+
+    @Override
+    public java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> getPathItems() {
+        return java.util.Collections.unmodifiableMap(this);
+    }
+
+    @Override
+    public void setPathItems(java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> items) {
+        this.clear();
+        if (items != null) {
+            items.entrySet()
+                    .stream()
+                    .forEach(e -> this.put(e.getKey(), e.getValue()));
+        }
+    }
+
+    @Override
+    public boolean hasPathItem(String key) {
+        return this.containsKey(key);
+    }
+
+    @Override
+    public org.eclipse.microprofile.openapi.models.PathItem getPathItem(String key) {
+        return this.get(key);
     }
 
 }

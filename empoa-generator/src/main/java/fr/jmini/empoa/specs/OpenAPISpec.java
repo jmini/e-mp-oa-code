@@ -403,7 +403,7 @@ public class OpenAPISpec {
         List<IMember> members = new ArrayList<>();
         members.add(new AdditionalMethod(Type.APIResponses_getDefaultValue));
         members.add(new AdditionalMethod(Type.APIResponses_setDefaultValue));
-        return new Element(APIResponses.class.getName(), true, false, members, APIResponse.class.getCanonicalName(), "addAPIResponse");
+        return new Element(APIResponses.class.getName(), true, false, members, APIResponse.class.getCanonicalName());
     }
 
     public static Element createOAuthFlow() {
@@ -426,14 +426,14 @@ public class OpenAPISpec {
 
     public static Element createScopes() {
         List<IMember> members = new ArrayList<>();
-        return new Element(Scopes.class.getName(), true, false, members, String.class.getSimpleName(), "addScope");
+        return new Element(Scopes.class.getName(), true, false, members, String.class.getSimpleName(), "Scope");
     }
 
     public static Element createSecurityRequirement() {
         List<IMember> members = new ArrayList<>();
         members.add(new AdditionalMethod(Type.SecurityRequirement_addScheme_singleton));
         members.add(new AdditionalMethod(Type.SecurityRequirement_addScheme_empty));
-        return new Element(SecurityRequirement.class.getName(), false, false, members, "java.util.List<String>", "addScheme");
+        return new Element(SecurityRequirement.class.getName(), false, false, members, "java.util.List<String>", "Scheme");
     }
 
     public static Element createSecurityScheme() {

@@ -8,6 +8,7 @@ public class MapMember extends Member {
     public final String addName;
     public final boolean hasAdd;
     public final boolean addReturnsVoid;
+    public final String removeName;
 
     public MapMember(String name, String valueFqType) {
         this(name, valueFqType, true);
@@ -22,15 +23,17 @@ public class MapMember extends Member {
     }
 
     public MapMember(String name, String valueFqType, boolean hasBuilder, boolean hasAdd, boolean addReturnsVoid) {
-        this(name, valueFqType, "set" + StringUtil.capitalize(name), "get" + StringUtil.capitalize(name), StringUtil.decapitalize(name), "add" + StringUtil.capitalize(StringUtil.singular(name)), addReturnsVoid, hasAdd, hasBuilder);
+        this(name, valueFqType, "set" + StringUtil.capitalize(name), "get" + StringUtil.capitalize(name), StringUtil.decapitalize(name), "add" + StringUtil.capitalize(StringUtil.singular(name)), addReturnsVoid, hasAdd, hasBuilder, "remove"
+                + StringUtil.capitalize(StringUtil.singular(name)));
     }
 
-    public MapMember(String name, String valueFqType, String setterName, String gettterName, String builderName, String addName, boolean addReturnsVoid, boolean hasAdd, boolean hasBuilder) {
+    public MapMember(String name, String valueFqType, String setterName, String gettterName, String builderName, String addName, boolean addReturnsVoid, boolean hasAdd, boolean hasBuilder, String removeName) {
         super(name, "java.util.Map<String, " + valueFqType + ">", setterName, gettterName, builderName, true, true, true, hasBuilder);
         this.valueFqType = valueFqType;
         this.addName = addName;
         this.hasAdd = hasAdd;
         this.addReturnsVoid = addReturnsVoid;
+        this.removeName = removeName;
     }
 
 }

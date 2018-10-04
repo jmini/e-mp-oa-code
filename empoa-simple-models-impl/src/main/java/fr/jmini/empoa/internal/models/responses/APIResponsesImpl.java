@@ -27,6 +27,13 @@ public class APIResponsesImpl extends java.util.LinkedHashMap<String, org.eclips
     }
 
     @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
+    @Override
     public org.eclipse.microprofile.openapi.models.responses.APIResponse getDefaultValue() {
         return get(DEFAULT);
     }
@@ -40,6 +47,36 @@ public class APIResponsesImpl extends java.util.LinkedHashMap<String, org.eclips
     public APIResponses addAPIResponse(String key, org.eclipse.microprofile.openapi.models.responses.APIResponse aPIResponse) {
         this.put(key, aPIResponse);
         return this;
+    }
+
+    @Override
+    public void removeAPIResponse(String key) {
+        this.remove(key);
+    }
+
+    @Override
+    public java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> getAPIResponses() {
+        return java.util.Collections.unmodifiableMap(this);
+    }
+
+    @Override
+    public void setAPIResponses(java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> items) {
+        this.clear();
+        if (items != null) {
+            items.entrySet()
+                    .stream()
+                    .forEach(e -> this.put(e.getKey(), e.getValue()));
+        }
+    }
+
+    @Override
+    public boolean hasAPIResponse(String key) {
+        return this.containsKey(key);
+    }
+
+    @Override
+    public org.eclipse.microprofile.openapi.models.responses.APIResponse getAPIResponse(String key) {
+        return this.get(key);
     }
 
 }

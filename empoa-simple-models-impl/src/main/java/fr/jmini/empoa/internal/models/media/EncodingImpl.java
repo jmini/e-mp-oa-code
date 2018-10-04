@@ -25,6 +25,13 @@ public class EncodingImpl implements Encoding {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private String _contentType;
 
     @Override
@@ -56,6 +63,13 @@ public class EncodingImpl implements Encoding {
         }
         _headers.put(key, header);
         return this;
+    }
+
+    @Override
+    public void removeHeader(String key) {
+        if (_headers != null) {
+            _headers.remove(key);
+        }
     }
 
     private org.eclipse.microprofile.openapi.models.media.Encoding.Style _style;

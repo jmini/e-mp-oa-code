@@ -41,6 +41,13 @@ public class SchemaImpl implements Schema {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private org.eclipse.microprofile.openapi.models.media.Discriminator _discriminator;
 
     @Override
@@ -332,6 +339,13 @@ public class SchemaImpl implements Schema {
         }
         _properties.put(key, schema);
         return this;
+    }
+
+    @Override
+    public void removeProperty(String key) {
+        if (_properties != null) {
+            _properties.remove(key);
+        }
     }
 
     private org.eclipse.microprofile.openapi.models.media.Schema _additionalPropertiesSchema;

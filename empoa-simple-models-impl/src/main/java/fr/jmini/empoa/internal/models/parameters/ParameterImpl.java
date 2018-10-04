@@ -41,6 +41,13 @@ public class ParameterImpl implements Parameter {
         return this;
     }
 
+    @Override
+    public void removeExtension(String key) {
+        if (_extensions != null) {
+            _extensions.remove(key);
+        }
+    }
+
     private String _name;
 
     @Override
@@ -180,6 +187,13 @@ public class ParameterImpl implements Parameter {
         }
         _examples.put(key, example);
         return this;
+    }
+
+    @Override
+    public void removeExample(String key) {
+        if (_examples != null) {
+            _examples.remove(key);
+        }
     }
 
     private Object _example;
