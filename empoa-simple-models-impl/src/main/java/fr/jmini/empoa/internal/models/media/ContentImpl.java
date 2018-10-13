@@ -2,43 +2,42 @@ package fr.jmini.empoa.internal.models.media;
 
 import org.eclipse.microprofile.openapi.models.media.Content;
 
-public class ContentImpl extends java.util.LinkedHashMap<String, org.eclipse.microprofile.openapi.models.media.MediaType> implements Content {
-    private static final long serialVersionUID = 1L;
+public class ContentImpl implements Content {
+
+    private java.util.Map<String, org.eclipse.microprofile.openapi.models.media.MediaType> _mediaTypes;
+
+    @Override
+    public java.util.Map<String, org.eclipse.microprofile.openapi.models.media.MediaType> getMediaTypes() {
+        if (_mediaTypes == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_mediaTypes);
+    }
+
+    @Override
+    public void setMediaTypes(java.util.Map<String, org.eclipse.microprofile.openapi.models.media.MediaType> mediaTypes) {
+        if (mediaTypes == null) {
+            _mediaTypes = null;
+        } else {
+            _mediaTypes = new java.util.LinkedHashMap<>();
+            _mediaTypes.putAll(mediaTypes);
+        }
+    }
 
     @Override
     public Content addMediaType(String key, org.eclipse.microprofile.openapi.models.media.MediaType mediaType) {
-        this.put(key, mediaType);
+        if (_mediaTypes == null) {
+            _mediaTypes = new java.util.LinkedHashMap<>();
+        }
+        _mediaTypes.put(key, mediaType);
         return this;
     }
 
     @Override
     public void removeMediaType(String key) {
-        this.remove(key);
-    }
-
-    @Override
-    public java.util.Map<String, org.eclipse.microprofile.openapi.models.media.MediaType> getMediaTypes() {
-        return java.util.Collections.unmodifiableMap(this);
-    }
-
-    @Override
-    public void setMediaTypes(java.util.Map<String, org.eclipse.microprofile.openapi.models.media.MediaType> items) {
-        this.clear();
-        if (items != null) {
-            items.entrySet()
-                    .stream()
-                    .forEach(e -> this.put(e.getKey(), e.getValue()));
+        if (_mediaTypes != null) {
+            _mediaTypes.remove(key);
         }
-    }
-
-    @Override
-    public boolean hasMediaType(String key) {
-        return this.containsKey(key);
-    }
-
-    @Override
-    public org.eclipse.microprofile.openapi.models.media.MediaType getMediaType(String key) {
-        return this.get(key);
     }
 
 }

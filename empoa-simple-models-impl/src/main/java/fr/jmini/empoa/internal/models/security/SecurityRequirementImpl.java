@@ -2,8 +2,43 @@ package fr.jmini.empoa.internal.models.security;
 
 import org.eclipse.microprofile.openapi.models.security.SecurityRequirement;
 
-public class SecurityRequirementImpl extends java.util.LinkedHashMap<String, java.util.List<String>> implements SecurityRequirement {
-    private static final long serialVersionUID = 1L;
+public class SecurityRequirementImpl implements SecurityRequirement {
+
+    private java.util.Map<String, java.util.List<String>> _schemes;
+
+    @Override
+    public java.util.Map<String, java.util.List<String>> getSchemes() {
+        if (_schemes == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_schemes);
+    }
+
+    @Override
+    public void setSchemes(java.util.Map<String, java.util.List<String>> schemes) {
+        if (schemes == null) {
+            _schemes = null;
+        } else {
+            _schemes = new java.util.LinkedHashMap<>();
+            _schemes.putAll(schemes);
+        }
+    }
+
+    @Override
+    public SecurityRequirement addScheme(String key, java.util.List<String> list) {
+        if (_schemes == null) {
+            _schemes = new java.util.LinkedHashMap<>();
+        }
+        _schemes.put(key, list);
+        return this;
+    }
+
+    @Override
+    public void removeScheme(String key) {
+        if (_schemes != null) {
+            _schemes.remove(key);
+        }
+    }
 
     @Override
     public SecurityRequirement addScheme(String key, String scope) {
@@ -15,42 +50,6 @@ public class SecurityRequirementImpl extends java.util.LinkedHashMap<String, jav
     @Override
     public SecurityRequirement addScheme(String key) {
         return addScheme(key, new java.util.ArrayList<>());
-    }
-
-    @Override
-    public SecurityRequirement addScheme(String key, java.util.List<String> list) {
-        this.put(key, list);
-        return this;
-    }
-
-    @Override
-    public void removeScheme(String key) {
-        this.remove(key);
-    }
-
-    @Override
-    public java.util.Map<String, java.util.List<String>> getSchemes() {
-        return java.util.Collections.unmodifiableMap(this);
-    }
-
-    @Override
-    public void setSchemes(java.util.Map<String, java.util.List<String>> items) {
-        this.clear();
-        if (items != null) {
-            items.entrySet()
-                    .stream()
-                    .forEach(e -> this.put(e.getKey(), e.getValue()));
-        }
-    }
-
-    @Override
-    public boolean hasScheme(String key) {
-        return this.containsKey(key);
-    }
-
-    @Override
-    public java.util.List<String> getScheme(String key) {
-        return this.get(key);
     }
 
 }

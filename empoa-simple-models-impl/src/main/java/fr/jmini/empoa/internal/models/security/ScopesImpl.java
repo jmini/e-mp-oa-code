@@ -2,8 +2,7 @@ package fr.jmini.empoa.internal.models.security;
 
 import org.eclipse.microprofile.openapi.models.security.Scopes;
 
-public class ScopesImpl extends java.util.LinkedHashMap<String, String> implements Scopes {
-    private static final long serialVersionUID = 1L;
+public class ScopesImpl implements Scopes {
 
     private java.util.Map<String, Object> _extensions;
 
@@ -41,40 +40,40 @@ public class ScopesImpl extends java.util.LinkedHashMap<String, String> implemen
         }
     }
 
+    private java.util.Map<String, String> _scopes;
+
+    @Override
+    public java.util.Map<String, String> getScopes() {
+        if (_scopes == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_scopes);
+    }
+
+    @Override
+    public void setScopes(java.util.Map<String, String> scopes) {
+        if (scopes == null) {
+            _scopes = null;
+        } else {
+            _scopes = new java.util.LinkedHashMap<>();
+            _scopes.putAll(scopes);
+        }
+    }
+
     @Override
     public Scopes addScope(String key, String string) {
-        this.put(key, string);
+        if (_scopes == null) {
+            _scopes = new java.util.LinkedHashMap<>();
+        }
+        _scopes.put(key, string);
         return this;
     }
 
     @Override
     public void removeScope(String key) {
-        this.remove(key);
-    }
-
-    @Override
-    public java.util.Map<String, String> getScopes() {
-        return java.util.Collections.unmodifiableMap(this);
-    }
-
-    @Override
-    public void setScopes(java.util.Map<String, String> items) {
-        this.clear();
-        if (items != null) {
-            items.entrySet()
-                    .stream()
-                    .forEach(e -> this.put(e.getKey(), e.getValue()));
+        if (_scopes != null) {
+            _scopes.remove(key);
         }
-    }
-
-    @Override
-    public boolean hasScope(String key) {
-        return this.containsKey(key);
-    }
-
-    @Override
-    public String getScope(String key) {
-        return this.get(key);
     }
 
 }

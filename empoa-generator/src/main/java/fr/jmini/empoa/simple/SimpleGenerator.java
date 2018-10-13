@@ -41,14 +41,8 @@ public class SimpleGenerator {
         sb.append("import " + element.fqName + ";\n");
         sb.append("\n");
         sb.append("public class " + implClassName);
-        if (element.mapOfItemFq != null) {
-            sb.append(" extends java.util.LinkedHashMap<String, " + element.mapOfItemFq + ">");
-        }
         sb.append(" implements " + simpleName);
         sb.append(" {\n");
-        if (element.mapOfItemFq != null) {
-            sb.append("    private static final long serialVersionUID = 1L;\n");
-        }
         sb.append("\n");
         if (element.referenceable) {
             Member refMember = new Member("ref", "String", true, true, false, true);
@@ -82,45 +76,6 @@ public class SimpleGenerator {
             } else if (member instanceof AdditionalMethod) {
                 generateAdditionalMethod(sb, ((AdditionalMethod) member).type);
             }
-        }
-        if (element.mapOfItemFq != null) {
-            String itemVarName = StringUtil.decapitalize(StringUtil.computeSimpleName(element.mapOfItemFq));
-            sb.append("    @Override\n");
-            sb.append("    public " + simpleName + " " + element.mapAddName + "(String key, " + element.mapOfItemFq + " " + itemVarName + ") {\n");
-            sb.append("        this.put(key, " + itemVarName + ");\n");
-            sb.append("        return this;\n");
-            sb.append("    }\n");
-            sb.append("\n");
-            sb.append("    @Override\n");
-            sb.append("    public void " + element.mapRemoveName + "(String key) {\n");
-            sb.append("        this.remove(key);\n");
-            sb.append("    }\n");
-            sb.append("\n");
-            sb.append("    @Override\n");
-            sb.append("    public java.util.Map<String, " + element.mapOfItemFq + "> " + element.mapGetAllName + "() {\n");
-            sb.append("        return java.util.Collections.unmodifiableMap(this);\n");
-            sb.append("    }\n");
-            sb.append("\n");
-            sb.append("    @Override\n");
-            sb.append("    public void " + element.mapSetAllName + "(java.util.Map<String, " + element.mapOfItemFq + "> items) {\n");
-            sb.append("        this.clear();\n");
-            sb.append("        if (items != null) {\n");
-            sb.append("            items.entrySet()\n");
-            sb.append("                    .stream()\n");
-            sb.append("                    .forEach(e -> this.put(e.getKey(), e.getValue()));\n");
-            sb.append("        }\n");
-            sb.append("    }\n");
-            sb.append("\n");
-            sb.append("    @Override\n");
-            sb.append("    public boolean " + element.mapHasName + "(String key) {\n");
-            sb.append("        return this.containsKey(key);\n");
-            sb.append("    }\n");
-            sb.append("\n");
-            sb.append("    @Override\n");
-            sb.append("    public " + element.mapOfItemFq + " " + element.mapGetName + "(String key) {\n");
-            sb.append("        return this.get(key);\n");
-            sb.append("    }\n");
-            sb.append("\n");
         }
         sb.append("}\n");
         return sb.toString();
@@ -292,7 +247,7 @@ public class SimpleGenerator {
         case APIResponses_getDefaultValue:
             sb.append("    @Override\n");
             sb.append("    public " + org.eclipse.microprofile.openapi.models.responses.APIResponse.class.getCanonicalName() + " getDefaultValue() {\n");
-            sb.append("        return get(DEFAULT);\n");
+            sb.append("        return getAPIResponse(DEFAULT);\n");
             sb.append("    }\n");
             sb.append("\n");
             break;

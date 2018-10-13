@@ -2,8 +2,7 @@ package fr.jmini.empoa.internal.models.responses;
 
 import org.eclipse.microprofile.openapi.models.responses.APIResponses;
 
-public class APIResponsesImpl extends java.util.LinkedHashMap<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> implements APIResponses {
-    private static final long serialVersionUID = 1L;
+public class APIResponsesImpl implements APIResponses {
 
     private java.util.Map<String, Object> _extensions;
 
@@ -41,50 +40,50 @@ public class APIResponsesImpl extends java.util.LinkedHashMap<String, org.eclips
         }
     }
 
+    private java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> _aPIResponses;
+
     @Override
-    public org.eclipse.microprofile.openapi.models.responses.APIResponse getDefaultValue() {
-        return get(DEFAULT);
+    public java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> getAPIResponses() {
+        if (_aPIResponses == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_aPIResponses);
     }
 
     @Override
-    public void setDefaultValue(org.eclipse.microprofile.openapi.models.responses.APIResponse defaultValue) {
-        addAPIResponse(DEFAULT, defaultValue);
+    public void setAPIResponses(java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> aPIResponses) {
+        if (aPIResponses == null) {
+            _aPIResponses = null;
+        } else {
+            _aPIResponses = new java.util.LinkedHashMap<>();
+            _aPIResponses.putAll(aPIResponses);
+        }
     }
 
     @Override
     public APIResponses addAPIResponse(String key, org.eclipse.microprofile.openapi.models.responses.APIResponse aPIResponse) {
-        this.put(key, aPIResponse);
+        if (_aPIResponses == null) {
+            _aPIResponses = new java.util.LinkedHashMap<>();
+        }
+        _aPIResponses.put(key, aPIResponse);
         return this;
     }
 
     @Override
     public void removeAPIResponse(String key) {
-        this.remove(key);
-    }
-
-    @Override
-    public java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> getAPIResponses() {
-        return java.util.Collections.unmodifiableMap(this);
-    }
-
-    @Override
-    public void setAPIResponses(java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> items) {
-        this.clear();
-        if (items != null) {
-            items.entrySet()
-                    .stream()
-                    .forEach(e -> this.put(e.getKey(), e.getValue()));
+        if (_aPIResponses != null) {
+            _aPIResponses.remove(key);
         }
     }
 
     @Override
-    public boolean hasAPIResponse(String key) {
-        return this.containsKey(key);
+    public org.eclipse.microprofile.openapi.models.responses.APIResponse getDefaultValue() {
+        return getAPIResponse(DEFAULT);
     }
 
     @Override
-    public org.eclipse.microprofile.openapi.models.responses.APIResponse getAPIResponse(String key) {
-        return this.get(key);
+    public void setDefaultValue(org.eclipse.microprofile.openapi.models.responses.APIResponse defaultValue) {
+        addAPIResponse(DEFAULT, defaultValue);
     }
 
 }

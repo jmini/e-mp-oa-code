@@ -2,8 +2,7 @@ package fr.jmini.empoa.internal.models;
 
 import org.eclipse.microprofile.openapi.models.Paths;
 
-public class PathsImpl extends java.util.LinkedHashMap<String, org.eclipse.microprofile.openapi.models.PathItem> implements Paths {
-    private static final long serialVersionUID = 1L;
+public class PathsImpl implements Paths {
 
     private java.util.Map<String, Object> _extensions;
 
@@ -41,40 +40,40 @@ public class PathsImpl extends java.util.LinkedHashMap<String, org.eclipse.micro
         }
     }
 
+    private java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> _pathItems;
+
+    @Override
+    public java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> getPathItems() {
+        if (_pathItems == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_pathItems);
+    }
+
+    @Override
+    public void setPathItems(java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> pathItems) {
+        if (pathItems == null) {
+            _pathItems = null;
+        } else {
+            _pathItems = new java.util.LinkedHashMap<>();
+            _pathItems.putAll(pathItems);
+        }
+    }
+
     @Override
     public Paths addPathItem(String key, org.eclipse.microprofile.openapi.models.PathItem pathItem) {
-        this.put(key, pathItem);
+        if (_pathItems == null) {
+            _pathItems = new java.util.LinkedHashMap<>();
+        }
+        _pathItems.put(key, pathItem);
         return this;
     }
 
     @Override
     public void removePathItem(String key) {
-        this.remove(key);
-    }
-
-    @Override
-    public java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> getPathItems() {
-        return java.util.Collections.unmodifiableMap(this);
-    }
-
-    @Override
-    public void setPathItems(java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> items) {
-        this.clear();
-        if (items != null) {
-            items.entrySet()
-                    .stream()
-                    .forEach(e -> this.put(e.getKey(), e.getValue()));
+        if (_pathItems != null) {
+            _pathItems.remove(key);
         }
-    }
-
-    @Override
-    public boolean hasPathItem(String key) {
-        return this.containsKey(key);
-    }
-
-    @Override
-    public org.eclipse.microprofile.openapi.models.PathItem getPathItem(String key) {
-        return this.get(key);
     }
 
 }

@@ -210,12 +210,14 @@ public class OpenAPISpec {
 
     public static Element createPaths() {
         List<IMember> members = new ArrayList<>();
-        return new Element(Paths.class.getName(), true, false, members, PathItem.class.getName());
+        members.add(new MapMember("PathItems", PathItem.class.getCanonicalName()));
+        return new Element(Paths.class.getName(), true, false, members);
     }
 
     public static Element createCallback() {
         List<IMember> members = new ArrayList<>();
-        return new Element(Callback.class.getName(), true, true, members, PathItem.class.getName());
+        members.add(new MapMember("PathItems", PathItem.class.getCanonicalName()));
+        return new Element(Callback.class.getName(), true, true, members);
     }
 
     public static Element createExample() {
@@ -281,7 +283,8 @@ public class OpenAPISpec {
 
     public static Element createContent() {
         List<IMember> members = new ArrayList<>();
-        return new Element(Content.class.getName(), false, false, members, MediaType.class.getName());
+        members.add(new MapMember("MediaTypes", MediaType.class.getCanonicalName()));
+        return new Element(Content.class.getName(), false, false, members);
     }
 
     public static Element createDiscriminator() {
@@ -400,9 +403,10 @@ public class OpenAPISpec {
 
     public static Element createAPIResponses() {
         List<IMember> members = new ArrayList<>();
+        members.add(new MapMember("APIResponses", APIResponse.class.getCanonicalName()));
         members.add(new AdditionalMethod(Type.APIResponses_getDefaultValue));
         members.add(new AdditionalMethod(Type.APIResponses_setDefaultValue));
-        return new Element(APIResponses.class.getName(), true, false, members, APIResponse.class.getCanonicalName());
+        return new Element(APIResponses.class.getName(), true, false, members);
     }
 
     public static Element createOAuthFlow() {
@@ -425,14 +429,16 @@ public class OpenAPISpec {
 
     public static Element createScopes() {
         List<IMember> members = new ArrayList<>();
-        return new Element(Scopes.class.getName(), true, false, members, String.class.getSimpleName(), "Scope");
+        members.add(new MapMember("Scopes", String.class.getSimpleName()));
+        return new Element(Scopes.class.getName(), true, false, members);
     }
 
     public static Element createSecurityRequirement() {
         List<IMember> members = new ArrayList<>();
+        members.add(new MapMember("Schemes", "java.util.List<String>"));
         members.add(new AdditionalMethod(Type.SecurityRequirement_addScheme_singleton));
         members.add(new AdditionalMethod(Type.SecurityRequirement_addScheme_empty));
-        return new Element(SecurityRequirement.class.getName(), false, false, members, "java.util.List<String>", "Scheme");
+        return new Element(SecurityRequirement.class.getName(), false, false, members);
     }
 
     public static Element createSecurityScheme() {
@@ -466,7 +472,8 @@ public class OpenAPISpec {
 
     public static Element createServerVariables() {
         List<IMember> members = new ArrayList<>();
-        return new Element(ServerVariables.class.getName(), true, false, members, ServerVariable.class.getName());
+        members.add(new MapMember("ServerVariables", ServerVariable.class.getCanonicalName()));
+        return new Element(ServerVariables.class.getName(), true, false, members);
     }
 
     public static Element createTag() {

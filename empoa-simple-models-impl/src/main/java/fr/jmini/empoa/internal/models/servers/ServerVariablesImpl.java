@@ -2,8 +2,7 @@ package fr.jmini.empoa.internal.models.servers;
 
 import org.eclipse.microprofile.openapi.models.servers.ServerVariables;
 
-public class ServerVariablesImpl extends java.util.LinkedHashMap<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> implements ServerVariables {
-    private static final long serialVersionUID = 1L;
+public class ServerVariablesImpl implements ServerVariables {
 
     private java.util.Map<String, Object> _extensions;
 
@@ -41,40 +40,40 @@ public class ServerVariablesImpl extends java.util.LinkedHashMap<String, org.ecl
         }
     }
 
+    private java.util.Map<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> _serverVariables;
+
+    @Override
+    public java.util.Map<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> getServerVariables() {
+        if (_serverVariables == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_serverVariables);
+    }
+
+    @Override
+    public void setServerVariables(java.util.Map<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> serverVariables) {
+        if (serverVariables == null) {
+            _serverVariables = null;
+        } else {
+            _serverVariables = new java.util.LinkedHashMap<>();
+            _serverVariables.putAll(serverVariables);
+        }
+    }
+
     @Override
     public ServerVariables addServerVariable(String key, org.eclipse.microprofile.openapi.models.servers.ServerVariable serverVariable) {
-        this.put(key, serverVariable);
+        if (_serverVariables == null) {
+            _serverVariables = new java.util.LinkedHashMap<>();
+        }
+        _serverVariables.put(key, serverVariable);
         return this;
     }
 
     @Override
     public void removeServerVariable(String key) {
-        this.remove(key);
-    }
-
-    @Override
-    public java.util.Map<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> getServerVariables() {
-        return java.util.Collections.unmodifiableMap(this);
-    }
-
-    @Override
-    public void setServerVariables(java.util.Map<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> items) {
-        this.clear();
-        if (items != null) {
-            items.entrySet()
-                    .stream()
-                    .forEach(e -> this.put(e.getKey(), e.getValue()));
+        if (_serverVariables != null) {
+            _serverVariables.remove(key);
         }
-    }
-
-    @Override
-    public boolean hasServerVariable(String key) {
-        return this.containsKey(key);
-    }
-
-    @Override
-    public org.eclipse.microprofile.openapi.models.servers.ServerVariable getServerVariable(String key) {
-        return this.get(key);
     }
 
 }
