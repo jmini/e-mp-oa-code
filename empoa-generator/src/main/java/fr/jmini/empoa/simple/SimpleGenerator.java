@@ -228,17 +228,6 @@ public class SimpleGenerator {
             sb.append("    }\n");
             sb.append("\n");
             break;
-        case OpenAPI_path:
-            sb.append("    @Override\n");
-            sb.append("    public " + org.eclipse.microprofile.openapi.models.OpenAPI.class.getSimpleName() + " path(String name, org.eclipse.microprofile.openapi.models.PathItem path) {\n");
-            sb.append("        if(getPaths() == null) {\n");
-            sb.append("            setPaths(new PathsImpl());\n");
-            sb.append("        }\n");
-            sb.append("        getPaths().addPathItem(name, path);\n");
-            sb.append("        return this;\n");
-            sb.append("    }\n");
-            sb.append("\n");
-            break;
         case SecurityRequirement_addScheme_singleton:
             sb.append("    @Override\n");
             sb.append("    public " + org.eclipse.microprofile.openapi.models.security.SecurityRequirement.class.getSimpleName() + " addScheme(String key, String scope) {\n");

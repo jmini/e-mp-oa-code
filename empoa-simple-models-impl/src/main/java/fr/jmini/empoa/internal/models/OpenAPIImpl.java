@@ -164,15 +164,6 @@ public class OpenAPIImpl implements OpenAPI {
         _paths = paths;
     }
 
-    @Override
-    public OpenAPI path(String name, org.eclipse.microprofile.openapi.models.PathItem path) {
-        if(getPaths() == null) {
-            setPaths(new PathsImpl());
-        }
-        getPaths().addPathItem(name, path);
-        return this;
-    }
-
     private org.eclipse.microprofile.openapi.models.Components _components;
 
     @Override

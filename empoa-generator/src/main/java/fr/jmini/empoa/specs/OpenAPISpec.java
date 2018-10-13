@@ -169,7 +169,6 @@ public class OpenAPISpec {
         members.add(new ListMember("Security", SecurityRequirement.class.getCanonicalName(), "addSecurityRequirement", "removeSecurityRequirement"));
         members.add(new ListMember("Tags", Tag.class.getCanonicalName()));
         members.add(new Member("Paths", Paths.class.getCanonicalName()));
-        members.add(new AdditionalMethod(Type.OpenAPI_path));
         members.add(new Member("Components", Components.class.getCanonicalName()));
         return new Element(OpenAPI.class.getName(), true, false, members);
     }
