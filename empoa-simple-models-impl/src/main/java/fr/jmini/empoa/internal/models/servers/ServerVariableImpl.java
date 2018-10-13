@@ -8,12 +8,20 @@ public class ServerVariableImpl implements ServerVariable {
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        return _extensions;
+        if (_extensions == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_extensions);
     }
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        _extensions = extensions;
+        if (extensions == null) {
+            _extensions = null;
+        } else {
+            _extensions = new java.util.LinkedHashMap<>();
+            _extensions.putAll(extensions);
+        }
     }
 
     @Override
@@ -36,12 +44,20 @@ public class ServerVariableImpl implements ServerVariable {
 
     @Override
     public java.util.List<String> getEnumeration() {
-        return _enumeration;
+        if (_enumeration == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_enumeration);
     }
 
     @Override
     public void setEnumeration(java.util.List<String> enumeration) {
-        _enumeration = enumeration;
+        if (enumeration == null) {
+            _enumeration = null;
+        } else {
+            _enumeration = new java.util.ArrayList<>();
+            _enumeration.addAll(enumeration);
+        }
     }
 
     @Override

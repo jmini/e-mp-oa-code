@@ -8,12 +8,20 @@ public class EncodingImpl implements Encoding {
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        return _extensions;
+        if (_extensions == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_extensions);
     }
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        _extensions = extensions;
+        if (extensions == null) {
+            _extensions = null;
+        } else {
+            _extensions = new java.util.LinkedHashMap<>();
+            _extensions.putAll(extensions);
+        }
     }
 
     @Override
@@ -48,12 +56,20 @@ public class EncodingImpl implements Encoding {
 
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> getHeaders() {
-        return _headers;
+        if (_headers == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_headers);
     }
 
     @Override
     public void setHeaders(java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> headers) {
-        _headers = headers;
+        if (headers == null) {
+            _headers = null;
+        } else {
+            _headers = new java.util.LinkedHashMap<>();
+            _headers.putAll(headers);
+        }
     }
 
     @Override

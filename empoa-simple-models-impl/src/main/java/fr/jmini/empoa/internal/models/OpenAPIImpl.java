@@ -8,12 +8,20 @@ public class OpenAPIImpl implements OpenAPI {
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        return _extensions;
+        if (_extensions == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_extensions);
     }
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        _extensions = extensions;
+        if (extensions == null) {
+            _extensions = null;
+        } else {
+            _extensions = new java.util.LinkedHashMap<>();
+            _extensions.putAll(extensions);
+        }
     }
 
     @Override
@@ -72,12 +80,20 @@ public class OpenAPIImpl implements OpenAPI {
 
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> getServers() {
-        return _servers;
+        if (_servers == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_servers);
     }
 
     @Override
     public void setServers(java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> servers) {
-        _servers = servers;
+        if (servers == null) {
+            _servers = null;
+        } else {
+            _servers = new java.util.ArrayList<>();
+            _servers.addAll(servers);
+        }
     }
 
     @Override
@@ -100,12 +116,20 @@ public class OpenAPIImpl implements OpenAPI {
 
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> getSecurity() {
-        return _security;
+        if (_security == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_security);
     }
 
     @Override
     public void setSecurity(java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> security) {
-        _security = security;
+        if (security == null) {
+            _security = null;
+        } else {
+            _security = new java.util.ArrayList<>();
+            _security.addAll(security);
+        }
     }
 
     @Override
@@ -128,12 +152,20 @@ public class OpenAPIImpl implements OpenAPI {
 
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.tags.Tag> getTags() {
-        return _tags;
+        if (_tags == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_tags);
     }
 
     @Override
     public void setTags(java.util.List<org.eclipse.microprofile.openapi.models.tags.Tag> tags) {
-        _tags = tags;
+        if (tags == null) {
+            _tags = null;
+        } else {
+            _tags = new java.util.ArrayList<>();
+            _tags.addAll(tags);
+        }
     }
 
     @Override

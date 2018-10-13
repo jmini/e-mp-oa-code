@@ -127,6 +127,8 @@ public class SimpleGenerator {
     }
 
     private void generateMember(StringBuilder sb, Member member) {
+        boolean isMapMember = member instanceof MapMember;
+        boolean isListMember = member instanceof ListMember;
         String varName = StringUtil.decapitalize(member.name);
         String memberName = "_" + StringUtil.decapitalize(member.name);
         if (member.hasMemberDeclaration) {
@@ -136,18 +138,46 @@ public class SimpleGenerator {
         if (member.hasGetter) {
             sb.append("    @Override\n");
             sb.append("    public " + member.fqType + " " + member.getterName + "() {\n");
-            sb.append("        return " + memberName + ";\n");
+            if (isMapMember || isListMember) {
+                sb.append("        if (" + memberName + " == null) {\n");
+                sb.append("            return null;\n");
+                sb.append("        }\n");
+                if (isMapMember) {
+                    sb.append("        return " + java.util.Collections.class.getCanonicalName() + ".unmodifiableMap(" + memberName + ");\n");
+                }
+                if (isListMember) {
+                    sb.append("        return " + java.util.Collections.class.getCanonicalName() + ".unmodifiableList(" + memberName + ");\n");
+                }
+            } else {
+                sb.append("        return " + memberName + ";\n");
+            }
             sb.append("    }\n");
             sb.append("\n");
+
         }
         if (member.hasSetter) {
             sb.append("    @Override\n");
             sb.append("    public void " + member.setterName + "(" + member.fqType + " " + varName + ") {\n");
-            sb.append("        " + memberName + " = " + varName + ";\n");
+            if (isMapMember || isListMember) {
+                sb.append("        if (" + varName + " == null) {\n");
+                sb.append("            " + memberName + " = null;\n");
+                sb.append("        } else {\n");
+                if (isMapMember) {
+                    sb.append("            " + memberName + " = new java.util.LinkedHashMap<>();\n");
+                    sb.append("            " + memberName + ".putAll(" + varName + ");\n");
+                }
+                if (isListMember) {
+                    sb.append("            " + memberName + " = new java.util.ArrayList<>();\n");
+                    sb.append("            " + memberName + ".addAll(" + varName + ");\n");
+                }
+                sb.append("        }\n");
+            } else {
+                sb.append("        " + memberName + " = " + varName + ";\n");
+            }
             sb.append("    }\n");
             sb.append("\n");
         }
-        if (member instanceof MapMember) {
+        if (isMapMember) {
             MapMember mapMember = (MapMember) member;
             if (mapMember.hasAdd) {
                 String itemVarName = StringUtil.decapitalize(StringUtil.computeSimpleName(mapMember.valueFqType));
@@ -171,8 +201,7 @@ public class SimpleGenerator {
             sb.append("        }\n");
             sb.append("    }\n");
             sb.append("\n");
-        }
-        if (member instanceof ListMember) {
+        } else if (isListMember) {
             ListMember listMember = (ListMember) member;
             String itemVarName = StringUtil.decapitalize(StringUtil.computeSimpleName(listMember.itemFqType));
             sb.append("    @Override\n");

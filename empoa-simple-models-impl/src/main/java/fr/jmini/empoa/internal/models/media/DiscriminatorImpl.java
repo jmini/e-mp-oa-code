@@ -20,12 +20,20 @@ public class DiscriminatorImpl implements Discriminator {
 
     @Override
     public java.util.Map<String, String> getMapping() {
-        return _mapping;
+        if (_mapping == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_mapping);
     }
 
     @Override
     public void setMapping(java.util.Map<String, String> mapping) {
-        _mapping = mapping;
+        if (mapping == null) {
+            _mapping = null;
+        } else {
+            _mapping = new java.util.LinkedHashMap<>();
+            _mapping.putAll(mapping);
+        }
     }
 
     @Override

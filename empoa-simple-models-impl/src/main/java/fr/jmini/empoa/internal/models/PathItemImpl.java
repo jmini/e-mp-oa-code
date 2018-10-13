@@ -24,12 +24,20 @@ public class PathItemImpl implements PathItem {
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        return _extensions;
+        if (_extensions == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_extensions);
     }
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        _extensions = extensions;
+        if (extensions == null) {
+            _extensions = null;
+        } else {
+            _extensions = new java.util.LinkedHashMap<>();
+            _extensions.putAll(extensions);
+        }
     }
 
     @Override
@@ -202,12 +210,20 @@ public class PathItemImpl implements PathItem {
 
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> getServers() {
-        return _servers;
+        if (_servers == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_servers);
     }
 
     @Override
     public void setServers(java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> servers) {
-        _servers = servers;
+        if (servers == null) {
+            _servers = null;
+        } else {
+            _servers = new java.util.ArrayList<>();
+            _servers.addAll(servers);
+        }
     }
 
     @Override
@@ -230,12 +246,20 @@ public class PathItemImpl implements PathItem {
 
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> getParameters() {
-        return _parameters;
+        if (_parameters == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_parameters);
     }
 
     @Override
     public void setParameters(java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> parameters) {
-        _parameters = parameters;
+        if (parameters == null) {
+            _parameters = null;
+        } else {
+            _parameters = new java.util.ArrayList<>();
+            _parameters.addAll(parameters);
+        }
     }
 
     @Override
