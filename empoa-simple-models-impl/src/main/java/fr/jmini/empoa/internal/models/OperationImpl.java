@@ -8,12 +8,20 @@ public class OperationImpl implements Operation {
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        return _extensions;
+        if (_extensions == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_extensions);
     }
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        _extensions = extensions;
+        if (extensions == null) {
+            _extensions = null;
+        } else {
+            _extensions = new java.util.LinkedHashMap<>();
+            _extensions.putAll(extensions);
+        }
     }
 
     @Override
@@ -36,12 +44,20 @@ public class OperationImpl implements Operation {
 
     @Override
     public java.util.List<String> getTags() {
-        return _tags;
+        if (_tags == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_tags);
     }
 
     @Override
     public void setTags(java.util.List<String> tags) {
-        _tags = tags;
+        if (tags == null) {
+            _tags = null;
+        } else {
+            _tags = new java.util.ArrayList<>();
+            _tags.addAll(tags);
+        }
     }
 
     @Override
@@ -112,12 +128,20 @@ public class OperationImpl implements Operation {
 
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> getParameters() {
-        return _parameters;
+        if (_parameters == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_parameters);
     }
 
     @Override
     public void setParameters(java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> parameters) {
-        _parameters = parameters;
+        if (parameters == null) {
+            _parameters = null;
+        } else {
+            _parameters = new java.util.ArrayList<>();
+            _parameters.addAll(parameters);
+        }
     }
 
     @Override
@@ -164,12 +188,20 @@ public class OperationImpl implements Operation {
 
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> getCallbacks() {
-        return _callbacks;
+        if (_callbacks == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_callbacks);
     }
 
     @Override
     public void setCallbacks(java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> callbacks) {
-        _callbacks = callbacks;
+        if (callbacks == null) {
+            _callbacks = null;
+        } else {
+            _callbacks = new java.util.LinkedHashMap<>();
+            _callbacks.putAll(callbacks);
+        }
     }
 
     @Override
@@ -204,12 +236,20 @@ public class OperationImpl implements Operation {
 
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> getSecurity() {
-        return _security;
+        if (_security == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_security);
     }
 
     @Override
     public void setSecurity(java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> security) {
-        _security = security;
+        if (security == null) {
+            _security = null;
+        } else {
+            _security = new java.util.ArrayList<>();
+            _security.addAll(security);
+        }
     }
 
     @Override
@@ -232,12 +272,20 @@ public class OperationImpl implements Operation {
 
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> getServers() {
-        return _servers;
+        if (_servers == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_servers);
     }
 
     @Override
     public void setServers(java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> servers) {
-        _servers = servers;
+        if (servers == null) {
+            _servers = null;
+        } else {
+            _servers = new java.util.ArrayList<>();
+            _servers.addAll(servers);
+        }
     }
 
     @Override

@@ -24,12 +24,20 @@ public class SchemaImpl implements Schema {
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        return _extensions;
+        if (_extensions == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_extensions);
     }
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        _extensions = extensions;
+        if (extensions == null) {
+            _extensions = null;
+        } else {
+            _extensions = new java.util.LinkedHashMap<>();
+            _extensions.putAll(extensions);
+        }
     }
 
     @Override
@@ -88,12 +96,20 @@ public class SchemaImpl implements Schema {
 
     @Override
     public java.util.List<Object> getEnumeration() {
-        return _enumeration;
+        if (_enumeration == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_enumeration);
     }
 
     @Override
     public void setEnumeration(java.util.List<Object> enumeration) {
-        _enumeration = enumeration;
+        if (enumeration == null) {
+            _enumeration = null;
+        } else {
+            _enumeration = new java.util.ArrayList<>();
+            _enumeration.addAll(enumeration);
+        }
     }
 
     @Override
@@ -272,12 +288,20 @@ public class SchemaImpl implements Schema {
 
     @Override
     public java.util.List<String> getRequired() {
-        return _required;
+        if (_required == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_required);
     }
 
     @Override
     public void setRequired(java.util.List<String> required) {
-        _required = required;
+        if (required == null) {
+            _required = null;
+        } else {
+            _required = new java.util.ArrayList<>();
+            _required.addAll(required);
+        }
     }
 
     @Override
@@ -324,12 +348,20 @@ public class SchemaImpl implements Schema {
 
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> getProperties() {
-        return _properties;
+        if (_properties == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_properties);
     }
 
     @Override
     public void setProperties(java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> properties) {
-        _properties = properties;
+        if (properties == null) {
+            _properties = null;
+        } else {
+            _properties = new java.util.LinkedHashMap<>();
+            _properties.putAll(properties);
+        }
     }
 
     @Override
@@ -498,12 +530,20 @@ public class SchemaImpl implements Schema {
 
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> getAllOf() {
-        return _allOf;
+        if (_allOf == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_allOf);
     }
 
     @Override
     public void setAllOf(java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> allOf) {
-        _allOf = allOf;
+        if (allOf == null) {
+            _allOf = null;
+        } else {
+            _allOf = new java.util.ArrayList<>();
+            _allOf.addAll(allOf);
+        }
     }
 
     @Override
@@ -526,12 +566,20 @@ public class SchemaImpl implements Schema {
 
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> getAnyOf() {
-        return _anyOf;
+        if (_anyOf == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_anyOf);
     }
 
     @Override
     public void setAnyOf(java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> anyOf) {
-        _anyOf = anyOf;
+        if (anyOf == null) {
+            _anyOf = null;
+        } else {
+            _anyOf = new java.util.ArrayList<>();
+            _anyOf.addAll(anyOf);
+        }
     }
 
     @Override
@@ -554,12 +602,20 @@ public class SchemaImpl implements Schema {
 
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> getOneOf() {
-        return _oneOf;
+        if (_oneOf == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableList(_oneOf);
     }
 
     @Override
     public void setOneOf(java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> oneOf) {
-        _oneOf = oneOf;
+        if (oneOf == null) {
+            _oneOf = null;
+        } else {
+            _oneOf = new java.util.ArrayList<>();
+            _oneOf.addAll(oneOf);
+        }
     }
 
     @Override

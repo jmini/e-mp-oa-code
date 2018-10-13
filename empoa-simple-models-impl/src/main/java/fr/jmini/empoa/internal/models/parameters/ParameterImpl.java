@@ -24,12 +24,20 @@ public class ParameterImpl implements Parameter {
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        return _extensions;
+        if (_extensions == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_extensions);
     }
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        _extensions = extensions;
+        if (extensions == null) {
+            _extensions = null;
+        } else {
+            _extensions = new java.util.LinkedHashMap<>();
+            _extensions.putAll(extensions);
+        }
     }
 
     @Override
@@ -172,12 +180,20 @@ public class ParameterImpl implements Parameter {
 
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> getExamples() {
-        return _examples;
+        if (_examples == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_examples);
     }
 
     @Override
     public void setExamples(java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> examples) {
-        _examples = examples;
+        if (examples == null) {
+            _examples = null;
+        } else {
+            _examples = new java.util.LinkedHashMap<>();
+            _examples.putAll(examples);
+        }
     }
 
     @Override

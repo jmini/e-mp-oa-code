@@ -8,12 +8,20 @@ public class ComponentsImpl implements Components {
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        return _extensions;
+        if (_extensions == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_extensions);
     }
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        _extensions = extensions;
+        if (extensions == null) {
+            _extensions = null;
+        } else {
+            _extensions = new java.util.LinkedHashMap<>();
+            _extensions.putAll(extensions);
+        }
     }
 
     @Override
@@ -36,12 +44,20 @@ public class ComponentsImpl implements Components {
 
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> getSchemas() {
-        return _schemas;
+        if (_schemas == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_schemas);
     }
 
     @Override
     public void setSchemas(java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> schemas) {
-        _schemas = schemas;
+        if (schemas == null) {
+            _schemas = null;
+        } else {
+            _schemas = new java.util.LinkedHashMap<>();
+            _schemas.putAll(schemas);
+        }
     }
 
     @Override
@@ -64,12 +80,20 @@ public class ComponentsImpl implements Components {
 
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> getResponses() {
-        return _responses;
+        if (_responses == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_responses);
     }
 
     @Override
     public void setResponses(java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> responses) {
-        _responses = responses;
+        if (responses == null) {
+            _responses = null;
+        } else {
+            _responses = new java.util.LinkedHashMap<>();
+            _responses.putAll(responses);
+        }
     }
 
     @Override
@@ -92,12 +116,20 @@ public class ComponentsImpl implements Components {
 
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.parameters.Parameter> getParameters() {
-        return _parameters;
+        if (_parameters == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_parameters);
     }
 
     @Override
     public void setParameters(java.util.Map<String, org.eclipse.microprofile.openapi.models.parameters.Parameter> parameters) {
-        _parameters = parameters;
+        if (parameters == null) {
+            _parameters = null;
+        } else {
+            _parameters = new java.util.LinkedHashMap<>();
+            _parameters.putAll(parameters);
+        }
     }
 
     @Override
@@ -120,12 +152,20 @@ public class ComponentsImpl implements Components {
 
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> getExamples() {
-        return _examples;
+        if (_examples == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_examples);
     }
 
     @Override
     public void setExamples(java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> examples) {
-        _examples = examples;
+        if (examples == null) {
+            _examples = null;
+        } else {
+            _examples = new java.util.LinkedHashMap<>();
+            _examples.putAll(examples);
+        }
     }
 
     @Override
@@ -148,12 +188,20 @@ public class ComponentsImpl implements Components {
 
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.parameters.RequestBody> getRequestBodies() {
-        return _requestBodies;
+        if (_requestBodies == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_requestBodies);
     }
 
     @Override
     public void setRequestBodies(java.util.Map<String, org.eclipse.microprofile.openapi.models.parameters.RequestBody> requestBodies) {
-        _requestBodies = requestBodies;
+        if (requestBodies == null) {
+            _requestBodies = null;
+        } else {
+            _requestBodies = new java.util.LinkedHashMap<>();
+            _requestBodies.putAll(requestBodies);
+        }
     }
 
     @Override
@@ -176,12 +224,20 @@ public class ComponentsImpl implements Components {
 
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> getHeaders() {
-        return _headers;
+        if (_headers == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_headers);
     }
 
     @Override
     public void setHeaders(java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> headers) {
-        _headers = headers;
+        if (headers == null) {
+            _headers = null;
+        } else {
+            _headers = new java.util.LinkedHashMap<>();
+            _headers.putAll(headers);
+        }
     }
 
     @Override
@@ -204,12 +260,20 @@ public class ComponentsImpl implements Components {
 
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.security.SecurityScheme> getSecuritySchemes() {
-        return _securitySchemes;
+        if (_securitySchemes == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_securitySchemes);
     }
 
     @Override
     public void setSecuritySchemes(java.util.Map<String, org.eclipse.microprofile.openapi.models.security.SecurityScheme> securitySchemes) {
-        _securitySchemes = securitySchemes;
+        if (securitySchemes == null) {
+            _securitySchemes = null;
+        } else {
+            _securitySchemes = new java.util.LinkedHashMap<>();
+            _securitySchemes.putAll(securitySchemes);
+        }
     }
 
     @Override
@@ -232,12 +296,20 @@ public class ComponentsImpl implements Components {
 
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.links.Link> getLinks() {
-        return _links;
+        if (_links == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_links);
     }
 
     @Override
     public void setLinks(java.util.Map<String, org.eclipse.microprofile.openapi.models.links.Link> links) {
-        _links = links;
+        if (links == null) {
+            _links = null;
+        } else {
+            _links = new java.util.LinkedHashMap<>();
+            _links.putAll(links);
+        }
     }
 
     @Override
@@ -260,12 +332,20 @@ public class ComponentsImpl implements Components {
 
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> getCallbacks() {
-        return _callbacks;
+        if (_callbacks == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_callbacks);
     }
 
     @Override
     public void setCallbacks(java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> callbacks) {
-        _callbacks = callbacks;
+        if (callbacks == null) {
+            _callbacks = null;
+        } else {
+            _callbacks = new java.util.LinkedHashMap<>();
+            _callbacks.putAll(callbacks);
+        }
     }
 
     @Override

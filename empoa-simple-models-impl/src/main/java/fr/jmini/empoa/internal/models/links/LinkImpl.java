@@ -24,12 +24,20 @@ public class LinkImpl implements Link {
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        return _extensions;
+        if (_extensions == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_extensions);
     }
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        _extensions = extensions;
+        if (extensions == null) {
+            _extensions = null;
+        } else {
+            _extensions = new java.util.LinkedHashMap<>();
+            _extensions.putAll(extensions);
+        }
     }
 
     @Override
@@ -100,12 +108,20 @@ public class LinkImpl implements Link {
 
     @Override
     public java.util.Map<String, Object> getParameters() {
-        return _parameters;
+        if (_parameters == null) {
+            return null;
+        }
+        return java.util.Collections.unmodifiableMap(_parameters);
     }
 
     @Override
     public void setParameters(java.util.Map<String, Object> parameters) {
-        _parameters = parameters;
+        if (parameters == null) {
+            _parameters = null;
+        } else {
+            _parameters = new java.util.LinkedHashMap<>();
+            _parameters.putAll(parameters);
+        }
     }
 
     @Override
