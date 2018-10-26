@@ -1,9 +1,10 @@
-package fr.jmini.empoa.simple;
+package fr.jmini.empoa.generator.swagger;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import fr.jmini.empoa.generator.Input;
 import fr.jmini.empoa.specs.AdditionalMethod;
 import fr.jmini.empoa.specs.AdditionalMethod.Type;
 import fr.jmini.empoa.specs.Element;
@@ -11,26 +12,31 @@ import fr.jmini.empoa.specs.IMember;
 import fr.jmini.empoa.specs.ListMember;
 import fr.jmini.empoa.specs.MapMember;
 import fr.jmini.empoa.specs.Member;
+import fr.jmini.empoa.specs.swagger.SwElement;
 import fr.jmini.empoa.util.StringUtil;
 
-public class SimpleGenerator {
+public class SwGenerator {
 
-    private Element element;
+    private SwElement swElement;
+    private Element mpElement;
     private Input input;
     private String simpleName;
     private String implClassName;
     private String implPackageName;
+    private String swVarName;
 
-    public SimpleGenerator(Element element, Input input) {
-        this.element = element;
+    public SwGenerator(SwElement swElement, Input input) {
+        this.swElement = swElement;
+        this.mpElement = swElement.oaElement;
         this.input = input;
         init();
     }
 
     private void init() {
-        simpleName = StringUtil.computeSimpleName(element.fqName);
-        implClassName = StringUtil.computeSimpleName(element.fqName) + "Impl";
-        implPackageName = StringUtil.computePackage(element.fqName)
+        simpleName = StringUtil.computeSimpleName(mpElement.fqName);
+        swVarName = "sw" + simpleName;
+        implClassName = "Sw" + simpleName;
+        implPackageName = StringUtil.computePackage(mpElement.fqName)
                 .replace("org.eclipse.microprofile.openapi", input.rootPackage);
     }
 
@@ -38,39 +44,37 @@ public class SimpleGenerator {
         StringBuilder sb = new StringBuilder();
         sb.append("package " + implPackageName + ";\n");
         sb.append("\n");
-        sb.append("import " + element.fqName + ";\n");
+        sb.append("import " + mpElement.fqName + ";\n");
         sb.append("\n");
         sb.append("public class " + implClassName);
         sb.append(" implements " + simpleName);
         sb.append(" {\n");
         sb.append("\n");
-        if (element.referenceable) {
+        sb.append("    private " + swElement.swFqName + " " + swVarName + ";\n");
+        sb.append("\n");
+        sb.append("    public " + implClassName + "() {\n");
+        sb.append("        " + swVarName + " = new " + swElement.swFqName + "();\n");
+        sb.append("    }\n");
+        sb.append("\n");
+        sb.append("    public " + implClassName + "(" + swElement.swFqName + " " + swVarName + ") {\n");
+        sb.append("        this." + swVarName + " = " + swVarName + ";\n");
+        sb.append("    }\n");
+        sb.append("\n");
+        if (mpElement.referenceable) {
             Member refMember = new Member("ref", "String", true, true, false, true);
             generateMember(sb, refMember);
 
-            String memberName = "_ref";
             String varName = "ref";
-            String elementPath;
-            if (simpleName.startsWith("API")) {
-                elementPath = StringUtil.decapitalize(StringUtil.plural(simpleName.substring(3)));
-            } else {
-                elementPath = StringUtil.decapitalize(StringUtil.plural(simpleName));
-            }
             sb.append("    @Override\n");
             sb.append("    public void setRef(String " + varName + ") {\n");
-            sb.append("        if (ref != null && !ref.contains(\"#\") && !ref.contains(\"/\")) {\n");
-            sb.append("            " + memberName + " = \"#/components/" + elementPath + "/\" + " + varName + ";\n");
-            sb.append("        } else {\n");
-            sb.append("            " + memberName + " = " + varName + ";\n");
-            sb.append("        }\n");
             sb.append("    }\n");
             sb.append("\n");
         }
-        if (element.extensible) {
+        if (mpElement.extensible) {
             Member refMember = new MapMember("extensions", "Object", false, true, false);
             generateMember(sb, refMember);
         }
-        for (IMember member : element.members) {
+        for (IMember member : mpElement.members) {
             if (member instanceof Member) {
                 generateMember(sb, (Member) member);
             } else if (member instanceof AdditionalMethod) {
@@ -85,26 +89,28 @@ public class SimpleGenerator {
         boolean isMapMember = member instanceof MapMember;
         boolean isListMember = member instanceof ListMember;
         String varName = StringUtil.decapitalize(member.name);
-        String memberName = "_" + StringUtil.decapitalize(member.name);
-        if (member.hasMemberDeclaration) {
-            sb.append("    private " + member.fqType + " " + memberName + ";\n");
-            sb.append("\n");
-        }
         if (member.hasGetter) {
+            String var = "result";
             sb.append("    @Override\n");
             sb.append("    public " + member.fqType + " " + member.getterName + "() {\n");
-            if (isMapMember || isListMember) {
-                sb.append("        if (" + memberName + " == null) {\n");
+            if (isMapMember || isListMember /* || needsConversion */) {
+                // TODO Swagger type instead of `member.fqType`
+                sb.append("        " + member.fqType + " " + var + " = " + swVarName + "." + member.getterName + "();\n");
+                sb.append("        if (" + var + " == null) {\n");
                 sb.append("            return null;\n");
                 sb.append("        }\n");
                 if (isMapMember) {
-                    sb.append("        return " + java.util.Collections.class.getCanonicalName() + ".unmodifiableMap(" + memberName + ");\n");
-                }
-                if (isListMember) {
-                    sb.append("        return " + java.util.Collections.class.getCanonicalName() + ".unmodifiableList(" + memberName + ");\n");
+                    // TODO: transform
+                    sb.append("        return java.util.Collections.unmodifiableMap(" + var + ");\n");
+                } else if (isListMember) {
+                    // TODO: transform
+                    sb.append("        return java.util.Collections.unmodifiableList(" + var + ");\n");
+                } else {
+                    // TODO: transform
+                    sb.append("        return " + var + ";\n");
                 }
             } else {
-                sb.append("        return " + memberName + ";\n");
+                sb.append("        return " + swVarName + "." + member.getterName + "();\n");
             }
             sb.append("    }\n");
             sb.append("\n");
@@ -113,21 +119,31 @@ public class SimpleGenerator {
         if (member.hasSetter) {
             sb.append("    @Override\n");
             sb.append("    public void " + member.setterName + "(" + member.fqType + " " + varName + ") {\n");
-            if (isMapMember || isListMember) {
-                sb.append("        if (" + varName + " == null) {\n");
-                sb.append("            " + memberName + " = null;\n");
-                sb.append("        } else {\n");
-                if (isMapMember) {
-                    sb.append("            " + memberName + " = new java.util.LinkedHashMap<>();\n");
-                    sb.append("            " + memberName + ".putAll(" + varName + ");\n");
+            if (isMapMember || isListMember /* || needsConversion */) {
+                if (isMapMember || isListMember) {
+                    sb.append("        " + swVarName + "." + member.setterName + "(null);\n");
                 }
-                if (isListMember) {
-                    sb.append("            " + memberName + " = new java.util.ArrayList<>();\n");
-                    sb.append("            " + memberName + ".addAll(" + varName + ");\n");
+                sb.append("        if (" + varName + " != null) {\n");
+                if (isMapMember) {
+                    MapMember mapMember = (MapMember) member;
+                    sb.append("            for (" + member.fqType.replace("Map<", "Map.Entry<") + " e : " + varName + ".entrySet()) {\n");
+                    sb.append("                this." + mapMember.addName + "(e.getKey(), e.getValue());\n");
+                    sb.append("            }\n");
+                } else if (isListMember) {
+                    ListMember listMember = (ListMember) member;
+                    sb.append("            for (" + listMember.itemFqType + " e : " + varName + ") {\n");
+                    sb.append("                this." + listMember.addName + "(e);\n");
+                    sb.append("            }\n");
+                } else {
+                    // TODO: transform
+                    sb.append("        " + swVarName + "." + member.setterName + "(" + varName + ");\n");
+                    sb.append("        } else {\n");
+                    sb.append("        " + swVarName + "." + member.setterName + "(null);\n");
+
                 }
                 sb.append("        }\n");
             } else {
-                sb.append("        " + memberName + " = " + varName + ";\n");
+                sb.append("        " + swVarName + "." + member.setterName + "(" + varName + ");\n");
             }
             sb.append("    }\n");
             sb.append("\n");
@@ -136,24 +152,16 @@ public class SimpleGenerator {
             MapMember mapMember = (MapMember) member;
             if (mapMember.hasAdd) {
                 String itemVarName = StringUtil.decapitalize(StringUtil.computeSimpleName(mapMember.valueFqType));
-                String returnType = (mapMember.addReturnsVoid) ? "void" : simpleName;
                 sb.append("    @Override\n");
-                sb.append("    public " + returnType + " " + mapMember.addName + "(String key, " + mapMember.valueFqType + " " + itemVarName + ") {\n");
-                sb.append("        if (" + memberName + " == null) {\n");
-                sb.append("            " + memberName + " = new java.util.LinkedHashMap<>();\n");
-                sb.append("        }\n");
-                sb.append("        " + memberName + ".put(key, " + itemVarName + ");\n");
-                if (!mapMember.addReturnsVoid) {
-                    sb.append("        return this;\n");
-                }
+                sb.append("    public " + simpleName + " " + mapMember.addName + "(String key, " + mapMember.valueFqType + " " + itemVarName + ") {\n");
+                // TODO: transform `itemVarName`
+                sb.append("        " + swVarName + "." + mapMember.addName + "(key, " + itemVarName + ");\n");
+                sb.append("        return this;\n");
                 sb.append("    }\n");
                 sb.append("\n");
             }
             sb.append("    @Override\n");
             sb.append("    public void " + mapMember.removeName + "(String key) {\n");
-            sb.append("        if (" + memberName + " != null) {\n");
-            sb.append("            " + memberName + ".remove(key);\n");
-            sb.append("        }\n");
             sb.append("    }\n");
             sb.append("\n");
         } else if (isListMember) {
@@ -161,18 +169,13 @@ public class SimpleGenerator {
             String itemVarName = StringUtil.decapitalize(StringUtil.computeSimpleName(listMember.itemFqType));
             sb.append("    @Override\n");
             sb.append("    public " + simpleName + " " + listMember.addName + "(" + listMember.itemFqType + " " + itemVarName + ") {\n");
-            sb.append("        if (" + memberName + " == null) {\n");
-            sb.append("            " + memberName + " = new java.util.ArrayList<>();\n");
-            sb.append("        }\n");
-            sb.append("        " + memberName + ".add(" + itemVarName + ");\n");
+            // TODO: transform `e`;
+            sb.append("        " + swVarName + "." + listMember.addName + "(e);\n");
             sb.append("        return this;\n");
             sb.append("    }\n");
             sb.append("\n");
             sb.append("    @Override\n");
             sb.append("    public void " + listMember.removeName + "(" + listMember.itemFqType + " " + itemVarName + ") {\n");
-            sb.append("        if (" + memberName + " != null) {\n");
-            sb.append("            " + memberName + ".remove(" + itemVarName + ");\n");
-            sb.append("        }\n");
             sb.append("    }\n");
             sb.append("\n");
         }
