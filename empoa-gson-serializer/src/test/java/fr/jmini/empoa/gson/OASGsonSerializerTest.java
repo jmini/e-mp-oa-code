@@ -1,4 +1,4 @@
-package fr.jmini.empoa.internal;
+package fr.jmini.empoa.gson;
 
 import org.assertj.core.api.Assertions;
 import org.eclipse.microprofile.openapi.OASFactory;
