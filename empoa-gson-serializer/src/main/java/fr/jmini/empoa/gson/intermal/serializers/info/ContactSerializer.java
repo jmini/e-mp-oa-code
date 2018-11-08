@@ -13,6 +13,21 @@ public class ContactSerializer implements JsonSerializer<Contact> {
     @Override
     public JsonElement serialize(Contact src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject object = new JsonObject();
+        if (src.getName() != null) {
+            object.add("name", context.serialize(src.getName()));
+        }
+        if (src.getUrl() != null) {
+            object.add("url", context.serialize(src.getUrl()));
+        }
+        if (src.getEmail() != null) {
+            object.add("email", context.serialize(src.getEmail()));
+        }
+        if (src.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> extension : src.getExtensions()
+                    .entrySet()) {
+                object.add(extension.getKey(), context.serialize(extension.getValue()));
+            }
+        }
         return object;
     }
 

@@ -13,6 +13,18 @@ public class LicenseSerializer implements JsonSerializer<License> {
     @Override
     public JsonElement serialize(License src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject object = new JsonObject();
+        if (src.getName() != null) {
+            object.add("name", context.serialize(src.getName()));
+        }
+        if (src.getUrl() != null) {
+            object.add("url", context.serialize(src.getUrl()));
+        }
+        if (src.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> extension : src.getExtensions()
+                    .entrySet()) {
+                object.add(extension.getKey(), context.serialize(extension.getValue()));
+            }
+        }
         return object;
     }
 

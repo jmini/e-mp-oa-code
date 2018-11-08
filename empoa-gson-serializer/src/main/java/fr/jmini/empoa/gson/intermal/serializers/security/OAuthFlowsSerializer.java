@@ -13,6 +13,24 @@ public class OAuthFlowsSerializer implements JsonSerializer<OAuthFlows> {
     @Override
     public JsonElement serialize(OAuthFlows src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject object = new JsonObject();
+        if (src.getImplicit() != null) {
+            object.add("implicit", context.serialize(src.getImplicit()));
+        }
+        if (src.getPassword() != null) {
+            object.add("password", context.serialize(src.getPassword()));
+        }
+        if (src.getClientCredentials() != null) {
+            object.add("clientCredentials", context.serialize(src.getClientCredentials()));
+        }
+        if (src.getAuthorizationCode() != null) {
+            object.add("authorizationCode", context.serialize(src.getAuthorizationCode()));
+        }
+        if (src.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> extension : src.getExtensions()
+                    .entrySet()) {
+                object.add(extension.getKey(), context.serialize(extension.getValue()));
+            }
+        }
         return object;
     }
 

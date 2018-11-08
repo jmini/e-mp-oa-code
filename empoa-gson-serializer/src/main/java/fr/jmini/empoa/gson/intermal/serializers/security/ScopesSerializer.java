@@ -13,6 +13,17 @@ public class ScopesSerializer implements JsonSerializer<Scopes> {
     @Override
     public JsonElement serialize(Scopes src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject object = new JsonObject();
+        if (!src.isEmpty()) {
+            for (java.util.Map.Entry<String, String> entry : src.entrySet()) {
+                object.add(entry.getKey(), context.serialize(entry.getValue()));
+            }
+        }
+        if (src.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> extension : src.getExtensions()
+                    .entrySet()) {
+                object.add(extension.getKey(), context.serialize(extension.getValue()));
+            }
+        }
         return object;
     }
 

@@ -3,16 +3,14 @@ package fr.jmini.empoa.gson;
 import org.assertj.core.api.Assertions;
 import org.eclipse.microprofile.openapi.OASFactory;
 import org.eclipse.microprofile.openapi.models.OpenAPI;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import com.google.gson.Gson;
-
-import fr.jmini.empoa.gson.OASGsonSerializer;
 
 public class OASGsonSerializerTest {
 
     @Test
-    public void testSerializePing() {
+    public void testSerializePing() throws Exception {
         OpenAPI openAPI = OASFactory.createObject(org.eclipse.microprofile.openapi.models.OpenAPI.class);
         openAPI.setOpenapi("3.0.1");
         openAPI.setInfo(OASFactory.createObject(org.eclipse.microprofile.openapi.models.info.Info.class)
@@ -36,7 +34,30 @@ public class OASGsonSerializerTest {
         Gson gson = OASGsonSerializer.instance();
         String json = gson.toJson(openAPI);
         Assertions.assertThat(json)
-                .isEqualToNormalizingNewlines("XXX");
+                .isEqualTo("{\n" +
+                        "  \"openapi\": \"3.0.1\",\n" +
+                        "  \"info\": {\n" +
+                        "    \"title\": \"Ping Specification\",\n" +
+                        "    \"version\": \"1.0\"\n" +
+                        "  },\n" +
+                        "  \"servers\": [\n" +
+                        "    {\n" +
+                        "      \"url\": \"http://localhost:8000/\"\n" +
+                        "    }\n" +
+                        "  ],\n" +
+                        "  \"paths\": {\n" +
+                        "    \"/ping\": {\n" +
+                        "      \"get\": {\n" +
+                        "        \"operationId\": \"pingGet\",\n" +
+                        "        \"responses\": {\n" +
+                        "          \"200\": {\n" +
+                        "            \"description\": \"OK\"\n" +
+                        "          }\n" +
+                        "        }\n" +
+                        "      }\n" +
+                        "    }\n" +
+                        "  }\n" +
+                        "}");
     }
 
 }

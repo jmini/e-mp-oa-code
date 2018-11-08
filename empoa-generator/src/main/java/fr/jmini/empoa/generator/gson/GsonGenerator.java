@@ -6,6 +6,8 @@ import java.nio.file.Path;
 
 import fr.jmini.empoa.generator.Input;
 import fr.jmini.empoa.specs.Element;
+import fr.jmini.empoa.specs.IMember;
+import fr.jmini.empoa.specs.Member;
 import fr.jmini.empoa.util.StringUtil;
 
 public class GsonGenerator {
@@ -48,11 +50,54 @@ public class GsonGenerator {
         sb.append("    @Override\n");
         sb.append("    public JsonElement serialize(" + simpleName + " src, Type typeOfSrc, JsonSerializationContext context) {\n");
         sb.append("        JsonObject object = new JsonObject();\n");
+        String prefix;
+        if (element.referenceable) {
+            sb.append("        if(src.getRef() != null) {\n");
+            sb.append("            object.addProperty(\"$ref\", src.getRef());\n");
+            sb.append("        } else {\n");
+            sb.append("            \n");
+            prefix = "            ";
+        } else {
+            prefix = "        ";
+        }
+        for (IMember imember : element.members) {
+            if (imember instanceof Member) {
+                Member member = (Member) imember;
+                String getter = "src." + member.getterName + "()";
+                String oasProperty = computeOASPropertyName(member);
+                sb.append(prefix + "if (" + getter + " != null) {\n");
+                sb.append(prefix + "    object.add(\"" + oasProperty + "\", context.serialize(" + getter + "));\n");
+                sb.append(prefix + "}\n");
+            }
+        }
+        if (element.mapOfItemFq != null) {
+            sb.append(prefix + "if (!src.isEmpty()) {\n");
+            sb.append(prefix + "    for (java.util.Map.Entry<String, " + element.mapOfItemFq + "> entry : src.entrySet()) {\n");
+            sb.append(prefix + "        object.add(entry.getKey(), context.serialize(entry.getValue()));\n");
+            sb.append(prefix + "    }\n");
+            sb.append(prefix + "}\n");
+        }
+        if (element.extensible) {
+            sb.append(prefix + "if (src.getExtensions() != null) {\n");
+            sb.append(prefix + "    for (java.util.Map.Entry<String, Object> extension : src.getExtensions()\n");
+            sb.append(prefix + "            .entrySet()) {\n");
+            sb.append(prefix + "        object.add(extension.getKey(), context.serialize(extension.getValue()));\n");
+            sb.append(prefix + "    }\n");
+            sb.append(prefix + "}\n");
+        }
+        if (element.referenceable) {
+            sb.append("        }\n");
+        }
+
         sb.append("        return object;\n");
         sb.append("    }\n");
         sb.append("\n");
         sb.append("}\n");
         return sb.toString();
+    }
+
+    private String computeOASPropertyName(Member member) {
+        return StringUtil.decapitalize(member.getterName.replace("get", ""));
     }
 
     public void writeFile() throws IOException {

@@ -13,6 +13,27 @@ public class EncodingSerializer implements JsonSerializer<Encoding> {
     @Override
     public JsonElement serialize(Encoding src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject object = new JsonObject();
+        if (src.getContentType() != null) {
+            object.add("contentType", context.serialize(src.getContentType()));
+        }
+        if (src.getHeaders() != null) {
+            object.add("headers", context.serialize(src.getHeaders()));
+        }
+        if (src.getStyle() != null) {
+            object.add("style", context.serialize(src.getStyle()));
+        }
+        if (src.getExplode() != null) {
+            object.add("explode", context.serialize(src.getExplode()));
+        }
+        if (src.getAllowReserved() != null) {
+            object.add("allowReserved", context.serialize(src.getAllowReserved()));
+        }
+        if (src.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> extension : src.getExtensions()
+                    .entrySet()) {
+                object.add(extension.getKey(), context.serialize(extension.getValue()));
+            }
+        }
         return object;
     }
 

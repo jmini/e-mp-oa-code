@@ -13,6 +13,11 @@ public class SecurityRequirementSerializer implements JsonSerializer<SecurityReq
     @Override
     public JsonElement serialize(SecurityRequirement src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject object = new JsonObject();
+        if (!src.isEmpty()) {
+            for (java.util.Map.Entry<String, java.util.List<String>> entry : src.entrySet()) {
+                object.add(entry.getKey(), context.serialize(entry.getValue()));
+            }
+        }
         return object;
     }
 
