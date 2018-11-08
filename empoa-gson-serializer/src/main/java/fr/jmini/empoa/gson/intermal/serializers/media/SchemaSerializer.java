@@ -80,14 +80,11 @@ public class SchemaSerializer implements JsonSerializer<Schema> {
             if (src.getProperties() != null) {
                 object.add("properties", context.serialize(src.getProperties()));
             }
-            if (src.getAdditionalProperties() != null) {
-                object.add("additionalProperties", context.serialize(src.getAdditionalProperties()));
+            if (src.getAdditionalPropertiesSchema() != null) {
+                object.add("additionalPropertiesSchema", context.serialize(src.getAdditionalPropertiesSchema()));
             }
-            if (src.getAdditionalProperties() != null) {
-                object.add("additionalProperties", context.serialize(src.getAdditionalProperties()));
-            }
-            if (src.getAdditionalProperties() != null) {
-                object.add("additionalProperties", context.serialize(src.getAdditionalProperties()));
+            if (src.getAdditionalPropertiesBoolean() != null) {
+                object.add("additionalPropertiesBoolean", context.serialize(src.getAdditionalPropertiesBoolean()));
             }
             if (src.getDescription() != null) {
                 object.add("description", context.serialize(src.getDescription()));
