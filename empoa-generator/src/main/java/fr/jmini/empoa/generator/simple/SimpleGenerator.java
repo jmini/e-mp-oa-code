@@ -52,7 +52,7 @@ public class SimpleGenerator {
         }
         sb.append("\n");
         if (element.referenceable) {
-            Member refMember = new Member("ref", "String", true, true, false, true);
+            Member refMember = new Member(null, "ref", "String", true, true, false, true);
             generateMember(sb, refMember);
 
             String memberName = "_ref";
@@ -74,7 +74,7 @@ public class SimpleGenerator {
             sb.append("\n");
         }
         if (element.extensible) {
-            Member refMember = new MapMember("extensions", "Object", false, true, true);
+            Member refMember = new MapMember(null, "extensions", "Object", false, true, true);
             generateMember(sb, refMember);
         }
         for (IMember member : element.members) {
