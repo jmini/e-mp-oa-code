@@ -7,6 +7,7 @@ import fr.jmini.empoa.util.StringUtil;
 
 public class Element {
 
+    public final ElementType type;
     public final String fqName;
     public final boolean extensible;
     public final boolean referenceable;
@@ -19,15 +20,16 @@ public class Element {
     public final String mapHasName;
     public final String mapGetName;
 
-    public Element(String fqName, boolean extensible, boolean referenceable, List<IMember> members) {
-        this(fqName, extensible, referenceable, members, null);
+    public Element(ElementType type, String fqName, boolean extensible, boolean referenceable, List<IMember> members) {
+        this(type, fqName, extensible, referenceable, members, null);
     }
 
-    public Element(String fqName, boolean extensible, boolean referenceable, List<IMember> members, String mapOfItemFq) {
-        this(fqName, extensible, referenceable, members, mapOfItemFq, StringUtil.capitalize(StringUtil.computeSimpleName(mapOfItemFq)));
+    public Element(ElementType type, String fqName, boolean extensible, boolean referenceable, List<IMember> members, String mapOfItemFq) {
+        this(type, fqName, extensible, referenceable, members, mapOfItemFq, StringUtil.capitalize(StringUtil.computeSimpleName(mapOfItemFq)));
     }
 
-    public Element(String fqName, boolean extensible, boolean referenceable, List<IMember> members, String mapOfItemFq, String itemName) {
+    public Element(ElementType type, String fqName, boolean extensible, boolean referenceable, List<IMember> members, String mapOfItemFq, String itemName) {
+        this.type = type;
         this.fqName = fqName;
         this.extensible = extensible;
         this.referenceable = referenceable;
