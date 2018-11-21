@@ -1,7 +1,8 @@
-package fr.jmini.empoa.simple;
+package fr.jmini.empoa.generator.simple;
 
 import java.nio.file.Paths;
 
+import fr.jmini.empoa.generator.Input;
 import fr.jmini.empoa.specs.Element;
 import fr.jmini.empoa.specs.OpenAPISpec;
 

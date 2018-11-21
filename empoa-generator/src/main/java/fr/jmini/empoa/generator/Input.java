@@ -1,4 +1,4 @@
-package fr.jmini.empoa.simple;
+package fr.jmini.empoa.generator;
 
 import java.nio.file.Path;
 

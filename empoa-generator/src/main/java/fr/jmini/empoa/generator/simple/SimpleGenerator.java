@@ -1,9 +1,10 @@
-package fr.jmini.empoa.simple;
+package fr.jmini.empoa.generator.simple;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import fr.jmini.empoa.generator.Input;
 import fr.jmini.empoa.specs.AdditionalMethod;
 import fr.jmini.empoa.specs.AdditionalMethod.Type;
 import fr.jmini.empoa.specs.Element;
@@ -45,7 +46,7 @@ public class SimpleGenerator {
         sb.append(" {\n");
         sb.append("\n");
         if (element.referenceable) {
-            Member refMember = new Member("ref", "String", true, true, false, true);
+            Member refMember = new Member(null, "ref", "String", true, true, false, true);
             generateMember(sb, refMember);
 
             String memberName = "_ref";
@@ -67,7 +68,7 @@ public class SimpleGenerator {
             sb.append("\n");
         }
         if (element.extensible) {
-            Member refMember = new MapMember("extensions", "Object", false, true, false);
+            Member refMember = new MapMember(null, "extensions", "Object", false, true, false);
             generateMember(sb, refMember);
         }
         for (IMember member : element.members) {
