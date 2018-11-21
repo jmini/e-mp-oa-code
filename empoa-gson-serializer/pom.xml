@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.jmini.empoa</groupId>
 	<artifactId>empoa-gson-serializer</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<description>JSON Serializer using Gson for the Eclipse MicroProfile OpenAPI models</description>
 
 	<properties>
@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>fr.jmini.empoa</groupId>
 			<artifactId>empoa-simple-models-impl</artifactId>
-			<version>0.1.1-SNAPSHOT</version>
+			<version>0.2.0-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
