@@ -61,7 +61,7 @@ public class SwGenerator {
         sb.append("    }\n");
         sb.append("\n");
         if (mpElement.referenceable) {
-            Member refMember = new Member("ref", "String", true, true, false, true);
+            Member refMember = new Member(null, "ref", "String", true, true, false, true);
             generateMember(sb, refMember);
 
             String varName = "ref";
@@ -71,7 +71,7 @@ public class SwGenerator {
             sb.append("\n");
         }
         if (mpElement.extensible) {
-            Member refMember = new MapMember("extensions", "Object", false, true, false);
+            Member refMember = new MapMember(null, "extensions", "Object", false, true, false);
             generateMember(sb, refMember);
         }
         for (IMember member : mpElement.members) {

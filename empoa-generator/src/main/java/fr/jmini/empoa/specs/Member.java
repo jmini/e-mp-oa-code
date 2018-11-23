@@ -4,6 +4,7 @@ import fr.jmini.empoa.util.StringUtil;
 
 public class Member implements IMember {
 
+    public final MemberType type;
     public final String fqType;
     public final String name;
     public final String setterName;
@@ -14,24 +15,25 @@ public class Member implements IMember {
     public final boolean hasSetter;
     public final boolean hasBuilder;
 
-    public Member(String name, String fqType) {
-        this(name, fqType, true, true, true, true);
+    public Member(MemberType type, String name, String fqType) {
+        this(type, name, fqType, true, true, true, true);
     }
 
-    public Member(String name, String fqType, String getterName) {
-        this(name, fqType, getterName, true, true, true, true);
+    public Member(MemberType type, String name, String fqType, String getterName) {
+        this(type, name, fqType, getterName, true, true, true, true);
     }
 
-    public Member(String name, String fqType, boolean hasMemberDeclaration, boolean hasGetter, boolean hasSetter, boolean hasBuilder) {
-        this(name, fqType, "get" + StringUtil.capitalize(name), hasMemberDeclaration, hasGetter, hasSetter, hasBuilder);
+    public Member(MemberType type, String name, String fqType, boolean hasMemberDeclaration, boolean hasGetter, boolean hasSetter, boolean hasBuilder) {
+        this(type, name, fqType, "get" + StringUtil.capitalize(name), hasMemberDeclaration, hasGetter, hasSetter, hasBuilder);
     }
 
-    public Member(String name, String fqType, String getterName, boolean hasMemberDeclaration, boolean hasGetter, boolean hasSetter, boolean hasBuilder) {
-        this(name, fqType, "set" + StringUtil.capitalize(name), getterName, toBuilderName(name), hasMemberDeclaration, hasGetter, hasSetter, hasBuilder);
+    public Member(MemberType type, String name, String fqType, String getterName, boolean hasMemberDeclaration, boolean hasGetter, boolean hasSetter, boolean hasBuilder) {
+        this(type, name, fqType, "set" + StringUtil.capitalize(name), getterName, toBuilderName(name), hasMemberDeclaration, hasGetter, hasSetter, hasBuilder);
     }
 
-    public Member(String name, String fqType, String setterName, String gettterName, String builderName, boolean hasMemberDeclaration, boolean hasGetter, boolean hasSetter, boolean hasBuilder) {
+    public Member(MemberType type, String name, String fqType, String setterName, String gettterName, String builderName, boolean hasMemberDeclaration, boolean hasGetter, boolean hasSetter, boolean hasBuilder) {
         super();
+        this.type = type;
         this.fqType = fqType;
         this.name = name;
         this.setterName = setterName;
