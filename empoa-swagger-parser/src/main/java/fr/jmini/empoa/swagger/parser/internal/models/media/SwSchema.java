@@ -4,19 +4,23 @@ import org.eclipse.microprofile.openapi.models.media.Schema;
 
 public class SwSchema implements Schema {
 
-    private io.swagger.v3.oas.models.media.Schema swSchema;
+    private io.swagger.v3.oas.models.media.Schema _swSchema;
 
     public SwSchema() {
-        swSchema = new io.swagger.v3.oas.models.media.Schema();
+        _swSchema = new io.swagger.v3.oas.models.media.Schema();
     }
 
-    public SwSchema(io.swagger.v3.oas.models.media.Schema swSchema) {
-        this.swSchema = swSchema;
+    public SwSchema(io.swagger.v3.oas.models.media.Schema _swSchema) {
+        this._swSchema = _swSchema;
+    }
+
+    public io.swagger.v3.oas.models.media.Schema getSw() {
+        return _swSchema;
     }
 
     @Override
     public String getRef() {
-        return swSchema.getRef();
+        return _swSchema.getRef();
     }
 
     @Override
@@ -25,7 +29,7 @@ public class SwSchema implements Schema {
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        java.util.Map<String, Object> result = swSchema.getExtensions();
+        java.util.Map<String, Object> result = _swSchema.getExtensions();
         if (result == null) {
             return null;
         }
@@ -34,7 +38,7 @@ public class SwSchema implements Schema {
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        swSchema.setExtensions(null);
+        _swSchema.setExtensions(null);
         if (extensions != null) {
             for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
                 this.addExtension(e.getKey(), e.getValue());
@@ -44,47 +48,69 @@ public class SwSchema implements Schema {
 
     @Override
     public Schema addExtension(String key, Object object) {
-        swSchema.addExtension(key, object);
+        _swSchema.addExtension(key, object);
         return this;
     }
 
     @Override
     public void removeExtension(String key) {
+        if (getExtensions() != null) {
+            _swSchema.getExtensions().remove(key);
+        }
     }
 
+    private fr.jmini.empoa.swagger.parser.internal.models.media.SwDiscriminator _discriminator;
+
+    private void initDiscriminator() {
+        if (_swSchema.getDiscriminator() == null) {
+            _discriminator = null;
+        } else {
+            _discriminator = new fr.jmini.empoa.swagger.parser.internal.models.media.SwDiscriminator(_swSchema.getDiscriminator());
+        }
+    }
     @Override
     public org.eclipse.microprofile.openapi.models.media.Discriminator getDiscriminator() {
-        return swSchema.getDiscriminator();
+        initDiscriminator();
+        return _discriminator;
     }
 
     @Override
     public void setDiscriminator(org.eclipse.microprofile.openapi.models.media.Discriminator discriminator) {
-        swSchema.setDiscriminator(discriminator);
+        if (discriminator != null) {
+            if (!(discriminator instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwDiscriminator)) {
+                throw new IllegalArgumentException("Unexpected type: " + discriminator);
+            }
+            _discriminator = (fr.jmini.empoa.swagger.parser.internal.models.media.SwDiscriminator) discriminator;
+            _swSchema.setDiscriminator(_discriminator.getSw());
+        } else {
+            _discriminator = null;
+            _swSchema.setDiscriminator(null);
+        }
     }
 
     @Override
     public String getTitle() {
-        return swSchema.getTitle();
+        return _swSchema.getTitle();
     }
 
     @Override
     public void setTitle(String title) {
-        swSchema.setTitle(title);
+        _swSchema.setTitle(title);
     }
 
     @Override
     public Object getDefaultValue() {
-        return swSchema.getDefaultValue();
+        return _swSchema.getDefaultValue();
     }
 
     @Override
     public void setDefaultValue(Object defaultValue) {
-        swSchema.setDefaultValue(defaultValue);
+        _swSchema.setDefaultValue(defaultValue);
     }
 
     @Override
     public java.util.List<Object> getEnumeration() {
-        java.util.List<Object> result = swSchema.getEnumeration();
+        java.util.List<Object> result = _swSchema.getEnumeration();
         if (result == null) {
             return null;
         }
@@ -93,7 +119,7 @@ public class SwSchema implements Schema {
 
     @Override
     public void setEnumeration(java.util.List<Object> enumeration) {
-        swSchema.setEnumeration(null);
+        _swSchema.setEnumeration(null);
         if (enumeration != null) {
             for (Object e : enumeration) {
                 this.addEnumeration(e);
@@ -103,147 +129,150 @@ public class SwSchema implements Schema {
 
     @Override
     public Schema addEnumeration(Object object) {
-        swSchema.addEnumeration(e);
+        _swSchema.addEnumeration(object);
         return this;
     }
 
     @Override
     public void removeEnumeration(Object object) {
+        if (_swSchema.getEnumeration() != null) {
+            _swSchema.getEnumeration().remove(object);
+        }
     }
 
     @Override
     public java.math.BigDecimal getMultipleOf() {
-        return swSchema.getMultipleOf();
+        return _swSchema.getMultipleOf();
     }
 
     @Override
     public void setMultipleOf(java.math.BigDecimal multipleOf) {
-        swSchema.setMultipleOf(multipleOf);
+        _swSchema.setMultipleOf(multipleOf);
     }
 
     @Override
     public java.math.BigDecimal getMaximum() {
-        return swSchema.getMaximum();
+        return _swSchema.getMaximum();
     }
 
     @Override
     public void setMaximum(java.math.BigDecimal maximum) {
-        swSchema.setMaximum(maximum);
+        _swSchema.setMaximum(maximum);
     }
 
     @Override
     public Boolean getExclusiveMaximum() {
-        return swSchema.getExclusiveMaximum();
+        return _swSchema.getExclusiveMaximum();
     }
 
     @Override
     public void setExclusiveMaximum(Boolean exclusiveMaximum) {
-        swSchema.setExclusiveMaximum(exclusiveMaximum);
+        _swSchema.setExclusiveMaximum(exclusiveMaximum);
     }
 
     @Override
     public java.math.BigDecimal getMinimum() {
-        return swSchema.getMinimum();
+        return _swSchema.getMinimum();
     }
 
     @Override
     public void setMinimum(java.math.BigDecimal minimum) {
-        swSchema.setMinimum(minimum);
+        _swSchema.setMinimum(minimum);
     }
 
     @Override
     public Boolean getExclusiveMinimum() {
-        return swSchema.getExclusiveMinimum();
+        return _swSchema.getExclusiveMinimum();
     }
 
     @Override
     public void setExclusiveMinimum(Boolean exclusiveMinimum) {
-        swSchema.setExclusiveMinimum(exclusiveMinimum);
+        _swSchema.setExclusiveMinimum(exclusiveMinimum);
     }
 
     @Override
     public Integer getMaxLength() {
-        return swSchema.getMaxLength();
+        return _swSchema.getMaxLength();
     }
 
     @Override
     public void setMaxLength(Integer maxLength) {
-        swSchema.setMaxLength(maxLength);
+        _swSchema.setMaxLength(maxLength);
     }
 
     @Override
     public Integer getMinLength() {
-        return swSchema.getMinLength();
+        return _swSchema.getMinLength();
     }
 
     @Override
     public void setMinLength(Integer minLength) {
-        swSchema.setMinLength(minLength);
+        _swSchema.setMinLength(minLength);
     }
 
     @Override
     public String getPattern() {
-        return swSchema.getPattern();
+        return _swSchema.getPattern();
     }
 
     @Override
     public void setPattern(String pattern) {
-        swSchema.setPattern(pattern);
+        _swSchema.setPattern(pattern);
     }
 
     @Override
     public Integer getMaxItems() {
-        return swSchema.getMaxItems();
+        return _swSchema.getMaxItems();
     }
 
     @Override
     public void setMaxItems(Integer maxItems) {
-        swSchema.setMaxItems(maxItems);
+        _swSchema.setMaxItems(maxItems);
     }
 
     @Override
     public Integer getMinItems() {
-        return swSchema.getMinItems();
+        return _swSchema.getMinItems();
     }
 
     @Override
     public void setMinItems(Integer minItems) {
-        swSchema.setMinItems(minItems);
+        _swSchema.setMinItems(minItems);
     }
 
     @Override
     public Boolean getUniqueItems() {
-        return swSchema.getUniqueItems();
+        return _swSchema.getUniqueItems();
     }
 
     @Override
     public void setUniqueItems(Boolean uniqueItems) {
-        swSchema.setUniqueItems(uniqueItems);
+        _swSchema.setUniqueItems(uniqueItems);
     }
 
     @Override
     public Integer getMaxProperties() {
-        return swSchema.getMaxProperties();
+        return _swSchema.getMaxProperties();
     }
 
     @Override
     public void setMaxProperties(Integer maxProperties) {
-        swSchema.setMaxProperties(maxProperties);
+        _swSchema.setMaxProperties(maxProperties);
     }
 
     @Override
     public Integer getMinProperties() {
-        return swSchema.getMinProperties();
+        return _swSchema.getMinProperties();
     }
 
     @Override
     public void setMinProperties(Integer minProperties) {
-        swSchema.setMinProperties(minProperties);
+        _swSchema.setMinProperties(minProperties);
     }
 
     @Override
     public java.util.List<String> getRequired() {
-        java.util.List<String> result = swSchema.getRequired();
+        java.util.List<String> result = _swSchema.getRequired();
         if (result == null) {
             return null;
         }
@@ -252,7 +281,7 @@ public class SwSchema implements Schema {
 
     @Override
     public void setRequired(java.util.List<String> required) {
-        swSchema.setRequired(null);
+        _swSchema.setRequired(null);
         if (required != null) {
             for (String e : required) {
                 this.addRequired(e);
@@ -262,46 +291,84 @@ public class SwSchema implements Schema {
 
     @Override
     public Schema addRequired(String string) {
-        swSchema.addRequired(e);
+        _swSchema.addRequired(string);
         return this;
     }
 
     @Override
     public void removeRequired(String string) {
+        if (_swSchema.getRequired() != null) {
+            _swSchema.getRequired().remove(string);
+        }
     }
 
     @Override
     public SchemaType getType() {
-        return swSchema.getType();
+        return _swSchema.getType();
     }
 
     @Override
     public void setType(SchemaType type) {
-        swSchema.setType(type);
+        _swSchema.setType(type);
     }
 
+    private fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema _not;
+
+    private void initNot() {
+        if (_swSchema.getNot() == null) {
+            _not = null;
+        } else {
+            _not = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema(_swSchema.getNot());
+        }
+    }
     @Override
     public org.eclipse.microprofile.openapi.models.media.Schema getNot() {
-        return swSchema.getNot();
+        initNot();
+        return _not;
     }
 
     @Override
     public void setNot(org.eclipse.microprofile.openapi.models.media.Schema not) {
-        swSchema.setNot(not);
+        if (not != null) {
+            if (!(not instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema)) {
+                throw new IllegalArgumentException("Unexpected type: " + not);
+            }
+            _not = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) not;
+            _swSchema.setNot(_not.getSw());
+        } else {
+            _not = null;
+            _swSchema.setNot(null);
+        }
     }
 
+    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema> _properties;
+
+    private void initProperties() {
+        if (_swSchema.getProperties() == null) {
+            _properties = null;
+        } else {
+            _swSchema.getProperties()
+                    .entrySet()
+                    .stream()
+                    .collect(java.util.stream.Collectors.toMap(
+                        java.util.Map.Entry::getKey,
+                        e -> new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema(e.getValue()),
+                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
+                        () -> new java.util.LinkedHashMap()));
+        }
+    }
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> getProperties() {
-        java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> result = swSchema.getProperties();
-        if (result == null) {
+        initProperties();
+        if (_properties == null) {
             return null;
         }
-        return java.util.Collections.unmodifiableMap(result);
+        return java.util.Collections.unmodifiableMap(_properties);
     }
 
     @Override
     public void setProperties(java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> properties) {
-        swSchema.setProperties(null);
+        _swSchema.setProperties(null);
         if (properties != null) {
             for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.Schema> e : properties.entrySet()) {
                 this.addProperty(e.getKey(), e.getValue());
@@ -311,17 +378,42 @@ public class SwSchema implements Schema {
 
     @Override
     public Schema addProperty(String key, org.eclipse.microprofile.openapi.models.media.Schema schema) {
-        swSchema.addProperty(key, schema);
+        if (!(schema instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema)) {
+            throw new IllegalArgumentException("Unexpected type: " + schema);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema value = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+        initProperties();
+        if (_properties == null) {
+            _properties = new java.util.LinkedHashMap<>();
+        _swSchema.setProperties(new java.util.LinkedHashMap<>());
+        }
+        _properties.put(key, value);
+        _swSchema.getProperties().put(key, value.getSw());
         return this;
     }
 
     @Override
     public void removeProperty(String key) {
+        initProperties();
+        if (_properties != null) {
+            _properties.remove(key);
+            _swSchema.getProperties().remove(key);
+        }
     }
 
+    private fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema _additionalPropertiesSchema;
+
+    private void initAdditionalPropertiesSchema() {
+        if (_swSchema.getAdditionalPropertiesSchema() == null) {
+            _additionalPropertiesSchema = null;
+        } else {
+            _additionalPropertiesSchema = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema(_swSchema.getAdditionalPropertiesSchema());
+        }
+    }
     @Override
     public org.eclipse.microprofile.openapi.models.media.Schema getAdditionalPropertiesSchema() {
-        return swSchema.getAdditionalPropertiesSchema();
+        initAdditionalPropertiesSchema();
+        return _additionalPropertiesSchema;
     }
 
     @Override
@@ -332,7 +424,7 @@ public class SwSchema implements Schema {
 
     @Override
     public Boolean getAdditionalPropertiesBoolean() {
-        return swSchema.getAdditionalPropertiesBoolean();
+        return _swSchema.getAdditionalPropertiesBoolean();
     }
 
     @Override
@@ -343,116 +435,185 @@ public class SwSchema implements Schema {
 
     @Override
     public String getDescription() {
-        return swSchema.getDescription();
+        return _swSchema.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        swSchema.setDescription(description);
+        _swSchema.setDescription(description);
     }
 
     @Override
     public String getFormat() {
-        return swSchema.getFormat();
+        return _swSchema.getFormat();
     }
 
     @Override
     public void setFormat(String format) {
-        swSchema.setFormat(format);
+        _swSchema.setFormat(format);
     }
 
     @Override
     public Boolean getNullable() {
-        return swSchema.getNullable();
+        return _swSchema.getNullable();
     }
 
     @Override
     public void setNullable(Boolean nullable) {
-        swSchema.setNullable(nullable);
+        _swSchema.setNullable(nullable);
     }
 
     @Override
     public Boolean getReadOnly() {
-        return swSchema.getReadOnly();
+        return _swSchema.getReadOnly();
     }
 
     @Override
     public void setReadOnly(Boolean readOnly) {
-        swSchema.setReadOnly(readOnly);
+        _swSchema.setReadOnly(readOnly);
     }
 
     @Override
     public Boolean getWriteOnly() {
-        return swSchema.getWriteOnly();
+        return _swSchema.getWriteOnly();
     }
 
     @Override
     public void setWriteOnly(Boolean writeOnly) {
-        swSchema.setWriteOnly(writeOnly);
+        _swSchema.setWriteOnly(writeOnly);
     }
 
     @Override
     public Object getExample() {
-        return swSchema.getExample();
+        return _swSchema.getExample();
     }
 
     @Override
     public void setExample(Object example) {
-        swSchema.setExample(example);
+        _swSchema.setExample(example);
     }
 
+    private fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation _externalDocs;
+
+    private void initExternalDocs() {
+        if (_swSchema.getExternalDocs() == null) {
+            _externalDocs = null;
+        } else {
+            _externalDocs = new fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation(_swSchema.getExternalDocs());
+        }
+    }
     @Override
     public org.eclipse.microprofile.openapi.models.ExternalDocumentation getExternalDocs() {
-        return swSchema.getExternalDocs();
+        initExternalDocs();
+        return _externalDocs;
     }
 
     @Override
     public void setExternalDocs(org.eclipse.microprofile.openapi.models.ExternalDocumentation externalDocs) {
-        swSchema.setExternalDocs(externalDocs);
+        if (externalDocs != null) {
+            if (!(externalDocs instanceof fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation)) {
+                throw new IllegalArgumentException("Unexpected type: " + externalDocs);
+            }
+            _externalDocs = (fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation) externalDocs;
+            _swSchema.setExternalDocs(_externalDocs.getSw());
+        } else {
+            _externalDocs = null;
+            _swSchema.setExternalDocs(null);
+        }
     }
 
     @Override
     public Boolean getDeprecated() {
-        return swSchema.getDeprecated();
+        return _swSchema.getDeprecated();
     }
 
     @Override
     public void setDeprecated(Boolean deprecated) {
-        swSchema.setDeprecated(deprecated);
+        _swSchema.setDeprecated(deprecated);
     }
 
+    private fr.jmini.empoa.swagger.parser.internal.models.media.SwXML _xml;
+
+    private void initXml() {
+        if (_swSchema.getXml() == null) {
+            _xml = null;
+        } else {
+            _xml = new fr.jmini.empoa.swagger.parser.internal.models.media.SwXML(_swSchema.getXml());
+        }
+    }
     @Override
     public org.eclipse.microprofile.openapi.models.media.XML getXml() {
-        return swSchema.getXml();
+        initXml();
+        return _xml;
     }
 
     @Override
     public void setXml(org.eclipse.microprofile.openapi.models.media.XML xml) {
-        swSchema.setXml(xml);
+        if (xml != null) {
+            if (!(xml instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwXML)) {
+                throw new IllegalArgumentException("Unexpected type: " + xml);
+            }
+            _xml = (fr.jmini.empoa.swagger.parser.internal.models.media.SwXML) xml;
+            _swSchema.setXml(_xml.getSw());
+        } else {
+            _xml = null;
+            _swSchema.setXml(null);
+        }
     }
 
+    private fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema _items;
+
+    private void initItems() {
+        if (_swSchema.getItems() == null) {
+            _items = null;
+        } else {
+            _items = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema(_swSchema.getItems());
+        }
+    }
     @Override
     public org.eclipse.microprofile.openapi.models.media.Schema getItems() {
-        return swSchema.getItems();
+        initItems();
+        return _items;
     }
 
     @Override
     public void setItems(org.eclipse.microprofile.openapi.models.media.Schema items) {
-        swSchema.setItems(items);
+        if (items != null) {
+            if (!(items instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema)) {
+                throw new IllegalArgumentException("Unexpected type: " + items);
+            }
+            _items = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) items;
+            _swSchema.setItems(_items.getSw());
+        } else {
+            _items = null;
+            _swSchema.setItems(null);
+        }
     }
 
+    private java.util.List<fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema> _allOf;
+
+    private void initAllOf() {
+        if (_swSchema.getAllOf() == null) {
+            _allOf = null;
+        } else {
+            _swSchema.getAllOf()
+                    .stream()
+                    .map(fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema::new)
+                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+        }
+    }
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> getAllOf() {
-        java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> result = swSchema.getAllOf();
-        if (result == null) {
+        initAllOf();
+        if (_allOf == null) {
             return null;
         }
-        return java.util.Collections.unmodifiableList(result);
+        return java.util.Collections.unmodifiableList(_allOf);
     }
 
     @Override
     public void setAllOf(java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> allOf) {
-        swSchema.setAllOf(null);
+        _swSchema.setAllOf(null);
         if (allOf != null) {
             for (org.eclipse.microprofile.openapi.models.media.Schema e : allOf) {
                 this.addAllOf(e);
@@ -462,26 +623,57 @@ public class SwSchema implements Schema {
 
     @Override
     public Schema addAllOf(org.eclipse.microprofile.openapi.models.media.Schema schema) {
-        swSchema.addAllOf(e);
+        if (!(schema instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema)) {
+            throw new IllegalArgumentException("Unexpected type: " + schema);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema element = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+        initAllOf();
+        if (_allOf == null) {
+            _allOf = new java.util.ArrayList<>();
+        _swSchema.setAllOf(new java.util.ArrayList<>());
+        }
+        _allOf.add(element);
+        _swSchema.getAllOf().add(element.getSw());
         return this;
     }
 
     @Override
     public void removeAllOf(org.eclipse.microprofile.openapi.models.media.Schema schema) {
+        if (!(schema instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema)) {
+            throw new IllegalArgumentException("Unexpected type: " + schema);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema element = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+        initAllOf();
+        if (_allOf != null) {
+            _allOf.remove(schema);
+            _swSchema.getAllOf().remove(element.getSw());
+        }
     }
 
+    private java.util.List<fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema> _anyOf;
+
+    private void initAnyOf() {
+        if (_swSchema.getAnyOf() == null) {
+            _anyOf = null;
+        } else {
+            _swSchema.getAnyOf()
+                    .stream()
+                    .map(fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema::new)
+                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+        }
+    }
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> getAnyOf() {
-        java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> result = swSchema.getAnyOf();
-        if (result == null) {
+        initAnyOf();
+        if (_anyOf == null) {
             return null;
         }
-        return java.util.Collections.unmodifiableList(result);
+        return java.util.Collections.unmodifiableList(_anyOf);
     }
 
     @Override
     public void setAnyOf(java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> anyOf) {
-        swSchema.setAnyOf(null);
+        _swSchema.setAnyOf(null);
         if (anyOf != null) {
             for (org.eclipse.microprofile.openapi.models.media.Schema e : anyOf) {
                 this.addAnyOf(e);
@@ -491,26 +683,57 @@ public class SwSchema implements Schema {
 
     @Override
     public Schema addAnyOf(org.eclipse.microprofile.openapi.models.media.Schema schema) {
-        swSchema.addAnyOf(e);
+        if (!(schema instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema)) {
+            throw new IllegalArgumentException("Unexpected type: " + schema);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema element = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+        initAnyOf();
+        if (_anyOf == null) {
+            _anyOf = new java.util.ArrayList<>();
+        _swSchema.setAnyOf(new java.util.ArrayList<>());
+        }
+        _anyOf.add(element);
+        _swSchema.getAnyOf().add(element.getSw());
         return this;
     }
 
     @Override
     public void removeAnyOf(org.eclipse.microprofile.openapi.models.media.Schema schema) {
+        if (!(schema instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema)) {
+            throw new IllegalArgumentException("Unexpected type: " + schema);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema element = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+        initAnyOf();
+        if (_anyOf != null) {
+            _anyOf.remove(schema);
+            _swSchema.getAnyOf().remove(element.getSw());
+        }
     }
 
+    private java.util.List<fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema> _oneOf;
+
+    private void initOneOf() {
+        if (_swSchema.getOneOf() == null) {
+            _oneOf = null;
+        } else {
+            _swSchema.getOneOf()
+                    .stream()
+                    .map(fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema::new)
+                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+        }
+    }
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> getOneOf() {
-        java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> result = swSchema.getOneOf();
-        if (result == null) {
+        initOneOf();
+        if (_oneOf == null) {
             return null;
         }
-        return java.util.Collections.unmodifiableList(result);
+        return java.util.Collections.unmodifiableList(_oneOf);
     }
 
     @Override
     public void setOneOf(java.util.List<org.eclipse.microprofile.openapi.models.media.Schema> oneOf) {
-        swSchema.setOneOf(null);
+        _swSchema.setOneOf(null);
         if (oneOf != null) {
             for (org.eclipse.microprofile.openapi.models.media.Schema e : oneOf) {
                 this.addOneOf(e);
@@ -520,12 +743,31 @@ public class SwSchema implements Schema {
 
     @Override
     public Schema addOneOf(org.eclipse.microprofile.openapi.models.media.Schema schema) {
-        swSchema.addOneOf(e);
+        if (!(schema instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema)) {
+            throw new IllegalArgumentException("Unexpected type: " + schema);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema element = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+        initOneOf();
+        if (_oneOf == null) {
+            _oneOf = new java.util.ArrayList<>();
+        _swSchema.setOneOf(new java.util.ArrayList<>());
+        }
+        _oneOf.add(element);
+        _swSchema.getOneOf().add(element.getSw());
         return this;
     }
 
     @Override
     public void removeOneOf(org.eclipse.microprofile.openapi.models.media.Schema schema) {
+        if (!(schema instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema)) {
+            throw new IllegalArgumentException("Unexpected type: " + schema);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema element = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+        initOneOf();
+        if (_oneOf != null) {
+            _oneOf.remove(schema);
+            _swSchema.getOneOf().remove(element.getSw());
+        }
     }
 
 }

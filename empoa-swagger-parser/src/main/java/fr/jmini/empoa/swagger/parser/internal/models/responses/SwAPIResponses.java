@@ -4,19 +4,23 @@ import org.eclipse.microprofile.openapi.models.responses.APIResponses;
 
 public class SwAPIResponses implements APIResponses {
 
-    private io.swagger.v3.oas.models.responses.ApiResponses swAPIResponses;
+    private io.swagger.v3.oas.models.responses.ApiResponses _swAPIResponses;
 
     public SwAPIResponses() {
-        swAPIResponses = new io.swagger.v3.oas.models.responses.ApiResponses();
+        _swAPIResponses = new io.swagger.v3.oas.models.responses.ApiResponses();
     }
 
-    public SwAPIResponses(io.swagger.v3.oas.models.responses.ApiResponses swAPIResponses) {
-        this.swAPIResponses = swAPIResponses;
+    public SwAPIResponses(io.swagger.v3.oas.models.responses.ApiResponses _swAPIResponses) {
+        this._swAPIResponses = _swAPIResponses;
+    }
+
+    public io.swagger.v3.oas.models.responses.ApiResponses getSw() {
+        return _swAPIResponses;
     }
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        java.util.Map<String, Object> result = swAPIResponses.getExtensions();
+        java.util.Map<String, Object> result = _swAPIResponses.getExtensions();
         if (result == null) {
             return null;
         }
@@ -25,7 +29,7 @@ public class SwAPIResponses implements APIResponses {
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        swAPIResponses.setExtensions(null);
+        _swAPIResponses.setExtensions(null);
         if (extensions != null) {
             for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
                 this.addExtension(e.getKey(), e.getValue());
@@ -35,26 +39,45 @@ public class SwAPIResponses implements APIResponses {
 
     @Override
     public APIResponses addExtension(String key, Object object) {
-        swAPIResponses.addExtension(key, object);
+        _swAPIResponses.addExtension(key, object);
         return this;
     }
 
     @Override
     public void removeExtension(String key) {
+        if (getExtensions() != null) {
+            _swAPIResponses.getExtensions().remove(key);
+        }
     }
 
+    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponse> _aPIResponses;
+
+    private void initAPIResponses() {
+        if (_swAPIResponses.getAPIResponses() == null) {
+            _aPIResponses = null;
+        } else {
+            _swAPIResponses.getAPIResponses()
+                    .entrySet()
+                    .stream()
+                    .collect(java.util.stream.Collectors.toMap(
+                        java.util.Map.Entry::getKey,
+                        e -> new fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponse(e.getValue()),
+                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
+                        () -> new java.util.LinkedHashMap()));
+        }
+    }
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> getAPIResponses() {
-        java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> result = swAPIResponses.getAPIResponses();
-        if (result == null) {
+        initAPIResponses();
+        if (_aPIResponses == null) {
             return null;
         }
-        return java.util.Collections.unmodifiableMap(result);
+        return java.util.Collections.unmodifiableMap(_aPIResponses);
     }
 
     @Override
     public void setAPIResponses(java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> aPIResponses) {
-        swAPIResponses.setAPIResponses(null);
+        _swAPIResponses.setAPIResponses(null);
         if (aPIResponses != null) {
             for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> e : aPIResponses.entrySet()) {
                 this.addAPIResponse(e.getKey(), e.getValue());
@@ -64,12 +87,27 @@ public class SwAPIResponses implements APIResponses {
 
     @Override
     public APIResponses addAPIResponse(String key, org.eclipse.microprofile.openapi.models.responses.APIResponse aPIResponse) {
-        swAPIResponses.addAPIResponse(key, aPIResponse);
+        if (!(aPIResponse instanceof fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponse)) {
+            throw new IllegalArgumentException("Unexpected type: " + aPIResponse);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponse value = (fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponse) aPIResponse;
+        initAPIResponses();
+        if (_aPIResponses == null) {
+            _aPIResponses = new java.util.LinkedHashMap<>();
+        _swAPIResponses.setAPIResponses(new java.util.LinkedHashMap<>());
+        }
+        _aPIResponses.put(key, value);
+        _swAPIResponses.getAPIResponses().put(key, value.getSw());
         return this;
     }
 
     @Override
     public void removeAPIResponse(String key) {
+        initAPIResponses();
+        if (_aPIResponses != null) {
+            _aPIResponses.remove(key);
+            _swAPIResponses.getAPIResponses().remove(key);
+        }
     }
 
     @Override

@@ -4,19 +4,23 @@ import org.eclipse.microprofile.openapi.models.OpenAPI;
 
 public class SwOpenAPI implements OpenAPI {
 
-    private io.swagger.v3.oas.models.OpenAPI swOpenAPI;
+    private io.swagger.v3.oas.models.OpenAPI _swOpenAPI;
 
     public SwOpenAPI() {
-        swOpenAPI = new io.swagger.v3.oas.models.OpenAPI();
+        _swOpenAPI = new io.swagger.v3.oas.models.OpenAPI();
     }
 
-    public SwOpenAPI(io.swagger.v3.oas.models.OpenAPI swOpenAPI) {
-        this.swOpenAPI = swOpenAPI;
+    public SwOpenAPI(io.swagger.v3.oas.models.OpenAPI _swOpenAPI) {
+        this._swOpenAPI = _swOpenAPI;
+    }
+
+    public io.swagger.v3.oas.models.OpenAPI getSw() {
+        return _swOpenAPI;
     }
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        java.util.Map<String, Object> result = swOpenAPI.getExtensions();
+        java.util.Map<String, Object> result = _swOpenAPI.getExtensions();
         if (result == null) {
             return null;
         }
@@ -25,7 +29,7 @@ public class SwOpenAPI implements OpenAPI {
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        swOpenAPI.setExtensions(null);
+        _swOpenAPI.setExtensions(null);
         if (extensions != null) {
             for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
                 this.addExtension(e.getKey(), e.getValue());
@@ -35,56 +39,109 @@ public class SwOpenAPI implements OpenAPI {
 
     @Override
     public OpenAPI addExtension(String key, Object object) {
-        swOpenAPI.addExtension(key, object);
+        _swOpenAPI.addExtension(key, object);
         return this;
     }
 
     @Override
     public void removeExtension(String key) {
+        if (getExtensions() != null) {
+            _swOpenAPI.getExtensions().remove(key);
+        }
     }
 
     @Override
     public String getOpenapi() {
-        return swOpenAPI.getOpenapi();
+        return _swOpenAPI.getOpenapi();
     }
 
     @Override
     public void setOpenapi(String openapi) {
-        swOpenAPI.setOpenapi(openapi);
+        _swOpenAPI.setOpenapi(openapi);
     }
 
+    private fr.jmini.empoa.swagger.parser.internal.models.info.SwInfo _info;
+
+    private void initInfo() {
+        if (_swOpenAPI.getInfo() == null) {
+            _info = null;
+        } else {
+            _info = new fr.jmini.empoa.swagger.parser.internal.models.info.SwInfo(_swOpenAPI.getInfo());
+        }
+    }
     @Override
     public org.eclipse.microprofile.openapi.models.info.Info getInfo() {
-        return swOpenAPI.getInfo();
+        initInfo();
+        return _info;
     }
 
     @Override
     public void setInfo(org.eclipse.microprofile.openapi.models.info.Info info) {
-        swOpenAPI.setInfo(info);
+        if (info != null) {
+            if (!(info instanceof fr.jmini.empoa.swagger.parser.internal.models.info.SwInfo)) {
+                throw new IllegalArgumentException("Unexpected type: " + info);
+            }
+            _info = (fr.jmini.empoa.swagger.parser.internal.models.info.SwInfo) info;
+            _swOpenAPI.setInfo(_info.getSw());
+        } else {
+            _info = null;
+            _swOpenAPI.setInfo(null);
+        }
     }
 
+    private fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation _externalDocs;
+
+    private void initExternalDocs() {
+        if (_swOpenAPI.getExternalDocs() == null) {
+            _externalDocs = null;
+        } else {
+            _externalDocs = new fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation(_swOpenAPI.getExternalDocs());
+        }
+    }
     @Override
     public org.eclipse.microprofile.openapi.models.ExternalDocumentation getExternalDocs() {
-        return swOpenAPI.getExternalDocs();
+        initExternalDocs();
+        return _externalDocs;
     }
 
     @Override
     public void setExternalDocs(org.eclipse.microprofile.openapi.models.ExternalDocumentation externalDocs) {
-        swOpenAPI.setExternalDocs(externalDocs);
+        if (externalDocs != null) {
+            if (!(externalDocs instanceof fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation)) {
+                throw new IllegalArgumentException("Unexpected type: " + externalDocs);
+            }
+            _externalDocs = (fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation) externalDocs;
+            _swOpenAPI.setExternalDocs(_externalDocs.getSw());
+        } else {
+            _externalDocs = null;
+            _swOpenAPI.setExternalDocs(null);
+        }
     }
 
+    private java.util.List<fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer> _servers;
+
+    private void initServers() {
+        if (_swOpenAPI.getServers() == null) {
+            _servers = null;
+        } else {
+            _swOpenAPI.getServers()
+                    .stream()
+                    .map(fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer::new)
+                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+        }
+    }
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> getServers() {
-        java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> result = swOpenAPI.getServers();
-        if (result == null) {
+        initServers();
+        if (_servers == null) {
             return null;
         }
-        return java.util.Collections.unmodifiableList(result);
+        return java.util.Collections.unmodifiableList(_servers);
     }
 
     @Override
     public void setServers(java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> servers) {
-        swOpenAPI.setServers(null);
+        _swOpenAPI.setServers(null);
         if (servers != null) {
             for (org.eclipse.microprofile.openapi.models.servers.Server e : servers) {
                 this.addServer(e);
@@ -94,26 +151,57 @@ public class SwOpenAPI implements OpenAPI {
 
     @Override
     public OpenAPI addServer(org.eclipse.microprofile.openapi.models.servers.Server server) {
-        swOpenAPI.addServer(e);
+        if (!(server instanceof fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer)) {
+            throw new IllegalArgumentException("Unexpected type: " + server);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer element = (fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer) server;
+        initServers();
+        if (_servers == null) {
+            _servers = new java.util.ArrayList<>();
+        _swOpenAPI.setServers(new java.util.ArrayList<>());
+        }
+        _servers.add(element);
+        _swOpenAPI.getServers().add(element.getSw());
         return this;
     }
 
     @Override
     public void removeServer(org.eclipse.microprofile.openapi.models.servers.Server server) {
+        if (!(server instanceof fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer)) {
+            throw new IllegalArgumentException("Unexpected type: " + server);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer element = (fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer) server;
+        initServers();
+        if (_servers != null) {
+            _servers.remove(server);
+            _swOpenAPI.getServers().remove(element.getSw());
+        }
     }
 
+    private java.util.List<fr.jmini.empoa.swagger.parser.internal.models.security.SwSecurityRequirement> _security;
+
+    private void initSecurity() {
+        if (_swOpenAPI.getSecurity() == null) {
+            _security = null;
+        } else {
+            _swOpenAPI.getSecurity()
+                    .stream()
+                    .map(fr.jmini.empoa.swagger.parser.internal.models.security.SwSecurityRequirement::new)
+                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+        }
+    }
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> getSecurity() {
-        java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> result = swOpenAPI.getSecurity();
-        if (result == null) {
+        initSecurity();
+        if (_security == null) {
             return null;
         }
-        return java.util.Collections.unmodifiableList(result);
+        return java.util.Collections.unmodifiableList(_security);
     }
 
     @Override
     public void setSecurity(java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> security) {
-        swOpenAPI.setSecurity(null);
+        _swOpenAPI.setSecurity(null);
         if (security != null) {
             for (org.eclipse.microprofile.openapi.models.security.SecurityRequirement e : security) {
                 this.addSecurityRequirement(e);
@@ -123,26 +211,57 @@ public class SwOpenAPI implements OpenAPI {
 
     @Override
     public OpenAPI addSecurityRequirement(org.eclipse.microprofile.openapi.models.security.SecurityRequirement securityRequirement) {
-        swOpenAPI.addSecurityRequirement(e);
+        if (!(securityRequirement instanceof fr.jmini.empoa.swagger.parser.internal.models.security.SwSecurityRequirement)) {
+            throw new IllegalArgumentException("Unexpected type: " + securityRequirement);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.security.SwSecurityRequirement element = (fr.jmini.empoa.swagger.parser.internal.models.security.SwSecurityRequirement) securityRequirement;
+        initSecurity();
+        if (_security == null) {
+            _security = new java.util.ArrayList<>();
+        _swOpenAPI.setSecurity(new java.util.ArrayList<>());
+        }
+        _security.add(element);
+        _swOpenAPI.getSecurity().add(element.getSw());
         return this;
     }
 
     @Override
     public void removeSecurityRequirement(org.eclipse.microprofile.openapi.models.security.SecurityRequirement securityRequirement) {
+        if (!(securityRequirement instanceof fr.jmini.empoa.swagger.parser.internal.models.security.SwSecurityRequirement)) {
+            throw new IllegalArgumentException("Unexpected type: " + securityRequirement);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.security.SwSecurityRequirement element = (fr.jmini.empoa.swagger.parser.internal.models.security.SwSecurityRequirement) securityRequirement;
+        initSecurity();
+        if (_security != null) {
+            _security.remove(securityRequirement);
+            _swOpenAPI.getSecurity().remove(element.getSw());
+        }
     }
 
+    private java.util.List<fr.jmini.empoa.swagger.parser.internal.models.tags.SwTag> _tags;
+
+    private void initTags() {
+        if (_swOpenAPI.getTags() == null) {
+            _tags = null;
+        } else {
+            _swOpenAPI.getTags()
+                    .stream()
+                    .map(fr.jmini.empoa.swagger.parser.internal.models.tags.SwTag::new)
+                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+        }
+    }
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.tags.Tag> getTags() {
-        java.util.List<org.eclipse.microprofile.openapi.models.tags.Tag> result = swOpenAPI.getTags();
-        if (result == null) {
+        initTags();
+        if (_tags == null) {
             return null;
         }
-        return java.util.Collections.unmodifiableList(result);
+        return java.util.Collections.unmodifiableList(_tags);
     }
 
     @Override
     public void setTags(java.util.List<org.eclipse.microprofile.openapi.models.tags.Tag> tags) {
-        swOpenAPI.setTags(null);
+        _swOpenAPI.setTags(null);
         if (tags != null) {
             for (org.eclipse.microprofile.openapi.models.tags.Tag e : tags) {
                 this.addTag(e);
@@ -152,32 +271,89 @@ public class SwOpenAPI implements OpenAPI {
 
     @Override
     public OpenAPI addTag(org.eclipse.microprofile.openapi.models.tags.Tag tag) {
-        swOpenAPI.addTag(e);
+        if (!(tag instanceof fr.jmini.empoa.swagger.parser.internal.models.tags.SwTag)) {
+            throw new IllegalArgumentException("Unexpected type: " + tag);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.tags.SwTag element = (fr.jmini.empoa.swagger.parser.internal.models.tags.SwTag) tag;
+        initTags();
+        if (_tags == null) {
+            _tags = new java.util.ArrayList<>();
+        _swOpenAPI.setTags(new java.util.ArrayList<>());
+        }
+        _tags.add(element);
+        _swOpenAPI.getTags().add(element.getSw());
         return this;
     }
 
     @Override
     public void removeTag(org.eclipse.microprofile.openapi.models.tags.Tag tag) {
+        if (!(tag instanceof fr.jmini.empoa.swagger.parser.internal.models.tags.SwTag)) {
+            throw new IllegalArgumentException("Unexpected type: " + tag);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.tags.SwTag element = (fr.jmini.empoa.swagger.parser.internal.models.tags.SwTag) tag;
+        initTags();
+        if (_tags != null) {
+            _tags.remove(tag);
+            _swOpenAPI.getTags().remove(element.getSw());
+        }
     }
 
+    private fr.jmini.empoa.swagger.parser.internal.models.SwPaths _paths;
+
+    private void initPaths() {
+        if (_swOpenAPI.getPaths() == null) {
+            _paths = null;
+        } else {
+            _paths = new fr.jmini.empoa.swagger.parser.internal.models.SwPaths(_swOpenAPI.getPaths());
+        }
+    }
     @Override
     public org.eclipse.microprofile.openapi.models.Paths getPaths() {
-        return swOpenAPI.getPaths();
+        initPaths();
+        return _paths;
     }
 
     @Override
     public void setPaths(org.eclipse.microprofile.openapi.models.Paths paths) {
-        swOpenAPI.setPaths(paths);
+        if (paths != null) {
+            if (!(paths instanceof fr.jmini.empoa.swagger.parser.internal.models.SwPaths)) {
+                throw new IllegalArgumentException("Unexpected type: " + paths);
+            }
+            _paths = (fr.jmini.empoa.swagger.parser.internal.models.SwPaths) paths;
+            _swOpenAPI.setPaths(_paths.getSw());
+        } else {
+            _paths = null;
+            _swOpenAPI.setPaths(null);
+        }
     }
 
+    private fr.jmini.empoa.swagger.parser.internal.models.SwComponents _components;
+
+    private void initComponents() {
+        if (_swOpenAPI.getComponents() == null) {
+            _components = null;
+        } else {
+            _components = new fr.jmini.empoa.swagger.parser.internal.models.SwComponents(_swOpenAPI.getComponents());
+        }
+    }
     @Override
     public org.eclipse.microprofile.openapi.models.Components getComponents() {
-        return swOpenAPI.getComponents();
+        initComponents();
+        return _components;
     }
 
     @Override
     public void setComponents(org.eclipse.microprofile.openapi.models.Components components) {
-        swOpenAPI.setComponents(components);
+        if (components != null) {
+            if (!(components instanceof fr.jmini.empoa.swagger.parser.internal.models.SwComponents)) {
+                throw new IllegalArgumentException("Unexpected type: " + components);
+            }
+            _components = (fr.jmini.empoa.swagger.parser.internal.models.SwComponents) components;
+            _swOpenAPI.setComponents(_components.getSw());
+        } else {
+            _components = null;
+            _swOpenAPI.setComponents(null);
+        }
     }
 
 }

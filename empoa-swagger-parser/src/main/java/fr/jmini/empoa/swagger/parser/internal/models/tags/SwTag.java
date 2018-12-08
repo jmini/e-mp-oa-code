@@ -4,19 +4,23 @@ import org.eclipse.microprofile.openapi.models.tags.Tag;
 
 public class SwTag implements Tag {
 
-    private io.swagger.v3.oas.models.tags.Tag swTag;
+    private io.swagger.v3.oas.models.tags.Tag _swTag;
 
     public SwTag() {
-        swTag = new io.swagger.v3.oas.models.tags.Tag();
+        _swTag = new io.swagger.v3.oas.models.tags.Tag();
     }
 
-    public SwTag(io.swagger.v3.oas.models.tags.Tag swTag) {
-        this.swTag = swTag;
+    public SwTag(io.swagger.v3.oas.models.tags.Tag _swTag) {
+        this._swTag = _swTag;
+    }
+
+    public io.swagger.v3.oas.models.tags.Tag getSw() {
+        return _swTag;
     }
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        java.util.Map<String, Object> result = swTag.getExtensions();
+        java.util.Map<String, Object> result = _swTag.getExtensions();
         if (result == null) {
             return null;
         }
@@ -25,7 +29,7 @@ public class SwTag implements Tag {
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        swTag.setExtensions(null);
+        _swTag.setExtensions(null);
         if (extensions != null) {
             for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
                 this.addExtension(e.getKey(), e.getValue());
@@ -35,42 +39,64 @@ public class SwTag implements Tag {
 
     @Override
     public Tag addExtension(String key, Object object) {
-        swTag.addExtension(key, object);
+        _swTag.addExtension(key, object);
         return this;
     }
 
     @Override
     public void removeExtension(String key) {
+        if (getExtensions() != null) {
+            _swTag.getExtensions().remove(key);
+        }
     }
 
     @Override
     public String getName() {
-        return swTag.getName();
+        return _swTag.getName();
     }
 
     @Override
     public void setName(String name) {
-        swTag.setName(name);
+        _swTag.setName(name);
     }
 
     @Override
     public String getDescription() {
-        return swTag.getDescription();
+        return _swTag.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        swTag.setDescription(description);
+        _swTag.setDescription(description);
     }
 
+    private fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation _externalDocs;
+
+    private void initExternalDocs() {
+        if (_swTag.getExternalDocs() == null) {
+            _externalDocs = null;
+        } else {
+            _externalDocs = new fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation(_swTag.getExternalDocs());
+        }
+    }
     @Override
     public org.eclipse.microprofile.openapi.models.ExternalDocumentation getExternalDocs() {
-        return swTag.getExternalDocs();
+        initExternalDocs();
+        return _externalDocs;
     }
 
     @Override
     public void setExternalDocs(org.eclipse.microprofile.openapi.models.ExternalDocumentation externalDocs) {
-        swTag.setExternalDocs(externalDocs);
+        if (externalDocs != null) {
+            if (!(externalDocs instanceof fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation)) {
+                throw new IllegalArgumentException("Unexpected type: " + externalDocs);
+            }
+            _externalDocs = (fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation) externalDocs;
+            _swTag.setExternalDocs(_externalDocs.getSw());
+        } else {
+            _externalDocs = null;
+            _swTag.setExternalDocs(null);
+        }
     }
 
 }

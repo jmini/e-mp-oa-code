@@ -4,19 +4,23 @@ import org.eclipse.microprofile.openapi.models.info.Contact;
 
 public class SwContact implements Contact {
 
-    private io.swagger.v3.oas.models.info.Contact swContact;
+    private io.swagger.v3.oas.models.info.Contact _swContact;
 
     public SwContact() {
-        swContact = new io.swagger.v3.oas.models.info.Contact();
+        _swContact = new io.swagger.v3.oas.models.info.Contact();
     }
 
-    public SwContact(io.swagger.v3.oas.models.info.Contact swContact) {
-        this.swContact = swContact;
+    public SwContact(io.swagger.v3.oas.models.info.Contact _swContact) {
+        this._swContact = _swContact;
+    }
+
+    public io.swagger.v3.oas.models.info.Contact getSw() {
+        return _swContact;
     }
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        java.util.Map<String, Object> result = swContact.getExtensions();
+        java.util.Map<String, Object> result = _swContact.getExtensions();
         if (result == null) {
             return null;
         }
@@ -25,7 +29,7 @@ public class SwContact implements Contact {
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        swContact.setExtensions(null);
+        _swContact.setExtensions(null);
         if (extensions != null) {
             for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
                 this.addExtension(e.getKey(), e.getValue());
@@ -35,42 +39,45 @@ public class SwContact implements Contact {
 
     @Override
     public Contact addExtension(String key, Object object) {
-        swContact.addExtension(key, object);
+        _swContact.addExtension(key, object);
         return this;
     }
 
     @Override
     public void removeExtension(String key) {
+        if (getExtensions() != null) {
+            _swContact.getExtensions().remove(key);
+        }
     }
 
     @Override
     public String getName() {
-        return swContact.getName();
+        return _swContact.getName();
     }
 
     @Override
     public void setName(String name) {
-        swContact.setName(name);
+        _swContact.setName(name);
     }
 
     @Override
     public String getUrl() {
-        return swContact.getUrl();
+        return _swContact.getUrl();
     }
 
     @Override
     public void setUrl(String url) {
-        swContact.setUrl(url);
+        _swContact.setUrl(url);
     }
 
     @Override
     public String getEmail() {
-        return swContact.getEmail();
+        return _swContact.getEmail();
     }
 
     @Override
     public void setEmail(String email) {
-        swContact.setEmail(email);
+        _swContact.setEmail(email);
     }
 
 }

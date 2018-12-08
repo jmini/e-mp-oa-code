@@ -27,17 +27,29 @@ public class SwGenerator {
 
     public SwGenerator(SwElement swElement, Input input) {
         this.swElement = swElement;
-        this.mpElement = swElement.oaElement;
+        this.mpElement = swElement.mpElement;
         this.input = input;
         init();
     }
 
     private void init() {
         simpleName = StringUtil.computeSimpleName(mpElement.fqName);
-        swVarName = "sw" + simpleName;
-        implClassName = "Sw" + simpleName;
-        implPackageName = StringUtil.computePackage(mpElement.fqName)
+        swVarName = "_sw" + simpleName;
+        implClassName = toImplClassName(mpElement.fqName);
+        implPackageName = toImplPackageName(mpElement.fqName);
+    }
+
+    private String toImplClassName(String fqName) {
+        return "Sw" + StringUtil.computeSimpleName(fqName);
+    }
+
+    private String toImplPackageName(String fqName) {
+        return StringUtil.computePackage(fqName)
                 .replace("org.eclipse.microprofile.openapi", input.rootPackage);
+    }
+
+    private String toImplFqnName(String fqName) {
+        return toImplPackageName(fqName) + "." + toImplClassName(fqName);
     }
 
     public String generateContent() {
@@ -58,6 +70,10 @@ public class SwGenerator {
         sb.append("\n");
         sb.append("    public " + implClassName + "(" + swElement.swFqName + " " + swVarName + ") {\n");
         sb.append("        this." + swVarName + " = " + swVarName + ";\n");
+        sb.append("    }\n");
+        sb.append("\n");
+        sb.append("    public " + swElement.swFqName + " getSw() {\n");
+        sb.append("        return " + swVarName + ";\n");
         sb.append("    }\n");
         sb.append("\n");
         if (mpElement.referenceable) {
@@ -89,28 +105,96 @@ public class SwGenerator {
         boolean isMapMember = member instanceof MapMember;
         boolean isListMember = member instanceof ListMember;
         String varName = StringUtil.decapitalize(member.name);
+        String memberName = "_" + StringUtil.decapitalize(member.name);
+        String initName = "init" + StringUtil.capitalize(member.name);
+        boolean isComplexType;
+        String memberFqType, innerFqType;
+        if (isMapMember) {
+            String fqType = ((MapMember) member).valueFqType;
+            isComplexType = fqType.startsWith("org.eclipse.microprofile.openapi");
+            innerFqType = toImplFqnName(fqType);
+            memberFqType = java.util.Map.class.getCanonicalName() + "<String," + toImplFqnName(fqType) + ">";
+        } else if (isListMember) {
+            String fqType = ((ListMember) member).itemFqType;
+            isComplexType = fqType.startsWith("org.eclipse.microprofile.openapi");
+            innerFqType = toImplFqnName(fqType);
+            memberFqType = java.util.List.class.getCanonicalName() + "<" + innerFqType + ">";
+        } else {
+            String fqType = member.fqType;
+            isComplexType = fqType.startsWith("org.eclipse.microprofile.openapi") && !fqType.endsWith(".Style") && !fqType.endsWith(".In") && !fqType.endsWith(".Type");
+            innerFqType = "/* UNDEFINED */";
+            memberFqType = toImplFqnName(fqType);
+        }
+        boolean isEnumType = member.fqType.startsWith("org.eclipse.microprofile.openapi") && (member.fqType.endsWith(".Style") || member.fqType.endsWith(".In") || member.fqType.endsWith(".Type"));
+
+        if (member.hasMemberDeclaration && isComplexType) {
+            sb.append("    private " + memberFqType + " " + memberName + ";\n");
+            sb.append("\n");
+            sb.append("    private void " + initName + "() {\n");
+            sb.append("        if (" + swVarName + "." + member.getterName + "() == null) {\n");
+            sb.append("            " + memberName + " = null;\n");
+            sb.append("        } else {\n");
+            if (isMapMember) {
+                sb.append("            " + swVarName + "." + member.getterName + "()\n");
+                sb.append("                    .entrySet()\n");
+                sb.append("                    .stream()\n");
+                sb.append("                    .collect(java.util.stream.Collectors.toMap(\n");
+                sb.append("                        java.util.Map.Entry::getKey,\n");
+                sb.append("                        e -> new " + innerFqType + "(e.getValue()),\n");
+                sb.append("                        (k1, k2) -> { throw new IllegalStateException(String.format(\"Duplicate key %s\", k1)); },\n");
+                sb.append("                        () -> new " + java.util.LinkedHashMap.class.getCanonicalName() + "()));\n");
+            } else if (isListMember) {
+                sb.append("            " + swVarName + "." + member.getterName + "()\n");
+                sb.append("                    .stream()\n");
+                sb.append("                    .map(" + innerFqType + "::new)\n");
+                sb.append("                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));\n");
+            } else {
+                sb.append("            " + memberName + " = new " + memberFqType + "(" + swVarName + "." + member.getterName + "());\n");
+            }
+            sb.append("        }\n");
+            sb.append("    }\n");
+        }
         if (member.hasGetter) {
             String var = "result";
             sb.append("    @Override\n");
             sb.append("    public " + member.fqType + " " + member.getterName + "() {\n");
-            if (isMapMember || isListMember /* || needsConversion */) {
-                // TODO Swagger type instead of `member.fqType`
-                sb.append("        " + member.fqType + " " + var + " = " + swVarName + "." + member.getterName + "();\n");
-                sb.append("        if (" + var + " == null) {\n");
-                sb.append("            return null;\n");
-                sb.append("        }\n");
+            if (isComplexType) {
+                sb.append("        " + initName + "();\n");
+                if (isMapMember || isListMember) {
+                    sb.append("        if (" + memberName + " == null) {\n");
+                    sb.append("            return null;\n");
+                    sb.append("        }\n");
+                }
                 if (isMapMember) {
-                    // TODO: transform
-                    sb.append("        return java.util.Collections.unmodifiableMap(" + var + ");\n");
+                    sb.append("        return java.util.Collections.unmodifiableMap(" + memberName + ");\n");
                 } else if (isListMember) {
-                    // TODO: transform
-                    sb.append("        return java.util.Collections.unmodifiableList(" + var + ");\n");
+                    sb.append("        return java.util.Collections.unmodifiableList(" + memberName + ");\n");
                 } else {
-                    // TODO: transform
-                    sb.append("        return " + var + ";\n");
+                    sb.append("        return " + memberName + ";\n");
                 }
             } else {
-                sb.append("        return " + swVarName + "." + member.getterName + "();\n");
+                if (isMapMember || isListMember) {
+                    // TODO Swagger type instead of `member.fqType`
+                    sb.append("        " + member.fqType + " " + var + " = " + swVarName + "." + member.getterName + "();\n");
+                    sb.append("        if (" + var + " == null) {\n");
+                    sb.append("            return null;\n");
+                    sb.append("        }\n");
+                }
+                if (isMapMember) {
+                    sb.append("        return java.util.Collections.unmodifiableMap(" + var + ");\n");
+                } else if (isListMember) {
+                    sb.append("        return java.util.Collections.unmodifiableList(" + var + ");\n");
+                } else if (isEnumType) {
+                    sb.append("        if (" + swVarName + "." + member.getterName + "() == null) {\n");
+                    sb.append("            return null;\n");
+                    sb.append("        }\n");
+                    sb.append("        switch (" + swVarName + "." + member.getterName + "()) {\n");
+                    sb.append("        default:\n");
+                    sb.append("            throw new IllegalStateException(\"Unexpected enum value\");\n");
+                    sb.append("        }\n");
+                } else {
+                    sb.append("        return " + swVarName + "." + member.getterName + "();\n");
+                }
             }
             sb.append("    }\n");
             sb.append("\n");
@@ -119,7 +203,7 @@ public class SwGenerator {
         if (member.hasSetter) {
             sb.append("    @Override\n");
             sb.append("    public void " + member.setterName + "(" + member.fqType + " " + varName + ") {\n");
-            if (isMapMember || isListMember /* || needsConversion */) {
+            if (isMapMember || isListMember || isComplexType) {
                 if (isMapMember || isListMember) {
                     sb.append("        " + swVarName + "." + member.setterName + "(null);\n");
                 }
@@ -135,11 +219,11 @@ public class SwGenerator {
                     sb.append("                this." + listMember.addName + "(e);\n");
                     sb.append("            }\n");
                 } else {
-                    // TODO: transform
-                    sb.append("        " + swVarName + "." + member.setterName + "(" + varName + ");\n");
+                    appendTypeCheck(sb, varName, memberName, memberFqType, false, "            ");
+                    sb.append("            " + swVarName + "." + member.setterName + "(" + memberName + ".getSw());\n");
                     sb.append("        } else {\n");
-                    sb.append("        " + swVarName + "." + member.setterName + "(null);\n");
-
+                    sb.append("            " + memberName + " = null;\n");
+                    sb.append("            " + swVarName + "." + member.setterName + "(null);\n");
                 }
                 sb.append("        }\n");
             } else {
@@ -154,14 +238,37 @@ public class SwGenerator {
                 String itemVarName = StringUtil.decapitalize(StringUtil.computeSimpleName(mapMember.valueFqType));
                 sb.append("    @Override\n");
                 sb.append("    public " + simpleName + " " + mapMember.addName + "(String key, " + mapMember.valueFqType + " " + itemVarName + ") {\n");
-                // TODO: transform `itemVarName`
-                sb.append("        " + swVarName + "." + mapMember.addName + "(key, " + itemVarName + ");\n");
+                if (isComplexType) {
+                    String valueName = "value";
+                    appendTypeCheck(sb, itemVarName, valueName, innerFqType, true, "        ");
+                    sb.append("        " + initName + "();\n");
+                    sb.append("        if (" + memberName + " == null) {\n");
+                    sb.append("            " + memberName + " = new " + java.util.LinkedHashMap.class.getCanonicalName() + "<>();\n");
+                    sb.append("        " + swVarName + "." + mapMember.setterName + "(new " + java.util.LinkedHashMap.class.getCanonicalName() + "<>());\n");
+                    sb.append("        }\n");
+                    sb.append("        " + memberName + ".put(key, " + valueName + ");\n");
+                    sb.append("        " + swVarName + "." + mapMember.getterName + "().put(key, " + valueName + ".getSw());\n");
+                    // sb.append(" " + swVarName + "." + mapMember.addName + "(key, " + valueName + ".getSw());\n");
+                } else {
+                    sb.append("        " + swVarName + "." + mapMember.addName + "(key, " + itemVarName + ");\n");
+                }
                 sb.append("        return this;\n");
                 sb.append("    }\n");
                 sb.append("\n");
             }
             sb.append("    @Override\n");
             sb.append("    public void " + mapMember.removeName + "(String key) {\n");
+            if (isComplexType) {
+                sb.append("        " + initName + "();\n");
+                sb.append("        if (" + memberName + " != null) {\n");
+                sb.append("            " + memberName + ".remove(key);\n");
+                sb.append("            " + swVarName + "." + member.getterName + "().remove(key);\n");
+                sb.append("        }\n");
+            } else {
+                sb.append("        if (" + member.getterName + "() != null) {\n");
+                sb.append("            " + swVarName + "." + member.getterName + "().remove(key);\n");
+                sb.append("        }\n");
+            }
             sb.append("    }\n");
             sb.append("\n");
         } else if (isListMember) {
@@ -169,16 +276,49 @@ public class SwGenerator {
             String itemVarName = StringUtil.decapitalize(StringUtil.computeSimpleName(listMember.itemFqType));
             sb.append("    @Override\n");
             sb.append("    public " + simpleName + " " + listMember.addName + "(" + listMember.itemFqType + " " + itemVarName + ") {\n");
-            // TODO: transform `e`;
-            sb.append("        " + swVarName + "." + listMember.addName + "(e);\n");
+            if (isComplexType) {
+                String valueName = "element";
+                appendTypeCheck(sb, itemVarName, valueName, innerFqType, true, "        ");
+                sb.append("        " + initName + "();\n");
+                sb.append("        if (" + memberName + " == null) {\n");
+                sb.append("            " + memberName + " = new " + java.util.ArrayList.class.getCanonicalName() + "<>();\n");
+                sb.append("        " + swVarName + "." + listMember.setterName + "(new " + java.util.ArrayList.class.getCanonicalName() + "<>());\n");
+                sb.append("        }\n");
+                sb.append("        " + memberName + ".add(" + valueName + ");\n");
+                sb.append("        " + swVarName + "." + listMember.getterName + "().add(" + valueName + ".getSw());\n");
+                // sb.append(" " + swVarName + "." + listMember.addName + "(" + valueName + ".getSw());\n");
+            } else {
+                sb.append("        " + swVarName + "." + listMember.addName + "(" + itemVarName + ");\n");
+            }
             sb.append("        return this;\n");
             sb.append("    }\n");
             sb.append("\n");
             sb.append("    @Override\n");
             sb.append("    public void " + listMember.removeName + "(" + listMember.itemFqType + " " + itemVarName + ") {\n");
+            if (isComplexType) {
+                String valueName = "element";
+                appendTypeCheck(sb, itemVarName, valueName, innerFqType, true, "        ");
+                sb.append("        " + initName + "();\n");
+                sb.append("        if (" + memberName + " != null) {\n");
+                sb.append("            " + memberName + ".remove(" + itemVarName + ");\n");
+                sb.append("            " + swVarName + "." + member.getterName + "().remove(element.getSw());\n");
+                sb.append("        }\n");
+            } else {
+                sb.append("        if (" + swVarName + "." + member.getterName + "() != null) {\n");
+                sb.append("            " + swVarName + "." + member.getterName + "().remove(" + itemVarName + ");\n");
+                sb.append("        }\n");
+            }
             sb.append("    }\n");
             sb.append("\n");
         }
+    }
+
+    private void appendTypeCheck(StringBuilder sb, String varName, String assignedVarName, String assignedFqType, boolean createAssignedVar, String prefix) {
+        sb.append(prefix + "if (!(" + varName + " instanceof " + assignedFqType + ")) {\n");
+        sb.append(prefix + "    throw new IllegalArgumentException(\"Unexpected type: \" + " + varName + ");\n");
+        sb.append(prefix + "}\n");
+        String assignedType = (createAssignedVar) ? assignedFqType + " " : "";
+        sb.append(prefix + assignedType + assignedVarName + " = (" + assignedFqType + ") " + varName + ";\n");
     }
 
     private void generateAdditionalMethod(StringBuilder sb, Type type) {

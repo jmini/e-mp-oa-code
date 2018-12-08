@@ -4,19 +4,23 @@ import org.eclipse.microprofile.openapi.models.examples.Example;
 
 public class SwExample implements Example {
 
-    private io.swagger.v3.oas.models.examples.Example swExample;
+    private io.swagger.v3.oas.models.examples.Example _swExample;
 
     public SwExample() {
-        swExample = new io.swagger.v3.oas.models.examples.Example();
+        _swExample = new io.swagger.v3.oas.models.examples.Example();
     }
 
-    public SwExample(io.swagger.v3.oas.models.examples.Example swExample) {
-        this.swExample = swExample;
+    public SwExample(io.swagger.v3.oas.models.examples.Example _swExample) {
+        this._swExample = _swExample;
+    }
+
+    public io.swagger.v3.oas.models.examples.Example getSw() {
+        return _swExample;
     }
 
     @Override
     public String getRef() {
-        return swExample.getRef();
+        return _swExample.getRef();
     }
 
     @Override
@@ -25,7 +29,7 @@ public class SwExample implements Example {
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        java.util.Map<String, Object> result = swExample.getExtensions();
+        java.util.Map<String, Object> result = _swExample.getExtensions();
         if (result == null) {
             return null;
         }
@@ -34,7 +38,7 @@ public class SwExample implements Example {
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        swExample.setExtensions(null);
+        _swExample.setExtensions(null);
         if (extensions != null) {
             for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
                 this.addExtension(e.getKey(), e.getValue());
@@ -44,52 +48,55 @@ public class SwExample implements Example {
 
     @Override
     public Example addExtension(String key, Object object) {
-        swExample.addExtension(key, object);
+        _swExample.addExtension(key, object);
         return this;
     }
 
     @Override
     public void removeExtension(String key) {
+        if (getExtensions() != null) {
+            _swExample.getExtensions().remove(key);
+        }
     }
 
     @Override
     public String getSummary() {
-        return swExample.getSummary();
+        return _swExample.getSummary();
     }
 
     @Override
     public void setSummary(String summary) {
-        swExample.setSummary(summary);
+        _swExample.setSummary(summary);
     }
 
     @Override
     public String getDescription() {
-        return swExample.getDescription();
+        return _swExample.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        swExample.setDescription(description);
+        _swExample.setDescription(description);
     }
 
     @Override
     public Object getValue() {
-        return swExample.getValue();
+        return _swExample.getValue();
     }
 
     @Override
     public void setValue(Object value) {
-        swExample.setValue(value);
+        _swExample.setValue(value);
     }
 
     @Override
     public String getExternalValue() {
-        return swExample.getExternalValue();
+        return _swExample.getExternalValue();
     }
 
     @Override
     public void setExternalValue(String externalValue) {
-        swExample.setExternalValue(externalValue);
+        _swExample.setExternalValue(externalValue);
     }
 
 }

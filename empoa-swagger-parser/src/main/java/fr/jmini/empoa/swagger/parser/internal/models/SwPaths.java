@@ -4,19 +4,23 @@ import org.eclipse.microprofile.openapi.models.Paths;
 
 public class SwPaths implements Paths {
 
-    private io.swagger.v3.oas.models.Paths swPaths;
+    private io.swagger.v3.oas.models.Paths _swPaths;
 
     public SwPaths() {
-        swPaths = new io.swagger.v3.oas.models.Paths();
+        _swPaths = new io.swagger.v3.oas.models.Paths();
     }
 
-    public SwPaths(io.swagger.v3.oas.models.Paths swPaths) {
-        this.swPaths = swPaths;
+    public SwPaths(io.swagger.v3.oas.models.Paths _swPaths) {
+        this._swPaths = _swPaths;
+    }
+
+    public io.swagger.v3.oas.models.Paths getSw() {
+        return _swPaths;
     }
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        java.util.Map<String, Object> result = swPaths.getExtensions();
+        java.util.Map<String, Object> result = _swPaths.getExtensions();
         if (result == null) {
             return null;
         }
@@ -25,7 +29,7 @@ public class SwPaths implements Paths {
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        swPaths.setExtensions(null);
+        _swPaths.setExtensions(null);
         if (extensions != null) {
             for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
                 this.addExtension(e.getKey(), e.getValue());
@@ -35,26 +39,45 @@ public class SwPaths implements Paths {
 
     @Override
     public Paths addExtension(String key, Object object) {
-        swPaths.addExtension(key, object);
+        _swPaths.addExtension(key, object);
         return this;
     }
 
     @Override
     public void removeExtension(String key) {
+        if (getExtensions() != null) {
+            _swPaths.getExtensions().remove(key);
+        }
     }
 
+    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.SwPathItem> _pathItems;
+
+    private void initPathItems() {
+        if (_swPaths.getPathItems() == null) {
+            _pathItems = null;
+        } else {
+            _swPaths.getPathItems()
+                    .entrySet()
+                    .stream()
+                    .collect(java.util.stream.Collectors.toMap(
+                        java.util.Map.Entry::getKey,
+                        e -> new fr.jmini.empoa.swagger.parser.internal.models.SwPathItem(e.getValue()),
+                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
+                        () -> new java.util.LinkedHashMap()));
+        }
+    }
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> getPathItems() {
-        java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> result = swPaths.getPathItems();
-        if (result == null) {
+        initPathItems();
+        if (_pathItems == null) {
             return null;
         }
-        return java.util.Collections.unmodifiableMap(result);
+        return java.util.Collections.unmodifiableMap(_pathItems);
     }
 
     @Override
     public void setPathItems(java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> pathItems) {
-        swPaths.setPathItems(null);
+        _swPaths.setPathItems(null);
         if (pathItems != null) {
             for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> e : pathItems.entrySet()) {
                 this.addPathItem(e.getKey(), e.getValue());
@@ -64,12 +87,27 @@ public class SwPaths implements Paths {
 
     @Override
     public Paths addPathItem(String key, org.eclipse.microprofile.openapi.models.PathItem pathItem) {
-        swPaths.addPathItem(key, pathItem);
+        if (!(pathItem instanceof fr.jmini.empoa.swagger.parser.internal.models.SwPathItem)) {
+            throw new IllegalArgumentException("Unexpected type: " + pathItem);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.SwPathItem value = (fr.jmini.empoa.swagger.parser.internal.models.SwPathItem) pathItem;
+        initPathItems();
+        if (_pathItems == null) {
+            _pathItems = new java.util.LinkedHashMap<>();
+        _swPaths.setPathItems(new java.util.LinkedHashMap<>());
+        }
+        _pathItems.put(key, value);
+        _swPaths.getPathItems().put(key, value.getSw());
         return this;
     }
 
     @Override
     public void removePathItem(String key) {
+        initPathItems();
+        if (_pathItems != null) {
+            _pathItems.remove(key);
+            _swPaths.getPathItems().remove(key);
+        }
     }
 
 }

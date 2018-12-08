@@ -4,19 +4,23 @@ import org.eclipse.microprofile.openapi.models.media.XML;
 
 public class SwXML implements XML {
 
-    private io.swagger.v3.oas.models.media.XML swXML;
+    private io.swagger.v3.oas.models.media.XML _swXML;
 
     public SwXML() {
-        swXML = new io.swagger.v3.oas.models.media.XML();
+        _swXML = new io.swagger.v3.oas.models.media.XML();
     }
 
-    public SwXML(io.swagger.v3.oas.models.media.XML swXML) {
-        this.swXML = swXML;
+    public SwXML(io.swagger.v3.oas.models.media.XML _swXML) {
+        this._swXML = _swXML;
+    }
+
+    public io.swagger.v3.oas.models.media.XML getSw() {
+        return _swXML;
     }
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        java.util.Map<String, Object> result = swXML.getExtensions();
+        java.util.Map<String, Object> result = _swXML.getExtensions();
         if (result == null) {
             return null;
         }
@@ -25,7 +29,7 @@ public class SwXML implements XML {
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        swXML.setExtensions(null);
+        _swXML.setExtensions(null);
         if (extensions != null) {
             for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
                 this.addExtension(e.getKey(), e.getValue());
@@ -35,62 +39,65 @@ public class SwXML implements XML {
 
     @Override
     public XML addExtension(String key, Object object) {
-        swXML.addExtension(key, object);
+        _swXML.addExtension(key, object);
         return this;
     }
 
     @Override
     public void removeExtension(String key) {
+        if (getExtensions() != null) {
+            _swXML.getExtensions().remove(key);
+        }
     }
 
     @Override
     public String getName() {
-        return swXML.getName();
+        return _swXML.getName();
     }
 
     @Override
     public void setName(String name) {
-        swXML.setName(name);
+        _swXML.setName(name);
     }
 
     @Override
     public String getNamespace() {
-        return swXML.getNamespace();
+        return _swXML.getNamespace();
     }
 
     @Override
     public void setNamespace(String namespace) {
-        swXML.setNamespace(namespace);
+        _swXML.setNamespace(namespace);
     }
 
     @Override
     public String getPrefix() {
-        return swXML.getPrefix();
+        return _swXML.getPrefix();
     }
 
     @Override
     public void setPrefix(String prefix) {
-        swXML.setPrefix(prefix);
+        _swXML.setPrefix(prefix);
     }
 
     @Override
     public Boolean getAttribute() {
-        return swXML.getAttribute();
+        return _swXML.getAttribute();
     }
 
     @Override
     public void setAttribute(Boolean attribute) {
-        swXML.setAttribute(attribute);
+        _swXML.setAttribute(attribute);
     }
 
     @Override
     public Boolean getWrapped() {
-        return swXML.getWrapped();
+        return _swXML.getWrapped();
     }
 
     @Override
     public void setWrapped(Boolean wrapped) {
-        swXML.setWrapped(wrapped);
+        _swXML.setWrapped(wrapped);
     }
 
 }

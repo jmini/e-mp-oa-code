@@ -4,29 +4,33 @@ import org.eclipse.microprofile.openapi.models.media.Discriminator;
 
 public class SwDiscriminator implements Discriminator {
 
-    private io.swagger.v3.oas.models.media.Discriminator swDiscriminator;
+    private io.swagger.v3.oas.models.media.Discriminator _swDiscriminator;
 
     public SwDiscriminator() {
-        swDiscriminator = new io.swagger.v3.oas.models.media.Discriminator();
+        _swDiscriminator = new io.swagger.v3.oas.models.media.Discriminator();
     }
 
-    public SwDiscriminator(io.swagger.v3.oas.models.media.Discriminator swDiscriminator) {
-        this.swDiscriminator = swDiscriminator;
+    public SwDiscriminator(io.swagger.v3.oas.models.media.Discriminator _swDiscriminator) {
+        this._swDiscriminator = _swDiscriminator;
+    }
+
+    public io.swagger.v3.oas.models.media.Discriminator getSw() {
+        return _swDiscriminator;
     }
 
     @Override
     public String getPropertyName() {
-        return swDiscriminator.getPropertyName();
+        return _swDiscriminator.getPropertyName();
     }
 
     @Override
     public void setPropertyName(String propertyName) {
-        swDiscriminator.setPropertyName(propertyName);
+        _swDiscriminator.setPropertyName(propertyName);
     }
 
     @Override
     public java.util.Map<String, String> getMapping() {
-        java.util.Map<String, String> result = swDiscriminator.getMapping();
+        java.util.Map<String, String> result = _swDiscriminator.getMapping();
         if (result == null) {
             return null;
         }
@@ -35,7 +39,7 @@ public class SwDiscriminator implements Discriminator {
 
     @Override
     public void setMapping(java.util.Map<String, String> mapping) {
-        swDiscriminator.setMapping(null);
+        _swDiscriminator.setMapping(null);
         if (mapping != null) {
             for (java.util.Map.Entry<String, String> e : mapping.entrySet()) {
                 this.addMapping(e.getKey(), e.getValue());
@@ -45,12 +49,15 @@ public class SwDiscriminator implements Discriminator {
 
     @Override
     public Discriminator addMapping(String key, String string) {
-        swDiscriminator.addMapping(key, string);
+        _swDiscriminator.addMapping(key, string);
         return this;
     }
 
     @Override
     public void removeMapping(String key) {
+        if (getMapping() != null) {
+            _swDiscriminator.getMapping().remove(key);
+        }
     }
 
 }

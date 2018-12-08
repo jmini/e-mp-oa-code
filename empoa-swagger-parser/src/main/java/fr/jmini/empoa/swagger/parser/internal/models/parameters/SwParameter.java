@@ -4,19 +4,23 @@ import org.eclipse.microprofile.openapi.models.parameters.Parameter;
 
 public class SwParameter implements Parameter {
 
-    private io.swagger.v3.oas.models.parameters.Parameter swParameter;
+    private io.swagger.v3.oas.models.parameters.Parameter _swParameter;
 
     public SwParameter() {
-        swParameter = new io.swagger.v3.oas.models.parameters.Parameter();
+        _swParameter = new io.swagger.v3.oas.models.parameters.Parameter();
     }
 
-    public SwParameter(io.swagger.v3.oas.models.parameters.Parameter swParameter) {
-        this.swParameter = swParameter;
+    public SwParameter(io.swagger.v3.oas.models.parameters.Parameter _swParameter) {
+        this._swParameter = _swParameter;
+    }
+
+    public io.swagger.v3.oas.models.parameters.Parameter getSw() {
+        return _swParameter;
     }
 
     @Override
     public String getRef() {
-        return swParameter.getRef();
+        return _swParameter.getRef();
     }
 
     @Override
@@ -25,7 +29,7 @@ public class SwParameter implements Parameter {
 
     @Override
     public java.util.Map<String, Object> getExtensions() {
-        java.util.Map<String, Object> result = swParameter.getExtensions();
+        java.util.Map<String, Object> result = _swParameter.getExtensions();
         if (result == null) {
             return null;
         }
@@ -34,7 +38,7 @@ public class SwParameter implements Parameter {
 
     @Override
     public void setExtensions(java.util.Map<String, Object> extensions) {
-        swParameter.setExtensions(null);
+        _swParameter.setExtensions(null);
         if (extensions != null) {
             for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
                 this.addExtension(e.getKey(), e.getValue());
@@ -44,126 +48,170 @@ public class SwParameter implements Parameter {
 
     @Override
     public Parameter addExtension(String key, Object object) {
-        swParameter.addExtension(key, object);
+        _swParameter.addExtension(key, object);
         return this;
     }
 
     @Override
     public void removeExtension(String key) {
+        if (getExtensions() != null) {
+            _swParameter.getExtensions().remove(key);
+        }
     }
 
     @Override
     public String getName() {
-        return swParameter.getName();
+        return _swParameter.getName();
     }
 
     @Override
     public void setName(String name) {
-        swParameter.setName(name);
+        _swParameter.setName(name);
     }
 
     @Override
     public In getIn() {
-        return swParameter.getIn();
+        return _swParameter.getIn();
     }
 
     @Override
     public void setIn(In in) {
-        swParameter.setIn(in);
+        _swParameter.setIn(in);
     }
 
     @Override
     public String getDescription() {
-        return swParameter.getDescription();
+        return _swParameter.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        swParameter.setDescription(description);
+        _swParameter.setDescription(description);
     }
 
     @Override
     public Boolean getRequired() {
-        return swParameter.getRequired();
+        return _swParameter.getRequired();
     }
 
     @Override
     public void setRequired(Boolean required) {
-        swParameter.setRequired(required);
+        _swParameter.setRequired(required);
     }
 
     @Override
     public Boolean getDeprecated() {
-        return swParameter.getDeprecated();
+        return _swParameter.getDeprecated();
     }
 
     @Override
     public void setDeprecated(Boolean deprecated) {
-        swParameter.setDeprecated(deprecated);
+        _swParameter.setDeprecated(deprecated);
     }
 
     @Override
     public Boolean getAllowEmptyValue() {
-        return swParameter.getAllowEmptyValue();
+        return _swParameter.getAllowEmptyValue();
     }
 
     @Override
     public void setAllowEmptyValue(Boolean allowEmptyValue) {
-        swParameter.setAllowEmptyValue(allowEmptyValue);
+        _swParameter.setAllowEmptyValue(allowEmptyValue);
     }
 
     @Override
     public org.eclipse.microprofile.openapi.models.parameters.Parameter.Style getStyle() {
-        return swParameter.getStyle();
+        if (_swParameter.getStyle() == null) {
+            return null;
+        }
+        switch (_swParameter.getStyle()) {
+        default:
+            throw new IllegalStateException("Unexpected enum value");
+        }
     }
 
     @Override
     public void setStyle(org.eclipse.microprofile.openapi.models.parameters.Parameter.Style style) {
-        swParameter.setStyle(style);
+        _swParameter.setStyle(style);
     }
 
     @Override
     public Boolean getExplode() {
-        return swParameter.getExplode();
+        return _swParameter.getExplode();
     }
 
     @Override
     public void setExplode(Boolean explode) {
-        swParameter.setExplode(explode);
+        _swParameter.setExplode(explode);
     }
 
     @Override
     public Boolean getAllowReserved() {
-        return swParameter.getAllowReserved();
+        return _swParameter.getAllowReserved();
     }
 
     @Override
     public void setAllowReserved(Boolean allowReserved) {
-        swParameter.setAllowReserved(allowReserved);
+        _swParameter.setAllowReserved(allowReserved);
     }
 
+    private fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema _schema;
+
+    private void initSchema() {
+        if (_swParameter.getSchema() == null) {
+            _schema = null;
+        } else {
+            _schema = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema(_swParameter.getSchema());
+        }
+    }
     @Override
     public org.eclipse.microprofile.openapi.models.media.Schema getSchema() {
-        return swParameter.getSchema();
+        initSchema();
+        return _schema;
     }
 
     @Override
     public void setSchema(org.eclipse.microprofile.openapi.models.media.Schema schema) {
-        swParameter.setSchema(schema);
+        if (schema != null) {
+            if (!(schema instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema)) {
+                throw new IllegalArgumentException("Unexpected type: " + schema);
+            }
+            _schema = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+            _swParameter.setSchema(_schema.getSw());
+        } else {
+            _schema = null;
+            _swParameter.setSchema(null);
+        }
     }
 
+    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample> _examples;
+
+    private void initExamples() {
+        if (_swParameter.getExamples() == null) {
+            _examples = null;
+        } else {
+            _swParameter.getExamples()
+                    .entrySet()
+                    .stream()
+                    .collect(java.util.stream.Collectors.toMap(
+                        java.util.Map.Entry::getKey,
+                        e -> new fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample(e.getValue()),
+                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
+                        () -> new java.util.LinkedHashMap()));
+        }
+    }
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> getExamples() {
-        java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> result = swParameter.getExamples();
-        if (result == null) {
+        initExamples();
+        if (_examples == null) {
             return null;
         }
-        return java.util.Collections.unmodifiableMap(result);
+        return java.util.Collections.unmodifiableMap(_examples);
     }
 
     @Override
     public void setExamples(java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> examples) {
-        swParameter.setExamples(null);
+        _swParameter.setExamples(null);
         if (examples != null) {
             for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> e : examples.entrySet()) {
                 this.addExample(e.getKey(), e.getValue());
@@ -173,32 +221,66 @@ public class SwParameter implements Parameter {
 
     @Override
     public Parameter addExample(String key, org.eclipse.microprofile.openapi.models.examples.Example example) {
-        swParameter.addExample(key, example);
+        if (!(example instanceof fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample)) {
+            throw new IllegalArgumentException("Unexpected type: " + example);
+        }
+        fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample value = (fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample) example;
+        initExamples();
+        if (_examples == null) {
+            _examples = new java.util.LinkedHashMap<>();
+        _swParameter.setExamples(new java.util.LinkedHashMap<>());
+        }
+        _examples.put(key, value);
+        _swParameter.getExamples().put(key, value.getSw());
         return this;
     }
 
     @Override
     public void removeExample(String key) {
+        initExamples();
+        if (_examples != null) {
+            _examples.remove(key);
+            _swParameter.getExamples().remove(key);
+        }
     }
 
     @Override
     public Object getExample() {
-        return swParameter.getExample();
+        return _swParameter.getExample();
     }
 
     @Override
     public void setExample(Object example) {
-        swParameter.setExample(example);
+        _swParameter.setExample(example);
     }
 
+    private fr.jmini.empoa.swagger.parser.internal.models.media.SwContent _content;
+
+    private void initContent() {
+        if (_swParameter.getContent() == null) {
+            _content = null;
+        } else {
+            _content = new fr.jmini.empoa.swagger.parser.internal.models.media.SwContent(_swParameter.getContent());
+        }
+    }
     @Override
     public org.eclipse.microprofile.openapi.models.media.Content getContent() {
-        return swParameter.getContent();
+        initContent();
+        return _content;
     }
 
     @Override
     public void setContent(org.eclipse.microprofile.openapi.models.media.Content content) {
-        swParameter.setContent(content);
+        if (content != null) {
+            if (!(content instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwContent)) {
+                throw new IllegalArgumentException("Unexpected type: " + content);
+            }
+            _content = (fr.jmini.empoa.swagger.parser.internal.models.media.SwContent) content;
+            _swParameter.setContent(_content.getSw());
+        } else {
+            _content = null;
+            _swParameter.setContent(null);
+        }
     }
 
 }
