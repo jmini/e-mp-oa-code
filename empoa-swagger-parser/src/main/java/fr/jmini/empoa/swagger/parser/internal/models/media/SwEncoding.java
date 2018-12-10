@@ -126,6 +126,14 @@ public class SwEncoding implements Encoding {
             return null;
         }
         switch (_swEncoding.getStyle()) {
+        case FORM:
+            return org.eclipse.microprofile.openapi.models.media.Encoding.Style.FORM;
+        case SPACE_DELIMITED:
+            return org.eclipse.microprofile.openapi.models.media.Encoding.Style.SPACE_DELIMITED;
+        case PIPE_DELIMITED:
+            return org.eclipse.microprofile.openapi.models.media.Encoding.Style.PIPE_DELIMITED;
+        case DEEP_OBJECT:
+            return org.eclipse.microprofile.openapi.models.media.Encoding.Style.DEEP_OBJECT;
         default:
             throw new IllegalStateException("Unexpected enum value");
         }
@@ -133,7 +141,28 @@ public class SwEncoding implements Encoding {
 
     @Override
     public void setStyle(org.eclipse.microprofile.openapi.models.media.Encoding.Style style) {
-        _swEncoding.setStyle(style);
+        io.swagger.v3.oas.models.media.Encoding.StyleEnum value;
+        if (style == null) {
+            value = null;
+        } else {
+            switch (style) {
+            case FORM:
+                value = io.swagger.v3.oas.models.media.Encoding.StyleEnum.FORM;
+                break;
+            case SPACE_DELIMITED:
+                value = io.swagger.v3.oas.models.media.Encoding.StyleEnum.SPACE_DELIMITED;
+                break;
+            case PIPE_DELIMITED:
+                value = io.swagger.v3.oas.models.media.Encoding.StyleEnum.PIPE_DELIMITED;
+                break;
+            case DEEP_OBJECT:
+                value = io.swagger.v3.oas.models.media.Encoding.StyleEnum.DEEP_OBJECT;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected enum value");
+            }
+        }
+        _swEncoding.setStyle(value);
     }
 
     @Override

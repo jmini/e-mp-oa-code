@@ -1,6 +1,7 @@
 package fr.jmini.empoa.generator.swagger;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -189,6 +190,11 @@ public class SwGenerator {
                     sb.append("            return null;\n");
                     sb.append("        }\n");
                     sb.append("        switch (" + swVarName + "." + member.getterName + "()) {\n");
+                    Enum[] enumValues = getEnumValues(member.fqType);
+                    for (Enum v : enumValues) {
+                        sb.append("        case " + v.name() + ":\n");
+                        sb.append("            return " + member.fqType + "." + v.name() + ";\n");
+                    }
                     sb.append("        default:\n");
                     sb.append("            throw new IllegalStateException(\"Unexpected enum value\");\n");
                     sb.append("        }\n");
@@ -226,6 +232,25 @@ public class SwGenerator {
                     sb.append("            " + swVarName + "." + member.setterName + "(null);\n");
                 }
                 sb.append("        }\n");
+            } else if (isEnumType) {
+                String valueVarName = "value";
+                Enum[] enumValues = getEnumValues(member.fqType);
+                String enumFqType = member.fqType.replace("org.eclipse.microprofile.openapi.models", "io.swagger.v3.oas.models") + "Enum";
+                sb.append("        " + enumFqType + " " + valueVarName + ";\n");
+                sb.append("        if (style == null) {\n");
+                sb.append("            " + valueVarName + " = null;\n");
+                sb.append("        } else {\n");
+                sb.append("            switch (style) {\n");
+                for (Enum v : enumValues) {
+                    sb.append("            case " + v.name() + ":\n");
+                    sb.append("                " + valueVarName + " = " + enumFqType + "." + v.name() + ";\n");
+                    sb.append("                break;\n");
+                }
+                sb.append("            default:\n");
+                sb.append("                throw new IllegalStateException(\"Unexpected enum value\");\n");
+                sb.append("            }\n");
+                sb.append("        }\n");
+                sb.append("        " + swVarName + "." + member.setterName + "(" + valueVarName + ");\n");
             } else {
                 sb.append("        " + swVarName + "." + member.setterName + "(" + varName + ");\n");
             }
@@ -411,6 +436,29 @@ public class SwGenerator {
         Path file = input.srcFolder.resolve(implPackageName.replace(".", "/") + "/" + implClassName + ".java");
         Files.createDirectories(file.getParent());
         Files.write(file, generateContent().getBytes());
+    }
+
+    private static <E extends Enum> E[] getEnumValues(String fqType) {
+        try {
+            String className = replaceSuffixes(fqType, ".Style", ".In", ".Type");
+            Class<?> cls = Class.forName(className);
+            Field f;
+            f = cls.getDeclaredField("$VALUES");
+            f.setAccessible(true);
+            Object o = f.get(null);
+            return (E[]) o;
+        } catch (ClassNotFoundException | NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    private static String replaceSuffixes(String fqType, String... suffixes) {
+        for (String suffix : suffixes) {
+            if (fqType.endsWith(suffix)) {
+                return fqType.substring(0, fqType.length() - suffix.length()) + "$" + suffix.substring(1);
+            }
+        }
+        return fqType;
     }
 
 }

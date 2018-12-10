@@ -65,6 +65,14 @@ public class SwSecurityScheme implements SecurityScheme {
             return null;
         }
         switch (_swSecurityScheme.getType()) {
+        case APIKEY:
+            return org.eclipse.microprofile.openapi.models.security.SecurityScheme.Type.APIKEY;
+        case HTTP:
+            return org.eclipse.microprofile.openapi.models.security.SecurityScheme.Type.HTTP;
+        case OAUTH2:
+            return org.eclipse.microprofile.openapi.models.security.SecurityScheme.Type.OAUTH2;
+        case OPENIDCONNECT:
+            return org.eclipse.microprofile.openapi.models.security.SecurityScheme.Type.OPENIDCONNECT;
         default:
             throw new IllegalStateException("Unexpected enum value");
         }
@@ -72,7 +80,28 @@ public class SwSecurityScheme implements SecurityScheme {
 
     @Override
     public void setType(org.eclipse.microprofile.openapi.models.security.SecurityScheme.Type type) {
-        _swSecurityScheme.setType(type);
+        io.swagger.v3.oas.models.security.SecurityScheme.TypeEnum value;
+        if (style == null) {
+            value = null;
+        } else {
+            switch (style) {
+            case APIKEY:
+                value = io.swagger.v3.oas.models.security.SecurityScheme.TypeEnum.APIKEY;
+                break;
+            case HTTP:
+                value = io.swagger.v3.oas.models.security.SecurityScheme.TypeEnum.HTTP;
+                break;
+            case OAUTH2:
+                value = io.swagger.v3.oas.models.security.SecurityScheme.TypeEnum.OAUTH2;
+                break;
+            case OPENIDCONNECT:
+                value = io.swagger.v3.oas.models.security.SecurityScheme.TypeEnum.OPENIDCONNECT;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected enum value");
+            }
+        }
+        _swSecurityScheme.setType(value);
     }
 
     @Override
@@ -101,6 +130,12 @@ public class SwSecurityScheme implements SecurityScheme {
             return null;
         }
         switch (_swSecurityScheme.getIn()) {
+        case COOKIE:
+            return org.eclipse.microprofile.openapi.models.security.SecurityScheme.In.COOKIE;
+        case HEADER:
+            return org.eclipse.microprofile.openapi.models.security.SecurityScheme.In.HEADER;
+        case QUERY:
+            return org.eclipse.microprofile.openapi.models.security.SecurityScheme.In.QUERY;
         default:
             throw new IllegalStateException("Unexpected enum value");
         }
@@ -108,7 +143,25 @@ public class SwSecurityScheme implements SecurityScheme {
 
     @Override
     public void setIn(org.eclipse.microprofile.openapi.models.security.SecurityScheme.In in) {
-        _swSecurityScheme.setIn(in);
+        io.swagger.v3.oas.models.security.SecurityScheme.InEnum value;
+        if (style == null) {
+            value = null;
+        } else {
+            switch (style) {
+            case COOKIE:
+                value = io.swagger.v3.oas.models.security.SecurityScheme.InEnum.COOKIE;
+                break;
+            case HEADER:
+                value = io.swagger.v3.oas.models.security.SecurityScheme.InEnum.HEADER;
+                break;
+            case QUERY:
+                value = io.swagger.v3.oas.models.security.SecurityScheme.InEnum.QUERY;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected enum value");
+            }
+        }
+        _swSecurityScheme.setIn(value);
     }
 
     @Override

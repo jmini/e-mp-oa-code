@@ -125,6 +125,20 @@ public class SwParameter implements Parameter {
             return null;
         }
         switch (_swParameter.getStyle()) {
+        case MATRIX:
+            return org.eclipse.microprofile.openapi.models.parameters.Parameter.Style.MATRIX;
+        case LABEL:
+            return org.eclipse.microprofile.openapi.models.parameters.Parameter.Style.LABEL;
+        case FORM:
+            return org.eclipse.microprofile.openapi.models.parameters.Parameter.Style.FORM;
+        case SIMPLE:
+            return org.eclipse.microprofile.openapi.models.parameters.Parameter.Style.SIMPLE;
+        case SPACEDELIMITED:
+            return org.eclipse.microprofile.openapi.models.parameters.Parameter.Style.SPACEDELIMITED;
+        case PIPEDELIMITED:
+            return org.eclipse.microprofile.openapi.models.parameters.Parameter.Style.PIPEDELIMITED;
+        case DEEPOBJECT:
+            return org.eclipse.microprofile.openapi.models.parameters.Parameter.Style.DEEPOBJECT;
         default:
             throw new IllegalStateException("Unexpected enum value");
         }
@@ -132,7 +146,37 @@ public class SwParameter implements Parameter {
 
     @Override
     public void setStyle(org.eclipse.microprofile.openapi.models.parameters.Parameter.Style style) {
-        _swParameter.setStyle(style);
+        io.swagger.v3.oas.models.parameters.Parameter.StyleEnum value;
+        if (style == null) {
+            value = null;
+        } else {
+            switch (style) {
+            case MATRIX:
+                value = io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.MATRIX;
+                break;
+            case LABEL:
+                value = io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.LABEL;
+                break;
+            case FORM:
+                value = io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.FORM;
+                break;
+            case SIMPLE:
+                value = io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.SIMPLE;
+                break;
+            case SPACEDELIMITED:
+                value = io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.SPACEDELIMITED;
+                break;
+            case PIPEDELIMITED:
+                value = io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.PIPEDELIMITED;
+                break;
+            case DEEPOBJECT:
+                value = io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.DEEPOBJECT;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected enum value");
+            }
+        }
+        _swParameter.setStyle(value);
     }
 
     @Override
