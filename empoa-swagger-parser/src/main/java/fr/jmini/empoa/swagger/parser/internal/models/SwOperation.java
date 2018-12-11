@@ -71,7 +71,7 @@ public class SwOperation implements Operation {
 
     @Override
     public Operation addTag(String string) {
-        _swOperation.addTag(string);
+        _swOperation.addTagsItem(string);
         return this;
     }
 

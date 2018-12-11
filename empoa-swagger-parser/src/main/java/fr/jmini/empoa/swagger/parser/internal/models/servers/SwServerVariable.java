@@ -52,7 +52,7 @@ public class SwServerVariable implements ServerVariable {
 
     @Override
     public java.util.List<String> getEnumeration() {
-        java.util.List<String> result = _swServerVariable.getEnumeration();
+        java.util.List<String> result = _swServerVariable.getEnum();
         if (result == null) {
             return null;
         }
@@ -61,7 +61,7 @@ public class SwServerVariable implements ServerVariable {
 
     @Override
     public void setEnumeration(java.util.List<String> enumeration) {
-        _swServerVariable.setEnumeration(null);
+        _swServerVariable.setEnum(null);
         if (enumeration != null) {
             for (String e : enumeration) {
                 this.addEnumeration(e);
@@ -71,14 +71,14 @@ public class SwServerVariable implements ServerVariable {
 
     @Override
     public ServerVariable addEnumeration(String string) {
-        _swServerVariable.addEnumeration(string);
+        _swServerVariable.addEnumItem(string);
         return this;
     }
 
     @Override
     public void removeEnumeration(String string) {
-        if (_swServerVariable.getEnumeration() != null) {
-            _swServerVariable.getEnumeration().remove(string);
+        if (_swServerVariable.getEnum() != null) {
+            _swServerVariable.getEnum().remove(string);
         }
     }
 

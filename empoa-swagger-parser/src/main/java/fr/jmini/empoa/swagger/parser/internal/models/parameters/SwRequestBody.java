@@ -20,11 +20,12 @@ public class SwRequestBody implements RequestBody {
 
     @Override
     public String getRef() {
-        return _swRequestBody.getRef();
+        return _swRequestBody.get$ref();
     }
 
     @Override
     public void setRef(String ref) {
+        _swRequestBody.set$ref(ref);
     }
 
     @Override

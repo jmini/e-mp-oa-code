@@ -20,11 +20,12 @@ public class SwCallback implements Callback {
 
     @Override
     public String getRef() {
-        return _swCallback.getRef();
+        return _swCallback.get$ref();
     }
 
     @Override
     public void setRef(String ref) {
+        _swCallback.set$ref(ref);
     }
 
     @Override

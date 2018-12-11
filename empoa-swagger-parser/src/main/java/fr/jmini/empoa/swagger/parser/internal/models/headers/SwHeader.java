@@ -20,11 +20,12 @@ public class SwHeader implements Header {
 
     @Override
     public String getRef() {
-        return _swHeader.getRef();
+        return _swHeader.get$ref();
     }
 
     @Override
     public void setRef(String ref) {
+        _swHeader.set$ref(ref);
     }
 
     @Override

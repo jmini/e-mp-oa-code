@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
 
 import fr.jmini.empoa.generator.Input;
 import fr.jmini.empoa.specs.AdditionalMethod;
@@ -14,6 +15,9 @@ import fr.jmini.empoa.specs.ListMember;
 import fr.jmini.empoa.specs.MapMember;
 import fr.jmini.empoa.specs.Member;
 import fr.jmini.empoa.specs.swagger.SwElement;
+import fr.jmini.empoa.specs.swagger.SwListMember;
+import fr.jmini.empoa.specs.swagger.SwMapMember;
+import fr.jmini.empoa.specs.swagger.SwMember;
 import fr.jmini.empoa.util.StringUtil;
 
 public class SwGenerator {
@@ -78,22 +82,24 @@ public class SwGenerator {
         sb.append("    }\n");
         sb.append("\n");
         if (mpElement.referenceable) {
-            Member refMember = new Member(null, "ref", "String", true, true, false, true);
-            generateMember(sb, refMember);
-
-            String varName = "ref";
-            sb.append("    @Override\n");
-            sb.append("    public void setRef(String " + varName + ") {\n");
-            sb.append("    }\n");
-            sb.append("\n");
+            Member refMember = new Member(null, "ref", "String");
+            SwMember refSwMember = new SwMember(null, "$ref", "String");
+            generateMember(sb, refMember, refSwMember);
         }
         if (mpElement.extensible) {
-            Member refMember = new MapMember(null, "extensions", "Object", false, true, false);
-            generateMember(sb, refMember);
+            Member extensionsMember = new MapMember(null, "extensions", "Object", false, true, false);
+            SwMember extensionsSwMember = new SwMapMember(null, "extensions", "Object", false, true, false);
+            generateMember(sb, extensionsMember, extensionsSwMember);
         }
         for (IMember member : mpElement.members) {
             if (member instanceof Member) {
-                generateMember(sb, (Member) member);
+                Optional<IMember> find = swElement.members.stream()
+                        .filter(m -> (m instanceof SwMember) && ((SwMember) m).type == ((Member) member).type)
+                        .findAny();
+                if (!find.isPresent()) {
+                    throw new IllegalStateException("Could not find member: " + ((Member) member).type);
+                }
+                generateMember(sb, (Member) member, (SwMember) find.get());
             } else if (member instanceof AdditionalMethod) {
                 generateAdditionalMethod(sb, ((AdditionalMethod) member).type);
             }
@@ -102,7 +108,7 @@ public class SwGenerator {
         return sb.toString();
     }
 
-    private void generateMember(StringBuilder sb, Member member) {
+    private void generateMember(StringBuilder sb, Member member, SwMember swMember) {
         boolean isMapMember = member instanceof MapMember;
         boolean isListMember = member instanceof ListMember;
         String varName = StringUtil.decapitalize(member.name);
@@ -132,11 +138,11 @@ public class SwGenerator {
             sb.append("    private " + memberFqType + " " + memberName + ";\n");
             sb.append("\n");
             sb.append("    private void " + initName + "() {\n");
-            sb.append("        if (" + swVarName + "." + member.getterName + "() == null) {\n");
+            sb.append("        if (" + swVarName + "." + swMember.getterName + "() == null) {\n");
             sb.append("            " + memberName + " = null;\n");
             sb.append("        } else {\n");
             if (isMapMember) {
-                sb.append("            " + swVarName + "." + member.getterName + "()\n");
+                sb.append("            " + swVarName + "." + swMember.getterName + "()\n");
                 sb.append("                    .entrySet()\n");
                 sb.append("                    .stream()\n");
                 sb.append("                    .collect(java.util.stream.Collectors.toMap(\n");
@@ -145,12 +151,12 @@ public class SwGenerator {
                 sb.append("                        (k1, k2) -> { throw new IllegalStateException(String.format(\"Duplicate key %s\", k1)); },\n");
                 sb.append("                        () -> new " + java.util.LinkedHashMap.class.getCanonicalName() + "()));\n");
             } else if (isListMember) {
-                sb.append("            " + swVarName + "." + member.getterName + "()\n");
+                sb.append("            " + swVarName + "." + swMember.getterName + "()\n");
                 sb.append("                    .stream()\n");
                 sb.append("                    .map(" + innerFqType + "::new)\n");
                 sb.append("                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));\n");
             } else {
-                sb.append("            " + memberName + " = new " + memberFqType + "(" + swVarName + "." + member.getterName + "());\n");
+                sb.append("            " + memberName + " = new " + memberFqType + "(" + swVarName + "." + swMember.getterName + "());\n");
             }
             sb.append("        }\n");
             sb.append("    }\n");
@@ -176,7 +182,7 @@ public class SwGenerator {
             } else {
                 if (isMapMember || isListMember) {
                     // TODO Swagger type instead of `member.fqType`
-                    sb.append("        " + member.fqType + " " + var + " = " + swVarName + "." + member.getterName + "();\n");
+                    sb.append("        " + member.fqType + " " + var + " = " + swVarName + "." + swMember.getterName + "();\n");
                     sb.append("        if (" + var + " == null) {\n");
                     sb.append("            return null;\n");
                     sb.append("        }\n");
@@ -186,10 +192,10 @@ public class SwGenerator {
                 } else if (isListMember) {
                     sb.append("        return java.util.Collections.unmodifiableList(" + var + ");\n");
                 } else if (isEnumType) {
-                    sb.append("        if (" + swVarName + "." + member.getterName + "() == null) {\n");
+                    sb.append("        if (" + swVarName + "." + swMember.getterName + "() == null) {\n");
                     sb.append("            return null;\n");
                     sb.append("        }\n");
-                    sb.append("        switch (" + swVarName + "." + member.getterName + "()) {\n");
+                    sb.append("        switch (" + swVarName + "." + swMember.getterName + "()) {\n");
                     Enum[] enumValues = getEnumValues(member.fqType);
                     for (Enum v : enumValues) {
                         sb.append("        case " + v.name() + ":\n");
@@ -199,7 +205,7 @@ public class SwGenerator {
                     sb.append("            throw new IllegalStateException(\"Unexpected enum value\");\n");
                     sb.append("        }\n");
                 } else {
-                    sb.append("        return " + swVarName + "." + member.getterName + "();\n");
+                    sb.append("        return " + swVarName + "." + swMember.getterName + "();\n");
                 }
             }
             sb.append("    }\n");
@@ -211,7 +217,7 @@ public class SwGenerator {
             sb.append("    public void " + member.setterName + "(" + member.fqType + " " + varName + ") {\n");
             if (isMapMember || isListMember || isComplexType) {
                 if (isMapMember || isListMember) {
-                    sb.append("        " + swVarName + "." + member.setterName + "(null);\n");
+                    sb.append("        " + swVarName + "." + swMember.setterName + "(null);\n");
                 }
                 sb.append("        if (" + varName + " != null) {\n");
                 if (isMapMember) {
@@ -226,10 +232,10 @@ public class SwGenerator {
                     sb.append("            }\n");
                 } else {
                     appendTypeCheck(sb, varName, memberName, memberFqType, false, "            ");
-                    sb.append("            " + swVarName + "." + member.setterName + "(" + memberName + ".getSw());\n");
+                    sb.append("            " + swVarName + "." + swMember.setterName + "(" + memberName + ".getSw());\n");
                     sb.append("        } else {\n");
                     sb.append("            " + memberName + " = null;\n");
-                    sb.append("            " + swVarName + "." + member.setterName + "(null);\n");
+                    sb.append("            " + swVarName + "." + swMember.setterName + "(null);\n");
                 }
                 sb.append("        }\n");
             } else if (isEnumType) {
@@ -250,15 +256,16 @@ public class SwGenerator {
                 sb.append("                throw new IllegalStateException(\"Unexpected enum value\");\n");
                 sb.append("            }\n");
                 sb.append("        }\n");
-                sb.append("        " + swVarName + "." + member.setterName + "(" + valueVarName + ");\n");
+                sb.append("        " + swVarName + "." + swMember.setterName + "(" + valueVarName + ");\n");
             } else {
-                sb.append("        " + swVarName + "." + member.setterName + "(" + varName + ");\n");
+                sb.append("        " + swVarName + "." + swMember.setterName + "(" + varName + ");\n");
             }
             sb.append("    }\n");
             sb.append("\n");
         }
         if (isMapMember) {
             MapMember mapMember = (MapMember) member;
+            SwMapMember swMapMember = (SwMapMember) swMember;
             if (mapMember.hasAdd) {
                 String itemVarName = StringUtil.decapitalize(StringUtil.computeSimpleName(mapMember.valueFqType));
                 sb.append("    @Override\n");
@@ -269,13 +276,13 @@ public class SwGenerator {
                     sb.append("        " + initName + "();\n");
                     sb.append("        if (" + memberName + " == null) {\n");
                     sb.append("            " + memberName + " = new " + java.util.LinkedHashMap.class.getCanonicalName() + "<>();\n");
-                    sb.append("        " + swVarName + "." + mapMember.setterName + "(new " + java.util.LinkedHashMap.class.getCanonicalName() + "<>());\n");
+                    sb.append("        " + swVarName + "." + swMapMember.setterName + "(new " + java.util.LinkedHashMap.class.getCanonicalName() + "<>());\n");
                     sb.append("        }\n");
                     sb.append("        " + memberName + ".put(key, " + valueName + ");\n");
-                    sb.append("        " + swVarName + "." + mapMember.getterName + "().put(key, " + valueName + ".getSw());\n");
-                    // sb.append(" " + swVarName + "." + mapMember.addName + "(key, " + valueName + ".getSw());\n");
+                    sb.append("        " + swVarName + "." + swMapMember.getterName + "().put(key, " + valueName + ".getSw());\n");
+                    // sb.append(" " + swVarName + "." + swMapMember.addName + "(key, " + valueName + ".getSw());\n");
                 } else {
-                    sb.append("        " + swVarName + "." + mapMember.addName + "(key, " + itemVarName + ");\n");
+                    sb.append("        " + swVarName + "." + swMapMember.addName + "(key, " + itemVarName + ");\n");
                 }
                 sb.append("        return this;\n");
                 sb.append("    }\n");
@@ -287,17 +294,18 @@ public class SwGenerator {
                 sb.append("        " + initName + "();\n");
                 sb.append("        if (" + memberName + " != null) {\n");
                 sb.append("            " + memberName + ".remove(key);\n");
-                sb.append("            " + swVarName + "." + member.getterName + "().remove(key);\n");
+                sb.append("            " + swVarName + "." + swMember.getterName + "().remove(key);\n");
                 sb.append("        }\n");
             } else {
                 sb.append("        if (" + member.getterName + "() != null) {\n");
-                sb.append("            " + swVarName + "." + member.getterName + "().remove(key);\n");
+                sb.append("            " + swVarName + "." + swMember.getterName + "().remove(key);\n");
                 sb.append("        }\n");
             }
             sb.append("    }\n");
             sb.append("\n");
         } else if (isListMember) {
             ListMember listMember = (ListMember) member;
+            SwListMember swListMember = (SwListMember) swMember;
             String itemVarName = StringUtil.decapitalize(StringUtil.computeSimpleName(listMember.itemFqType));
             sb.append("    @Override\n");
             sb.append("    public " + simpleName + " " + listMember.addName + "(" + listMember.itemFqType + " " + itemVarName + ") {\n");
@@ -307,13 +315,13 @@ public class SwGenerator {
                 sb.append("        " + initName + "();\n");
                 sb.append("        if (" + memberName + " == null) {\n");
                 sb.append("            " + memberName + " = new " + java.util.ArrayList.class.getCanonicalName() + "<>();\n");
-                sb.append("        " + swVarName + "." + listMember.setterName + "(new " + java.util.ArrayList.class.getCanonicalName() + "<>());\n");
+                sb.append("        " + swVarName + "." + swListMember.setterName + "(new " + java.util.ArrayList.class.getCanonicalName() + "<>());\n");
                 sb.append("        }\n");
                 sb.append("        " + memberName + ".add(" + valueName + ");\n");
-                sb.append("        " + swVarName + "." + listMember.getterName + "().add(" + valueName + ".getSw());\n");
-                // sb.append(" " + swVarName + "." + listMember.addName + "(" + valueName + ".getSw());\n");
+                sb.append("        " + swVarName + "." + swListMember.getterName + "().add(" + valueName + ".getSw());\n");
+                // sb.append(" " + swVarName + "." + swListMember.addName + "(" + valueName + ".getSw());\n");
             } else {
-                sb.append("        " + swVarName + "." + listMember.addName + "(" + itemVarName + ");\n");
+                sb.append("        " + swVarName + "." + swListMember.addName + "(" + itemVarName + ");\n");
             }
             sb.append("        return this;\n");
             sb.append("    }\n");
@@ -326,11 +334,11 @@ public class SwGenerator {
                 sb.append("        " + initName + "();\n");
                 sb.append("        if (" + memberName + " != null) {\n");
                 sb.append("            " + memberName + ".remove(" + itemVarName + ");\n");
-                sb.append("            " + swVarName + "." + member.getterName + "().remove(element.getSw());\n");
+                sb.append("            " + swVarName + "." + swMember.getterName + "().remove(element.getSw());\n");
                 sb.append("        }\n");
             } else {
-                sb.append("        if (" + swVarName + "." + member.getterName + "() != null) {\n");
-                sb.append("            " + swVarName + "." + member.getterName + "().remove(" + itemVarName + ");\n");
+                sb.append("        if (" + swVarName + "." + swMember.getterName + "() != null) {\n");
+                sb.append("            " + swVarName + "." + swMember.getterName + "().remove(" + itemVarName + ");\n");
                 sb.append("        }\n");
             }
             sb.append("    }\n");

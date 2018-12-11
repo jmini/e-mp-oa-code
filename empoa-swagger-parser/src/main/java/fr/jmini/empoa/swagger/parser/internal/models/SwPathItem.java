@@ -20,11 +20,12 @@ public class SwPathItem implements PathItem {
 
     @Override
     public String getRef() {
-        return _swPathItem.getRef();
+        return _swPathItem.get$ref();
     }
 
     @Override
     public void setRef(String ref) {
+        _swPathItem.set$ref(ref);
     }
 
     @Override

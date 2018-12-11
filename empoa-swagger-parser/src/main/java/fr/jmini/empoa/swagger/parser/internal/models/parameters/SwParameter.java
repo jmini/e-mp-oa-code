@@ -20,11 +20,12 @@ public class SwParameter implements Parameter {
 
     @Override
     public String getRef() {
-        return _swParameter.getRef();
+        return _swParameter.get$ref();
     }
 
     @Override
     public void setRef(String ref) {
+        _swParameter.set$ref(ref);
     }
 
     @Override

@@ -9,7 +9,7 @@ public class SwElement {
 
     public final Element mpElement;
     public final String swFqName;
-    private List<IMember> members;
+    public final List<IMember> members;
 
     public SwElement(Element mpElement, String swFqName, List<IMember> members) {
         this.mpElement = mpElement;

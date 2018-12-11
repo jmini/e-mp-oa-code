@@ -20,11 +20,12 @@ public class SwSchema implements Schema {
 
     @Override
     public String getRef() {
-        return _swSchema.getRef();
+        return _swSchema.get$ref();
     }
 
     @Override
     public void setRef(String ref) {
+        _swSchema.set$ref(ref);
     }
 
     @Override
@@ -112,7 +113,7 @@ public class SwSchema implements Schema {
 
     @Override
     public java.util.List<Object> getEnumeration() {
-        java.util.List<Object> result = _swSchema.getEnumeration();
+        java.util.List<Object> result = _swSchema.getEnum();
         if (result == null) {
             return null;
         }
@@ -121,7 +122,7 @@ public class SwSchema implements Schema {
 
     @Override
     public void setEnumeration(java.util.List<Object> enumeration) {
-        _swSchema.setEnumeration(null);
+        _swSchema.setEnum(null);
         if (enumeration != null) {
             for (Object e : enumeration) {
                 this.addEnumeration(e);
@@ -131,14 +132,14 @@ public class SwSchema implements Schema {
 
     @Override
     public Schema addEnumeration(Object object) {
-        _swSchema.addEnumeration(object);
+        _swSchema.addEnumItemObject(object);
         return this;
     }
 
     @Override
     public void removeEnumeration(Object object) {
-        if (_swSchema.getEnumeration() != null) {
-            _swSchema.getEnumeration()
+        if (_swSchema.getEnum() != null) {
+            _swSchema.getEnum()
                     .remove(object);
         }
     }
@@ -294,7 +295,7 @@ public class SwSchema implements Schema {
 
     @Override
     public Schema addRequired(String string) {
-        _swSchema.addRequired(string);
+        _swSchema.addRequiredItem(string);
         return this;
     }
 
@@ -308,12 +309,25 @@ public class SwSchema implements Schema {
 
     @Override
     public SchemaType getType() {
-        return _swSchema.getType();
+        String value = _swSchema.getType();
+        switch (value) {
+        case SchemaType.INTEGER.v:
+
+            break;
+
+        default:
+            break;
+        }
+        return;
     }
 
     @Override
     public void setType(SchemaType type) {
-        _swSchema.setType(type);
+        if (type == null) {
+            _swSchema.setType(null);
+        } else {
+            _swSchema.setType(type.toString());
+        }
     }
 
     private fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema _not;
@@ -414,10 +428,10 @@ public class SwSchema implements Schema {
     private fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema _additionalPropertiesSchema;
 
     private void initAdditionalPropertiesSchema() {
-        if (_swSchema.getAdditionalProperties() instanceof io.swagger.v3.oas.models.media.Schema) {
-            _additionalPropertiesSchema = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema((io.swagger.v3.oas.models.media.Schema) _swSchema.getAdditionalProperties());
-        } else {
+        if (_swSchema.getAdditionalProperties() == null) {
             _additionalPropertiesSchema = null;
+        } else {
+            _additionalPropertiesSchema = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema(_swSchema.getAdditionalPropertiesSchema());
         }
     }
 
@@ -430,20 +444,17 @@ public class SwSchema implements Schema {
     @Override
     public void setAdditionalPropertiesBoolean(Boolean additionalProperties) {
         _additionalPropertiesSchema = null;
-        _swSchema.setAdditionalProperties(additionalProperties);
+        _additionalPropertiesBoolean = additionalProperties;
     }
 
     @Override
     public Boolean getAdditionalPropertiesBoolean() {
-        Object value = _swSchema.getAdditionalProperties();
-        if (value instanceof Boolean) {
-            return (Boolean) value;
-        }
-        return null;
+        return _swSchema.getAdditionalPropertiesBoolean();
     }
 
     @Override
     public void setAdditionalPropertiesSchema(Schema additionalProperties) {
+        _additionalPropertiesBoolean = null;
         _additionalPropertiesSchema = additionalProperties;
     }
 

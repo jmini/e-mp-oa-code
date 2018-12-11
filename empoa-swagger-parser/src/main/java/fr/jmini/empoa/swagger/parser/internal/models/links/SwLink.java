@@ -20,11 +20,12 @@ public class SwLink implements Link {
 
     @Override
     public String getRef() {
-        return _swLink.getRef();
+        return _swLink.get$ref();
     }
 
     @Override
     public void setRef(String ref) {
+        _swLink.set$ref(ref);
     }
 
     @Override

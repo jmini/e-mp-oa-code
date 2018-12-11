@@ -20,11 +20,12 @@ public class SwAPIResponse implements APIResponse {
 
     @Override
     public String getRef() {
-        return _swAPIResponse.getRef();
+        return _swAPIResponse.get$ref();
     }
 
     @Override
     public void setRef(String ref) {
+        _swAPIResponse.set$ref(ref);
     }
 
     @Override

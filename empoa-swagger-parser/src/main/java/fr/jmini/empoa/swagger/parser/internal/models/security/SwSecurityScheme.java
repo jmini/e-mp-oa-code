@@ -20,11 +20,12 @@ public class SwSecurityScheme implements SecurityScheme {
 
     @Override
     public String getRef() {
-        return _swSecurityScheme.getRef();
+        return _swSecurityScheme.get$ref();
     }
 
     @Override
     public void setRef(String ref) {
+        _swSecurityScheme.set$ref(ref);
     }
 
     @Override

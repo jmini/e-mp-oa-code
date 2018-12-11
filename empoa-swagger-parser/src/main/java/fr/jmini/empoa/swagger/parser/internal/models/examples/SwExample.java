@@ -20,11 +20,12 @@ public class SwExample implements Example {
 
     @Override
     public String getRef() {
-        return _swExample.getRef();
+        return _swExample.get$ref();
     }
 
     @Override
     public void setRef(String ref) {
+        _swExample.set$ref(ref);
     }
 
     @Override
