@@ -84,12 +84,12 @@ public class SwServerVariable implements ServerVariable {
 
     @Override
     public String getDefaultValue() {
-        return _swServerVariable.getDefaultValue();
+        return _swServerVariable.getDefault();
     }
 
     @Override
     public void setDefaultValue(String defaultValue) {
-        _swServerVariable.setDefaultValue(defaultValue);
+        _swServerVariable.setDefault(defaultValue);
     }
 
     @Override

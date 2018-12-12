@@ -21,10 +21,10 @@ public class SwContent implements Content {
     private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.media.SwMediaType> _mediaTypes;
 
     private void initMediaTypes() {
-        if (_swContent.getMediaTypes() == null) {
+        if (_swContent == null) {
             _mediaTypes = null;
         } else {
-            _swContent.getMediaTypes()
+            _swContent
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -45,7 +45,7 @@ public class SwContent implements Content {
 
     @Override
     public void setMediaTypes(java.util.Map<String, org.eclipse.microprofile.openapi.models.media.MediaType> mediaTypes) {
-        _swContent.setMediaTypes(null);
+        _swContent.clear();
         if (mediaTypes != null) {
             for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.MediaType> e : mediaTypes.entrySet()) {
                 this.addMediaType(e.getKey(), e.getValue());
@@ -62,10 +62,9 @@ public class SwContent implements Content {
         initMediaTypes();
         if (_mediaTypes == null) {
             _mediaTypes = new java.util.LinkedHashMap<>();
-        _swContent.setMediaTypes(new java.util.LinkedHashMap<>());
         }
         _mediaTypes.put(key, value);
-        _swContent.getMediaTypes().put(key, value.getSw());
+        _swContent.put(key, value.getSw());
         return this;
     }
 
@@ -74,7 +73,7 @@ public class SwContent implements Content {
         initMediaTypes();
         if (_mediaTypes != null) {
             _mediaTypes.remove(key);
-            _swContent.getMediaTypes().remove(key);
+            _swContent.remove(key);
         }
     }
 

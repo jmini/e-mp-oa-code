@@ -53,10 +53,10 @@ public class SwAPIResponses implements APIResponses {
     private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponse> _aPIResponses;
 
     private void initAPIResponses() {
-        if (_swAPIResponses.getAPIResponses() == null) {
+        if (_swAPIResponses == null) {
             _aPIResponses = null;
         } else {
-            _swAPIResponses.getAPIResponses()
+            _swAPIResponses
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -77,7 +77,7 @@ public class SwAPIResponses implements APIResponses {
 
     @Override
     public void setAPIResponses(java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> aPIResponses) {
-        _swAPIResponses.setAPIResponses(null);
+        _swAPIResponses.clear();
         if (aPIResponses != null) {
             for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> e : aPIResponses.entrySet()) {
                 this.addAPIResponse(e.getKey(), e.getValue());
@@ -94,10 +94,9 @@ public class SwAPIResponses implements APIResponses {
         initAPIResponses();
         if (_aPIResponses == null) {
             _aPIResponses = new java.util.LinkedHashMap<>();
-        _swAPIResponses.setAPIResponses(new java.util.LinkedHashMap<>());
         }
         _aPIResponses.put(key, value);
-        _swAPIResponses.getAPIResponses().put(key, value.getSw());
+        _swAPIResponses.put(key, value.getSw());
         return this;
     }
 
@@ -106,7 +105,7 @@ public class SwAPIResponses implements APIResponses {
         initAPIResponses();
         if (_aPIResponses != null) {
             _aPIResponses.remove(key);
-            _swAPIResponses.getAPIResponses().remove(key);
+            _swAPIResponses.remove(key);
         }
     }
 

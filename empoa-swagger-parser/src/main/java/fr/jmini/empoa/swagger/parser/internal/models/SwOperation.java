@@ -303,7 +303,7 @@ public class SwOperation implements Operation {
         initCallbacks();
         if (_callbacks == null) {
             _callbacks = new java.util.LinkedHashMap<>();
-        _swOperation.setCallbacks(new java.util.LinkedHashMap<>());
+            _swOperation.setCallbacks(new java.util.LinkedHashMap<>());
         }
         _callbacks.put(key, value);
         _swOperation.getCallbacks().put(key, value.getSw());

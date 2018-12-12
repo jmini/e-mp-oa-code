@@ -94,7 +94,7 @@ public class SwComponents implements Components {
         initSchemas();
         if (_schemas == null) {
             _schemas = new java.util.LinkedHashMap<>();
-        _swComponents.setSchemas(new java.util.LinkedHashMap<>());
+            _swComponents.setSchemas(new java.util.LinkedHashMap<>());
         }
         _schemas.put(key, value);
         _swComponents.getSchemas().put(key, value.getSw());
@@ -154,7 +154,7 @@ public class SwComponents implements Components {
         initResponses();
         if (_responses == null) {
             _responses = new java.util.LinkedHashMap<>();
-        _swComponents.setResponses(new java.util.LinkedHashMap<>());
+            _swComponents.setResponses(new java.util.LinkedHashMap<>());
         }
         _responses.put(key, value);
         _swComponents.getResponses().put(key, value.getSw());
@@ -214,7 +214,7 @@ public class SwComponents implements Components {
         initParameters();
         if (_parameters == null) {
             _parameters = new java.util.LinkedHashMap<>();
-        _swComponents.setParameters(new java.util.LinkedHashMap<>());
+            _swComponents.setParameters(new java.util.LinkedHashMap<>());
         }
         _parameters.put(key, value);
         _swComponents.getParameters().put(key, value.getSw());
@@ -274,7 +274,7 @@ public class SwComponents implements Components {
         initExamples();
         if (_examples == null) {
             _examples = new java.util.LinkedHashMap<>();
-        _swComponents.setExamples(new java.util.LinkedHashMap<>());
+            _swComponents.setExamples(new java.util.LinkedHashMap<>());
         }
         _examples.put(key, value);
         _swComponents.getExamples().put(key, value.getSw());
@@ -334,7 +334,7 @@ public class SwComponents implements Components {
         initRequestBodies();
         if (_requestBodies == null) {
             _requestBodies = new java.util.LinkedHashMap<>();
-        _swComponents.setRequestBodies(new java.util.LinkedHashMap<>());
+            _swComponents.setRequestBodies(new java.util.LinkedHashMap<>());
         }
         _requestBodies.put(key, value);
         _swComponents.getRequestBodies().put(key, value.getSw());
@@ -394,7 +394,7 @@ public class SwComponents implements Components {
         initHeaders();
         if (_headers == null) {
             _headers = new java.util.LinkedHashMap<>();
-        _swComponents.setHeaders(new java.util.LinkedHashMap<>());
+            _swComponents.setHeaders(new java.util.LinkedHashMap<>());
         }
         _headers.put(key, value);
         _swComponents.getHeaders().put(key, value.getSw());
@@ -454,7 +454,7 @@ public class SwComponents implements Components {
         initSecuritySchemes();
         if (_securitySchemes == null) {
             _securitySchemes = new java.util.LinkedHashMap<>();
-        _swComponents.setSecuritySchemes(new java.util.LinkedHashMap<>());
+            _swComponents.setSecuritySchemes(new java.util.LinkedHashMap<>());
         }
         _securitySchemes.put(key, value);
         _swComponents.getSecuritySchemes().put(key, value.getSw());
@@ -514,7 +514,7 @@ public class SwComponents implements Components {
         initLinks();
         if (_links == null) {
             _links = new java.util.LinkedHashMap<>();
-        _swComponents.setLinks(new java.util.LinkedHashMap<>());
+            _swComponents.setLinks(new java.util.LinkedHashMap<>());
         }
         _links.put(key, value);
         _swComponents.getLinks().put(key, value.getSw());
@@ -574,7 +574,7 @@ public class SwComponents implements Components {
         initCallbacks();
         if (_callbacks == null) {
             _callbacks = new java.util.LinkedHashMap<>();
-        _swComponents.setCallbacks(new java.util.LinkedHashMap<>());
+            _swComponents.setCallbacks(new java.util.LinkedHashMap<>());
         }
         _callbacks.put(key, value);
         _swComponents.getCallbacks().put(key, value.getSw());

@@ -52,7 +52,7 @@ public class SwScopes implements Scopes {
 
     @Override
     public java.util.Map<String, String> getScopes() {
-        java.util.Map<String, String> result = _swScopes.getScopes();
+        java.util.Map<String, String> result = _swScopes;
         if (result == null) {
             return null;
         }
@@ -61,7 +61,7 @@ public class SwScopes implements Scopes {
 
     @Override
     public void setScopes(java.util.Map<String, String> scopes) {
-        _swScopes.setScopes(null);
+        _swScopes.clear();
         if (scopes != null) {
             for (java.util.Map.Entry<String, String> e : scopes.entrySet()) {
                 this.addScope(e.getKey(), e.getValue());
@@ -71,14 +71,14 @@ public class SwScopes implements Scopes {
 
     @Override
     public Scopes addScope(String key, String string) {
-        _swScopes.addScope(key, string);
+        _swScopes.put(key, string);
         return this;
     }
 
     @Override
     public void removeScope(String key) {
         if (getScopes() != null) {
-            _swScopes.getScopes().remove(key);
+            _swScopes.remove(key);
         }
     }
 

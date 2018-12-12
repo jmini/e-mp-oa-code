@@ -123,7 +123,7 @@ public class SwMediaType implements MediaType {
         initExamples();
         if (_examples == null) {
             _examples = new java.util.LinkedHashMap<>();
-        _swMediaType.setExamples(new java.util.LinkedHashMap<>());
+            _swMediaType.setExamples(new java.util.LinkedHashMap<>());
         }
         _examples.put(key, value);
         _swMediaType.getExamples().put(key, value.getSw());
@@ -193,7 +193,7 @@ public class SwMediaType implements MediaType {
         initEncoding();
         if (_encoding == null) {
             _encoding = new java.util.LinkedHashMap<>();
-        _swMediaType.setEncoding(new java.util.LinkedHashMap<>());
+            _swMediaType.setEncoding(new java.util.LinkedHashMap<>());
         }
         _encoding.put(key, value);
         _swMediaType.getEncoding().put(key, value.getSw());

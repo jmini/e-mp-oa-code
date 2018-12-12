@@ -104,7 +104,7 @@ public class SwEncoding implements Encoding {
         initHeaders();
         if (_headers == null) {
             _headers = new java.util.LinkedHashMap<>();
-        _swEncoding.setHeaders(new java.util.LinkedHashMap<>());
+            _swEncoding.setHeaders(new java.util.LinkedHashMap<>());
         }
         _headers.put(key, value);
         _swEncoding.getHeaders().put(key, value.getSw());

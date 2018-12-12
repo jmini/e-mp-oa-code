@@ -114,7 +114,7 @@ public class SwAPIResponse implements APIResponse {
         initHeaders();
         if (_headers == null) {
             _headers = new java.util.LinkedHashMap<>();
-        _swAPIResponse.setHeaders(new java.util.LinkedHashMap<>());
+            _swAPIResponse.setHeaders(new java.util.LinkedHashMap<>());
         }
         _headers.put(key, value);
         _swAPIResponse.getHeaders().put(key, value.getSw());
@@ -203,7 +203,7 @@ public class SwAPIResponse implements APIResponse {
         initLinks();
         if (_links == null) {
             _links = new java.util.LinkedHashMap<>();
-        _swAPIResponse.setLinks(new java.util.LinkedHashMap<>());
+            _swAPIResponse.setLinks(new java.util.LinkedHashMap<>());
         }
         _links.put(key, value);
         _swAPIResponse.getLinks().put(key, value.getSw());

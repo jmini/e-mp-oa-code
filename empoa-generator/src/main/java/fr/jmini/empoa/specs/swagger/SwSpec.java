@@ -167,14 +167,14 @@ public class SwSpec {
         List<IMember> members = new ArrayList<>();
         members.add(new SwMember(MemberType.PathItem_Summary, "Summary", String.class.getSimpleName()));
         members.add(new SwMember(MemberType.PathItem_Description, "Description", String.class.getSimpleName()));
-        members.add(new SwMember(MemberType.PathItem_GET, "GET", Operation.class.getCanonicalName()));
-        members.add(new SwMember(MemberType.PathItem_PUT, "PUT", Operation.class.getCanonicalName()));
-        members.add(new SwMember(MemberType.PathItem_POST, "POST", Operation.class.getCanonicalName()));
-        members.add(new SwMember(MemberType.PathItem_DELETE, "DELETE", Operation.class.getCanonicalName()));
-        members.add(new SwMember(MemberType.PathItem_OPTIONS, "OPTIONS", Operation.class.getCanonicalName()));
-        members.add(new SwMember(MemberType.PathItem_HEAD, "HEAD", Operation.class.getCanonicalName()));
-        members.add(new SwMember(MemberType.PathItem_PATCH, "PATCH", Operation.class.getCanonicalName()));
-        members.add(new SwMember(MemberType.PathItem_TRACE, "TRACE", Operation.class.getCanonicalName()));
+        members.add(new SwMember(MemberType.PathItem_GET, "Get", Operation.class.getCanonicalName()));
+        members.add(new SwMember(MemberType.PathItem_PUT, "Put", Operation.class.getCanonicalName()));
+        members.add(new SwMember(MemberType.PathItem_POST, "Post", Operation.class.getCanonicalName()));
+        members.add(new SwMember(MemberType.PathItem_DELETE, "Delete", Operation.class.getCanonicalName()));
+        members.add(new SwMember(MemberType.PathItem_OPTIONS, "Options", Operation.class.getCanonicalName()));
+        members.add(new SwMember(MemberType.PathItem_HEAD, "Head", Operation.class.getCanonicalName()));
+        members.add(new SwMember(MemberType.PathItem_PATCH, "Patch", Operation.class.getCanonicalName()));
+        members.add(new SwMember(MemberType.PathItem_TRACE, "Trace", Operation.class.getCanonicalName()));
         members.add(new AdditionalMethod(Type.PathItem_getOperations));
         members.add(new SwListMember(MemberType.PathItem_Servers, "Servers", Server.class.getCanonicalName()));
         members.add(new SwListMember(MemberType.PathItem_Parameters, "Parameters", Parameter.class.getCanonicalName()));
@@ -208,7 +208,7 @@ public class SwSpec {
         members.add(new SwMember(MemberType.Header_Required, "Required", Boolean.class.getSimpleName()));
         members.add(new SwMember(MemberType.Header_Deprecated, "Deprecated", Boolean.class.getSimpleName()));
         members.add(new SwMember(MemberType.Header_AllowEmptyValue, "AllowEmptyValue", Boolean.class.getSimpleName()));
-        members.add(new SwMember(MemberType.Header_Style, "Style", Header.Style.class.getCanonicalName()));
+        members.add(new SwMember(MemberType.Header_Style, "Style", io.swagger.v3.oas.models.headers.Header.StyleEnum.class.getCanonicalName()));
         members.add(new SwMember(MemberType.Header_Explode, "Explode", Boolean.class.getSimpleName()));
         members.add(new SwMember(MemberType.Header_Schema, "Schema", Schema.class.getCanonicalName()));
         members.add(new SwMapMember(MemberType.Header_Examples, "Examples", Example.class.getCanonicalName()));
@@ -271,7 +271,7 @@ public class SwSpec {
         List<IMember> members = new ArrayList<>();
         members.add(new SwMember(MemberType.Encoding_ContentType, "ContentType", String.class.getSimpleName()));
         members.add(new SwMapMember(MemberType.Encoding_Headers, "Headers", Header.class.getName(), true, true));
-        members.add(new SwMember(MemberType.Encoding_Style, "Style", Encoding.Style.class.getCanonicalName()));
+        members.add(new SwMember(MemberType.Encoding_Style, "Style", io.swagger.v3.oas.models.media.Encoding.StyleEnum.class.getCanonicalName()));
         members.add(new SwMember(MemberType.Encoding_Explode, "Explode", Boolean.class.getSimpleName()));
         members.add(new SwMember(MemberType.Encoding_AllowReserved, "AllowReserved", Boolean.class.getSimpleName()));
         return new SwElement(OpenAPISpec.createEncoding(), io.swagger.v3.oas.models.media.Encoding.class.getCanonicalName(), members);
@@ -342,12 +342,12 @@ public class SwSpec {
     public static SwElement createParameter() {
         List<IMember> members = new ArrayList<>();
         members.add(new SwMember(MemberType.Parameter_Name, "Name", String.class.getSimpleName()));
-        members.add(new SwMember(MemberType.Parameter_In, "In", Parameter.In.class.getSimpleName()));
+        members.add(new SwMember(MemberType.Parameter_In, "In", String.class.getSimpleName()));
         members.add(new SwMember(MemberType.Parameter_Description, "Description", String.class.getSimpleName()));
         members.add(new SwMember(MemberType.Parameter_Required, "Required", Boolean.class.getSimpleName()));
         members.add(new SwMember(MemberType.Parameter_Deprecated, "Deprecated", Boolean.class.getSimpleName()));
         members.add(new SwMember(MemberType.Parameter_AllowEmptyValue, "AllowEmptyValue", Boolean.class.getSimpleName()));
-        members.add(new SwMember(MemberType.Parameter_Style, "Style", Parameter.Style.class.getCanonicalName()));
+        members.add(new SwMember(MemberType.Parameter_Style, "Style", io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.class.getCanonicalName()));
         members.add(new SwMember(MemberType.Parameter_Explode, "Explode", Boolean.class.getSimpleName()));
         members.add(new SwMember(MemberType.Parameter_AllowReserved, "AllowReserved", Boolean.class.getSimpleName()));
         members.add(new SwMember(MemberType.Parameter_Schema, "Schema", Schema.class.getCanonicalName()));
@@ -416,10 +416,10 @@ public class SwSpec {
 
     public static SwElement createSecurityScheme() {
         List<IMember> members = new ArrayList<>();
-        members.add(new SwMember(MemberType.SecurityScheme_Type, "Type", SecurityScheme.Type.class.getCanonicalName()));
+        members.add(new SwMember(MemberType.SecurityScheme_Type, "Type", io.swagger.v3.oas.models.security.SecurityScheme.Type.class.getCanonicalName()));
         members.add(new SwMember(MemberType.SecurityScheme_Description, "Description", String.class.getSimpleName()));
         members.add(new SwMember(MemberType.SecurityScheme_Name, "Name", String.class.getSimpleName()));
-        members.add(new SwMember(MemberType.SecurityScheme_In, "In", SecurityScheme.In.class.getCanonicalName()));
+        members.add(new SwMember(MemberType.SecurityScheme_In, "In", io.swagger.v3.oas.models.security.SecurityScheme.In.class.getCanonicalName()));
         members.add(new SwMember(MemberType.SecurityScheme_Scheme, "Scheme", String.class.getSimpleName()));
         members.add(new SwMember(MemberType.SecurityScheme_BearerFormat, "BearerFormat", String.class.getSimpleName()));
         members.add(new SwMember(MemberType.SecurityScheme_Flows, "Flows", OAuthFlows.class.getCanonicalName()));
@@ -438,7 +438,7 @@ public class SwSpec {
     public static SwElement createServerVariable() {
         List<IMember> members = new ArrayList<>();
         members.add(new SwListMember(MemberType.ServerVariable_Enumeration, "Enum", String.class.getSimpleName()));
-        members.add(new SwMember(MemberType.ServerVariable_DefaultValue, "DefaultValue", String.class.getSimpleName()));
+        members.add(new SwMember(MemberType.ServerVariable_DefaultValue, "Default", String.class.getSimpleName()));
         members.add(new SwMember(MemberType.ServerVariable_Description, "Description", String.class.getSimpleName()));
         return new SwElement(OpenAPISpec.createServerVariable(), io.swagger.v3.oas.models.servers.ServerVariable.class.getCanonicalName(), members);
     }

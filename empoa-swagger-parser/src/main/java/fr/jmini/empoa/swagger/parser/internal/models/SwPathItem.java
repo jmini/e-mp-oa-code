@@ -83,10 +83,10 @@ public class SwPathItem implements PathItem {
     private fr.jmini.empoa.swagger.parser.internal.models.SwOperation _gET;
 
     private void initGET() {
-        if (_swPathItem.getGET() == null) {
+        if (_swPathItem.getGet() == null) {
             _gET = null;
         } else {
-            _gET = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getGET());
+            _gET = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getGet());
         }
     }
     @Override
@@ -102,20 +102,20 @@ public class SwPathItem implements PathItem {
                 throw new IllegalArgumentException("Unexpected type: " + gET);
             }
             _gET = (fr.jmini.empoa.swagger.parser.internal.models.SwOperation) gET;
-            _swPathItem.setGET(_gET.getSw());
+            _swPathItem.setGet(_gET.getSw());
         } else {
             _gET = null;
-            _swPathItem.setGET(null);
+            _swPathItem.setGet(null);
         }
     }
 
     private fr.jmini.empoa.swagger.parser.internal.models.SwOperation _pUT;
 
     private void initPUT() {
-        if (_swPathItem.getPUT() == null) {
+        if (_swPathItem.getPut() == null) {
             _pUT = null;
         } else {
-            _pUT = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getPUT());
+            _pUT = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getPut());
         }
     }
     @Override
@@ -131,20 +131,20 @@ public class SwPathItem implements PathItem {
                 throw new IllegalArgumentException("Unexpected type: " + pUT);
             }
             _pUT = (fr.jmini.empoa.swagger.parser.internal.models.SwOperation) pUT;
-            _swPathItem.setPUT(_pUT.getSw());
+            _swPathItem.setPut(_pUT.getSw());
         } else {
             _pUT = null;
-            _swPathItem.setPUT(null);
+            _swPathItem.setPut(null);
         }
     }
 
     private fr.jmini.empoa.swagger.parser.internal.models.SwOperation _pOST;
 
     private void initPOST() {
-        if (_swPathItem.getPOST() == null) {
+        if (_swPathItem.getPost() == null) {
             _pOST = null;
         } else {
-            _pOST = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getPOST());
+            _pOST = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getPost());
         }
     }
     @Override
@@ -160,20 +160,20 @@ public class SwPathItem implements PathItem {
                 throw new IllegalArgumentException("Unexpected type: " + pOST);
             }
             _pOST = (fr.jmini.empoa.swagger.parser.internal.models.SwOperation) pOST;
-            _swPathItem.setPOST(_pOST.getSw());
+            _swPathItem.setPost(_pOST.getSw());
         } else {
             _pOST = null;
-            _swPathItem.setPOST(null);
+            _swPathItem.setPost(null);
         }
     }
 
     private fr.jmini.empoa.swagger.parser.internal.models.SwOperation _dELETE;
 
     private void initDELETE() {
-        if (_swPathItem.getDELETE() == null) {
+        if (_swPathItem.getDelete() == null) {
             _dELETE = null;
         } else {
-            _dELETE = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getDELETE());
+            _dELETE = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getDelete());
         }
     }
     @Override
@@ -189,20 +189,20 @@ public class SwPathItem implements PathItem {
                 throw new IllegalArgumentException("Unexpected type: " + dELETE);
             }
             _dELETE = (fr.jmini.empoa.swagger.parser.internal.models.SwOperation) dELETE;
-            _swPathItem.setDELETE(_dELETE.getSw());
+            _swPathItem.setDelete(_dELETE.getSw());
         } else {
             _dELETE = null;
-            _swPathItem.setDELETE(null);
+            _swPathItem.setDelete(null);
         }
     }
 
     private fr.jmini.empoa.swagger.parser.internal.models.SwOperation _oPTIONS;
 
     private void initOPTIONS() {
-        if (_swPathItem.getOPTIONS() == null) {
+        if (_swPathItem.getOptions() == null) {
             _oPTIONS = null;
         } else {
-            _oPTIONS = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getOPTIONS());
+            _oPTIONS = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getOptions());
         }
     }
     @Override
@@ -218,20 +218,20 @@ public class SwPathItem implements PathItem {
                 throw new IllegalArgumentException("Unexpected type: " + oPTIONS);
             }
             _oPTIONS = (fr.jmini.empoa.swagger.parser.internal.models.SwOperation) oPTIONS;
-            _swPathItem.setOPTIONS(_oPTIONS.getSw());
+            _swPathItem.setOptions(_oPTIONS.getSw());
         } else {
             _oPTIONS = null;
-            _swPathItem.setOPTIONS(null);
+            _swPathItem.setOptions(null);
         }
     }
 
     private fr.jmini.empoa.swagger.parser.internal.models.SwOperation _hEAD;
 
     private void initHEAD() {
-        if (_swPathItem.getHEAD() == null) {
+        if (_swPathItem.getHead() == null) {
             _hEAD = null;
         } else {
-            _hEAD = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getHEAD());
+            _hEAD = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getHead());
         }
     }
     @Override
@@ -247,20 +247,20 @@ public class SwPathItem implements PathItem {
                 throw new IllegalArgumentException("Unexpected type: " + hEAD);
             }
             _hEAD = (fr.jmini.empoa.swagger.parser.internal.models.SwOperation) hEAD;
-            _swPathItem.setHEAD(_hEAD.getSw());
+            _swPathItem.setHead(_hEAD.getSw());
         } else {
             _hEAD = null;
-            _swPathItem.setHEAD(null);
+            _swPathItem.setHead(null);
         }
     }
 
     private fr.jmini.empoa.swagger.parser.internal.models.SwOperation _pATCH;
 
     private void initPATCH() {
-        if (_swPathItem.getPATCH() == null) {
+        if (_swPathItem.getPatch() == null) {
             _pATCH = null;
         } else {
-            _pATCH = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getPATCH());
+            _pATCH = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getPatch());
         }
     }
     @Override
@@ -276,20 +276,20 @@ public class SwPathItem implements PathItem {
                 throw new IllegalArgumentException("Unexpected type: " + pATCH);
             }
             _pATCH = (fr.jmini.empoa.swagger.parser.internal.models.SwOperation) pATCH;
-            _swPathItem.setPATCH(_pATCH.getSw());
+            _swPathItem.setPatch(_pATCH.getSw());
         } else {
             _pATCH = null;
-            _swPathItem.setPATCH(null);
+            _swPathItem.setPatch(null);
         }
     }
 
     private fr.jmini.empoa.swagger.parser.internal.models.SwOperation _tRACE;
 
     private void initTRACE() {
-        if (_swPathItem.getTRACE() == null) {
+        if (_swPathItem.getTrace() == null) {
             _tRACE = null;
         } else {
-            _tRACE = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getTRACE());
+            _tRACE = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getTrace());
         }
     }
     @Override
@@ -305,10 +305,10 @@ public class SwPathItem implements PathItem {
                 throw new IllegalArgumentException("Unexpected type: " + tRACE);
             }
             _tRACE = (fr.jmini.empoa.swagger.parser.internal.models.SwOperation) tRACE;
-            _swPathItem.setTRACE(_tRACE.getSw());
+            _swPathItem.setTrace(_tRACE.getSw());
         } else {
             _tRACE = null;
-            _swPathItem.setTRACE(null);
+            _swPathItem.setTrace(null);
         }
     }
 

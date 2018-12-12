@@ -53,10 +53,10 @@ public class SwPaths implements Paths {
     private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.SwPathItem> _pathItems;
 
     private void initPathItems() {
-        if (_swPaths.getPathItems() == null) {
+        if (_swPaths == null) {
             _pathItems = null;
         } else {
-            _swPaths.getPathItems()
+            _swPaths
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -77,7 +77,7 @@ public class SwPaths implements Paths {
 
     @Override
     public void setPathItems(java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> pathItems) {
-        _swPaths.setPathItems(null);
+        _swPaths.clear();
         if (pathItems != null) {
             for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> e : pathItems.entrySet()) {
                 this.addPathItem(e.getKey(), e.getValue());
@@ -94,10 +94,9 @@ public class SwPaths implements Paths {
         initPathItems();
         if (_pathItems == null) {
             _pathItems = new java.util.LinkedHashMap<>();
-        _swPaths.setPathItems(new java.util.LinkedHashMap<>());
         }
         _pathItems.put(key, value);
-        _swPaths.getPathItems().put(key, value.getSw());
+        _swPaths.put(key, value.getSw());
         return this;
     }
 
@@ -106,7 +105,7 @@ public class SwPaths implements Paths {
         initPathItems();
         if (_pathItems != null) {
             _pathItems.remove(key);
-            _swPaths.getPathItems().remove(key);
+            _swPaths.remove(key);
         }
     }
 

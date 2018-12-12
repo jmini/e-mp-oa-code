@@ -81,22 +81,22 @@ public class SwSecurityScheme implements SecurityScheme {
 
     @Override
     public void setType(org.eclipse.microprofile.openapi.models.security.SecurityScheme.Type type) {
-        io.swagger.v3.oas.models.security.SecurityScheme.TypeEnum value;
-        if (style == null) {
+        io.swagger.v3.oas.models.security.SecurityScheme.Type value;
+        if (type == null) {
             value = null;
         } else {
-            switch (style) {
+            switch (type) {
             case APIKEY:
-                value = io.swagger.v3.oas.models.security.SecurityScheme.TypeEnum.APIKEY;
+                value = io.swagger.v3.oas.models.security.SecurityScheme.Type.APIKEY;
                 break;
             case HTTP:
-                value = io.swagger.v3.oas.models.security.SecurityScheme.TypeEnum.HTTP;
+                value = io.swagger.v3.oas.models.security.SecurityScheme.Type.HTTP;
                 break;
             case OAUTH2:
-                value = io.swagger.v3.oas.models.security.SecurityScheme.TypeEnum.OAUTH2;
+                value = io.swagger.v3.oas.models.security.SecurityScheme.Type.OAUTH2;
                 break;
             case OPENIDCONNECT:
-                value = io.swagger.v3.oas.models.security.SecurityScheme.TypeEnum.OPENIDCONNECT;
+                value = io.swagger.v3.oas.models.security.SecurityScheme.Type.OPENIDCONNECT;
                 break;
             default:
                 throw new IllegalStateException("Unexpected enum value");
@@ -144,19 +144,19 @@ public class SwSecurityScheme implements SecurityScheme {
 
     @Override
     public void setIn(org.eclipse.microprofile.openapi.models.security.SecurityScheme.In in) {
-        io.swagger.v3.oas.models.security.SecurityScheme.InEnum value;
-        if (style == null) {
+        io.swagger.v3.oas.models.security.SecurityScheme.In value;
+        if (in == null) {
             value = null;
         } else {
-            switch (style) {
+            switch (in) {
             case COOKIE:
-                value = io.swagger.v3.oas.models.security.SecurityScheme.InEnum.COOKIE;
+                value = io.swagger.v3.oas.models.security.SecurityScheme.In.COOKIE;
                 break;
             case HEADER:
-                value = io.swagger.v3.oas.models.security.SecurityScheme.InEnum.HEADER;
+                value = io.swagger.v3.oas.models.security.SecurityScheme.In.HEADER;
                 break;
             case QUERY:
-                value = io.swagger.v3.oas.models.security.SecurityScheme.InEnum.QUERY;
+                value = io.swagger.v3.oas.models.security.SecurityScheme.In.QUERY;
                 break;
             default:
                 throw new IllegalStateException("Unexpected enum value");

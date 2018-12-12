@@ -63,10 +63,10 @@ public class SwCallback implements Callback {
     private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.SwPathItem> _pathItems;
 
     private void initPathItems() {
-        if (_swCallback.getPathItems() == null) {
+        if (_swCallback == null) {
             _pathItems = null;
         } else {
-            _swCallback.getPathItems()
+            _swCallback
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -87,7 +87,7 @@ public class SwCallback implements Callback {
 
     @Override
     public void setPathItems(java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> pathItems) {
-        _swCallback.setPathItems(null);
+        _swCallback.clear();
         if (pathItems != null) {
             for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> e : pathItems.entrySet()) {
                 this.addPathItem(e.getKey(), e.getValue());
@@ -104,10 +104,9 @@ public class SwCallback implements Callback {
         initPathItems();
         if (_pathItems == null) {
             _pathItems = new java.util.LinkedHashMap<>();
-        _swCallback.setPathItems(new java.util.LinkedHashMap<>());
         }
         _pathItems.put(key, value);
-        _swCallback.getPathItems().put(key, value.getSw());
+        _swCallback.put(key, value.getSw());
         return this;
     }
 
@@ -116,7 +115,7 @@ public class SwCallback implements Callback {
         initPathItems();
         if (_pathItems != null) {
             _pathItems.remove(key);
-            _swCallback.getPathItems().remove(key);
+            _swCallback.remove(key);
         }
     }
 

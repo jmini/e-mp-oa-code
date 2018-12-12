@@ -20,7 +20,7 @@ public class SwSecurityRequirement implements SecurityRequirement {
 
     @Override
     public java.util.Map<String, java.util.List<String>> getSchemes() {
-        java.util.Map<String, java.util.List<String>> result = _swSecurityRequirement.getSchemes();
+        java.util.Map<String, java.util.List<String>> result = _swSecurityRequirement;
         if (result == null) {
             return null;
         }
@@ -29,7 +29,7 @@ public class SwSecurityRequirement implements SecurityRequirement {
 
     @Override
     public void setSchemes(java.util.Map<String, java.util.List<String>> schemes) {
-        _swSecurityRequirement.setSchemes(null);
+        _swSecurityRequirement.clear();
         if (schemes != null) {
             for (java.util.Map.Entry<String, java.util.List<String>> e : schemes.entrySet()) {
                 this.addScheme(e.getKey(), e.getValue());
@@ -39,14 +39,14 @@ public class SwSecurityRequirement implements SecurityRequirement {
 
     @Override
     public SecurityRequirement addScheme(String key, java.util.List<String> list) {
-        _swSecurityRequirement.addScheme(key, list);
+        _swSecurityRequirement.put(key, list);
         return this;
     }
 
     @Override
     public void removeScheme(String key) {
         if (getSchemes() != null) {
-            _swSecurityRequirement.getSchemes().remove(key);
+            _swSecurityRequirement.remove(key);
         }
     }
 

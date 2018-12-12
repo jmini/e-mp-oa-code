@@ -53,10 +53,10 @@ public class SwServerVariables implements ServerVariables {
     private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.servers.SwServerVariable> _serverVariables;
 
     private void initServerVariables() {
-        if (_swServerVariables.getServerVariables() == null) {
+        if (_swServerVariables == null) {
             _serverVariables = null;
         } else {
-            _swServerVariables.getServerVariables()
+            _swServerVariables
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -77,7 +77,7 @@ public class SwServerVariables implements ServerVariables {
 
     @Override
     public void setServerVariables(java.util.Map<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> serverVariables) {
-        _swServerVariables.setServerVariables(null);
+        _swServerVariables.clear();
         if (serverVariables != null) {
             for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> e : serverVariables.entrySet()) {
                 this.addServerVariable(e.getKey(), e.getValue());
@@ -94,10 +94,9 @@ public class SwServerVariables implements ServerVariables {
         initServerVariables();
         if (_serverVariables == null) {
             _serverVariables = new java.util.LinkedHashMap<>();
-        _swServerVariables.setServerVariables(new java.util.LinkedHashMap<>());
         }
         _serverVariables.put(key, value);
-        _swServerVariables.getServerVariables().put(key, value.getSw());
+        _swServerVariables.put(key, value.getSw());
         return this;
     }
 
@@ -106,7 +105,7 @@ public class SwServerVariables implements ServerVariables {
         initServerVariables();
         if (_serverVariables != null) {
             _serverVariables.remove(key);
-            _swServerVariables.getServerVariables().remove(key);
+            _swServerVariables.remove(key);
         }
     }
 

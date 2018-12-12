@@ -3,10 +3,9 @@ package fr.jmini.empoa.generator.gson;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import fr.jmini.empoa.generator.Input;
+import fr.jmini.empoa.generator.Util;
 import fr.jmini.empoa.specs.Element;
 import fr.jmini.empoa.specs.IMember;
 import fr.jmini.empoa.specs.MapMember;
@@ -63,7 +62,7 @@ public class GsonGenerator {
         } else {
             prefix = "        ";
         }
-        MapMember singleMap = findSingleMapMember(element);
+        MapMember singleMap = Util.findSingleMapMember(element);
         if (singleMap == null) {
             for (IMember imember : element.members) {
                 if (imember instanceof Member) {
@@ -100,28 +99,6 @@ public class GsonGenerator {
         sb.append("\n");
         sb.append("}\n");
         return sb.toString();
-    }
-
-    private static MapMember findSingleMapMember(Element e) {
-        switch (e.type) {
-        case Paths:
-        case Callback:
-        case Content:
-        case APIResponses:
-        case Scopes:
-        case SecurityRequirement:
-        case ServerVariables:
-            List<MapMember> list = e.members.stream()
-                    .filter(m -> m instanceof MapMember)
-                    .map(m -> (MapMember) m)
-                    .collect(Collectors.toList());
-            if (list.size() != 1) {
-                throw new IllegalStateException("Expecting only one MapMember, got " + list.size());
-            }
-            return list.get(0);
-        default:
-            return null;
-        }
     }
 
     private String computeOASPropertyName(Member member) {

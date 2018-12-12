@@ -213,7 +213,7 @@ public class SwHeader implements Header {
         initExamples();
         if (_examples == null) {
             _examples = new java.util.LinkedHashMap<>();
-        _swHeader.setExamples(new java.util.LinkedHashMap<>());
+            _swHeader.setExamples(new java.util.LinkedHashMap<>());
         }
         _examples.put(key, value);
         _swHeader.getExamples().put(key, value.getSw());
