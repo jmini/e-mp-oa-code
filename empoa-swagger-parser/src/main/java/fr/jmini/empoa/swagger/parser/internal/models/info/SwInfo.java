@@ -46,7 +46,8 @@ public class SwInfo implements Info {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swInfo.getExtensions().remove(key);
+            _swInfo.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -89,6 +90,7 @@ public class SwInfo implements Info {
             _contact = new fr.jmini.empoa.swagger.parser.internal.models.info.SwContact(_swInfo.getContact());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.info.Contact getContact() {
         initContact();
@@ -118,6 +120,7 @@ public class SwInfo implements Info {
             _license = new fr.jmini.empoa.swagger.parser.internal.models.info.SwLicense(_swInfo.getLicense());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.info.License getLicense() {
         initLicense();

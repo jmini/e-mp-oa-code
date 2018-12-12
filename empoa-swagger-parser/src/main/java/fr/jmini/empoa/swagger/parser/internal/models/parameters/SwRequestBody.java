@@ -56,7 +56,8 @@ public class SwRequestBody implements RequestBody {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swRequestBody.getExtensions().remove(key);
+            _swRequestBody.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -79,6 +80,7 @@ public class SwRequestBody implements RequestBody {
             _content = new fr.jmini.empoa.swagger.parser.internal.models.media.SwContent(_swRequestBody.getContent());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.media.Content getContent() {
         initContent();

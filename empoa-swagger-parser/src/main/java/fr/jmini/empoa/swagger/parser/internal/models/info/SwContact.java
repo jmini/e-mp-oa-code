@@ -46,7 +46,8 @@ public class SwContact implements Contact {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swContact.getExtensions().remove(key);
+            _swContact.getExtensions()
+                    .remove(key);
         }
     }
 

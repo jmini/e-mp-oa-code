@@ -56,7 +56,8 @@ public class SwPathItem implements PathItem {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swPathItem.getExtensions().remove(key);
+            _swPathItem.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -89,6 +90,7 @@ public class SwPathItem implements PathItem {
             _gET = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getGet());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.Operation getGET() {
         initGET();
@@ -118,6 +120,7 @@ public class SwPathItem implements PathItem {
             _pUT = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getPut());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.Operation getPUT() {
         initPUT();
@@ -147,6 +150,7 @@ public class SwPathItem implements PathItem {
             _pOST = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getPost());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.Operation getPOST() {
         initPOST();
@@ -176,6 +180,7 @@ public class SwPathItem implements PathItem {
             _dELETE = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getDelete());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.Operation getDELETE() {
         initDELETE();
@@ -205,6 +210,7 @@ public class SwPathItem implements PathItem {
             _oPTIONS = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getOptions());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.Operation getOPTIONS() {
         initOPTIONS();
@@ -234,6 +240,7 @@ public class SwPathItem implements PathItem {
             _hEAD = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getHead());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.Operation getHEAD() {
         initHEAD();
@@ -263,6 +270,7 @@ public class SwPathItem implements PathItem {
             _pATCH = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getPatch());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.Operation getPATCH() {
         initPATCH();
@@ -292,6 +300,7 @@ public class SwPathItem implements PathItem {
             _tRACE = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getTrace());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.Operation getTRACE() {
         initTRACE();
@@ -354,6 +363,7 @@ public class SwPathItem implements PathItem {
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
         }
     }
+
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> getServers() {
         initServers();
@@ -382,10 +392,11 @@ public class SwPathItem implements PathItem {
         initServers();
         if (_servers == null) {
             _servers = new java.util.ArrayList<>();
-        _swPathItem.setServers(new java.util.ArrayList<>());
+            _swPathItem.setServers(new java.util.ArrayList<>());
         }
         _servers.add(element);
-        _swPathItem.getServers().add(element.getSw());
+        _swPathItem.getServers()
+                .add(element.getSw());
         return this;
     }
 
@@ -398,7 +409,8 @@ public class SwPathItem implements PathItem {
         initServers();
         if (_servers != null) {
             _servers.remove(server);
-            _swPathItem.getServers().remove(element.getSw());
+            _swPathItem.getServers()
+                    .remove(element.getSw());
         }
     }
 
@@ -414,6 +426,7 @@ public class SwPathItem implements PathItem {
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
         }
     }
+
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> getParameters() {
         initParameters();
@@ -442,10 +455,11 @@ public class SwPathItem implements PathItem {
         initParameters();
         if (_parameters == null) {
             _parameters = new java.util.ArrayList<>();
-        _swPathItem.setParameters(new java.util.ArrayList<>());
+            _swPathItem.setParameters(new java.util.ArrayList<>());
         }
         _parameters.add(element);
-        _swPathItem.getParameters().add(element.getSw());
+        _swPathItem.getParameters()
+                .add(element.getSw());
         return this;
     }
 
@@ -458,7 +472,8 @@ public class SwPathItem implements PathItem {
         initParameters();
         if (_parameters != null) {
             _parameters.remove(parameter);
-            _swPathItem.getParameters().remove(element.getSw());
+            _swPathItem.getParameters()
+                    .remove(element.getSw());
         }
     }
 

@@ -46,7 +46,8 @@ public class SwMediaType implements MediaType {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swMediaType.getExtensions().remove(key);
+            _swMediaType.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -59,6 +60,7 @@ public class SwMediaType implements MediaType {
             _schema = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema(_swMediaType.getSchema());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.media.Schema getSchema() {
         initSchema();
@@ -79,7 +81,7 @@ public class SwMediaType implements MediaType {
         }
     }
 
-    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample> _examples;
+    private java.util.Map<String, fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample> _examples;
 
     private void initExamples() {
         if (_swMediaType.getExamples() == null) {
@@ -89,12 +91,15 @@ public class SwMediaType implements MediaType {
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
-                        java.util.Map.Entry::getKey,
-                        e -> new fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample(e.getValue()),
-                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
-                        () -> new java.util.LinkedHashMap()));
+                            java.util.Map.Entry::getKey,
+                            e -> new fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample(e.getValue()),
+                            (k1, k2) -> {
+                                throw new IllegalStateException(String.format("Duplicate key %s", k1));
+                            },
+                            () -> new java.util.LinkedHashMap()));
         }
     }
+
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> getExamples() {
         initExamples();
@@ -126,7 +131,8 @@ public class SwMediaType implements MediaType {
             _swMediaType.setExamples(new java.util.LinkedHashMap<>());
         }
         _examples.put(key, value);
-        _swMediaType.getExamples().put(key, value.getSw());
+        _swMediaType.getExamples()
+                .put(key, value.getSw());
         return this;
     }
 
@@ -135,7 +141,8 @@ public class SwMediaType implements MediaType {
         initExamples();
         if (_examples != null) {
             _examples.remove(key);
-            _swMediaType.getExamples().remove(key);
+            _swMediaType.getExamples()
+                    .remove(key);
         }
     }
 
@@ -149,7 +156,7 @@ public class SwMediaType implements MediaType {
         _swMediaType.setExample(example);
     }
 
-    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.media.SwEncoding> _encoding;
+    private java.util.Map<String, fr.jmini.empoa.swagger.parser.internal.models.media.SwEncoding> _encoding;
 
     private void initEncoding() {
         if (_swMediaType.getEncoding() == null) {
@@ -159,12 +166,15 @@ public class SwMediaType implements MediaType {
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
-                        java.util.Map.Entry::getKey,
-                        e -> new fr.jmini.empoa.swagger.parser.internal.models.media.SwEncoding(e.getValue()),
-                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
-                        () -> new java.util.LinkedHashMap()));
+                            java.util.Map.Entry::getKey,
+                            e -> new fr.jmini.empoa.swagger.parser.internal.models.media.SwEncoding(e.getValue()),
+                            (k1, k2) -> {
+                                throw new IllegalStateException(String.format("Duplicate key %s", k1));
+                            },
+                            () -> new java.util.LinkedHashMap()));
         }
     }
+
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Encoding> getEncoding() {
         initEncoding();
@@ -196,7 +206,8 @@ public class SwMediaType implements MediaType {
             _swMediaType.setEncoding(new java.util.LinkedHashMap<>());
         }
         _encoding.put(key, value);
-        _swMediaType.getEncoding().put(key, value.getSw());
+        _swMediaType.getEncoding()
+                .put(key, value.getSw());
         return this;
     }
 
@@ -205,7 +216,8 @@ public class SwMediaType implements MediaType {
         initEncoding();
         if (_encoding != null) {
             _encoding.remove(key);
-            _swMediaType.getEncoding().remove(key);
+            _swMediaType.getEncoding()
+                    .remove(key);
         }
     }
 

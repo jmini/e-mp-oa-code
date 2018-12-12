@@ -56,7 +56,8 @@ public class SwHeader implements Header {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swHeader.getExtensions().remove(key);
+            _swHeader.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -90,14 +91,16 @@ public class SwHeader implements Header {
         _swHeader.setDeprecated(deprecated);
     }
 
+    private Boolean _allowEmptyValue;
+
     @Override
     public Boolean getAllowEmptyValue() {
-        return _swHeader.getAllowEmptyValue();
+        return _allowEmptyValue;
     }
 
     @Override
     public void setAllowEmptyValue(Boolean allowEmptyValue) {
-        _swHeader.setAllowEmptyValue(allowEmptyValue);
+        _allowEmptyValue = allowEmptyValue;
     }
 
     @Override
@@ -149,6 +152,7 @@ public class SwHeader implements Header {
             _schema = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema(_swHeader.getSchema());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.media.Schema getSchema() {
         initSchema();
@@ -169,7 +173,7 @@ public class SwHeader implements Header {
         }
     }
 
-    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample> _examples;
+    private java.util.Map<String, fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample> _examples;
 
     private void initExamples() {
         if (_swHeader.getExamples() == null) {
@@ -179,12 +183,15 @@ public class SwHeader implements Header {
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
-                        java.util.Map.Entry::getKey,
-                        e -> new fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample(e.getValue()),
-                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
-                        () -> new java.util.LinkedHashMap()));
+                            java.util.Map.Entry::getKey,
+                            e -> new fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample(e.getValue()),
+                            (k1, k2) -> {
+                                throw new IllegalStateException(String.format("Duplicate key %s", k1));
+                            },
+                            () -> new java.util.LinkedHashMap()));
         }
     }
+
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> getExamples() {
         initExamples();
@@ -216,7 +223,8 @@ public class SwHeader implements Header {
             _swHeader.setExamples(new java.util.LinkedHashMap<>());
         }
         _examples.put(key, value);
-        _swHeader.getExamples().put(key, value.getSw());
+        _swHeader.getExamples()
+                .put(key, value.getSw());
         return this;
     }
 
@@ -225,7 +233,8 @@ public class SwHeader implements Header {
         initExamples();
         if (_examples != null) {
             _examples.remove(key);
-            _swHeader.getExamples().remove(key);
+            _swHeader.getExamples()
+                    .remove(key);
         }
     }
 
@@ -248,6 +257,7 @@ public class SwHeader implements Header {
             _content = new fr.jmini.empoa.swagger.parser.internal.models.media.SwContent(_swHeader.getContent());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.media.Content getContent() {
         initContent();

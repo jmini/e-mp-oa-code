@@ -46,7 +46,8 @@ public class SwOAuthFlows implements OAuthFlows {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swOAuthFlows.getExtensions().remove(key);
+            _swOAuthFlows.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -59,6 +60,7 @@ public class SwOAuthFlows implements OAuthFlows {
             _implicit = new fr.jmini.empoa.swagger.parser.internal.models.security.SwOAuthFlow(_swOAuthFlows.getImplicit());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.security.OAuthFlow getImplicit() {
         initImplicit();
@@ -88,6 +90,7 @@ public class SwOAuthFlows implements OAuthFlows {
             _password = new fr.jmini.empoa.swagger.parser.internal.models.security.SwOAuthFlow(_swOAuthFlows.getPassword());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.security.OAuthFlow getPassword() {
         initPassword();
@@ -117,6 +120,7 @@ public class SwOAuthFlows implements OAuthFlows {
             _clientCredentials = new fr.jmini.empoa.swagger.parser.internal.models.security.SwOAuthFlow(_swOAuthFlows.getClientCredentials());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.security.OAuthFlow getClientCredentials() {
         initClientCredentials();
@@ -146,6 +150,7 @@ public class SwOAuthFlows implements OAuthFlows {
             _authorizationCode = new fr.jmini.empoa.swagger.parser.internal.models.security.SwOAuthFlow(_swOAuthFlows.getAuthorizationCode());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.security.OAuthFlow getAuthorizationCode() {
         initAuthorizationCode();

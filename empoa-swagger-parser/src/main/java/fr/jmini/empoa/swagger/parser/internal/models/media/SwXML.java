@@ -46,7 +46,8 @@ public class SwXML implements XML {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swXML.getExtensions().remove(key);
+            _swXML.getExtensions()
+                    .remove(key);
         }
     }
 

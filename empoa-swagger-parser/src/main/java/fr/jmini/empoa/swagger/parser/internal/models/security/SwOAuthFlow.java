@@ -46,7 +46,8 @@ public class SwOAuthFlow implements OAuthFlow {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swOAuthFlow.getExtensions().remove(key);
+            _swOAuthFlow.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -89,6 +90,7 @@ public class SwOAuthFlow implements OAuthFlow {
             _scopes = new fr.jmini.empoa.swagger.parser.internal.models.security.SwScopes(_swOAuthFlow.getScopes());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.security.Scopes getScopes() {
         initScopes();

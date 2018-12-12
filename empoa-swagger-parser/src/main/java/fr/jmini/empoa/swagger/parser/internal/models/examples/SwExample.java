@@ -56,7 +56,8 @@ public class SwExample implements Example {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swExample.getExtensions().remove(key);
+            _swExample.getExtensions()
+                    .remove(key);
         }
     }
 

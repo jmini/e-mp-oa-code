@@ -56,7 +56,8 @@ public class SwSecurityScheme implements SecurityScheme {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swSecurityScheme.getExtensions().remove(key);
+            _swSecurityScheme.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -194,6 +195,7 @@ public class SwSecurityScheme implements SecurityScheme {
             _flows = new fr.jmini.empoa.swagger.parser.internal.models.security.SwOAuthFlows(_swSecurityScheme.getFlows());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.security.OAuthFlows getFlows() {
         initFlows();

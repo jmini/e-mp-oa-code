@@ -46,7 +46,8 @@ public class SwScopes implements Scopes {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swScopes.getExtensions().remove(key);
+            _swScopes.getExtensions()
+                    .remove(key);
         }
     }
 

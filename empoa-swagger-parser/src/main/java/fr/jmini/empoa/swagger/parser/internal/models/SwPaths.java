@@ -46,11 +46,12 @@ public class SwPaths implements Paths {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swPaths.getExtensions().remove(key);
+            _swPaths.getExtensions()
+                    .remove(key);
         }
     }
 
-    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.SwPathItem> _pathItems;
+    private java.util.Map<String, fr.jmini.empoa.swagger.parser.internal.models.SwPathItem> _pathItems;
 
     private void initPathItems() {
         if (_swPaths == null) {
@@ -60,12 +61,15 @@ public class SwPaths implements Paths {
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
-                        java.util.Map.Entry::getKey,
-                        e -> new fr.jmini.empoa.swagger.parser.internal.models.SwPathItem(e.getValue()),
-                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
-                        () -> new java.util.LinkedHashMap()));
+                            java.util.Map.Entry::getKey,
+                            e -> new fr.jmini.empoa.swagger.parser.internal.models.SwPathItem(e.getValue()),
+                            (k1, k2) -> {
+                                throw new IllegalStateException(String.format("Duplicate key %s", k1));
+                            },
+                            () -> new java.util.LinkedHashMap()));
         }
     }
+
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> getPathItems() {
         initPathItems();

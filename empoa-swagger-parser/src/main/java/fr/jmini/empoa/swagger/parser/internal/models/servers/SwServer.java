@@ -46,7 +46,8 @@ public class SwServer implements Server {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swServer.getExtensions().remove(key);
+            _swServer.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -79,6 +80,7 @@ public class SwServer implements Server {
             _variables = new fr.jmini.empoa.swagger.parser.internal.models.servers.SwServerVariables(_swServer.getVariables());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.servers.ServerVariables getVariables() {
         initVariables();

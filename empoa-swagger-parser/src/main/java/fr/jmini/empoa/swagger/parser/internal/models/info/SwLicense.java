@@ -46,7 +46,8 @@ public class SwLicense implements License {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swLicense.getExtensions().remove(key);
+            _swLicense.getExtensions()
+                    .remove(key);
         }
     }
 

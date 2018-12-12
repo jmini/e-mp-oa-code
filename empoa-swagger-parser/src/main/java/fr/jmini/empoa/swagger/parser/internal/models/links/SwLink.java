@@ -56,7 +56,8 @@ public class SwLink implements Link {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swLink.getExtensions().remove(key);
+            _swLink.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -69,6 +70,7 @@ public class SwLink implements Link {
             _server = new fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer(_swLink.getServer());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.servers.Server getServer() {
         initServer();
@@ -121,7 +123,7 @@ public class SwLink implements Link {
 
     @Override
     public java.util.Map<String, Object> getParameters() {
-        java.util.Map<String, Object> result = _swLink.getParameters();
+        java.util.Map<String, String> result = _swLink.getParameters();
         if (result == null) {
             return null;
         }
@@ -140,14 +142,15 @@ public class SwLink implements Link {
 
     @Override
     public Link addParameter(String key, Object object) {
-        _swLink.addParameter(key, object);
+        _swLink.parameters(key, object.toString());
         return this;
     }
 
     @Override
     public void removeParameter(String key) {
         if (getParameters() != null) {
-            _swLink.getParameters().remove(key);
+            _swLink.getParameters()
+                    .remove(key);
         }
     }
 

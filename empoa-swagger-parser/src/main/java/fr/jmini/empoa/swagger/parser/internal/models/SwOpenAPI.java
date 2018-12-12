@@ -46,7 +46,8 @@ public class SwOpenAPI implements OpenAPI {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swOpenAPI.getExtensions().remove(key);
+            _swOpenAPI.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -69,6 +70,7 @@ public class SwOpenAPI implements OpenAPI {
             _info = new fr.jmini.empoa.swagger.parser.internal.models.info.SwInfo(_swOpenAPI.getInfo());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.info.Info getInfo() {
         initInfo();
@@ -98,6 +100,7 @@ public class SwOpenAPI implements OpenAPI {
             _externalDocs = new fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation(_swOpenAPI.getExternalDocs());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.ExternalDocumentation getExternalDocs() {
         initExternalDocs();
@@ -130,6 +133,7 @@ public class SwOpenAPI implements OpenAPI {
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
         }
     }
+
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> getServers() {
         initServers();
@@ -158,10 +162,11 @@ public class SwOpenAPI implements OpenAPI {
         initServers();
         if (_servers == null) {
             _servers = new java.util.ArrayList<>();
-        _swOpenAPI.setServers(new java.util.ArrayList<>());
+            _swOpenAPI.setServers(new java.util.ArrayList<>());
         }
         _servers.add(element);
-        _swOpenAPI.getServers().add(element.getSw());
+        _swOpenAPI.getServers()
+                .add(element.getSw());
         return this;
     }
 
@@ -174,7 +179,8 @@ public class SwOpenAPI implements OpenAPI {
         initServers();
         if (_servers != null) {
             _servers.remove(server);
-            _swOpenAPI.getServers().remove(element.getSw());
+            _swOpenAPI.getServers()
+                    .remove(element.getSw());
         }
     }
 
@@ -190,6 +196,7 @@ public class SwOpenAPI implements OpenAPI {
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
         }
     }
+
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> getSecurity() {
         initSecurity();
@@ -218,10 +225,11 @@ public class SwOpenAPI implements OpenAPI {
         initSecurity();
         if (_security == null) {
             _security = new java.util.ArrayList<>();
-        _swOpenAPI.setSecurity(new java.util.ArrayList<>());
+            _swOpenAPI.setSecurity(new java.util.ArrayList<>());
         }
         _security.add(element);
-        _swOpenAPI.getSecurity().add(element.getSw());
+        _swOpenAPI.getSecurity()
+                .add(element.getSw());
         return this;
     }
 
@@ -234,7 +242,8 @@ public class SwOpenAPI implements OpenAPI {
         initSecurity();
         if (_security != null) {
             _security.remove(securityRequirement);
-            _swOpenAPI.getSecurity().remove(element.getSw());
+            _swOpenAPI.getSecurity()
+                    .remove(element.getSw());
         }
     }
 
@@ -250,6 +259,7 @@ public class SwOpenAPI implements OpenAPI {
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
         }
     }
+
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.tags.Tag> getTags() {
         initTags();
@@ -278,10 +288,11 @@ public class SwOpenAPI implements OpenAPI {
         initTags();
         if (_tags == null) {
             _tags = new java.util.ArrayList<>();
-        _swOpenAPI.setTags(new java.util.ArrayList<>());
+            _swOpenAPI.setTags(new java.util.ArrayList<>());
         }
         _tags.add(element);
-        _swOpenAPI.getTags().add(element.getSw());
+        _swOpenAPI.getTags()
+                .add(element.getSw());
         return this;
     }
 
@@ -294,7 +305,8 @@ public class SwOpenAPI implements OpenAPI {
         initTags();
         if (_tags != null) {
             _tags.remove(tag);
-            _swOpenAPI.getTags().remove(element.getSw());
+            _swOpenAPI.getTags()
+                    .remove(element.getSw());
         }
     }
 
@@ -307,6 +319,7 @@ public class SwOpenAPI implements OpenAPI {
             _paths = new fr.jmini.empoa.swagger.parser.internal.models.SwPaths(_swOpenAPI.getPaths());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.Paths getPaths() {
         initPaths();
@@ -336,6 +349,7 @@ public class SwOpenAPI implements OpenAPI {
             _components = new fr.jmini.empoa.swagger.parser.internal.models.SwComponents(_swOpenAPI.getComponents());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.Components getComponents() {
         initComponents();

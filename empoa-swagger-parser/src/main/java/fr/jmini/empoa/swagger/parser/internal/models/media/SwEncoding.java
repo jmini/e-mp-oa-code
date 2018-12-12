@@ -46,7 +46,8 @@ public class SwEncoding implements Encoding {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swEncoding.getExtensions().remove(key);
+            _swEncoding.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -60,7 +61,7 @@ public class SwEncoding implements Encoding {
         _swEncoding.setContentType(contentType);
     }
 
-    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.headers.SwHeader> _headers;
+    private java.util.Map<String, fr.jmini.empoa.swagger.parser.internal.models.headers.SwHeader> _headers;
 
     private void initHeaders() {
         if (_swEncoding.getHeaders() == null) {
@@ -70,12 +71,15 @@ public class SwEncoding implements Encoding {
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
-                        java.util.Map.Entry::getKey,
-                        e -> new fr.jmini.empoa.swagger.parser.internal.models.headers.SwHeader(e.getValue()),
-                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
-                        () -> new java.util.LinkedHashMap()));
+                            java.util.Map.Entry::getKey,
+                            e -> new fr.jmini.empoa.swagger.parser.internal.models.headers.SwHeader(e.getValue()),
+                            (k1, k2) -> {
+                                throw new IllegalStateException(String.format("Duplicate key %s", k1));
+                            },
+                            () -> new java.util.LinkedHashMap()));
         }
     }
+
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> getHeaders() {
         initHeaders();
@@ -107,7 +111,8 @@ public class SwEncoding implements Encoding {
             _swEncoding.setHeaders(new java.util.LinkedHashMap<>());
         }
         _headers.put(key, value);
-        _swEncoding.getHeaders().put(key, value.getSw());
+        _swEncoding.getHeaders()
+                .put(key, value.getSw());
         return this;
     }
 
@@ -116,7 +121,8 @@ public class SwEncoding implements Encoding {
         initHeaders();
         if (_headers != null) {
             _headers.remove(key);
-            _swEncoding.getHeaders().remove(key);
+            _swEncoding.getHeaders()
+                    .remove(key);
         }
     }
 

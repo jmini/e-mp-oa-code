@@ -56,7 +56,8 @@ public class SwParameter implements Parameter {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swParameter.getExtensions().remove(key);
+            _swParameter.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -72,12 +73,30 @@ public class SwParameter implements Parameter {
 
     @Override
     public In getIn() {
-        return _swParameter.getIn();
+        if (_swParameter.getIn() == null) {
+            return null;
+        }
+        switch (_swParameter.getIn()) {
+        case "cookie":
+            return org.eclipse.microprofile.openapi.models.parameters.Parameter.In.COOKIE;
+        case "header":
+            return org.eclipse.microprofile.openapi.models.parameters.Parameter.In.HEADER;
+        case "path":
+            return org.eclipse.microprofile.openapi.models.parameters.Parameter.In.PATH;
+        case "query":
+            return org.eclipse.microprofile.openapi.models.parameters.Parameter.In.QUERY;
+        default:
+            throw new IllegalStateException("Unexpected enum value");
+        }
     }
 
     @Override
     public void setIn(In in) {
-        _swParameter.setIn(in);
+        if (in == null) {
+            _swParameter.setIn(null);
+        } else {
+            _swParameter.setIn(in.toString());
+        }
     }
 
     @Override
@@ -209,6 +228,7 @@ public class SwParameter implements Parameter {
             _schema = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema(_swParameter.getSchema());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.media.Schema getSchema() {
         initSchema();
@@ -229,7 +249,7 @@ public class SwParameter implements Parameter {
         }
     }
 
-    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample> _examples;
+    private java.util.Map<String, fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample> _examples;
 
     private void initExamples() {
         if (_swParameter.getExamples() == null) {
@@ -239,12 +259,15 @@ public class SwParameter implements Parameter {
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
-                        java.util.Map.Entry::getKey,
-                        e -> new fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample(e.getValue()),
-                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
-                        () -> new java.util.LinkedHashMap()));
+                            java.util.Map.Entry::getKey,
+                            e -> new fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample(e.getValue()),
+                            (k1, k2) -> {
+                                throw new IllegalStateException(String.format("Duplicate key %s", k1));
+                            },
+                            () -> new java.util.LinkedHashMap()));
         }
     }
+
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> getExamples() {
         initExamples();
@@ -276,7 +299,8 @@ public class SwParameter implements Parameter {
             _swParameter.setExamples(new java.util.LinkedHashMap<>());
         }
         _examples.put(key, value);
-        _swParameter.getExamples().put(key, value.getSw());
+        _swParameter.getExamples()
+                .put(key, value.getSw());
         return this;
     }
 
@@ -285,7 +309,8 @@ public class SwParameter implements Parameter {
         initExamples();
         if (_examples != null) {
             _examples.remove(key);
-            _swParameter.getExamples().remove(key);
+            _swParameter.getExamples()
+                    .remove(key);
         }
     }
 
@@ -308,6 +333,7 @@ public class SwParameter implements Parameter {
             _content = new fr.jmini.empoa.swagger.parser.internal.models.media.SwContent(_swParameter.getContent());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.media.Content getContent() {
         initContent();

@@ -56,7 +56,8 @@ public class SwAPIResponse implements APIResponse {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swAPIResponse.getExtensions().remove(key);
+            _swAPIResponse.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -70,7 +71,7 @@ public class SwAPIResponse implements APIResponse {
         _swAPIResponse.setDescription(description);
     }
 
-    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.headers.SwHeader> _headers;
+    private java.util.Map<String, fr.jmini.empoa.swagger.parser.internal.models.headers.SwHeader> _headers;
 
     private void initHeaders() {
         if (_swAPIResponse.getHeaders() == null) {
@@ -80,12 +81,15 @@ public class SwAPIResponse implements APIResponse {
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
-                        java.util.Map.Entry::getKey,
-                        e -> new fr.jmini.empoa.swagger.parser.internal.models.headers.SwHeader(e.getValue()),
-                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
-                        () -> new java.util.LinkedHashMap()));
+                            java.util.Map.Entry::getKey,
+                            e -> new fr.jmini.empoa.swagger.parser.internal.models.headers.SwHeader(e.getValue()),
+                            (k1, k2) -> {
+                                throw new IllegalStateException(String.format("Duplicate key %s", k1));
+                            },
+                            () -> new java.util.LinkedHashMap()));
         }
     }
+
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> getHeaders() {
         initHeaders();
@@ -117,7 +121,8 @@ public class SwAPIResponse implements APIResponse {
             _swAPIResponse.setHeaders(new java.util.LinkedHashMap<>());
         }
         _headers.put(key, value);
-        _swAPIResponse.getHeaders().put(key, value.getSw());
+        _swAPIResponse.getHeaders()
+                .put(key, value.getSw());
         return this;
     }
 
@@ -126,7 +131,8 @@ public class SwAPIResponse implements APIResponse {
         initHeaders();
         if (_headers != null) {
             _headers.remove(key);
-            _swAPIResponse.getHeaders().remove(key);
+            _swAPIResponse.getHeaders()
+                    .remove(key);
         }
     }
 
@@ -139,6 +145,7 @@ public class SwAPIResponse implements APIResponse {
             _content = new fr.jmini.empoa.swagger.parser.internal.models.media.SwContent(_swAPIResponse.getContent());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.media.Content getContent() {
         initContent();
@@ -159,7 +166,7 @@ public class SwAPIResponse implements APIResponse {
         }
     }
 
-    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.links.SwLink> _links;
+    private java.util.Map<String, fr.jmini.empoa.swagger.parser.internal.models.links.SwLink> _links;
 
     private void initLinks() {
         if (_swAPIResponse.getLinks() == null) {
@@ -169,12 +176,15 @@ public class SwAPIResponse implements APIResponse {
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
-                        java.util.Map.Entry::getKey,
-                        e -> new fr.jmini.empoa.swagger.parser.internal.models.links.SwLink(e.getValue()),
-                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
-                        () -> new java.util.LinkedHashMap()));
+                            java.util.Map.Entry::getKey,
+                            e -> new fr.jmini.empoa.swagger.parser.internal.models.links.SwLink(e.getValue()),
+                            (k1, k2) -> {
+                                throw new IllegalStateException(String.format("Duplicate key %s", k1));
+                            },
+                            () -> new java.util.LinkedHashMap()));
         }
     }
+
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.links.Link> getLinks() {
         initLinks();
@@ -206,7 +216,8 @@ public class SwAPIResponse implements APIResponse {
             _swAPIResponse.setLinks(new java.util.LinkedHashMap<>());
         }
         _links.put(key, value);
-        _swAPIResponse.getLinks().put(key, value.getSw());
+        _swAPIResponse.getLinks()
+                .put(key, value.getSw());
         return this;
     }
 
@@ -215,7 +226,8 @@ public class SwAPIResponse implements APIResponse {
         initLinks();
         if (_links != null) {
             _links.remove(key);
-            _swAPIResponse.getLinks().remove(key);
+            _swAPIResponse.getLinks()
+                    .remove(key);
         }
     }
 

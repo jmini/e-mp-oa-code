@@ -18,7 +18,7 @@ public class SwContent implements Content {
         return _swContent;
     }
 
-    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.media.SwMediaType> _mediaTypes;
+    private java.util.Map<String, fr.jmini.empoa.swagger.parser.internal.models.media.SwMediaType> _mediaTypes;
 
     private void initMediaTypes() {
         if (_swContent == null) {
@@ -28,12 +28,15 @@ public class SwContent implements Content {
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
-                        java.util.Map.Entry::getKey,
-                        e -> new fr.jmini.empoa.swagger.parser.internal.models.media.SwMediaType(e.getValue()),
-                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
-                        () -> new java.util.LinkedHashMap()));
+                            java.util.Map.Entry::getKey,
+                            e -> new fr.jmini.empoa.swagger.parser.internal.models.media.SwMediaType(e.getValue()),
+                            (k1, k2) -> {
+                                throw new IllegalStateException(String.format("Duplicate key %s", k1));
+                            },
+                            () -> new java.util.LinkedHashMap()));
         }
     }
+
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.media.MediaType> getMediaTypes() {
         initMediaTypes();

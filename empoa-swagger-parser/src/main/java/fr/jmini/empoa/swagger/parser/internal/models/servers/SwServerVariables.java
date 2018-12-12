@@ -46,11 +46,12 @@ public class SwServerVariables implements ServerVariables {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swServerVariables.getExtensions().remove(key);
+            _swServerVariables.getExtensions()
+                    .remove(key);
         }
     }
 
-    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.servers.SwServerVariable> _serverVariables;
+    private java.util.Map<String, fr.jmini.empoa.swagger.parser.internal.models.servers.SwServerVariable> _serverVariables;
 
     private void initServerVariables() {
         if (_swServerVariables == null) {
@@ -60,12 +61,15 @@ public class SwServerVariables implements ServerVariables {
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
-                        java.util.Map.Entry::getKey,
-                        e -> new fr.jmini.empoa.swagger.parser.internal.models.servers.SwServerVariable(e.getValue()),
-                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
-                        () -> new java.util.LinkedHashMap()));
+                            java.util.Map.Entry::getKey,
+                            e -> new fr.jmini.empoa.swagger.parser.internal.models.servers.SwServerVariable(e.getValue()),
+                            (k1, k2) -> {
+                                throw new IllegalStateException(String.format("Duplicate key %s", k1));
+                            },
+                            () -> new java.util.LinkedHashMap()));
         }
     }
+
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> getServerVariables() {
         initServerVariables();

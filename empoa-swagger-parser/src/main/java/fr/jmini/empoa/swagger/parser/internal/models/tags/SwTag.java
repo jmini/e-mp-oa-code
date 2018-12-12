@@ -46,7 +46,8 @@ public class SwTag implements Tag {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swTag.getExtensions().remove(key);
+            _swTag.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -79,6 +80,7 @@ public class SwTag implements Tag {
             _externalDocs = new fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation(_swTag.getExternalDocs());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.ExternalDocumentation getExternalDocs() {
         initExternalDocs();

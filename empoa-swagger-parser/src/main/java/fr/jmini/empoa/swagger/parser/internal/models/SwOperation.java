@@ -46,7 +46,8 @@ public class SwOperation implements Operation {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swOperation.getExtensions().remove(key);
+            _swOperation.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -78,7 +79,8 @@ public class SwOperation implements Operation {
     @Override
     public void removeTag(String string) {
         if (_swOperation.getTags() != null) {
-            _swOperation.getTags().remove(string);
+            _swOperation.getTags()
+                    .remove(string);
         }
     }
 
@@ -111,6 +113,7 @@ public class SwOperation implements Operation {
             _externalDocs = new fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation(_swOperation.getExternalDocs());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.ExternalDocumentation getExternalDocs() {
         initExternalDocs();
@@ -153,6 +156,7 @@ public class SwOperation implements Operation {
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
         }
     }
+
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> getParameters() {
         initParameters();
@@ -181,10 +185,11 @@ public class SwOperation implements Operation {
         initParameters();
         if (_parameters == null) {
             _parameters = new java.util.ArrayList<>();
-        _swOperation.setParameters(new java.util.ArrayList<>());
+            _swOperation.setParameters(new java.util.ArrayList<>());
         }
         _parameters.add(element);
-        _swOperation.getParameters().add(element.getSw());
+        _swOperation.getParameters()
+                .add(element.getSw());
         return this;
     }
 
@@ -197,7 +202,8 @@ public class SwOperation implements Operation {
         initParameters();
         if (_parameters != null) {
             _parameters.remove(parameter);
-            _swOperation.getParameters().remove(element.getSw());
+            _swOperation.getParameters()
+                    .remove(element.getSw());
         }
     }
 
@@ -210,6 +216,7 @@ public class SwOperation implements Operation {
             _requestBody = new fr.jmini.empoa.swagger.parser.internal.models.parameters.SwRequestBody(_swOperation.getRequestBody());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.parameters.RequestBody getRequestBody() {
         initRequestBody();
@@ -239,6 +246,7 @@ public class SwOperation implements Operation {
             _responses = new fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponses(_swOperation.getResponses());
         }
     }
+
     @Override
     public org.eclipse.microprofile.openapi.models.responses.APIResponses getResponses() {
         initResponses();
@@ -259,7 +267,7 @@ public class SwOperation implements Operation {
         }
     }
 
-    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.callbacks.SwCallback> _callbacks;
+    private java.util.Map<String, fr.jmini.empoa.swagger.parser.internal.models.callbacks.SwCallback> _callbacks;
 
     private void initCallbacks() {
         if (_swOperation.getCallbacks() == null) {
@@ -269,12 +277,15 @@ public class SwOperation implements Operation {
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
-                        java.util.Map.Entry::getKey,
-                        e -> new fr.jmini.empoa.swagger.parser.internal.models.callbacks.SwCallback(e.getValue()),
-                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
-                        () -> new java.util.LinkedHashMap()));
+                            java.util.Map.Entry::getKey,
+                            e -> new fr.jmini.empoa.swagger.parser.internal.models.callbacks.SwCallback(e.getValue()),
+                            (k1, k2) -> {
+                                throw new IllegalStateException(String.format("Duplicate key %s", k1));
+                            },
+                            () -> new java.util.LinkedHashMap()));
         }
     }
+
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> getCallbacks() {
         initCallbacks();
@@ -306,7 +317,8 @@ public class SwOperation implements Operation {
             _swOperation.setCallbacks(new java.util.LinkedHashMap<>());
         }
         _callbacks.put(key, value);
-        _swOperation.getCallbacks().put(key, value.getSw());
+        _swOperation.getCallbacks()
+                .put(key, value.getSw());
         return this;
     }
 
@@ -315,7 +327,8 @@ public class SwOperation implements Operation {
         initCallbacks();
         if (_callbacks != null) {
             _callbacks.remove(key);
-            _swOperation.getCallbacks().remove(key);
+            _swOperation.getCallbacks()
+                    .remove(key);
         }
     }
 
@@ -341,6 +354,7 @@ public class SwOperation implements Operation {
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
         }
     }
+
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> getSecurity() {
         initSecurity();
@@ -369,10 +383,11 @@ public class SwOperation implements Operation {
         initSecurity();
         if (_security == null) {
             _security = new java.util.ArrayList<>();
-        _swOperation.setSecurity(new java.util.ArrayList<>());
+            _swOperation.setSecurity(new java.util.ArrayList<>());
         }
         _security.add(element);
-        _swOperation.getSecurity().add(element.getSw());
+        _swOperation.getSecurity()
+                .add(element.getSw());
         return this;
     }
 
@@ -385,7 +400,8 @@ public class SwOperation implements Operation {
         initSecurity();
         if (_security != null) {
             _security.remove(securityRequirement);
-            _swOperation.getSecurity().remove(element.getSw());
+            _swOperation.getSecurity()
+                    .remove(element.getSw());
         }
     }
 
@@ -401,6 +417,7 @@ public class SwOperation implements Operation {
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
         }
     }
+
     @Override
     public java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> getServers() {
         initServers();
@@ -429,10 +446,11 @@ public class SwOperation implements Operation {
         initServers();
         if (_servers == null) {
             _servers = new java.util.ArrayList<>();
-        _swOperation.setServers(new java.util.ArrayList<>());
+            _swOperation.setServers(new java.util.ArrayList<>());
         }
         _servers.add(element);
-        _swOperation.getServers().add(element.getSw());
+        _swOperation.getServers()
+                .add(element.getSw());
         return this;
     }
 
@@ -445,7 +463,8 @@ public class SwOperation implements Operation {
         initServers();
         if (_servers != null) {
             _servers.remove(server);
-            _swOperation.getServers().remove(element.getSw());
+            _swOperation.getServers()
+                    .remove(element.getSw());
         }
     }
 

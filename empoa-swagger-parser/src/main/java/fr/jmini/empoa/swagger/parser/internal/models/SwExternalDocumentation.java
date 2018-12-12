@@ -46,7 +46,8 @@ public class SwExternalDocumentation implements ExternalDocumentation {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swExternalDocumentation.getExtensions().remove(key);
+            _swExternalDocumentation.getExtensions()
+                    .remove(key);
         }
     }
 

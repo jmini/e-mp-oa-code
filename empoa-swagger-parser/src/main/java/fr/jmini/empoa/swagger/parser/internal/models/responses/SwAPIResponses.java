@@ -46,11 +46,12 @@ public class SwAPIResponses implements APIResponses {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swAPIResponses.getExtensions().remove(key);
+            _swAPIResponses.getExtensions()
+                    .remove(key);
         }
     }
 
-    private java.util.Map<String,fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponse> _aPIResponses;
+    private java.util.Map<String, fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponse> _aPIResponses;
 
     private void initAPIResponses() {
         if (_swAPIResponses == null) {
@@ -60,12 +61,15 @@ public class SwAPIResponses implements APIResponses {
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
-                        java.util.Map.Entry::getKey,
-                        e -> new fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponse(e.getValue()),
-                        (k1, k2) -> { throw new IllegalStateException(String.format("Duplicate key %s", k1)); },
-                        () -> new java.util.LinkedHashMap()));
+                            java.util.Map.Entry::getKey,
+                            e -> new fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponse(e.getValue()),
+                            (k1, k2) -> {
+                                throw new IllegalStateException(String.format("Duplicate key %s", k1));
+                            },
+                            () -> new java.util.LinkedHashMap()));
         }
     }
+
     @Override
     public java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> getAPIResponses() {
         initAPIResponses();

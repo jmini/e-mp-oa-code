@@ -46,7 +46,8 @@ public class SwServerVariable implements ServerVariable {
     @Override
     public void removeExtension(String key) {
         if (getExtensions() != null) {
-            _swServerVariable.getExtensions().remove(key);
+            _swServerVariable.getExtensions()
+                    .remove(key);
         }
     }
 
@@ -78,7 +79,8 @@ public class SwServerVariable implements ServerVariable {
     @Override
     public void removeEnumeration(String string) {
         if (_swServerVariable.getEnum() != null) {
-            _swServerVariable.getEnum().remove(string);
+            _swServerVariable.getEnum()
+                    .remove(string);
         }
     }
 
