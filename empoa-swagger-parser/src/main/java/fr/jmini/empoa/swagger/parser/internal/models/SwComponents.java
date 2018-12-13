@@ -57,7 +57,7 @@ public class SwComponents implements Components {
         if (_swComponents.getSchemas() == null) {
             _schemas = null;
         } else {
-            _swComponents.getSchemas()
+            _schemas = _swComponents.getSchemas()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -66,7 +66,7 @@ public class SwComponents implements Components {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema>()));
         }
     }
 
@@ -122,7 +122,7 @@ public class SwComponents implements Components {
         if (_swComponents.getResponses() == null) {
             _responses = null;
         } else {
-            _swComponents.getResponses()
+            _responses = _swComponents.getResponses()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -131,7 +131,7 @@ public class SwComponents implements Components {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponse>()));
         }
     }
 
@@ -187,7 +187,7 @@ public class SwComponents implements Components {
         if (_swComponents.getParameters() == null) {
             _parameters = null;
         } else {
-            _swComponents.getParameters()
+            _parameters = _swComponents.getParameters()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -196,7 +196,7 @@ public class SwComponents implements Components {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.parameters.SwParameter>()));
         }
     }
 
@@ -252,7 +252,7 @@ public class SwComponents implements Components {
         if (_swComponents.getExamples() == null) {
             _examples = null;
         } else {
-            _swComponents.getExamples()
+            _examples = _swComponents.getExamples()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -261,7 +261,7 @@ public class SwComponents implements Components {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample>()));
         }
     }
 
@@ -317,7 +317,7 @@ public class SwComponents implements Components {
         if (_swComponents.getRequestBodies() == null) {
             _requestBodies = null;
         } else {
-            _swComponents.getRequestBodies()
+            _requestBodies = _swComponents.getRequestBodies()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -326,7 +326,7 @@ public class SwComponents implements Components {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.parameters.SwRequestBody>()));
         }
     }
 
@@ -382,7 +382,7 @@ public class SwComponents implements Components {
         if (_swComponents.getHeaders() == null) {
             _headers = null;
         } else {
-            _swComponents.getHeaders()
+            _headers = _swComponents.getHeaders()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -391,7 +391,7 @@ public class SwComponents implements Components {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.headers.SwHeader>()));
         }
     }
 
@@ -447,7 +447,7 @@ public class SwComponents implements Components {
         if (_swComponents.getSecuritySchemes() == null) {
             _securitySchemes = null;
         } else {
-            _swComponents.getSecuritySchemes()
+            _securitySchemes = _swComponents.getSecuritySchemes()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -456,7 +456,7 @@ public class SwComponents implements Components {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.security.SwSecurityScheme>()));
         }
     }
 
@@ -512,7 +512,7 @@ public class SwComponents implements Components {
         if (_swComponents.getLinks() == null) {
             _links = null;
         } else {
-            _swComponents.getLinks()
+            _links = _swComponents.getLinks()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -521,7 +521,7 @@ public class SwComponents implements Components {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.links.SwLink>()));
         }
     }
 
@@ -577,7 +577,7 @@ public class SwComponents implements Components {
         if (_swComponents.getCallbacks() == null) {
             _callbacks = null;
         } else {
-            _swComponents.getCallbacks()
+            _callbacks = _swComponents.getCallbacks()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -586,7 +586,7 @@ public class SwComponents implements Components {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.callbacks.SwCallback>()));
         }
     }
 

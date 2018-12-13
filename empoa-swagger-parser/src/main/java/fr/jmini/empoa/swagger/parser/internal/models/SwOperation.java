@@ -150,7 +150,7 @@ public class SwOperation implements Operation {
         if (_swOperation.getParameters() == null) {
             _parameters = null;
         } else {
-            _swOperation.getParameters()
+            _parameters = _swOperation.getParameters()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.parameters.SwParameter::new)
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
@@ -273,7 +273,7 @@ public class SwOperation implements Operation {
         if (_swOperation.getCallbacks() == null) {
             _callbacks = null;
         } else {
-            _swOperation.getCallbacks()
+            _callbacks = _swOperation.getCallbacks()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -282,7 +282,7 @@ public class SwOperation implements Operation {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.callbacks.SwCallback>()));
         }
     }
 
@@ -348,7 +348,7 @@ public class SwOperation implements Operation {
         if (_swOperation.getSecurity() == null) {
             _security = null;
         } else {
-            _swOperation.getSecurity()
+            _security = _swOperation.getSecurity()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.security.SwSecurityRequirement::new)
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
@@ -411,7 +411,7 @@ public class SwOperation implements Operation {
         if (_swOperation.getServers() == null) {
             _servers = null;
         } else {
-            _swOperation.getServers()
+            _servers = _swOperation.getServers()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer::new)
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));

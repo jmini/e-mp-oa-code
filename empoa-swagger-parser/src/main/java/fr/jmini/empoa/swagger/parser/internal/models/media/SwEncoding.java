@@ -67,7 +67,7 @@ public class SwEncoding implements Encoding {
         if (_swEncoding.getHeaders() == null) {
             _headers = null;
         } else {
-            _swEncoding.getHeaders()
+            _headers = _swEncoding.getHeaders()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -76,7 +76,7 @@ public class SwEncoding implements Encoding {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.headers.SwHeader>()));
         }
     }
 

@@ -57,7 +57,7 @@ public class SwPaths implements Paths {
         if (_swPaths == null) {
             _pathItems = null;
         } else {
-            _swPaths
+            _pathItems = _swPaths
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -66,7 +66,7 @@ public class SwPaths implements Paths {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.SwPathItem>()));
         }
     }
 

@@ -77,7 +77,7 @@ public class SwAPIResponse implements APIResponse {
         if (_swAPIResponse.getHeaders() == null) {
             _headers = null;
         } else {
-            _swAPIResponse.getHeaders()
+            _headers = _swAPIResponse.getHeaders()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -86,7 +86,7 @@ public class SwAPIResponse implements APIResponse {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.headers.SwHeader>()));
         }
     }
 
@@ -172,7 +172,7 @@ public class SwAPIResponse implements APIResponse {
         if (_swAPIResponse.getLinks() == null) {
             _links = null;
         } else {
-            _swAPIResponse.getLinks()
+            _links = _swAPIResponse.getLinks()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -181,7 +181,7 @@ public class SwAPIResponse implements APIResponse {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.links.SwLink>()));
         }
     }
 

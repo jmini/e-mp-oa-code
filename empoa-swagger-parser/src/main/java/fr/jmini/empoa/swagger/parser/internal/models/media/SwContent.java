@@ -24,7 +24,7 @@ public class SwContent implements Content {
         if (_swContent == null) {
             _mediaTypes = null;
         } else {
-            _swContent
+            _mediaTypes = _swContent
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -33,7 +33,7 @@ public class SwContent implements Content {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.media.SwMediaType>()));
         }
     }
 

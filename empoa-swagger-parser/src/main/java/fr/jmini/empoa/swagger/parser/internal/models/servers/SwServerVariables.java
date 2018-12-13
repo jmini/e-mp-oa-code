@@ -57,7 +57,7 @@ public class SwServerVariables implements ServerVariables {
         if (_swServerVariables == null) {
             _serverVariables = null;
         } else {
-            _swServerVariables
+            _serverVariables = _swServerVariables
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -66,7 +66,7 @@ public class SwServerVariables implements ServerVariables {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.servers.SwServerVariable>()));
         }
     }
 

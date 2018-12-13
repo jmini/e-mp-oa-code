@@ -357,7 +357,7 @@ public class SwPathItem implements PathItem {
         if (_swPathItem.getServers() == null) {
             _servers = null;
         } else {
-            _swPathItem.getServers()
+            _servers = _swPathItem.getServers()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer::new)
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
@@ -420,7 +420,7 @@ public class SwPathItem implements PathItem {
         if (_swPathItem.getParameters() == null) {
             _parameters = null;
         } else {
-            _swPathItem.getParameters()
+            _parameters = _swPathItem.getParameters()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.parameters.SwParameter::new)
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));

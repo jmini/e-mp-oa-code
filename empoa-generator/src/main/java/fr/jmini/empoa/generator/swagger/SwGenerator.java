@@ -150,16 +150,16 @@ public class SwGenerator {
             sb.append("            " + memberName + " = null;\n");
             sb.append("        } else {\n");
             if (isMapMember) {
-                sb.append("            " + swVarName + swGetter + "\n");
+                sb.append("            " + memberName + " = " + swVarName + swGetter + "\n");
                 sb.append("                    .entrySet()\n");
                 sb.append("                    .stream()\n");
                 sb.append("                    .collect(java.util.stream.Collectors.toMap(\n");
                 sb.append("                        java.util.Map.Entry::getKey,\n");
                 sb.append("                        e -> new " + innerFqType + "(e.getValue()),\n");
                 sb.append("                        (k1, k2) -> { throw new IllegalStateException(String.format(\"Duplicate key %s\", k1)); },\n");
-                sb.append("                        () -> new " + java.util.LinkedHashMap.class.getCanonicalName() + "()));\n");
+                sb.append("                        () -> new " + java.util.LinkedHashMap.class.getCanonicalName() + "<String, " + innerFqType + ">()));\n");
             } else if (isListMember) {
-                sb.append("            " + swVarName + swGetter + "\n");
+                sb.append("            " + memberName + " = " + swVarName + swGetter + "\n");
                 sb.append("                    .stream()\n");
                 sb.append("                    .map(" + innerFqType + "::new)\n");
                 sb.append("                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));\n");

@@ -87,7 +87,7 @@ public class SwMediaType implements MediaType {
         if (_swMediaType.getExamples() == null) {
             _examples = null;
         } else {
-            _swMediaType.getExamples()
+            _examples = _swMediaType.getExamples()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -96,7 +96,7 @@ public class SwMediaType implements MediaType {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample>()));
         }
     }
 
@@ -162,7 +162,7 @@ public class SwMediaType implements MediaType {
         if (_swMediaType.getEncoding() == null) {
             _encoding = null;
         } else {
-            _swMediaType.getEncoding()
+            _encoding = _swMediaType.getEncoding()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -171,7 +171,7 @@ public class SwMediaType implements MediaType {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.media.SwEncoding>()));
         }
     }
 

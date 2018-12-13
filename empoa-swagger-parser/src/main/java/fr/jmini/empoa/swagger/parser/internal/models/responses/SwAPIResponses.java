@@ -57,7 +57,7 @@ public class SwAPIResponses implements APIResponses {
         if (_swAPIResponses == null) {
             _aPIResponses = null;
         } else {
-            _swAPIResponses
+            _aPIResponses = _swAPIResponses
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -66,7 +66,7 @@ public class SwAPIResponses implements APIResponses {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponse>()));
         }
     }
 

@@ -127,7 +127,7 @@ public class SwOpenAPI implements OpenAPI {
         if (_swOpenAPI.getServers() == null) {
             _servers = null;
         } else {
-            _swOpenAPI.getServers()
+            _servers = _swOpenAPI.getServers()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer::new)
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
@@ -190,7 +190,7 @@ public class SwOpenAPI implements OpenAPI {
         if (_swOpenAPI.getSecurity() == null) {
             _security = null;
         } else {
-            _swOpenAPI.getSecurity()
+            _security = _swOpenAPI.getSecurity()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.security.SwSecurityRequirement::new)
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
@@ -253,7 +253,7 @@ public class SwOpenAPI implements OpenAPI {
         if (_swOpenAPI.getTags() == null) {
             _tags = null;
         } else {
-            _swOpenAPI.getTags()
+            _tags = _swOpenAPI.getTags()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.tags.SwTag::new)
                     .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));

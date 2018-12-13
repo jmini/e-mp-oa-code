@@ -179,7 +179,7 @@ public class SwHeader implements Header {
         if (_swHeader.getExamples() == null) {
             _examples = null;
         } else {
-            _swHeader.getExamples()
+            _examples = _swHeader.getExamples()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -188,7 +188,7 @@ public class SwHeader implements Header {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample>()));
         }
     }
 

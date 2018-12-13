@@ -255,7 +255,7 @@ public class SwParameter implements Parameter {
         if (_swParameter.getExamples() == null) {
             _examples = null;
         } else {
-            _swParameter.getExamples()
+            _examples = _swParameter.getExamples()
                     .entrySet()
                     .stream()
                     .collect(java.util.stream.Collectors.toMap(
@@ -264,7 +264,7 @@ public class SwParameter implements Parameter {
                             (k1, k2) -> {
                                 throw new IllegalStateException(String.format("Duplicate key %s", k1));
                             },
-                            () -> new java.util.LinkedHashMap()));
+                            () -> new java.util.LinkedHashMap<String, fr.jmini.empoa.swagger.parser.internal.models.examples.SwExample>()));
         }
     }
 
