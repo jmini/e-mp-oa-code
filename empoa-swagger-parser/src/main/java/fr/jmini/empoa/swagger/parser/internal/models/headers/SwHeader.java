@@ -95,14 +95,16 @@ public class SwHeader implements Header {
         _swHeader.setDeprecated(deprecated);
     }
 
+    private Boolean _allowEmptyValue;
+
     @Override
     public Boolean getAllowEmptyValue() {
-        return _swHeader.getAllowEmptyValue();
+        return _allowEmptyValue;
     }
 
     @Override
     public void setAllowEmptyValue(Boolean allowEmptyValue) {
-        _swHeader.setAllowEmptyValue(allowEmptyValue);
+        _allowEmptyValue = allowEmptyValue;
     }
 
     @Override
