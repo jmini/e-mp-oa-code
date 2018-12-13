@@ -86,7 +86,7 @@ public class SwInfo implements Info {
     private void initContact() {
         if (_swInfo.getContact() == null) {
             _contact = null;
-        } else {
+        } else if (_contact == null) {
             _contact = new fr.jmini.empoa.swagger.parser.internal.models.info.SwContact(_swInfo.getContact());
         }
     }
@@ -116,7 +116,7 @@ public class SwInfo implements Info {
     private void initLicense() {
         if (_swInfo.getLicense() == null) {
             _license = null;
-        } else {
+        } else if (_license == null) {
             _license = new fr.jmini.empoa.swagger.parser.internal.models.info.SwLicense(_swInfo.getLicense());
         }
     }

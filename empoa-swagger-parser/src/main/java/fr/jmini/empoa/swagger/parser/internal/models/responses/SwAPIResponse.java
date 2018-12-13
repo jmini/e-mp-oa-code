@@ -76,7 +76,7 @@ public class SwAPIResponse implements APIResponse {
     private void initHeaders() {
         if (_swAPIResponse.getHeaders() == null) {
             _headers = null;
-        } else {
+        } else if (_headers == null) {
             _headers = _swAPIResponse.getHeaders()
                     .entrySet()
                     .stream()
@@ -141,7 +141,7 @@ public class SwAPIResponse implements APIResponse {
     private void initContent() {
         if (_swAPIResponse.getContent() == null) {
             _content = null;
-        } else {
+        } else if (_content == null) {
             _content = new fr.jmini.empoa.swagger.parser.internal.models.media.SwContent(_swAPIResponse.getContent());
         }
     }
@@ -171,7 +171,7 @@ public class SwAPIResponse implements APIResponse {
     private void initLinks() {
         if (_swAPIResponse.getLinks() == null) {
             _links = null;
-        } else {
+        } else if (_links == null) {
             _links = _swAPIResponse.getLinks()
                     .entrySet()
                     .stream()

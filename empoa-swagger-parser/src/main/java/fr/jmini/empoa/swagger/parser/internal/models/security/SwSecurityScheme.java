@@ -191,7 +191,7 @@ public class SwSecurityScheme implements SecurityScheme {
     private void initFlows() {
         if (_swSecurityScheme.getFlows() == null) {
             _flows = null;
-        } else {
+        } else if (_flows == null) {
             _flows = new fr.jmini.empoa.swagger.parser.internal.models.security.SwOAuthFlows(_swSecurityScheme.getFlows());
         }
     }

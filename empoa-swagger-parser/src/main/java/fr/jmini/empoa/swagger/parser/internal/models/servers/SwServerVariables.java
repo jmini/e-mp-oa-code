@@ -56,7 +56,7 @@ public class SwServerVariables implements ServerVariables {
     private void initServerVariables() {
         if (_swServerVariables == null) {
             _serverVariables = null;
-        } else {
+        } else if (_serverVariables == null) {
             _serverVariables = _swServerVariables
                     .entrySet()
                     .stream()

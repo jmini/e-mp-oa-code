@@ -66,7 +66,7 @@ public class SwLink implements Link {
     private void initServer() {
         if (_swLink.getServer() == null) {
             _server = null;
-        } else {
+        } else if (_server == null) {
             _server = new fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer(_swLink.getServer());
         }
     }

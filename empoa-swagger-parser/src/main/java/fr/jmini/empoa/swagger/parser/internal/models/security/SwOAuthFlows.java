@@ -56,7 +56,7 @@ public class SwOAuthFlows implements OAuthFlows {
     private void initImplicit() {
         if (_swOAuthFlows.getImplicit() == null) {
             _implicit = null;
-        } else {
+        } else if (_implicit == null) {
             _implicit = new fr.jmini.empoa.swagger.parser.internal.models.security.SwOAuthFlow(_swOAuthFlows.getImplicit());
         }
     }
@@ -86,7 +86,7 @@ public class SwOAuthFlows implements OAuthFlows {
     private void initPassword() {
         if (_swOAuthFlows.getPassword() == null) {
             _password = null;
-        } else {
+        } else if (_password == null) {
             _password = new fr.jmini.empoa.swagger.parser.internal.models.security.SwOAuthFlow(_swOAuthFlows.getPassword());
         }
     }
@@ -116,7 +116,7 @@ public class SwOAuthFlows implements OAuthFlows {
     private void initClientCredentials() {
         if (_swOAuthFlows.getClientCredentials() == null) {
             _clientCredentials = null;
-        } else {
+        } else if (_clientCredentials == null) {
             _clientCredentials = new fr.jmini.empoa.swagger.parser.internal.models.security.SwOAuthFlow(_swOAuthFlows.getClientCredentials());
         }
     }
@@ -146,7 +146,7 @@ public class SwOAuthFlows implements OAuthFlows {
     private void initAuthorizationCode() {
         if (_swOAuthFlows.getAuthorizationCode() == null) {
             _authorizationCode = null;
-        } else {
+        } else if (_authorizationCode == null) {
             _authorizationCode = new fr.jmini.empoa.swagger.parser.internal.models.security.SwOAuthFlow(_swOAuthFlows.getAuthorizationCode());
         }
     }

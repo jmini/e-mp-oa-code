@@ -56,7 +56,7 @@ public class SwPaths implements Paths {
     private void initPathItems() {
         if (_swPaths == null) {
             _pathItems = null;
-        } else {
+        } else if (_pathItems == null) {
             _pathItems = _swPaths
                     .entrySet()
                     .stream()

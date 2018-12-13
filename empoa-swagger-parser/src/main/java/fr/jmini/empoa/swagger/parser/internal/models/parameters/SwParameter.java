@@ -224,7 +224,7 @@ public class SwParameter implements Parameter {
     private void initSchema() {
         if (_swParameter.getSchema() == null) {
             _schema = null;
-        } else {
+        } else if (_schema == null) {
             _schema = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema(_swParameter.getSchema());
         }
     }
@@ -254,7 +254,7 @@ public class SwParameter implements Parameter {
     private void initExamples() {
         if (_swParameter.getExamples() == null) {
             _examples = null;
-        } else {
+        } else if (_examples == null) {
             _examples = _swParameter.getExamples()
                     .entrySet()
                     .stream()
@@ -329,7 +329,7 @@ public class SwParameter implements Parameter {
     private void initContent() {
         if (_swParameter.getContent() == null) {
             _content = null;
-        } else {
+        } else if (_content == null) {
             _content = new fr.jmini.empoa.swagger.parser.internal.models.media.SwContent(_swParameter.getContent());
         }
     }

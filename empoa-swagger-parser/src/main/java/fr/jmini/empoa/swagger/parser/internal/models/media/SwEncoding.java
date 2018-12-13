@@ -66,7 +66,7 @@ public class SwEncoding implements Encoding {
     private void initHeaders() {
         if (_swEncoding.getHeaders() == null) {
             _headers = null;
-        } else {
+        } else if (_headers == null) {
             _headers = _swEncoding.getHeaders()
                     .entrySet()
                     .stream()

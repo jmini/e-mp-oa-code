@@ -86,7 +86,7 @@ public class SwPathItem implements PathItem {
     private void initGET() {
         if (_swPathItem.getGet() == null) {
             _gET = null;
-        } else {
+        } else if (_gET == null) {
             _gET = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getGet());
         }
     }
@@ -116,7 +116,7 @@ public class SwPathItem implements PathItem {
     private void initPUT() {
         if (_swPathItem.getPut() == null) {
             _pUT = null;
-        } else {
+        } else if (_pUT == null) {
             _pUT = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getPut());
         }
     }
@@ -146,7 +146,7 @@ public class SwPathItem implements PathItem {
     private void initPOST() {
         if (_swPathItem.getPost() == null) {
             _pOST = null;
-        } else {
+        } else if (_pOST == null) {
             _pOST = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getPost());
         }
     }
@@ -176,7 +176,7 @@ public class SwPathItem implements PathItem {
     private void initDELETE() {
         if (_swPathItem.getDelete() == null) {
             _dELETE = null;
-        } else {
+        } else if (_dELETE == null) {
             _dELETE = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getDelete());
         }
     }
@@ -206,7 +206,7 @@ public class SwPathItem implements PathItem {
     private void initOPTIONS() {
         if (_swPathItem.getOptions() == null) {
             _oPTIONS = null;
-        } else {
+        } else if (_oPTIONS == null) {
             _oPTIONS = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getOptions());
         }
     }
@@ -236,7 +236,7 @@ public class SwPathItem implements PathItem {
     private void initHEAD() {
         if (_swPathItem.getHead() == null) {
             _hEAD = null;
-        } else {
+        } else if (_hEAD == null) {
             _hEAD = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getHead());
         }
     }
@@ -266,7 +266,7 @@ public class SwPathItem implements PathItem {
     private void initPATCH() {
         if (_swPathItem.getPatch() == null) {
             _pATCH = null;
-        } else {
+        } else if (_pATCH == null) {
             _pATCH = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getPatch());
         }
     }
@@ -296,7 +296,7 @@ public class SwPathItem implements PathItem {
     private void initTRACE() {
         if (_swPathItem.getTrace() == null) {
             _tRACE = null;
-        } else {
+        } else if (_tRACE == null) {
             _tRACE = new fr.jmini.empoa.swagger.parser.internal.models.SwOperation(_swPathItem.getTrace());
         }
     }
@@ -356,7 +356,7 @@ public class SwPathItem implements PathItem {
     private void initServers() {
         if (_swPathItem.getServers() == null) {
             _servers = null;
-        } else {
+        } else if (_servers == null) {
             _servers = _swPathItem.getServers()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer::new)
@@ -419,7 +419,7 @@ public class SwPathItem implements PathItem {
     private void initParameters() {
         if (_swPathItem.getParameters() == null) {
             _parameters = null;
-        } else {
+        } else if (_parameters == null) {
             _parameters = _swPathItem.getParameters()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.parameters.SwParameter::new)

@@ -76,7 +76,7 @@ public class SwRequestBody implements RequestBody {
     private void initContent() {
         if (_swRequestBody.getContent() == null) {
             _content = null;
-        } else {
+        } else if (_content == null) {
             _content = new fr.jmini.empoa.swagger.parser.internal.models.media.SwContent(_swRequestBody.getContent());
         }
     }

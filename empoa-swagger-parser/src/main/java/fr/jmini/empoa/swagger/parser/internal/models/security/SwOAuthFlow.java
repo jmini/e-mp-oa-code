@@ -86,7 +86,7 @@ public class SwOAuthFlow implements OAuthFlow {
     private void initScopes() {
         if (_swOAuthFlow.getScopes() == null) {
             _scopes = null;
-        } else {
+        } else if (_scopes == null) {
             _scopes = new fr.jmini.empoa.swagger.parser.internal.models.security.SwScopes(_swOAuthFlow.getScopes());
         }
     }

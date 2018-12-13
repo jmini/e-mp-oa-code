@@ -23,7 +23,7 @@ public class SwContent implements Content {
     private void initMediaTypes() {
         if (_swContent == null) {
             _mediaTypes = null;
-        } else {
+        } else if (_mediaTypes == null) {
             _mediaTypes = _swContent
                     .entrySet()
                     .stream()

@@ -109,7 +109,7 @@ public class SwOperation implements Operation {
     private void initExternalDocs() {
         if (_swOperation.getExternalDocs() == null) {
             _externalDocs = null;
-        } else {
+        } else if (_externalDocs == null) {
             _externalDocs = new fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation(_swOperation.getExternalDocs());
         }
     }
@@ -149,7 +149,7 @@ public class SwOperation implements Operation {
     private void initParameters() {
         if (_swOperation.getParameters() == null) {
             _parameters = null;
-        } else {
+        } else if (_parameters == null) {
             _parameters = _swOperation.getParameters()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.parameters.SwParameter::new)
@@ -212,7 +212,7 @@ public class SwOperation implements Operation {
     private void initRequestBody() {
         if (_swOperation.getRequestBody() == null) {
             _requestBody = null;
-        } else {
+        } else if (_requestBody == null) {
             _requestBody = new fr.jmini.empoa.swagger.parser.internal.models.parameters.SwRequestBody(_swOperation.getRequestBody());
         }
     }
@@ -242,7 +242,7 @@ public class SwOperation implements Operation {
     private void initResponses() {
         if (_swOperation.getResponses() == null) {
             _responses = null;
-        } else {
+        } else if (_responses == null) {
             _responses = new fr.jmini.empoa.swagger.parser.internal.models.responses.SwAPIResponses(_swOperation.getResponses());
         }
     }
@@ -272,7 +272,7 @@ public class SwOperation implements Operation {
     private void initCallbacks() {
         if (_swOperation.getCallbacks() == null) {
             _callbacks = null;
-        } else {
+        } else if (_callbacks == null) {
             _callbacks = _swOperation.getCallbacks()
                     .entrySet()
                     .stream()
@@ -347,7 +347,7 @@ public class SwOperation implements Operation {
     private void initSecurity() {
         if (_swOperation.getSecurity() == null) {
             _security = null;
-        } else {
+        } else if (_security == null) {
             _security = _swOperation.getSecurity()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.security.SwSecurityRequirement::new)
@@ -410,7 +410,7 @@ public class SwOperation implements Operation {
     private void initServers() {
         if (_swOperation.getServers() == null) {
             _servers = null;
-        } else {
+        } else if (_servers == null) {
             _servers = _swOperation.getServers()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer::new)

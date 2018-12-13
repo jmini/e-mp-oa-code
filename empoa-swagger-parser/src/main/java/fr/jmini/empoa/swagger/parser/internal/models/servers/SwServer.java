@@ -76,7 +76,7 @@ public class SwServer implements Server {
     private void initVariables() {
         if (_swServer.getVariables() == null) {
             _variables = null;
-        } else {
+        } else if (_variables == null) {
             _variables = new fr.jmini.empoa.swagger.parser.internal.models.servers.SwServerVariables(_swServer.getVariables());
         }
     }

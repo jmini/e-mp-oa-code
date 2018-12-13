@@ -56,7 +56,7 @@ public class SwMediaType implements MediaType {
     private void initSchema() {
         if (_swMediaType.getSchema() == null) {
             _schema = null;
-        } else {
+        } else if (_schema == null) {
             _schema = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema(_swMediaType.getSchema());
         }
     }
@@ -86,7 +86,7 @@ public class SwMediaType implements MediaType {
     private void initExamples() {
         if (_swMediaType.getExamples() == null) {
             _examples = null;
-        } else {
+        } else if (_examples == null) {
             _examples = _swMediaType.getExamples()
                     .entrySet()
                     .stream()
@@ -161,7 +161,7 @@ public class SwMediaType implements MediaType {
     private void initEncoding() {
         if (_swMediaType.getEncoding() == null) {
             _encoding = null;
-        } else {
+        } else if (_encoding == null) {
             _encoding = _swMediaType.getEncoding()
                     .entrySet()
                     .stream()

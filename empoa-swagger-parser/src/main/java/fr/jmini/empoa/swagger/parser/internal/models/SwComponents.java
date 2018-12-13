@@ -56,7 +56,7 @@ public class SwComponents implements Components {
     private void initSchemas() {
         if (_swComponents.getSchemas() == null) {
             _schemas = null;
-        } else {
+        } else if (_schemas == null) {
             _schemas = _swComponents.getSchemas()
                     .entrySet()
                     .stream()
@@ -121,7 +121,7 @@ public class SwComponents implements Components {
     private void initResponses() {
         if (_swComponents.getResponses() == null) {
             _responses = null;
-        } else {
+        } else if (_responses == null) {
             _responses = _swComponents.getResponses()
                     .entrySet()
                     .stream()
@@ -186,7 +186,7 @@ public class SwComponents implements Components {
     private void initParameters() {
         if (_swComponents.getParameters() == null) {
             _parameters = null;
-        } else {
+        } else if (_parameters == null) {
             _parameters = _swComponents.getParameters()
                     .entrySet()
                     .stream()
@@ -251,7 +251,7 @@ public class SwComponents implements Components {
     private void initExamples() {
         if (_swComponents.getExamples() == null) {
             _examples = null;
-        } else {
+        } else if (_examples == null) {
             _examples = _swComponents.getExamples()
                     .entrySet()
                     .stream()
@@ -316,7 +316,7 @@ public class SwComponents implements Components {
     private void initRequestBodies() {
         if (_swComponents.getRequestBodies() == null) {
             _requestBodies = null;
-        } else {
+        } else if (_requestBodies == null) {
             _requestBodies = _swComponents.getRequestBodies()
                     .entrySet()
                     .stream()
@@ -381,7 +381,7 @@ public class SwComponents implements Components {
     private void initHeaders() {
         if (_swComponents.getHeaders() == null) {
             _headers = null;
-        } else {
+        } else if (_headers == null) {
             _headers = _swComponents.getHeaders()
                     .entrySet()
                     .stream()
@@ -446,7 +446,7 @@ public class SwComponents implements Components {
     private void initSecuritySchemes() {
         if (_swComponents.getSecuritySchemes() == null) {
             _securitySchemes = null;
-        } else {
+        } else if (_securitySchemes == null) {
             _securitySchemes = _swComponents.getSecuritySchemes()
                     .entrySet()
                     .stream()
@@ -511,7 +511,7 @@ public class SwComponents implements Components {
     private void initLinks() {
         if (_swComponents.getLinks() == null) {
             _links = null;
-        } else {
+        } else if (_links == null) {
             _links = _swComponents.getLinks()
                     .entrySet()
                     .stream()
@@ -576,7 +576,7 @@ public class SwComponents implements Components {
     private void initCallbacks() {
         if (_swComponents.getCallbacks() == null) {
             _callbacks = null;
-        } else {
+        } else if (_callbacks == null) {
             _callbacks = _swComponents.getCallbacks()
                     .entrySet()
                     .stream()

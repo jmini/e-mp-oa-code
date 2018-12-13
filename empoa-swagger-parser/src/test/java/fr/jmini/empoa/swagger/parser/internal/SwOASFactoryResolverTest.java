@@ -5,7 +5,7 @@ import static org.testng.Assert.assertEquals;
 import org.eclipse.microprofile.openapi.OASFactory;
 import org.testng.annotations.Test;
 
-public class OASFactoryResolverImplTest {
+public class SwOASFactoryResolverTest {
 
     @Test
     public void testCreateObject() {

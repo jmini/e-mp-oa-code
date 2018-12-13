@@ -1,1 +1,1 @@
-fr.jmini.empoa.internal.OASFactoryResolverImpl
+fr.jmini.empoa.swagger.parser.internal.SwOASFactoryResolver

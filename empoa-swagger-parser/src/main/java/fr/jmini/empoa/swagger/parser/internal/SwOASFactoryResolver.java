@@ -1,6 +1,6 @@
 package fr.jmini.empoa.swagger.parser.internal;
 
-public class OASFactoryResolverImpl extends org.eclipse.microprofile.openapi.spi.OASFactoryResolver {
+public class SwOASFactoryResolver extends org.eclipse.microprofile.openapi.spi.OASFactoryResolver {
 
     @Override
     @SuppressWarnings("unchecked")

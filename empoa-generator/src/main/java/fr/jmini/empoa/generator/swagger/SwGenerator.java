@@ -148,7 +148,7 @@ public class SwGenerator {
             sb.append("    private void " + initName + "() {\n");
             sb.append("        if (" + swVarName + swGetter + " == null) {\n");
             sb.append("            " + memberName + " = null;\n");
-            sb.append("        } else {\n");
+            sb.append("        } else if (" + memberName + " == null) {\n");
             if (isMapMember) {
                 sb.append("            " + memberName + " = " + swVarName + swGetter + "\n");
                 sb.append("                    .entrySet()\n");

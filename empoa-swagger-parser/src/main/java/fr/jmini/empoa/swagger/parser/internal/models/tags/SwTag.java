@@ -76,7 +76,7 @@ public class SwTag implements Tag {
     private void initExternalDocs() {
         if (_swTag.getExternalDocs() == null) {
             _externalDocs = null;
-        } else {
+        } else if (_externalDocs == null) {
             _externalDocs = new fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation(_swTag.getExternalDocs());
         }
     }

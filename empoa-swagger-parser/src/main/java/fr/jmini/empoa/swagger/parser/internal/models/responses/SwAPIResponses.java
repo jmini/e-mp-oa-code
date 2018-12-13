@@ -56,7 +56,7 @@ public class SwAPIResponses implements APIResponses {
     private void initAPIResponses() {
         if (_swAPIResponses == null) {
             _aPIResponses = null;
-        } else {
+        } else if (_aPIResponses == null) {
             _aPIResponses = _swAPIResponses
                     .entrySet()
                     .stream()

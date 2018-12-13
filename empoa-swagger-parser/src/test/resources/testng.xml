@@ -11,7 +11,7 @@
 
    <test name = "additionaltests">
       <classes>
-         <class name = "fr.jmini.empoa.swagger.parser.internal.OASFactoryResolverImplTest" />
+         <class name = "fr.jmini.empoa.swagger.parser.internal.SwOASFactoryResolverTest" />
       </classes>
    </test>
 

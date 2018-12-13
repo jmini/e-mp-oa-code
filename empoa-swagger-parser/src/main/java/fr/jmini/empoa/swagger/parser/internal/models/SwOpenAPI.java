@@ -66,7 +66,7 @@ public class SwOpenAPI implements OpenAPI {
     private void initInfo() {
         if (_swOpenAPI.getInfo() == null) {
             _info = null;
-        } else {
+        } else if (_info == null) {
             _info = new fr.jmini.empoa.swagger.parser.internal.models.info.SwInfo(_swOpenAPI.getInfo());
         }
     }
@@ -96,7 +96,7 @@ public class SwOpenAPI implements OpenAPI {
     private void initExternalDocs() {
         if (_swOpenAPI.getExternalDocs() == null) {
             _externalDocs = null;
-        } else {
+        } else if (_externalDocs == null) {
             _externalDocs = new fr.jmini.empoa.swagger.parser.internal.models.SwExternalDocumentation(_swOpenAPI.getExternalDocs());
         }
     }
@@ -126,7 +126,7 @@ public class SwOpenAPI implements OpenAPI {
     private void initServers() {
         if (_swOpenAPI.getServers() == null) {
             _servers = null;
-        } else {
+        } else if (_servers == null) {
             _servers = _swOpenAPI.getServers()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.servers.SwServer::new)
@@ -189,7 +189,7 @@ public class SwOpenAPI implements OpenAPI {
     private void initSecurity() {
         if (_swOpenAPI.getSecurity() == null) {
             _security = null;
-        } else {
+        } else if (_security == null) {
             _security = _swOpenAPI.getSecurity()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.security.SwSecurityRequirement::new)
@@ -252,7 +252,7 @@ public class SwOpenAPI implements OpenAPI {
     private void initTags() {
         if (_swOpenAPI.getTags() == null) {
             _tags = null;
-        } else {
+        } else if (_tags == null) {
             _tags = _swOpenAPI.getTags()
                     .stream()
                     .map(fr.jmini.empoa.swagger.parser.internal.models.tags.SwTag::new)
@@ -315,7 +315,7 @@ public class SwOpenAPI implements OpenAPI {
     private void initPaths() {
         if (_swOpenAPI.getPaths() == null) {
             _paths = null;
-        } else {
+        } else if (_paths == null) {
             _paths = new fr.jmini.empoa.swagger.parser.internal.models.SwPaths(_swOpenAPI.getPaths());
         }
     }
@@ -345,7 +345,7 @@ public class SwOpenAPI implements OpenAPI {
     private void initComponents() {
         if (_swOpenAPI.getComponents() == null) {
             _components = null;
-        } else {
+        } else if (_components == null) {
             _components = new fr.jmini.empoa.swagger.parser.internal.models.SwComponents(_swOpenAPI.getComponents());
         }
     }

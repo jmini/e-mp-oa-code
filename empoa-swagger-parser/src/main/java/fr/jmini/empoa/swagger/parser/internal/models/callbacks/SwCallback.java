@@ -66,7 +66,7 @@ public class SwCallback implements Callback {
     private void initPathItems() {
         if (_swCallback == null) {
             _pathItems = null;
-        } else {
+        } else if (_pathItems == null) {
             _pathItems = _swCallback
                     .entrySet()
                     .stream()
