@@ -53,7 +53,7 @@ public class SwDiscriminator implements Discriminator {
 
     @Override
     public Discriminator addMapping(String key, String string) {
-        _swDiscriminator.addMapping(key, string);
+        _swDiscriminator.mapping(key, string);
         return this;
     }
 
