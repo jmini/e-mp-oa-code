@@ -77,30 +77,12 @@ public class SwParameter implements Parameter {
 
     @Override
     public In getIn() {
-        if (_swParameter.getIn() == null) {
-            return null;
-        }
-        switch (_swParameter.getIn()) {
-        case "cookie":
-            return org.eclipse.microprofile.openapi.models.parameters.Parameter.In.COOKIE;
-        case "header":
-            return org.eclipse.microprofile.openapi.models.parameters.Parameter.In.HEADER;
-        case "path":
-            return org.eclipse.microprofile.openapi.models.parameters.Parameter.In.PATH;
-        case "query":
-            return org.eclipse.microprofile.openapi.models.parameters.Parameter.In.QUERY;
-        default:
-            throw new IllegalStateException("Unexpected enum value");
-        }
+        return _swParameter.getIn();
     }
 
     @Override
     public void setIn(In in) {
-        if (in == null) {
-            _swParameter.setIn(null);
-        } else {
-            _swParameter.setIn(in.toString());
-        }
+        _swParameter.setIn(in);
     }
 
     @Override

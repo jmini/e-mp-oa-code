@@ -189,11 +189,15 @@ public class SwGenerator {
                 }
             } else {
                 if (isMapMember || isListMember) {
-                    // TODO Swagger type instead of `member.fqType`
                     sb.append("        " + member.fqType + " " + var + " = " + swVarName + swGetter + ";\n");
                     sb.append("        if (" + var + " == null) {\n");
                     sb.append("            return null;\n");
                     sb.append("        }\n");
+                    if (isSingleMapMember) {
+                        sb.append("        if (" + var + ".isEmpty()) {\n");
+                        sb.append("            return java.util.Collections.emptyMap();\n");
+                        sb.append("        }\n");
+                    }
                 }
                 if (isMapMember) {
                     sb.append("        return java.util.Collections.unmodifiableMap(" + var + ");\n");

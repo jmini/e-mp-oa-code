@@ -24,6 +24,9 @@ public class SwSecurityRequirement implements SecurityRequirement {
         if (result == null) {
             return null;
         }
+        if (result.isEmpty()) {
+            return java.util.Collections.emptyMap();
+        }
         return java.util.Collections.unmodifiableMap(result);
     }
 

@@ -61,6 +61,9 @@ public class SwScopes implements Scopes {
         if (result == null) {
             return null;
         }
+        if (result.isEmpty()) {
+            return java.util.Collections.emptyMap();
+        }
         return java.util.Collections.unmodifiableMap(result);
     }
 

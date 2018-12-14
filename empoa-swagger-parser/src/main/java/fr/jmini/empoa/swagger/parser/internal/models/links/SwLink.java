@@ -127,7 +127,7 @@ public class SwLink implements Link {
 
     @Override
     public java.util.Map<String, Object> getParameters() {
-        java.util.Map<String, String> result = _swLink.getParameters();
+        java.util.Map<String, Object> result = _swLink.getParameters();
         if (result == null) {
             return null;
         }
@@ -150,7 +150,7 @@ public class SwLink implements Link {
 
     @Override
     public Link addParameter(String key, Object object) {
-        _swLink.parameters(key, object.toString());
+        _swLink.addParameter(key, object);
         return this;
     }
 
