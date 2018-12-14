@@ -31,8 +31,12 @@ public class SwMediaType implements MediaType {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swMediaType.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swMediaType.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -113,8 +117,12 @@ public class SwMediaType implements MediaType {
     public void setExamples(java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> examples) {
         _swMediaType.setExamples(null);
         if (examples != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> e : examples.entrySet()) {
-                this.addExample(e.getKey(), e.getValue());
+            if (examples.isEmpty()) {
+                _swMediaType.setExamples(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> e : examples.entrySet()) {
+                    this.addExample(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -188,8 +196,12 @@ public class SwMediaType implements MediaType {
     public void setEncoding(java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Encoding> encoding) {
         _swMediaType.setEncoding(null);
         if (encoding != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.Encoding> e : encoding.entrySet()) {
-                this.addEncoding(e.getKey(), e.getValue());
+            if (encoding.isEmpty()) {
+                _swMediaType.setEncoding(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.Encoding> e : encoding.entrySet()) {
+                    this.addEncoding(e.getKey(), e.getValue());
+                }
             }
         }
     }

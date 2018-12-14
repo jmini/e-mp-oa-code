@@ -41,8 +41,12 @@ public class SwRequestBody implements RequestBody {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swRequestBody.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swRequestBody.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }

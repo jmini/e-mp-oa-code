@@ -41,8 +41,12 @@ public class SwCallback implements Callback {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swCallback.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swCallback.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -93,8 +97,11 @@ public class SwCallback implements Callback {
     public void setPathItems(java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> pathItems) {
         _swCallback.clear();
         if (pathItems != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> e : pathItems.entrySet()) {
-                this.addPathItem(e.getKey(), e.getValue());
+            if (pathItems.isEmpty()) {
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> e : pathItems.entrySet()) {
+                    this.addPathItem(e.getKey(), e.getValue());
+                }
             }
         }
     }

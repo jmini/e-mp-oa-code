@@ -31,8 +31,11 @@ public class SwSecurityRequirement implements SecurityRequirement {
     public void setSchemes(java.util.Map<String, java.util.List<String>> schemes) {
         _swSecurityRequirement.clear();
         if (schemes != null) {
-            for (java.util.Map.Entry<String, java.util.List<String>> e : schemes.entrySet()) {
-                this.addScheme(e.getKey(), e.getValue());
+            if (schemes.isEmpty()) {
+            } else {
+                for (java.util.Map.Entry<String, java.util.List<String>> e : schemes.entrySet()) {
+                    this.addScheme(e.getKey(), e.getValue());
+                }
             }
         }
     }

@@ -41,8 +41,12 @@ public class SwAPIResponse implements APIResponse {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swAPIResponse.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swAPIResponse.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -103,8 +107,12 @@ public class SwAPIResponse implements APIResponse {
     public void setHeaders(java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> headers) {
         _swAPIResponse.setHeaders(null);
         if (headers != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.headers.Header> e : headers.entrySet()) {
-                this.addHeader(e.getKey(), e.getValue());
+            if (headers.isEmpty()) {
+                _swAPIResponse.setHeaders(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.headers.Header> e : headers.entrySet()) {
+                    this.addHeader(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -198,8 +206,12 @@ public class SwAPIResponse implements APIResponse {
     public void setLinks(java.util.Map<String, org.eclipse.microprofile.openapi.models.links.Link> links) {
         _swAPIResponse.setLinks(null);
         if (links != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.links.Link> e : links.entrySet()) {
-                this.addLink(e.getKey(), e.getValue());
+            if (links.isEmpty()) {
+                _swAPIResponse.setLinks(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.links.Link> e : links.entrySet()) {
+                    this.addLink(e.getKey(), e.getValue());
+                }
             }
         }
     }

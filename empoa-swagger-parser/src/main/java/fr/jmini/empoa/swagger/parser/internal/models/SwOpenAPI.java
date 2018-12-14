@@ -31,8 +31,12 @@ public class SwOpenAPI implements OpenAPI {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swOpenAPI.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swOpenAPI.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -147,8 +151,12 @@ public class SwOpenAPI implements OpenAPI {
     public void setServers(java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> servers) {
         _swOpenAPI.setServers(null);
         if (servers != null) {
-            for (org.eclipse.microprofile.openapi.models.servers.Server e : servers) {
-                this.addServer(e);
+            if (servers.isEmpty()) {
+                _swOpenAPI.setServers(new java.util.ArrayList<>());
+            } else {
+                for (org.eclipse.microprofile.openapi.models.servers.Server e : servers) {
+                    this.addServer(e);
+                }
             }
         }
     }
@@ -210,8 +218,12 @@ public class SwOpenAPI implements OpenAPI {
     public void setSecurity(java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> security) {
         _swOpenAPI.setSecurity(null);
         if (security != null) {
-            for (org.eclipse.microprofile.openapi.models.security.SecurityRequirement e : security) {
-                this.addSecurityRequirement(e);
+            if (security.isEmpty()) {
+                _swOpenAPI.setSecurity(new java.util.ArrayList<>());
+            } else {
+                for (org.eclipse.microprofile.openapi.models.security.SecurityRequirement e : security) {
+                    this.addSecurityRequirement(e);
+                }
             }
         }
     }
@@ -273,8 +285,12 @@ public class SwOpenAPI implements OpenAPI {
     public void setTags(java.util.List<org.eclipse.microprofile.openapi.models.tags.Tag> tags) {
         _swOpenAPI.setTags(null);
         if (tags != null) {
-            for (org.eclipse.microprofile.openapi.models.tags.Tag e : tags) {
-                this.addTag(e);
+            if (tags.isEmpty()) {
+                _swOpenAPI.setTags(new java.util.ArrayList<>());
+            } else {
+                for (org.eclipse.microprofile.openapi.models.tags.Tag e : tags) {
+                    this.addTag(e);
+                }
             }
         }
     }

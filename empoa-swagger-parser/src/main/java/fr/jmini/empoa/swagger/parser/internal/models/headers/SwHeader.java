@@ -41,8 +41,12 @@ public class SwHeader implements Header {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swHeader.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swHeader.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -91,16 +95,14 @@ public class SwHeader implements Header {
         _swHeader.setDeprecated(deprecated);
     }
 
-    private Boolean _allowEmptyValue;
-
     @Override
     public Boolean getAllowEmptyValue() {
-        return _allowEmptyValue;
+        return _swHeader.getAllowEmptyValue();
     }
 
     @Override
     public void setAllowEmptyValue(Boolean allowEmptyValue) {
-        _allowEmptyValue = allowEmptyValue;
+        _swHeader.setAllowEmptyValue(allowEmptyValue);
     }
 
     @Override
@@ -205,8 +207,12 @@ public class SwHeader implements Header {
     public void setExamples(java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> examples) {
         _swHeader.setExamples(null);
         if (examples != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> e : examples.entrySet()) {
-                this.addExample(e.getKey(), e.getValue());
+            if (examples.isEmpty()) {
+                _swHeader.setExamples(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> e : examples.entrySet()) {
+                    this.addExample(e.getKey(), e.getValue());
+                }
             }
         }
     }

@@ -31,8 +31,12 @@ public class SwOperation implements Operation {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swOperation.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swOperation.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -64,8 +68,12 @@ public class SwOperation implements Operation {
     public void setTags(java.util.List<String> tags) {
         _swOperation.setTags(null);
         if (tags != null) {
-            for (String e : tags) {
-                this.addTag(e);
+            if (tags.isEmpty()) {
+                _swOperation.setTags(new java.util.ArrayList<>());
+            } else {
+                for (String e : tags) {
+                    this.addTag(e);
+                }
             }
         }
     }
@@ -170,8 +178,12 @@ public class SwOperation implements Operation {
     public void setParameters(java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> parameters) {
         _swOperation.setParameters(null);
         if (parameters != null) {
-            for (org.eclipse.microprofile.openapi.models.parameters.Parameter e : parameters) {
-                this.addParameter(e);
+            if (parameters.isEmpty()) {
+                _swOperation.setParameters(new java.util.ArrayList<>());
+            } else {
+                for (org.eclipse.microprofile.openapi.models.parameters.Parameter e : parameters) {
+                    this.addParameter(e);
+                }
             }
         }
     }
@@ -299,8 +311,12 @@ public class SwOperation implements Operation {
     public void setCallbacks(java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> callbacks) {
         _swOperation.setCallbacks(null);
         if (callbacks != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> e : callbacks.entrySet()) {
-                this.addCallback(e.getKey(), e.getValue());
+            if (callbacks.isEmpty()) {
+                _swOperation.setCallbacks(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> e : callbacks.entrySet()) {
+                    this.addCallback(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -368,8 +384,12 @@ public class SwOperation implements Operation {
     public void setSecurity(java.util.List<org.eclipse.microprofile.openapi.models.security.SecurityRequirement> security) {
         _swOperation.setSecurity(null);
         if (security != null) {
-            for (org.eclipse.microprofile.openapi.models.security.SecurityRequirement e : security) {
-                this.addSecurityRequirement(e);
+            if (security.isEmpty()) {
+                _swOperation.setSecurity(new java.util.ArrayList<>());
+            } else {
+                for (org.eclipse.microprofile.openapi.models.security.SecurityRequirement e : security) {
+                    this.addSecurityRequirement(e);
+                }
             }
         }
     }
@@ -431,8 +451,12 @@ public class SwOperation implements Operation {
     public void setServers(java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> servers) {
         _swOperation.setServers(null);
         if (servers != null) {
-            for (org.eclipse.microprofile.openapi.models.servers.Server e : servers) {
-                this.addServer(e);
+            if (servers.isEmpty()) {
+                _swOperation.setServers(new java.util.ArrayList<>());
+            } else {
+                for (org.eclipse.microprofile.openapi.models.servers.Server e : servers) {
+                    this.addServer(e);
+                }
             }
         }
     }

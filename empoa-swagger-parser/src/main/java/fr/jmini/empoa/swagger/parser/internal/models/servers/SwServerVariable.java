@@ -31,8 +31,12 @@ public class SwServerVariable implements ServerVariable {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swServerVariable.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swServerVariable.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -64,8 +68,12 @@ public class SwServerVariable implements ServerVariable {
     public void setEnumeration(java.util.List<String> enumeration) {
         _swServerVariable.setEnum(null);
         if (enumeration != null) {
-            for (String e : enumeration) {
-                this.addEnumeration(e);
+            if (enumeration.isEmpty()) {
+                _swServerVariable.setEnum(new java.util.ArrayList<>());
+            } else {
+                for (String e : enumeration) {
+                    this.addEnumeration(e);
+                }
             }
         }
     }

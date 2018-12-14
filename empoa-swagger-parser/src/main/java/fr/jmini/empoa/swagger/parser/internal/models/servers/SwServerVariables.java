@@ -31,8 +31,12 @@ public class SwServerVariables implements ServerVariables {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swServerVariables.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swServerVariables.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -83,8 +87,11 @@ public class SwServerVariables implements ServerVariables {
     public void setServerVariables(java.util.Map<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> serverVariables) {
         _swServerVariables.clear();
         if (serverVariables != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> e : serverVariables.entrySet()) {
-                this.addServerVariable(e.getKey(), e.getValue());
+            if (serverVariables.isEmpty()) {
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> e : serverVariables.entrySet()) {
+                    this.addServerVariable(e.getKey(), e.getValue());
+                }
             }
         }
     }

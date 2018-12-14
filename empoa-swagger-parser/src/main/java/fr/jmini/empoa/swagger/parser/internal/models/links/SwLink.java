@@ -41,8 +41,12 @@ public class SwLink implements Link {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swLink.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swLink.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -123,7 +127,7 @@ public class SwLink implements Link {
 
     @Override
     public java.util.Map<String, Object> getParameters() {
-        java.util.Map<String, String> result = _swLink.getParameters();
+        java.util.Map<String, Object> result = _swLink.getParameters();
         if (result == null) {
             return null;
         }
@@ -134,15 +138,19 @@ public class SwLink implements Link {
     public void setParameters(java.util.Map<String, Object> parameters) {
         _swLink.setParameters(null);
         if (parameters != null) {
-            for (java.util.Map.Entry<String, Object> e : parameters.entrySet()) {
-                this.addParameter(e.getKey(), e.getValue());
+            if (parameters.isEmpty()) {
+                _swLink.setParameters(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : parameters.entrySet()) {
+                    this.addParameter(e.getKey(), e.getValue());
+                }
             }
         }
     }
 
     @Override
     public Link addParameter(String key, Object object) {
-        _swLink.parameters(key, object.toString());
+        _swLink.addParameter(key, object);
         return this;
     }
 

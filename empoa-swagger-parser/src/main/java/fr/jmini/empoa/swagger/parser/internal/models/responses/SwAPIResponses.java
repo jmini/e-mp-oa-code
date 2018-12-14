@@ -31,8 +31,12 @@ public class SwAPIResponses implements APIResponses {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swAPIResponses.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swAPIResponses.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -83,8 +87,11 @@ public class SwAPIResponses implements APIResponses {
     public void setAPIResponses(java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> aPIResponses) {
         _swAPIResponses.clear();
         if (aPIResponses != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> e : aPIResponses.entrySet()) {
-                this.addAPIResponse(e.getKey(), e.getValue());
+            if (aPIResponses.isEmpty()) {
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> e : aPIResponses.entrySet()) {
+                    this.addAPIResponse(e.getKey(), e.getValue());
+                }
             }
         }
     }

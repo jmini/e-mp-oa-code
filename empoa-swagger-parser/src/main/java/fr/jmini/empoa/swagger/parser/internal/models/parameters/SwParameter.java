@@ -41,8 +41,12 @@ public class SwParameter implements Parameter {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swParameter.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swParameter.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -73,30 +77,12 @@ public class SwParameter implements Parameter {
 
     @Override
     public In getIn() {
-        if (_swParameter.getIn() == null) {
-            return null;
-        }
-        switch (_swParameter.getIn()) {
-        case "cookie":
-            return org.eclipse.microprofile.openapi.models.parameters.Parameter.In.COOKIE;
-        case "header":
-            return org.eclipse.microprofile.openapi.models.parameters.Parameter.In.HEADER;
-        case "path":
-            return org.eclipse.microprofile.openapi.models.parameters.Parameter.In.PATH;
-        case "query":
-            return org.eclipse.microprofile.openapi.models.parameters.Parameter.In.QUERY;
-        default:
-            throw new IllegalStateException("Unexpected enum value");
-        }
+        return _swParameter.getIn();
     }
 
     @Override
     public void setIn(In in) {
-        if (in == null) {
-            _swParameter.setIn(null);
-        } else {
-            _swParameter.setIn(in.toString());
-        }
+        _swParameter.setIn(in);
     }
 
     @Override
@@ -281,8 +267,12 @@ public class SwParameter implements Parameter {
     public void setExamples(java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> examples) {
         _swParameter.setExamples(null);
         if (examples != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> e : examples.entrySet()) {
-                this.addExample(e.getKey(), e.getValue());
+            if (examples.isEmpty()) {
+                _swParameter.setExamples(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> e : examples.entrySet()) {
+                    this.addExample(e.getKey(), e.getValue());
+                }
             }
         }
     }

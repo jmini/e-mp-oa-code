@@ -31,8 +31,12 @@ public class SwExternalDocumentation implements ExternalDocumentation {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swExternalDocumentation.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swExternalDocumentation.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }

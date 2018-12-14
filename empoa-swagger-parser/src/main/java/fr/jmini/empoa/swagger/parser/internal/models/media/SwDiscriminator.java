@@ -41,15 +41,19 @@ public class SwDiscriminator implements Discriminator {
     public void setMapping(java.util.Map<String, String> mapping) {
         _swDiscriminator.setMapping(null);
         if (mapping != null) {
-            for (java.util.Map.Entry<String, String> e : mapping.entrySet()) {
-                this.addMapping(e.getKey(), e.getValue());
+            if (mapping.isEmpty()) {
+                _swDiscriminator.setMapping(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, String> e : mapping.entrySet()) {
+                    this.addMapping(e.getKey(), e.getValue());
+                }
             }
         }
     }
 
     @Override
     public Discriminator addMapping(String key, String string) {
-        _swDiscriminator.mapping(key, string);
+        _swDiscriminator.addMapping(key, string);
         return this;
     }
 

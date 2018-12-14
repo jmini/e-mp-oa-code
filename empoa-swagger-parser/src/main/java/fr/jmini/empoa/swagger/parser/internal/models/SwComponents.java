@@ -31,8 +31,12 @@ public class SwComponents implements Components {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swComponents.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swComponents.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -83,8 +87,12 @@ public class SwComponents implements Components {
     public void setSchemas(java.util.Map<String, org.eclipse.microprofile.openapi.models.media.Schema> schemas) {
         _swComponents.setSchemas(null);
         if (schemas != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.Schema> e : schemas.entrySet()) {
-                this.addSchema(e.getKey(), e.getValue());
+            if (schemas.isEmpty()) {
+                _swComponents.setSchemas(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.Schema> e : schemas.entrySet()) {
+                    this.addSchema(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -148,8 +156,12 @@ public class SwComponents implements Components {
     public void setResponses(java.util.Map<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> responses) {
         _swComponents.setResponses(null);
         if (responses != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> e : responses.entrySet()) {
-                this.addResponse(e.getKey(), e.getValue());
+            if (responses.isEmpty()) {
+                _swComponents.setResponses(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> e : responses.entrySet()) {
+                    this.addResponse(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -213,8 +225,12 @@ public class SwComponents implements Components {
     public void setParameters(java.util.Map<String, org.eclipse.microprofile.openapi.models.parameters.Parameter> parameters) {
         _swComponents.setParameters(null);
         if (parameters != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.parameters.Parameter> e : parameters.entrySet()) {
-                this.addParameter(e.getKey(), e.getValue());
+            if (parameters.isEmpty()) {
+                _swComponents.setParameters(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.parameters.Parameter> e : parameters.entrySet()) {
+                    this.addParameter(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -278,8 +294,12 @@ public class SwComponents implements Components {
     public void setExamples(java.util.Map<String, org.eclipse.microprofile.openapi.models.examples.Example> examples) {
         _swComponents.setExamples(null);
         if (examples != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> e : examples.entrySet()) {
-                this.addExample(e.getKey(), e.getValue());
+            if (examples.isEmpty()) {
+                _swComponents.setExamples(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> e : examples.entrySet()) {
+                    this.addExample(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -343,8 +363,12 @@ public class SwComponents implements Components {
     public void setRequestBodies(java.util.Map<String, org.eclipse.microprofile.openapi.models.parameters.RequestBody> requestBodies) {
         _swComponents.setRequestBodies(null);
         if (requestBodies != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.parameters.RequestBody> e : requestBodies.entrySet()) {
-                this.addRequestBody(e.getKey(), e.getValue());
+            if (requestBodies.isEmpty()) {
+                _swComponents.setRequestBodies(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.parameters.RequestBody> e : requestBodies.entrySet()) {
+                    this.addRequestBody(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -408,8 +432,12 @@ public class SwComponents implements Components {
     public void setHeaders(java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> headers) {
         _swComponents.setHeaders(null);
         if (headers != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.headers.Header> e : headers.entrySet()) {
-                this.addHeader(e.getKey(), e.getValue());
+            if (headers.isEmpty()) {
+                _swComponents.setHeaders(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.headers.Header> e : headers.entrySet()) {
+                    this.addHeader(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -473,8 +501,12 @@ public class SwComponents implements Components {
     public void setSecuritySchemes(java.util.Map<String, org.eclipse.microprofile.openapi.models.security.SecurityScheme> securitySchemes) {
         _swComponents.setSecuritySchemes(null);
         if (securitySchemes != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.security.SecurityScheme> e : securitySchemes.entrySet()) {
-                this.addSecurityScheme(e.getKey(), e.getValue());
+            if (securitySchemes.isEmpty()) {
+                _swComponents.setSecuritySchemes(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.security.SecurityScheme> e : securitySchemes.entrySet()) {
+                    this.addSecurityScheme(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -538,8 +570,12 @@ public class SwComponents implements Components {
     public void setLinks(java.util.Map<String, org.eclipse.microprofile.openapi.models.links.Link> links) {
         _swComponents.setLinks(null);
         if (links != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.links.Link> e : links.entrySet()) {
-                this.addLink(e.getKey(), e.getValue());
+            if (links.isEmpty()) {
+                _swComponents.setLinks(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.links.Link> e : links.entrySet()) {
+                    this.addLink(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -603,8 +639,12 @@ public class SwComponents implements Components {
     public void setCallbacks(java.util.Map<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> callbacks) {
         _swComponents.setCallbacks(null);
         if (callbacks != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> e : callbacks.entrySet()) {
-                this.addCallback(e.getKey(), e.getValue());
+            if (callbacks.isEmpty()) {
+                _swComponents.setCallbacks(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> e : callbacks.entrySet()) {
+                    this.addCallback(e.getKey(), e.getValue());
+                }
             }
         }
     }

@@ -232,15 +232,25 @@ public class SwGenerator {
                     }
                 }
                 sb.append("        if (" + varName + " != null) {\n");
-                if (isMapMember) {
-                    MapMember mapMember = (MapMember) member;
-                    sb.append("            for (" + member.fqType.replace("Map<", "Map.Entry<") + " e : " + varName + ".entrySet()) {\n");
-                    sb.append("                this." + mapMember.addName + "(e.getKey(), e.getValue());\n");
-                    sb.append("            }\n");
-                } else if (isListMember) {
-                    ListMember listMember = (ListMember) member;
-                    sb.append("            for (" + listMember.itemFqType + " e : " + varName + ") {\n");
-                    sb.append("                this." + listMember.addName + "(e);\n");
+                if (isMapMember || isListMember) {
+                    sb.append("            if (" + varName + ".isEmpty()) {\n");
+                    if (isMapMember && !isSingleMapMember) {
+                        sb.append("                " + swVarName + "." + swMember.setterName + "(new " + java.util.LinkedHashMap.class.getCanonicalName() + "<>());\n");
+                    } else if (isListMember) {
+                        sb.append("                " + swVarName + "." + swMember.setterName + "(new " + java.util.ArrayList.class.getCanonicalName() + "<>());\n");
+                    }
+                    sb.append("            } else {\n");
+                    if (isMapMember) {
+                        MapMember mapMember = (MapMember) member;
+                        sb.append("                for (" + member.fqType.replace("Map<", "Map.Entry<") + " e : " + varName + ".entrySet()) {\n");
+                        sb.append("                    this." + mapMember.addName + "(e.getKey(), e.getValue());\n");
+                        sb.append("                }\n");
+                    } else if (isListMember) {
+                        ListMember listMember = (ListMember) member;
+                        sb.append("                for (" + listMember.itemFqType + " e : " + varName + ") {\n");
+                        sb.append("                    this." + listMember.addName + "(e);\n");
+                        sb.append("                }\n");
+                    }
                     sb.append("            }\n");
                 } else {
                     appendTypeCheck(sb, varName, memberName, memberFqType, false, "            ");

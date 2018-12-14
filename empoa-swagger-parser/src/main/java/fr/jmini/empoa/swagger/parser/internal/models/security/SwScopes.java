@@ -31,8 +31,12 @@ public class SwScopes implements Scopes {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swScopes.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swScopes.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -64,8 +68,11 @@ public class SwScopes implements Scopes {
     public void setScopes(java.util.Map<String, String> scopes) {
         _swScopes.clear();
         if (scopes != null) {
-            for (java.util.Map.Entry<String, String> e : scopes.entrySet()) {
-                this.addScope(e.getKey(), e.getValue());
+            if (scopes.isEmpty()) {
+            } else {
+                for (java.util.Map.Entry<String, String> e : scopes.entrySet()) {
+                    this.addScope(e.getKey(), e.getValue());
+                }
             }
         }
     }

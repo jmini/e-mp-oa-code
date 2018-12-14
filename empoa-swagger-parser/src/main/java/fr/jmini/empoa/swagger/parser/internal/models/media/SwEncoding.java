@@ -31,8 +31,12 @@ public class SwEncoding implements Encoding {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swEncoding.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swEncoding.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -93,8 +97,12 @@ public class SwEncoding implements Encoding {
     public void setHeaders(java.util.Map<String, org.eclipse.microprofile.openapi.models.headers.Header> headers) {
         _swEncoding.setHeaders(null);
         if (headers != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.headers.Header> e : headers.entrySet()) {
-                this.addHeader(e.getKey(), e.getValue());
+            if (headers.isEmpty()) {
+                _swEncoding.setHeaders(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.headers.Header> e : headers.entrySet()) {
+                    this.addHeader(e.getKey(), e.getValue());
+                }
             }
         }
     }

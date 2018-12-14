@@ -50,8 +50,11 @@ public class SwContent implements Content {
     public void setMediaTypes(java.util.Map<String, org.eclipse.microprofile.openapi.models.media.MediaType> mediaTypes) {
         _swContent.clear();
         if (mediaTypes != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.MediaType> e : mediaTypes.entrySet()) {
-                this.addMediaType(e.getKey(), e.getValue());
+            if (mediaTypes.isEmpty()) {
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.MediaType> e : mediaTypes.entrySet()) {
+                    this.addMediaType(e.getKey(), e.getValue());
+                }
             }
         }
     }

@@ -31,8 +31,12 @@ public class SwPaths implements Paths {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swPaths.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swPaths.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -83,8 +87,11 @@ public class SwPaths implements Paths {
     public void setPathItems(java.util.Map<String, org.eclipse.microprofile.openapi.models.PathItem> pathItems) {
         _swPaths.clear();
         if (pathItems != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> e : pathItems.entrySet()) {
-                this.addPathItem(e.getKey(), e.getValue());
+            if (pathItems.isEmpty()) {
+            } else {
+                for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> e : pathItems.entrySet()) {
+                    this.addPathItem(e.getKey(), e.getValue());
+                }
             }
         }
     }

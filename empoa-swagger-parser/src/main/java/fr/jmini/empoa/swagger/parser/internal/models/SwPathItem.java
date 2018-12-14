@@ -41,8 +41,12 @@ public class SwPathItem implements PathItem {
     public void setExtensions(java.util.Map<String, Object> extensions) {
         _swPathItem.setExtensions(null);
         if (extensions != null) {
-            for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
-                this.addExtension(e.getKey(), e.getValue());
+            if (extensions.isEmpty()) {
+                _swPathItem.setExtensions(new java.util.LinkedHashMap<>());
+            } else {
+                for (java.util.Map.Entry<String, Object> e : extensions.entrySet()) {
+                    this.addExtension(e.getKey(), e.getValue());
+                }
             }
         }
     }
@@ -377,8 +381,12 @@ public class SwPathItem implements PathItem {
     public void setServers(java.util.List<org.eclipse.microprofile.openapi.models.servers.Server> servers) {
         _swPathItem.setServers(null);
         if (servers != null) {
-            for (org.eclipse.microprofile.openapi.models.servers.Server e : servers) {
-                this.addServer(e);
+            if (servers.isEmpty()) {
+                _swPathItem.setServers(new java.util.ArrayList<>());
+            } else {
+                for (org.eclipse.microprofile.openapi.models.servers.Server e : servers) {
+                    this.addServer(e);
+                }
             }
         }
     }
@@ -440,8 +448,12 @@ public class SwPathItem implements PathItem {
     public void setParameters(java.util.List<org.eclipse.microprofile.openapi.models.parameters.Parameter> parameters) {
         _swPathItem.setParameters(null);
         if (parameters != null) {
-            for (org.eclipse.microprofile.openapi.models.parameters.Parameter e : parameters) {
-                this.addParameter(e);
+            if (parameters.isEmpty()) {
+                _swPathItem.setParameters(new java.util.ArrayList<>());
+            } else {
+                for (org.eclipse.microprofile.openapi.models.parameters.Parameter e : parameters) {
+                    this.addParameter(e);
+                }
             }
         }
     }
