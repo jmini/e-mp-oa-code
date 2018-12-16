@@ -10,7 +10,7 @@ import org.eclipse.microprofile.openapi.models.info.Info;
 import org.eclipse.microprofile.openapi.models.responses.APIResponse;
 import org.eclipse.microprofile.openapi.models.responses.APIResponses;
 import org.eclipse.microprofile.openapi.models.servers.Server;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import com.google.gson.Gson;
 
