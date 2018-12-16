@@ -3,13 +3,6 @@ package fr.jmini.empoa.gson;
 import org.assertj.core.api.Assertions;
 import org.eclipse.microprofile.openapi.OASFactory;
 import org.eclipse.microprofile.openapi.models.OpenAPI;
-import org.eclipse.microprofile.openapi.models.Operation;
-import org.eclipse.microprofile.openapi.models.PathItem;
-import org.eclipse.microprofile.openapi.models.Paths;
-import org.eclipse.microprofile.openapi.models.info.Info;
-import org.eclipse.microprofile.openapi.models.responses.APIResponse;
-import org.eclipse.microprofile.openapi.models.responses.APIResponses;
-import org.eclipse.microprofile.openapi.models.servers.Server;
 import org.testng.annotations.Test;
 
 import com.google.gson.Gson;
@@ -18,19 +11,19 @@ public class OASGsonSerializerTest {
 
     @Test
     public void testSerializePing() throws Exception {
-        OpenAPI openAPI = OASFactory.createObject(OpenAPI.class);
+        OpenAPI openAPI = OASFactory.createOpenAPI();
         openAPI.setOpenapi("3.0.1");
-        openAPI.setInfo(OASFactory.createObject(Info.class)
+        openAPI.setInfo(OASFactory.createInfo()
                 .title("Ping Specification")
                 .version("1.0"));
-        openAPI.addServer(OASFactory.createObject(Server.class)
+        openAPI.addServer(OASFactory.createServer()
                 .url("http://localhost:8000/"));
-        openAPI.setPaths(OASFactory.createObject(Paths.class)
-                .addPathItem("/ping", OASFactory.createObject(PathItem.class)
-                        .GET(OASFactory.createObject(Operation.class)
+        openAPI.setPaths(OASFactory.createPaths()
+                .addPathItem("/ping", OASFactory.createPathItem()
+                        .GET(OASFactory.createOperation()
                                 .operationId("pingGet")
-                                .responses(OASFactory.createObject(APIResponses.class)
-                                        .addApiResponse("200", OASFactory.createObject(APIResponse.class)
+                                .responses(OASFactory.createAPIResponses()
+                                        .addAPIResponse("200", OASFactory.createAPIResponse()
                                                 .description("OK"))))));
 
         Assertions.assertThat(openAPI)
