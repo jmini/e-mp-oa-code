@@ -1,0 +1,6 @@
+rootProject.name = 'empoa'
+
+include 'empoa-generator'
+include 'empoa-gson-serializer'
+include 'empoa-simple-models-impl'
+include 'empoa-swagger-parser'
