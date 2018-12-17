@@ -10,7 +10,7 @@ public class OAuthFlowsTest {
 
     @Test
     public void testCreateOAuthFlows() {
-        OAuthFlows oAuthFlows = OASFactory.createObject(OAuthFlows.class);
+        OAuthFlows oAuthFlows = OASFactory.createOAuthFlows();
         assertThat(oAuthFlows).isNotNull();
     }
 

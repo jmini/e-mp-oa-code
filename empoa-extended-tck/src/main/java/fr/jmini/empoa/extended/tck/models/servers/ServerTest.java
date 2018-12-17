@@ -10,7 +10,7 @@ public class ServerTest {
 
     @Test
     public void testCreateServer() {
-        Server server = OASFactory.createObject(Server.class);
+        Server server = OASFactory.createServer();
         assertThat(server).isNotNull();
     }
 

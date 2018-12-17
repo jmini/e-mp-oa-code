@@ -10,7 +10,7 @@ public class RequestBodyTest {
 
     @Test
     public void testCreateRequestBody() {
-        RequestBody requestBody = OASFactory.createObject(RequestBody.class);
+        RequestBody requestBody = OASFactory.createRequestBody();
         assertThat(requestBody).isNotNull();
     }
 

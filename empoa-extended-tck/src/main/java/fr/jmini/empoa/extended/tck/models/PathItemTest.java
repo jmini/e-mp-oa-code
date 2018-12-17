@@ -10,7 +10,7 @@ public class PathItemTest {
 
     @Test
     public void testCreatePathItem() {
-        PathItem pathItem = OASFactory.createObject(PathItem.class);
+        PathItem pathItem = OASFactory.createPathItem();
         assertThat(pathItem).isNotNull();
     }
 

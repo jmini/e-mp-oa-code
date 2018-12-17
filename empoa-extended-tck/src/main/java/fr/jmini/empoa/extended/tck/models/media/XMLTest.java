@@ -10,7 +10,7 @@ public class XMLTest {
 
     @Test
     public void testCreateXML() {
-        XML xML = OASFactory.createObject(XML.class);
+        XML xML = OASFactory.createXML();
         assertThat(xML).isNotNull();
     }
 

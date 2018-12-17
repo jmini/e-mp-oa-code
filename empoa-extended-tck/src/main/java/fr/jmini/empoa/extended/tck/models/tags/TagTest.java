@@ -10,7 +10,7 @@ public class TagTest {
 
     @Test
     public void testCreateTag() {
-        Tag tag = OASFactory.createObject(Tag.class);
+        Tag tag = OASFactory.createTag();
         assertThat(tag).isNotNull();
     }
 

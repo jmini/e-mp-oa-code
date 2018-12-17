@@ -10,7 +10,7 @@ public class MediaTypeTest {
 
     @Test
     public void testCreateMediaType() {
-        MediaType mediaType = OASFactory.createObject(MediaType.class);
+        MediaType mediaType = OASFactory.createMediaType();
         assertThat(mediaType).isNotNull();
     }
 

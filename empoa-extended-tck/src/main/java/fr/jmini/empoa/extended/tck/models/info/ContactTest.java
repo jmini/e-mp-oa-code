@@ -10,7 +10,7 @@ public class ContactTest {
 
     @Test
     public void testCreateContact() {
-        Contact contact = OASFactory.createObject(Contact.class);
+        Contact contact = OASFactory.createContact();
         assertThat(contact).isNotNull();
     }
 

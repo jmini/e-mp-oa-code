@@ -10,7 +10,7 @@ public class SecuritySchemeTest {
 
     @Test
     public void testCreateSecurityScheme() {
-        SecurityScheme securityScheme = OASFactory.createObject(SecurityScheme.class);
+        SecurityScheme securityScheme = OASFactory.createSecurityScheme();
         assertThat(securityScheme).isNotNull();
     }
 

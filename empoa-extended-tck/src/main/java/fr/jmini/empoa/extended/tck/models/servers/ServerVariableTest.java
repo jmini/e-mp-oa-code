@@ -10,7 +10,7 @@ public class ServerVariableTest {
 
     @Test
     public void testCreateServerVariable() {
-        ServerVariable serverVariable = OASFactory.createObject(ServerVariable.class);
+        ServerVariable serverVariable = OASFactory.createServerVariable();
         assertThat(serverVariable).isNotNull();
     }
 

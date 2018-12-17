@@ -10,7 +10,7 @@ public class ParameterTest {
 
     @Test
     public void testCreateParameter() {
-        Parameter parameter = OASFactory.createObject(Parameter.class);
+        Parameter parameter = OASFactory.createParameter();
         assertThat(parameter).isNotNull();
     }
 

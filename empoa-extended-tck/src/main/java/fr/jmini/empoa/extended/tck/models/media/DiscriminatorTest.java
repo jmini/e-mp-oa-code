@@ -10,7 +10,7 @@ public class DiscriminatorTest {
 
     @Test
     public void testCreateDiscriminator() {
-        Discriminator discriminator = OASFactory.createObject(Discriminator.class);
+        Discriminator discriminator = OASFactory.createDiscriminator();
         assertThat(discriminator).isNotNull();
     }
 

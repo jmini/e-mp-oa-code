@@ -10,7 +10,7 @@ public class LicenseTest {
 
     @Test
     public void testCreateLicense() {
-        License license = OASFactory.createObject(License.class);
+        License license = OASFactory.createLicense();
         assertThat(license).isNotNull();
     }
 

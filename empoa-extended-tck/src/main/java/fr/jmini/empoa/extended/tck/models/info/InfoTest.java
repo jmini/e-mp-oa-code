@@ -10,7 +10,7 @@ public class InfoTest {
 
     @Test
     public void testCreateInfo() {
-        Info info = OASFactory.createObject(Info.class);
+        Info info = OASFactory.createInfo();
         assertThat(info).isNotNull();
     }
 

@@ -10,7 +10,7 @@ public class EncodingTest {
 
     @Test
     public void testCreateEncoding() {
-        Encoding encoding = OASFactory.createObject(Encoding.class);
+        Encoding encoding = OASFactory.createEncoding();
         assertThat(encoding).isNotNull();
     }
 

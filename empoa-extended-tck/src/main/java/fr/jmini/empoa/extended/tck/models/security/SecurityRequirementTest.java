@@ -10,7 +10,7 @@ public class SecurityRequirementTest {
 
     @Test
     public void testCreateSecurityRequirement() {
-        SecurityRequirement securityRequirement = OASFactory.createObject(SecurityRequirement.class);
+        SecurityRequirement securityRequirement = OASFactory.createSecurityRequirement();
         assertThat(securityRequirement).isNotNull();
     }
 

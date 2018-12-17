@@ -10,7 +10,7 @@ public class CallbackTest {
 
     @Test
     public void testCreateCallback() {
-        Callback callback = OASFactory.createObject(Callback.class);
+        Callback callback = OASFactory.createCallback();
         assertThat(callback).isNotNull();
     }
 

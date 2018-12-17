@@ -10,7 +10,7 @@ public class OpenAPITest {
 
     @Test
     public void testCreateOpenAPI() {
-        OpenAPI openAPI = OASFactory.createObject(OpenAPI.class);
+        OpenAPI openAPI = OASFactory.createOpenAPI();
         assertThat(openAPI).isNotNull();
     }
 

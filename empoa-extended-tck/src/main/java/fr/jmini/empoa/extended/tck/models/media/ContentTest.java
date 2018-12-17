@@ -10,7 +10,7 @@ public class ContentTest {
 
     @Test
     public void testCreateContent() {
-        Content content = OASFactory.createObject(Content.class);
+        Content content = OASFactory.createContent();
         assertThat(content).isNotNull();
     }
 

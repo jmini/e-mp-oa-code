@@ -40,7 +40,7 @@ public class TckInitialClassGeneratorMain {
         sb.append("\n");
         sb.append("    @Test\n");
         sb.append("    public void testCreate" + simpleNmae + "() {\n");
-        sb.append("        " + simpleNmae + " " + varName + " = OASFactory.createObject(" + simpleNmae + ".class);\n");
+        sb.append("        " + simpleNmae + " " + varName + " = OASFactory.create" + simpleNmae + "();\n");
         sb.append("        assertThat(" + varName + ").isNotNull();\n");
         sb.append("    }\n");
         sb.append("\n");

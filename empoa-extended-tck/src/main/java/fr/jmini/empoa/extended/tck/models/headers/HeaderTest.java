@@ -10,7 +10,7 @@ public class HeaderTest {
 
     @Test
     public void testCreateHeader() {
-        Header header = OASFactory.createObject(Header.class);
+        Header header = OASFactory.createHeader();
         assertThat(header).isNotNull();
     }
 

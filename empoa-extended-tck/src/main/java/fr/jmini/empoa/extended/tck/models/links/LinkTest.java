@@ -10,7 +10,7 @@ public class LinkTest {
 
     @Test
     public void testCreateLink() {
-        Link link = OASFactory.createObject(Link.class);
+        Link link = OASFactory.createLink();
         assertThat(link).isNotNull();
     }
 

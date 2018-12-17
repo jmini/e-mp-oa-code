@@ -10,7 +10,7 @@ public class ExampleTest {
 
     @Test
     public void testCreateExample() {
-        Example example = OASFactory.createObject(Example.class);
+        Example example = OASFactory.createExample();
         assertThat(example).isNotNull();
     }
 

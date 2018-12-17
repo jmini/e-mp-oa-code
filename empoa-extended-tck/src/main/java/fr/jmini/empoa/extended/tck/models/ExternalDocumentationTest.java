@@ -10,7 +10,7 @@ public class ExternalDocumentationTest {
 
     @Test
     public void testCreateExternalDocumentation() {
-        ExternalDocumentation externalDocumentation = OASFactory.createObject(ExternalDocumentation.class);
+        ExternalDocumentation externalDocumentation = OASFactory.createExternalDocumentation();
         assertThat(externalDocumentation).isNotNull();
     }
 

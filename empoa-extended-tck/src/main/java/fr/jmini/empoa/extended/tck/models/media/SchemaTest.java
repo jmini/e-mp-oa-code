@@ -10,7 +10,7 @@ public class SchemaTest {
 
     @Test
     public void testCreateSchema() {
-        Schema schema = OASFactory.createObject(Schema.class);
+        Schema schema = OASFactory.createSchema();
         assertThat(schema).isNotNull();
     }
 

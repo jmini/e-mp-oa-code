@@ -10,7 +10,7 @@ public class PathsTest {
 
     @Test
     public void testCreatePaths() {
-        Paths paths = OASFactory.createObject(Paths.class);
+        Paths paths = OASFactory.createPaths();
         assertThat(paths).isNotNull();
     }
 

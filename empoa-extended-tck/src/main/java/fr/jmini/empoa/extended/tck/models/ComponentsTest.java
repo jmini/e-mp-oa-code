@@ -10,7 +10,7 @@ public class ComponentsTest {
 
     @Test
     public void testCreateComponents() {
-        Components components = OASFactory.createObject(Components.class);
+        Components components = OASFactory.createComponents();
         assertThat(components).isNotNull();
     }
 

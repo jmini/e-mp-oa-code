@@ -10,7 +10,7 @@ public class OperationTest {
 
     @Test
     public void testCreateOperation() {
-        Operation operation = OASFactory.createObject(Operation.class);
+        Operation operation = OASFactory.createOperation();
         assertThat(operation).isNotNull();
     }
 

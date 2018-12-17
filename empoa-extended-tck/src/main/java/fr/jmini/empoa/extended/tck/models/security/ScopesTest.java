@@ -10,7 +10,7 @@ public class ScopesTest {
 
     @Test
     public void testCreateScopes() {
-        Scopes scopes = OASFactory.createObject(Scopes.class);
+        Scopes scopes = OASFactory.createScopes();
         assertThat(scopes).isNotNull();
     }
 
