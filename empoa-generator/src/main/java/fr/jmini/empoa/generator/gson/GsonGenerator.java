@@ -1,13 +1,12 @@
 package fr.jmini.empoa.generator.gson;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import fr.jmini.empoa.generator.Input;
 import fr.jmini.empoa.specs.Element;
 import fr.jmini.empoa.specs.IMember;
 import fr.jmini.empoa.specs.Member;
+import fr.jmini.empoa.util.FileUtil;
 import fr.jmini.empoa.util.StringUtil;
 
 public class GsonGenerator {
@@ -106,9 +105,7 @@ public class GsonGenerator {
     }
 
     public void writeFile() throws IOException {
-        Path file = input.srcFolder.resolve(serializerPackageName.replace(".", "/") + "/" + serializerClassName + ".java");
-        Files.createDirectories(file.getParent());
-        Files.write(file, generateContent().getBytes());
+        FileUtil.writeJavaClass(input.srcFolder, serializerPackageName, serializerClassName, generateContent());
     }
 
 }
