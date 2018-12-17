@@ -19,8 +19,8 @@ dependencies {
     api "com.google.code.gson:gson:$gsonVersion"
 
     testRuntime project(':empoa-simple-models-impl')
-    testCompile "org.testng:testng:$testngVersion"
-    testCompile "org.assertj:assertj-core:$assertjVersion"
+    testImplementation "org.testng:testng:$testngVersion"
+    testImplementation "org.assertj:assertj-core:$assertjVersion"
 }
 
 publishing {
