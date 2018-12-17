@@ -16,10 +16,8 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 
 dependencies {
     api "org.eclipse.microprofile.openapi:microprofile-openapi-api:$mpOpenAPIVersion"
-    testImplementation "org.eclipse.microprofile.openapi:microprofile-openapi-tck:$mpOpenAPIVersion"
-    testImplementation project(':empoa-extended-tck')
-    testImplementation "org.testng:testng:$testngVersion"
-    testImplementation "org.assertj:assertj-core:$assertjVersion"
+    api "org.testng:testng:$testngVersion"
+    implementation "org.assertj:assertj-core:$assertjVersion"
 }
 
 publishing {

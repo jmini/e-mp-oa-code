@@ -1,8 +1,6 @@
 package fr.jmini.empoa.generator.simple;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import fr.jmini.empoa.generator.Input;
 import fr.jmini.empoa.specs.AdditionalMethod;
@@ -12,6 +10,7 @@ import fr.jmini.empoa.specs.IMember;
 import fr.jmini.empoa.specs.ListMember;
 import fr.jmini.empoa.specs.MapMember;
 import fr.jmini.empoa.specs.Member;
+import fr.jmini.empoa.util.FileUtil;
 import fr.jmini.empoa.util.StringUtil;
 
 public class SimpleGenerator {
@@ -260,9 +259,6 @@ public class SimpleGenerator {
     }
 
     public void writeFile() throws IOException {
-        Path file = input.srcFolder.resolve(implPackageName.replace(".", "/") + "/" + implClassName + ".java");
-        Files.createDirectories(file.getParent());
-        Files.write(file, generateContent().getBytes());
+        FileUtil.writeJavaClass(input.srcFolder, implPackageName, implClassName, generateContent());
     }
-
 }
