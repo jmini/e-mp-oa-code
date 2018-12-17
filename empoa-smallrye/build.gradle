@@ -1,0 +1,33 @@
+plugins {
+    id 'java-library'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+test {
+    useTestNG() 
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+dependencies {
+    api "org.eclipse.microprofile.openapi:microprofile-openapi-api:$mpOpenAPIVersion"
+    implementation "io.smallrye:smallrye-open-api:$smallryeVersion"
+
+    testImplementation project(':empoa-extended-tck')
+    testImplementation "org.testng:testng:$testngVersion"
+    testImplementation "org.assertj:assertj-core:$assertjVersion"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+        }
+    }
+}
