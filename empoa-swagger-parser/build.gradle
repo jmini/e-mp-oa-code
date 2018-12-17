@@ -19,6 +19,7 @@ dependencies {
     implementation "io.swagger.parser.v3:swagger-parser:$swaggerParserVersion"
 
     testImplementation "org.eclipse.microprofile.openapi:microprofile-openapi-tck:$mpOpenAPIVersion"
+    testImplementation project(':empoa-extended-tck')
     testImplementation "org.testng:testng:$testngVersion"
     testImplementation "org.assertj:assertj-core:$assertjVersion"
 }

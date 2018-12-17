@@ -18,6 +18,7 @@ public class TckExtendsClassGeneratorMain {
 
     public static void main(String[] args) throws Exception {
         createTests("fr.jmini.empoa.simple.tck", "../empoa-simple-models-impl/src/test/java");
+        createTests("fr.jmini.empoa.swagger.parser.tck", "../empoa-swagger-parser/src/test/java");
     }
 
     private static void createTests(String packageName, String path) throws IOException {
