@@ -338,7 +338,7 @@ public class OpenAPISpec {
         members.add(new Member(MemberType.Schema_MaxProperties, "MaxProperties", Integer.class.getSimpleName()));
         members.add(new Member(MemberType.Schema_MinProperties, "MinProperties", Integer.class.getSimpleName()));
         members.add(new ListMember(MemberType.Schema_Required, "Required", String.class.getSimpleName()));
-        members.add(new Member(MemberType.Schema_Type, "Type", Schema.SchemaType.class.getSimpleName()));
+        members.add(new Member(MemberType.Schema_Type, "Type", Schema.SchemaType.class.getCanonicalName()));
         members.add(new Member(MemberType.Schema_Not, "Not", Schema.class.getCanonicalName()));
         members.add(new MapMember(MemberType.Schema_Properties, "Properties", Schema.class.getCanonicalName()));
         members.add(new Member(MemberType.Schema_AdditionalProperties_Schema, "AdditionalPropertiesSchema", Schema.class.getCanonicalName(), true, true, false, true));
@@ -374,7 +374,7 @@ public class OpenAPISpec {
     public static Element createParameter() {
         List<IMember> members = new ArrayList<>();
         members.add(new Member(MemberType.Parameter_Name, "Name", String.class.getSimpleName()));
-        members.add(new Member(MemberType.Parameter_In, "In", Parameter.In.class.getSimpleName()));
+        members.add(new Member(MemberType.Parameter_In, "In", Parameter.In.class.getCanonicalName()));
         members.add(new Member(MemberType.Parameter_Description, "Description", String.class.getSimpleName()));
         members.add(new Member(MemberType.Parameter_Required, "Required", Boolean.class.getSimpleName()));
         members.add(new Member(MemberType.Parameter_Deprecated, "Deprecated", Boolean.class.getSimpleName()));
