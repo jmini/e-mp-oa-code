@@ -20,6 +20,7 @@ dependencies {
 
     testImplementation "org.eclipse.microprofile.openapi:microprofile-openapi-tck:$mpOpenAPIVersion"
     testImplementation project(':empoa-extended-tck')
+    testImplementation project(':empoa-gson-serializer')
     testImplementation "org.testng:testng:$testngVersion"
     testImplementation "org.assertj:assertj-core:$assertjVersion"
 }
