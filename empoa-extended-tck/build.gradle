@@ -18,6 +18,7 @@ dependencies {
     api "org.eclipse.microprofile.openapi:microprofile-openapi-api:$mpOpenAPIVersion"
     api "org.testng:testng:$testngVersion"
     implementation "org.assertj:assertj-core:$assertjVersion"
+    implementation "net.javacrumbs.json-unit:json-unit-assertj:$jsonUnitVersion"
 }
 
 publishing {
