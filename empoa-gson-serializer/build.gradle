@@ -19,6 +19,7 @@ dependencies {
     api "com.google.code.gson:gson:$gsonVersion"
 
     testRuntime project(':empoa-simple-models-impl')
+    testImplementation project(':empoa-extended-tck')
     testImplementation "org.testng:testng:$testngVersion"
     testImplementation "org.assertj:assertj-core:$assertjVersion"
 }
