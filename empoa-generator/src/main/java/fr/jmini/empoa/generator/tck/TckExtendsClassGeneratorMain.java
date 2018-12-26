@@ -37,9 +37,16 @@ public class TckExtendsClassGeneratorMain {
         StringBuilder sb = new StringBuilder();
         sb.append("package " + pkgName + ";\n");
         sb.append("\n");
+        sb.append("import org.testng.annotations.Test;\n");
+        sb.append("\n");
         sb.append("import " + tckPckName + "." + tckClsName + ";\n");
         sb.append("\n");
         sb.append("public class " + clsName + " extends " + tckClsName + " {\n");
+        sb.append("\n");
+        sb.append("    @Test\n");
+        sb.append("    public void detect() throws Exception {\n");
+        sb.append("        // This is requested by the gradle build to detect this test class, see https://docs.gradle.org/current/userguide/java_testing.html#sec:test_detection\n");
+        sb.append("    }\n");
         sb.append("}\n");
         FileUtil.writeJavaClass(Paths.get(path), pkgName, clsName, sb.toString());
     }
