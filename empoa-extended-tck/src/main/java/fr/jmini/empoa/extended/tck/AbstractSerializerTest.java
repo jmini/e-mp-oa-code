@@ -1,6 +1,7 @@
 package fr.jmini.empoa.extended.tck;
 
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +9,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
-import org.assertj.core.api.Assertions;
 import org.eclipse.microprofile.openapi.models.OpenAPI;
 import org.testng.annotations.Test;
 
@@ -16,16 +16,26 @@ import fr.jmini.empoa.extended.tck.specs.PingSpec;
 
 public abstract class AbstractSerializerTest {
 
+    private static final String PING = "/extended-tck/specs/ping.json";
+
     @Test
     public void testSerializePing() throws Exception {
-        OpenAPI openAPI = PingSpec.create();
-        Assertions.assertThat(openAPI)
-                .isNotNull();
+        OpenAPI openAPI = createOpenAPI(PING);
+        assertThat(openAPI).isNotNull();
 
-        String expected = readFromResource("/extended-tck/specs/ping.json");
+        String expected = readFromResource(PING);
         String json = convertToJson(openAPI);
 
         assertThatJson(json).isEqualTo(expected);
+    }
+
+    protected OpenAPI createOpenAPI(String specPath) {
+        switch (specPath) {
+        case PING:
+            return PingSpec.create();
+        default:
+            throw new IllegalArgumentException("Unknown spec: " + specPath);
+        }
     }
 
     protected abstract String convertToJson(OpenAPI openAPI) throws IOException;
