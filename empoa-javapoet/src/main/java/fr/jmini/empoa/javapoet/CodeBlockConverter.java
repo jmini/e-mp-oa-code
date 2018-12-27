@@ -11,56 +11,47 @@ public class CodeBlockConverter {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createComponents()"));
         if (components.getSchemas() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.Schema> entry : components.getSchemas()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.Schema> entry : components.getSchemas().entrySet()) {
                 list.add(CodeBlock.of("addSchema(\n$S, $L\n)", entry.getKey(), createSchema(entry.getValue())));
             }
         }
         if (components.getResponses() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> entry : components.getResponses()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> entry : components.getResponses().entrySet()) {
                 list.add(CodeBlock.of("addResponse(\n$S, $L\n)", entry.getKey(), createAPIResponse(entry.getValue())));
             }
         }
         if (components.getParameters() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.parameters.Parameter> entry : components.getParameters()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.parameters.Parameter> entry : components.getParameters().entrySet()) {
                 list.add(CodeBlock.of("addParameter(\n$S, $L\n)", entry.getKey(), createParameter(entry.getValue())));
             }
         }
         if (components.getExamples() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> entry : components.getExamples()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> entry : components.getExamples().entrySet()) {
                 list.add(CodeBlock.of("addExample(\n$S, $L\n)", entry.getKey(), createExample(entry.getValue())));
             }
         }
         if (components.getRequestBodies() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.parameters.RequestBody> entry : components.getRequestBodies()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.parameters.RequestBody> entry : components.getRequestBodies().entrySet()) {
                 list.add(CodeBlock.of("addRequestBody(\n$S, $L\n)", entry.getKey(), createRequestBody(entry.getValue())));
             }
         }
         if (components.getHeaders() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.headers.Header> entry : components.getHeaders()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.headers.Header> entry : components.getHeaders().entrySet()) {
                 list.add(CodeBlock.of("addHeader(\n$S, $L\n)", entry.getKey(), createHeader(entry.getValue())));
             }
         }
         if (components.getSecuritySchemes() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.security.SecurityScheme> entry : components.getSecuritySchemes()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.security.SecurityScheme> entry : components.getSecuritySchemes().entrySet()) {
                 list.add(CodeBlock.of("addSecurityScheme(\n$S, $L\n)", entry.getKey(), createSecurityScheme(entry.getValue())));
             }
         }
         if (components.getLinks() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.links.Link> entry : components.getLinks()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.links.Link> entry : components.getLinks().entrySet()) {
                 list.add(CodeBlock.of("addLink(\n$S, $L\n)", entry.getKey(), createLink(entry.getValue())));
             }
         }
         if (components.getCallbacks() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> entry : components.getCallbacks()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> entry : components.getCallbacks().entrySet()) {
                 list.add(CodeBlock.of("addCallback(\n$S, $L\n)", entry.getKey(), createCallback(entry.getValue())));
             }
         }
@@ -147,8 +138,7 @@ public class CodeBlockConverter {
             list.add(CodeBlock.of("responses(\n$L\n)", createAPIResponses(operation.getResponses())));
         }
         if (operation.getCallbacks() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> entry : operation.getCallbacks()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.callbacks.Callback> entry : operation.getCallbacks().entrySet()) {
                 list.add(CodeBlock.of("addCallback(\n$S, $L\n)", entry.getKey(), createCallback(entry.getValue())));
             }
         }
@@ -218,8 +208,7 @@ public class CodeBlockConverter {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createPaths()"));
         if (paths.getPathItems() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> entry : paths.getPathItems()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> entry : paths.getPathItems().entrySet()) {
                 list.add(CodeBlock.of("addPathItem(\n$S, $L\n)", entry.getKey(), createPathItem(entry.getValue())));
             }
         }
@@ -230,8 +219,7 @@ public class CodeBlockConverter {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createCallback()"));
         if (callback.getPathItems() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> entry : callback.getPathItems()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> entry : callback.getPathItems().entrySet()) {
                 list.add(CodeBlock.of("addPathItem(\n$S, $L\n)", entry.getKey(), createPathItem(entry.getValue())));
             }
         }
@@ -246,6 +234,13 @@ public class CodeBlockConverter {
         }
         if (example.getDescription() != null) {
             list.add(CodeBlock.of("description($S)", example.getDescription()));
+        }
+        if (example.getValue() != null) {
+            if(example.getValue() instanceof String) {
+                list.add(CodeBlock.of("value($S)", example.getValue()));
+            } else {
+                list.add(CodeBlock.of("value($L)", example.getValue()));
+            }
         }
         if (example.getExternalValue() != null) {
             list.add(CodeBlock.of("externalValue($S)", example.getExternalValue()));
@@ -278,9 +273,15 @@ public class CodeBlockConverter {
             list.add(CodeBlock.of("schema(\n$L\n)", createSchema(header.getSchema())));
         }
         if (header.getExamples() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> entry : header.getExamples()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> entry : header.getExamples().entrySet()) {
                 list.add(CodeBlock.of("addExample(\n$S, $L\n)", entry.getKey(), createExample(entry.getValue())));
+            }
+        }
+        if (header.getExample() != null) {
+            if(header.getExample() instanceof String) {
+                list.add(CodeBlock.of("example($S)", header.getExample()));
+            } else {
+                list.add(CodeBlock.of("example($L)", header.getExample()));
             }
         }
         if (header.getContent() != null) {
@@ -349,12 +350,23 @@ public class CodeBlockConverter {
         if (link.getOperationRef() != null) {
             list.add(CodeBlock.of("operationRef($S)", link.getOperationRef()));
         }
+        if (link.getRequestBody() != null) {
+            if(link.getRequestBody() instanceof String) {
+                list.add(CodeBlock.of("requestBody($S)", link.getRequestBody()));
+            } else {
+                list.add(CodeBlock.of("requestBody($L)", link.getRequestBody()));
+            }
+        }
         if (link.getOperationId() != null) {
             list.add(CodeBlock.of("operationId($S)", link.getOperationId()));
         }
         if (link.getParameters() != null) {
-            for (java.util.Map.Entry<String, Object> entry : link.getParameters()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, Object> entry : link.getParameters().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addParameter($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addParameter($S, $L)", entry.getKey(), entry.getValue()));
+                }
             }
         }
         if (link.getDescription() != null) {
@@ -367,8 +379,7 @@ public class CodeBlockConverter {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createContent()"));
         if (content.getMediaTypes() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.MediaType> entry : content.getMediaTypes()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.MediaType> entry : content.getMediaTypes().entrySet()) {
                 list.add(CodeBlock.of("addMediaType(\n$S, $L\n)", entry.getKey(), createMediaType(entry.getValue())));
             }
         }
@@ -382,8 +393,7 @@ public class CodeBlockConverter {
             list.add(CodeBlock.of("propertyName($S)", discriminator.getPropertyName()));
         }
         if (discriminator.getMapping() != null) {
-            for (java.util.Map.Entry<String, String> entry : discriminator.getMapping()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, String> entry : discriminator.getMapping().entrySet()) {
                 list.add(CodeBlock.of("addMapping($S, $S)", entry.getKey(), entry.getValue()));
             }
         }
@@ -397,8 +407,7 @@ public class CodeBlockConverter {
             list.add(CodeBlock.of("contentType($S)", encoding.getContentType()));
         }
         if (encoding.getHeaders() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.headers.Header> entry : encoding.getHeaders()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.headers.Header> entry : encoding.getHeaders().entrySet()) {
                 list.add(CodeBlock.of("addHeader(\n$S, $L\n)", entry.getKey(), createHeader(entry.getValue())));
             }
         }
@@ -421,14 +430,19 @@ public class CodeBlockConverter {
             list.add(CodeBlock.of("schema(\n$L\n)", createSchema(mediaType.getSchema())));
         }
         if (mediaType.getExamples() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> entry : mediaType.getExamples()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> entry : mediaType.getExamples().entrySet()) {
                 list.add(CodeBlock.of("addExample(\n$S, $L\n)", entry.getKey(), createExample(entry.getValue())));
             }
         }
+        if (mediaType.getExample() != null) {
+            if(mediaType.getExample() instanceof String) {
+                list.add(CodeBlock.of("example($S)", mediaType.getExample()));
+            } else {
+                list.add(CodeBlock.of("example($L)", mediaType.getExample()));
+            }
+        }
         if (mediaType.getEncoding() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.Encoding> entry : mediaType.getEncoding()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.Encoding> entry : mediaType.getEncoding().entrySet()) {
                 list.add(CodeBlock.of("addEncoding(\n$S, $L\n)", entry.getKey(), createEncoding(entry.getValue())));
             }
         }
@@ -444,8 +458,20 @@ public class CodeBlockConverter {
         if (schema.getTitle() != null) {
             list.add(CodeBlock.of("title($S)", schema.getTitle()));
         }
+        if (schema.getDefaultValue() != null) {
+            if(schema.getDefaultValue() instanceof String) {
+                list.add(CodeBlock.of("defaultValue($S)", schema.getDefaultValue()));
+            } else {
+                list.add(CodeBlock.of("defaultValue($L)", schema.getDefaultValue()));
+            }
+        }
         if (schema.getEnumeration() != null) {
             for (Object item : schema.getEnumeration()) {
+                if(item instanceof String) {
+                    list.add(CodeBlock.of("addEnumeration($S)", item));
+                } else {
+                    list.add(CodeBlock.of("addEnumeration($L)", item));
+                }
             }
         }
         if (schema.getMultipleOf() != null) {
@@ -499,8 +525,7 @@ public class CodeBlockConverter {
             list.add(CodeBlock.of("not(\n$L\n)", createSchema(schema.getNot())));
         }
         if (schema.getProperties() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.Schema> entry : schema.getProperties()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.Schema> entry : schema.getProperties().entrySet()) {
                 list.add(CodeBlock.of("addProperty(\n$S, $L\n)", entry.getKey(), createSchema(entry.getValue())));
             }
         }
@@ -518,6 +543,13 @@ public class CodeBlockConverter {
         }
         if (schema.getWriteOnly() != null) {
             list.add(CodeBlock.of("writeOnly($L)", schema.getWriteOnly()));
+        }
+        if (schema.getExample() != null) {
+            if(schema.getExample() instanceof String) {
+                list.add(CodeBlock.of("example($S)", schema.getExample()));
+            } else {
+                list.add(CodeBlock.of("example($L)", schema.getExample()));
+            }
         }
         if (schema.getExternalDocs() != null) {
             list.add(CodeBlock.of("externalDocs(\n$L\n)", createExternalDocumentation(schema.getExternalDocs())));
@@ -604,9 +636,15 @@ public class CodeBlockConverter {
             list.add(CodeBlock.of("schema(\n$L\n)", createSchema(parameter.getSchema())));
         }
         if (parameter.getExamples() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> entry : parameter.getExamples()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> entry : parameter.getExamples().entrySet()) {
                 list.add(CodeBlock.of("addExample(\n$S, $L\n)", entry.getKey(), createExample(entry.getValue())));
+            }
+        }
+        if (parameter.getExample() != null) {
+            if(parameter.getExample() instanceof String) {
+                list.add(CodeBlock.of("example($S)", parameter.getExample()));
+            } else {
+                list.add(CodeBlock.of("example($L)", parameter.getExample()));
             }
         }
         if (parameter.getContent() != null) {
@@ -637,8 +675,7 @@ public class CodeBlockConverter {
             list.add(CodeBlock.of("description($S)", aPIResponse.getDescription()));
         }
         if (aPIResponse.getHeaders() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.headers.Header> entry : aPIResponse.getHeaders()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.headers.Header> entry : aPIResponse.getHeaders().entrySet()) {
                 list.add(CodeBlock.of("addHeader(\n$S, $L\n)", entry.getKey(), createHeader(entry.getValue())));
             }
         }
@@ -646,8 +683,7 @@ public class CodeBlockConverter {
             list.add(CodeBlock.of("content(\n$L\n)", createContent(aPIResponse.getContent())));
         }
         if (aPIResponse.getLinks() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.links.Link> entry : aPIResponse.getLinks()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.links.Link> entry : aPIResponse.getLinks().entrySet()) {
                 list.add(CodeBlock.of("addLink(\n$S, $L\n)", entry.getKey(), createLink(entry.getValue())));
             }
         }
@@ -658,8 +694,7 @@ public class CodeBlockConverter {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createAPIResponses()"));
         if (aPIResponses.getAPIResponses() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> entry : aPIResponses.getAPIResponses()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> entry : aPIResponses.getAPIResponses().entrySet()) {
                 list.add(CodeBlock.of("addAPIResponse(\n$S, $L\n)", entry.getKey(), createAPIResponse(entry.getValue())));
             }
         }
@@ -706,8 +741,7 @@ public class CodeBlockConverter {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createScopes()"));
         if (scopes.getScopes() != null) {
-            for (java.util.Map.Entry<String, String> entry : scopes.getScopes()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, String> entry : scopes.getScopes().entrySet()) {
                 list.add(CodeBlock.of("addScope($S, $S)", entry.getKey(), entry.getValue()));
             }
         }
@@ -718,8 +752,20 @@ public class CodeBlockConverter {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createSecurityRequirement()"));
         if (securityRequirement.getSchemes() != null) {
-            for (java.util.Map.Entry<String, java.util.List<String>> entry : securityRequirement.getSchemes()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, java.util.List<String>> entry : securityRequirement.getSchemes().entrySet()) {
+            if (entry.getValue()
+                    .isEmpty()) {
+                list.add(CodeBlock.of("addScheme($S)", entry.getKey()));
+            } else if (entry.getValue()
+                    .size() == 1) {
+                list.add(CodeBlock.of("addScheme($S, $S)", entry.getKey(), entry.getValue()
+                        .get(0)));
+            } else {
+                list.add(CodeBlock.of("addScheme(\n$S, $T.asList(\n$L\n)\n)", entry.getKey(), java.util.Arrays.class, CodeBlock.join(entry.getValue()
+                        .stream()
+                        .map(s -> CodeBlock.of("$S", s))
+                        .collect(java.util.stream.Collectors.toList()), ",\n")));
+            }
             }
         }
         return CodeBlock.join(list, "\n.");
@@ -791,8 +837,7 @@ public class CodeBlockConverter {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createServerVariables()"));
         if (serverVariables.getServerVariables() != null) {
-            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> entry : serverVariables.getServerVariables()
-                    .entrySet()) {
+            for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> entry : serverVariables.getServerVariables().entrySet()) {
                 list.add(CodeBlock.of("addServerVariable(\n$S, $L\n)", entry.getKey(), createServerVariable(entry.getValue())));
             }
         }

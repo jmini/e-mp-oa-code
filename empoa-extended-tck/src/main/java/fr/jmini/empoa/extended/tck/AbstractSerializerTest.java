@@ -29,7 +29,7 @@ public abstract class AbstractSerializerTest {
         assertThatJson(json).isEqualTo(expected);
     }
 
-    protected OpenAPI createOpenAPI(String specPath) {
+    protected OpenAPI createOpenAPI(String specPath) throws IOException {
         switch (specPath) {
         case PING:
             return PingSpec.create();
@@ -40,7 +40,7 @@ public abstract class AbstractSerializerTest {
 
     protected abstract String convertToJson(OpenAPI openAPI) throws IOException;
 
-    private String readFromResource(String name) throws IOException {
+    protected String readFromResource(String name) throws IOException {
         return read(getClass().getResourceAsStream(name));
     }
 
