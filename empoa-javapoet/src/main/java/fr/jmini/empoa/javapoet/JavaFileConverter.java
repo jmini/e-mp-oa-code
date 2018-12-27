@@ -28,7 +28,7 @@ public class JavaFileConverter {
 
         JavaFile javaFile = JavaFile.builder(packageName, type)
                 .skipJavaLangImports(true)
-                .addStaticImport(oasFactory, "createObject")
+                .addStaticImport(oasFactory, "*")
                 .build();
 
         return javaFile;

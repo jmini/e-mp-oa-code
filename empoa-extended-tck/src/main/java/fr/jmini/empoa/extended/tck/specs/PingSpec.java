@@ -1,6 +1,6 @@
 package fr.jmini.empoa.extended.tck.specs;
 
-import static org.eclipse.microprofile.openapi.OASFactory.createObject;
+import static org.eclipse.microprofile.openapi.OASFactory.*;
 
 import org.eclipse.microprofile.openapi.models.OpenAPI;
 import org.eclipse.microprofile.openapi.models.Operation;

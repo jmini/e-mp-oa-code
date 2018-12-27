@@ -231,6 +231,13 @@ public class CodeBlockConverter {
         if (example.getDescription() != null) {
             list.add(CodeBlock.of("description($S)", example.getDescription()));
         }
+        if (example.getValue() != null) {
+            if(example.getValue() instanceof String) {
+                list.add(CodeBlock.of("value($S)", example.getValue()));
+            } else {
+                list.add(CodeBlock.of("value($L)", example.getValue()));
+            }
+        }
         if (example.getExternalValue() != null) {
             list.add(CodeBlock.of("externalValue($S)", example.getExternalValue()));
         }
@@ -264,6 +271,13 @@ public class CodeBlockConverter {
         if (header.getExamples() != null) {
             for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> entry : header.getExamples().entrySet()) {
                 list.add(CodeBlock.of("addExample(\n$S, $L\n)", entry.getKey(), createExample(entry.getValue())));
+            }
+        }
+        if (header.getExample() != null) {
+            if(header.getExample() instanceof String) {
+                list.add(CodeBlock.of("example($S)", header.getExample()));
+            } else {
+                list.add(CodeBlock.of("example($L)", header.getExample()));
             }
         }
         if (header.getContent() != null) {
@@ -332,11 +346,23 @@ public class CodeBlockConverter {
         if (link.getOperationRef() != null) {
             list.add(CodeBlock.of("operationRef($S)", link.getOperationRef()));
         }
+        if (link.getRequestBody() != null) {
+            if(link.getRequestBody() instanceof String) {
+                list.add(CodeBlock.of("requestBody($S)", link.getRequestBody()));
+            } else {
+                list.add(CodeBlock.of("requestBody($L)", link.getRequestBody()));
+            }
+        }
         if (link.getOperationId() != null) {
             list.add(CodeBlock.of("operationId($S)", link.getOperationId()));
         }
         if (link.getParameters() != null) {
             for (java.util.Map.Entry<String, Object> entry : link.getParameters().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addParameter($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addParameter($S, $L)", entry.getKey(), entry.getValue()));
+                }
             }
         }
         if (link.getDescription() != null) {
@@ -402,6 +428,13 @@ public class CodeBlockConverter {
                 list.add(CodeBlock.of("addExample(\n$S, $L\n)", entry.getKey(), createExample(entry.getValue())));
             }
         }
+        if (mediaType.getExample() != null) {
+            if(mediaType.getExample() instanceof String) {
+                list.add(CodeBlock.of("example($S)", mediaType.getExample()));
+            } else {
+                list.add(CodeBlock.of("example($L)", mediaType.getExample()));
+            }
+        }
         if (mediaType.getEncoding() != null) {
             for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.Encoding> entry : mediaType.getEncoding().entrySet()) {
                 list.add(CodeBlock.of("addEncoding(\n$S, $L\n)", entry.getKey(), createEncoding(entry.getValue())));
@@ -419,8 +452,20 @@ public class CodeBlockConverter {
         if (schema.getTitle() != null) {
             list.add(CodeBlock.of("title($S)", schema.getTitle()));
         }
+        if (schema.getDefaultValue() != null) {
+            if(schema.getDefaultValue() instanceof String) {
+                list.add(CodeBlock.of("defaultValue($S)", schema.getDefaultValue()));
+            } else {
+                list.add(CodeBlock.of("defaultValue($L)", schema.getDefaultValue()));
+            }
+        }
         if (schema.getEnumeration() != null) {
             for (Object item : schema.getEnumeration()) {
+                if(item instanceof String) {
+                    list.add(CodeBlock.of("addEnumeration($S)", item));
+                } else {
+                    list.add(CodeBlock.of("addEnumeration($L)", item));
+                }
             }
         }
         if (schema.getMultipleOf() != null) {
@@ -478,6 +523,12 @@ public class CodeBlockConverter {
                 list.add(CodeBlock.of("addProperty(\n$S, $L\n)", entry.getKey(), createSchema(entry.getValue())));
             }
         }
+        if (schema.getAdditionalProperties() != null) {
+            if (schema.getAdditionalProperties() instanceof Boolean) {
+                list.add(CodeBlock.of("additionalProperties($L)", schema.getAdditionalProperties()));
+            } else if (schema.getAdditionalProperties() instanceof org.eclipse.microprofile.openapi.models.media.Schema) {
+                list.add(CodeBlock.of("additionalProperties($L\n)", createSchema((org.eclipse.microprofile.openapi.models.media.Schema) schema.getAdditionalProperties())));
+            }        }
         if (schema.getDescription() != null) {
             list.add(CodeBlock.of("description($S)", schema.getDescription()));
         }
@@ -492,6 +543,13 @@ public class CodeBlockConverter {
         }
         if (schema.getWriteOnly() != null) {
             list.add(CodeBlock.of("writeOnly($L)", schema.getWriteOnly()));
+        }
+        if (schema.getExample() != null) {
+            if(schema.getExample() instanceof String) {
+                list.add(CodeBlock.of("example($S)", schema.getExample()));
+            } else {
+                list.add(CodeBlock.of("example($L)", schema.getExample()));
+            }
         }
         if (schema.getExternalDocs() != null) {
             list.add(CodeBlock.of("externalDocs(\n$L\n)", createExternalDocumentation(schema.getExternalDocs())));
@@ -580,6 +638,13 @@ public class CodeBlockConverter {
         if (parameter.getExamples() != null) {
             for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.examples.Example> entry : parameter.getExamples().entrySet()) {
                 list.add(CodeBlock.of("addExample(\n$S, $L\n)", entry.getKey(), createExample(entry.getValue())));
+            }
+        }
+        if (parameter.getExample() != null) {
+            if(parameter.getExample() instanceof String) {
+                list.add(CodeBlock.of("example($S)", parameter.getExample()));
+            } else {
+                list.add(CodeBlock.of("example($L)", parameter.getExample()));
             }
         }
         if (parameter.getContent() != null) {
@@ -686,6 +751,19 @@ public class CodeBlockConverter {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createObject($T.class)", org.eclipse.microprofile.openapi.models.security.SecurityRequirement.class));
         for (java.util.Map.Entry<String, java.util.List<String>> entry : securityRequirement.entrySet()) {
+            if (entry.getValue()
+                    .isEmpty()) {
+                list.add(CodeBlock.of("addScheme($S)", entry.getKey()));
+            } else if (entry.getValue()
+                    .size() == 1) {
+                list.add(CodeBlock.of("addScheme($S, $S)", entry.getKey(), entry.getValue()
+                        .get(0)));
+            } else {
+                list.add(CodeBlock.of("addScheme(\n$S, $T.asList(\n$L\n)\n)", entry.getKey(), java.util.Arrays.class, CodeBlock.join(entry.getValue()
+                        .stream()
+                        .map(s -> CodeBlock.of("$S", s))
+                        .collect(java.util.stream.Collectors.toList()), ",\n")));
+            }
         }
         return CodeBlock.join(list, "\n.");
     }

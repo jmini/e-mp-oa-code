@@ -1,6 +1,8 @@
 package fr.jmini.empoa.generator.javapoet;
 
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import org.eclipse.microprofile.openapi.models.media.Schema;
 
@@ -50,13 +52,28 @@ public class JavaPoetGeneratorMain {
                 } else if (isMp(element.mapOfItemFq)) {
                     sb.append("            list.add(CodeBlock.of(\"" + element.mapAddName + "(\\n$S, $L\\n)\", " + entryVarName + ".getKey(), " + toCreateMethodName(element.mapOfItemFq) + "(" + entryVarName
                             + ".getValue())));\n");
+                } else {
+                    sb.append("            if (" + entryVarName + ".getValue()\n");
+                    sb.append("                    .isEmpty()) {\n");
+                    sb.append("                list.add(CodeBlock.of(\"addScheme($S)\", " + entryVarName + ".getKey()));\n");
+                    sb.append("            } else if (" + entryVarName + ".getValue()\n");
+                    sb.append("                    .size() == 1) {\n");
+                    sb.append("                list.add(CodeBlock.of(\"addScheme($S, $S)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()\n");
+                    sb.append("                        .get(0)));\n");
+                    sb.append("            } else {\n");
+                    sb.append("                list.add(CodeBlock.of(\"addScheme(\\n$S, $T.asList(\\n$L\\n)\\n)\", " + entryVarName + ".getKey(), " + Arrays.class.getCanonicalName() + ".class, CodeBlock.join(" + entryVarName
+                            + ".getValue()\n");
+                    sb.append("                        .stream()\n");
+                    sb.append("                        .map(s -> CodeBlock.of(\"$S\", s))\n");
+                    sb.append("                        .collect(" + Collectors.class.getCanonicalName() + ".toList()), \",\\n\")));\n");
+                    sb.append("            }\n");
                 }
                 sb.append("        }\n");
             }
             for (IMember m : element.members) {
                 if (m instanceof Member) {
                     Member member = (Member) m;
-                    if (member.type != MemberType.Schema_AdditionalProperties_Schema && member.type != MemberType.Schema_AdditionalProperties_Boolean && !member.fqType.endsWith("Object")) {
+                    if (member.type != MemberType.Schema_AdditionalProperties_Schema && member.type != MemberType.Schema_AdditionalProperties_Boolean) {
                         sb.append("        if (" + varName + "." + member.getterName + "() != null) {\n");
                         if (member.type == MemberType.Schema_AdditionalProperties_Object) {
                             sb.append("            if (schema.getAdditionalProperties() instanceof Boolean) {\n");
@@ -72,6 +89,12 @@ public class JavaPoetGeneratorMain {
                             sb.append("            list.add(CodeBlock.of(\"" + member.builderName + "($L)\", " + varName + "." + member.getterName + "()));\n");
                         } else if (isMp(member.fqType)) {
                             sb.append("            list.add(CodeBlock.of(\"" + member.builderName + "(\\n$L\\n)\", " + toCreateMethodName(member.fqType) + "(" + varName + "." + member.getterName + "())));\n");
+                        } else if (isObject(member.fqType)) {
+                            sb.append("            if(" + varName + "." + member.getterName + "() instanceof String) {\n");
+                            sb.append("                list.add(CodeBlock.of(\"" + member.builderName + "($S)\", " + varName + "." + member.getterName + "()));\n");
+                            sb.append("            } else {\n");
+                            sb.append("                list.add(CodeBlock.of(\"" + member.builderName + "($L)\", " + varName + "." + member.getterName + "()));\n");
+                            sb.append("            }\n");
                         } else if (member instanceof ListMember) {
                             ListMember listMember = (ListMember) member;
                             String itemVarName = "item";
@@ -82,6 +105,12 @@ public class JavaPoetGeneratorMain {
                                 sb.append("                list.add(CodeBlock.of(\"" + listMember.addName + "($L)\", " + itemVarName + "));\n");
                             } else if (isMp(listMember.itemFqType)) {
                                 sb.append("                list.add(CodeBlock.of(\"" + listMember.addName + "(\\n$L\\n)\", " + toCreateMethodName(listMember.itemFqType) + "(" + itemVarName + ")));\n");
+                            } else if (isObject(listMember.itemFqType)) {
+                                sb.append("                if(" + itemVarName + " instanceof String) {\n");
+                                sb.append("                    list.add(CodeBlock.of(\"" + listMember.addName + "($S)\", " + itemVarName + "));\n");
+                                sb.append("                } else {\n");
+                                sb.append("                    list.add(CodeBlock.of(\"" + listMember.addName + "($L)\", " + itemVarName + "));\n");
+                                sb.append("                }\n");
                             }
                             sb.append("            }\n");
                         } else if (member instanceof MapMember) {
@@ -95,6 +124,12 @@ public class JavaPoetGeneratorMain {
                             } else if (isMp(mapMember.valueFqType)) {
                                 sb.append("                list.add(CodeBlock.of(\"" + mapMember.addName + "(\\n$S, $L\\n)\", " + entryVarName + ".getKey(), " + toCreateMethodName(mapMember.valueFqType) + "(" + entryVarName
                                         + ".getValue())));\n");
+                            } else if (isObject(mapMember.valueFqType)) {
+                                sb.append("                if(" + entryVarName + ".getValue() instanceof String) {\n");
+                                sb.append("                    list.add(CodeBlock.of(\"" + mapMember.addName + "($S, $S)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
+                                sb.append("                } else {\n");
+                                sb.append("                    list.add(CodeBlock.of(\"" + mapMember.addName + "($S, $L)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
+                                sb.append("                }\n");
                             }
                             sb.append("            }\n");
                         } else {
@@ -125,6 +160,10 @@ public class JavaPoetGeneratorMain {
 
     private static boolean isString(String fqType) {
         return fqType.endsWith("String");
+    }
+
+    private static boolean isObject(String fqType) {
+        return fqType.endsWith("Object");
     }
 
     /**
