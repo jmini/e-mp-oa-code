@@ -264,7 +264,7 @@ public class CodeBlockConverter {
             list.add(CodeBlock.of("allowEmptyValue($L)", header.getAllowEmptyValue()));
         }
         if (header.getStyle() != null) {
-            list.add(CodeBlock.of("style($L)", header.getStyle()));
+            list.add(CodeBlock.of("style($T.$L)", org.eclipse.microprofile.openapi.models.headers.Header.Style.class, header.getStyle().name()));
         }
         if (header.getExplode() != null) {
             list.add(CodeBlock.of("explode($L)", header.getExplode()));
@@ -412,7 +412,7 @@ public class CodeBlockConverter {
             }
         }
         if (encoding.getStyle() != null) {
-            list.add(CodeBlock.of("style($L)", encoding.getStyle()));
+            list.add(CodeBlock.of("style($T.$L)", org.eclipse.microprofile.openapi.models.media.Encoding.Style.class, encoding.getStyle().name()));
         }
         if (encoding.getExplode() != null) {
             list.add(CodeBlock.of("explode($L)", encoding.getExplode()));
@@ -519,7 +519,7 @@ public class CodeBlockConverter {
             }
         }
         if (schema.getType() != null) {
-            list.add(CodeBlock.of("type($L)", schema.getType()));
+            list.add(CodeBlock.of("type($T.$L)", org.eclipse.microprofile.openapi.models.media.Schema.SchemaType.class, schema.getType().name()));
         }
         if (schema.getNot() != null) {
             list.add(CodeBlock.of("not(\n$L\n)", createSchema(schema.getNot())));
@@ -609,7 +609,7 @@ public class CodeBlockConverter {
             list.add(CodeBlock.of("name($S)", parameter.getName()));
         }
         if (parameter.getIn() != null) {
-            list.add(CodeBlock.of("in($L)", parameter.getIn()));
+            list.add(CodeBlock.of("in($T.$L)", org.eclipse.microprofile.openapi.models.parameters.Parameter.In.class, parameter.getIn().name()));
         }
         if (parameter.getDescription() != null) {
             list.add(CodeBlock.of("description($S)", parameter.getDescription()));
@@ -624,7 +624,7 @@ public class CodeBlockConverter {
             list.add(CodeBlock.of("allowEmptyValue($L)", parameter.getAllowEmptyValue()));
         }
         if (parameter.getStyle() != null) {
-            list.add(CodeBlock.of("style($L)", parameter.getStyle()));
+            list.add(CodeBlock.of("style($T.$L)", org.eclipse.microprofile.openapi.models.parameters.Parameter.Style.class, parameter.getStyle().name()));
         }
         if (parameter.getExplode() != null) {
             list.add(CodeBlock.of("explode($L)", parameter.getExplode()));
@@ -775,7 +775,7 @@ public class CodeBlockConverter {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createSecurityScheme()"));
         if (securityScheme.getType() != null) {
-            list.add(CodeBlock.of("type($L)", securityScheme.getType()));
+            list.add(CodeBlock.of("type($T.$L)", org.eclipse.microprofile.openapi.models.security.SecurityScheme.Type.class, securityScheme.getType().name()));
         }
         if (securityScheme.getDescription() != null) {
             list.add(CodeBlock.of("description($S)", securityScheme.getDescription()));
@@ -784,7 +784,7 @@ public class CodeBlockConverter {
             list.add(CodeBlock.of("name($S)", securityScheme.getName()));
         }
         if (securityScheme.getIn() != null) {
-            list.add(CodeBlock.of("in($L)", securityScheme.getIn()));
+            list.add(CodeBlock.of("in($T.$L)", org.eclipse.microprofile.openapi.models.security.SecurityScheme.In.class, securityScheme.getIn().name()));
         }
         if (securityScheme.getScheme() != null) {
             list.add(CodeBlock.of("scheme($S)", securityScheme.getScheme()));

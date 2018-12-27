@@ -50,7 +50,7 @@ public class JavaPoetGeneratorMain {
                         } else if (isSimpleLitteral(member.fqType)) {
                             sb.append("            list.add(CodeBlock.of(\"" + member.builderName + "($L)\", " + varName + "." + member.getterName + "()));\n");
                         } else if (isMpEnum(member.fqType)) {
-                            sb.append("            list.add(CodeBlock.of(\"" + member.builderName + "($L)\", " + varName + "." + member.getterName + "()));\n");
+                            sb.append("            list.add(CodeBlock.of(\"" + member.builderName + "($T.$L)\", " + member.fqType + ".class, " + varName + "." + member.getterName + "().name()));\n");
                         } else if (isMp(member.fqType)) {
                             sb.append("            list.add(CodeBlock.of(\"" + member.builderName + "(\\n$L\\n)\", " + toCreateMethodName(member.fqType) + "(" + varName + "." + member.getterName + "())));\n");
                         } else if (isObject(member.fqType)) {
