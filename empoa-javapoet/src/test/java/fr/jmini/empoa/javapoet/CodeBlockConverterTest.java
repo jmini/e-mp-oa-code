@@ -6,6 +6,7 @@ import static org.eclipse.microprofile.openapi.OASFactory.*;
 import java.nio.file.Path;
 import java.util.Arrays;
 
+import org.eclipse.microprofile.openapi.models.parameters.Parameter;
 import org.eclipse.microprofile.openapi.models.security.SecurityRequirement;
 import org.testng.annotations.Test;
 
@@ -30,6 +31,24 @@ public class CodeBlockConverterTest {
                 "                        \"write\"\n" +
                 "                )\n" +
                 "        )");
+    }
+
+    @Test
+    public void testParameter() throws Exception {
+        Parameter parameter = createObject(Parameter.class)
+                .name("param")
+                .in(Parameter.In.PATH)
+                .required(true)
+                .style(Parameter.Style.SIMPLE)
+                .explode(false);
+
+        CodeBlock block = CodeBlockConverter.createParameter(parameter);
+        assertThat(block.toString()).isEqualToNormalizingWhitespace("createObject(org.eclipse.microprofile.openapi.models.parameters.Parameter.class)\n" +
+                "                .name(\"param\")\n" +
+                "                .in(org.eclipse.microprofile.openapi.models.parameters.Parameter.In.PATH)\n" +
+                "                .required(true)\n" +
+                "                .style(org.eclipse.microprofile.openapi.models.parameters.Parameter.Style.SIMPLE)\n" +
+                "                .explode(false)");
     }
 
     public static Path toFile(Path srcFolder, String packageName, String className) {
