@@ -21,6 +21,7 @@ dependencies {
     testImplementation project(':empoa-extended-tck')
     testImplementation "org.testng:testng:$testngVersion"
     testImplementation "org.assertj:assertj-core:$assertjVersion"
+    testRuntime "ch.qos.logback:logback-classic:$logbackVersion"
 }
 
 publishing {
