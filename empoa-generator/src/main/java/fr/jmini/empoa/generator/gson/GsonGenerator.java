@@ -69,7 +69,11 @@ public class GsonGenerator {
                     String getter = "src." + member.getterName + "()";
                     String oasProperty = computeOASPropertyName(member);
                     sb.append(prefix + "if (" + getter + " != null) {\n");
-                    sb.append(prefix + "    object.add(\"" + oasProperty + "\", context.serialize(" + getter + "));\n");
+                    if (isMpEnum(member.fqType)) {
+                        sb.append(prefix + "    object.add(\"" + oasProperty + "\", context.serialize(" + getter + ".toString()));\n");
+                    } else {
+                        sb.append(prefix + "    object.add(\"" + oasProperty + "\", context.serialize(" + getter + "));\n");
+                    }
                     sb.append(prefix + "}\n");
                 }
             }
@@ -102,11 +106,21 @@ public class GsonGenerator {
 
     private String computeOASPropertyName(Member member) {
         String name = member.getterName.replace("get", "");
-        if (name.toUpperCase()
+        if ("Enumeration".equals(name)) {
+            return "enum";
+        } else if (name.toUpperCase()
                 .equals(name)) {
             return name.toLowerCase();
         }
         return StringUtil.decapitalize(name);
+    }
+
+    private static boolean isMp(String fqType) {
+        return fqType.startsWith("org.eclipse.microprofile");
+    }
+
+    private static boolean isMpEnum(String fqType) {
+        return isMp(fqType) && (fqType.endsWith("In") || fqType.endsWith("Style") || fqType.endsWith("Type"));
     }
 
     public void writeFile() throws IOException {

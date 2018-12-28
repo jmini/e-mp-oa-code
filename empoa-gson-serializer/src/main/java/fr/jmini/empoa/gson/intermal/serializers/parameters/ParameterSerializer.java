@@ -21,7 +21,7 @@ public class ParameterSerializer implements JsonSerializer<Parameter> {
                 object.add("name", context.serialize(src.getName()));
             }
             if (src.getIn() != null) {
-                object.add("in", context.serialize(src.getIn()));
+                object.add("in", context.serialize(src.getIn().toString()));
             }
             if (src.getDescription() != null) {
                 object.add("description", context.serialize(src.getDescription()));
@@ -36,7 +36,7 @@ public class ParameterSerializer implements JsonSerializer<Parameter> {
                 object.add("allowEmptyValue", context.serialize(src.getAllowEmptyValue()));
             }
             if (src.getStyle() != null) {
-                object.add("style", context.serialize(src.getStyle()));
+                object.add("style", context.serialize(src.getStyle().toString()));
             }
             if (src.getExplode() != null) {
                 object.add("explode", context.serialize(src.getExplode()));

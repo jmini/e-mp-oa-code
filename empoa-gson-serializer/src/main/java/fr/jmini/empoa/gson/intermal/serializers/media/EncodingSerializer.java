@@ -20,7 +20,7 @@ public class EncodingSerializer implements JsonSerializer<Encoding> {
             object.add("headers", context.serialize(src.getHeaders()));
         }
         if (src.getStyle() != null) {
-            object.add("style", context.serialize(src.getStyle()));
+            object.add("style", context.serialize(src.getStyle().toString()));
         }
         if (src.getExplode() != null) {
             object.add("explode", context.serialize(src.getExplode()));
