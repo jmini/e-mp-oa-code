@@ -388,20 +388,20 @@ public class SchemaImpl implements Schema {
         return this;
     }
 
-    private SchemaType _type;
+    private org.eclipse.microprofile.openapi.models.media.Schema.SchemaType _type;
 
     @Override
-    public SchemaType getType() {
+    public org.eclipse.microprofile.openapi.models.media.Schema.SchemaType getType() {
         return _type;
     }
 
     @Override
-    public void setType(SchemaType type) {
+    public void setType(org.eclipse.microprofile.openapi.models.media.Schema.SchemaType type) {
         _type = type;
     }
 
     @Override
-    public Schema type(SchemaType type) {
+    public Schema type(org.eclipse.microprofile.openapi.models.media.Schema.SchemaType type) {
         setType(type);
         return this;
     }
