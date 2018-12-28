@@ -68,15 +68,15 @@ public class ParameterImpl implements Parameter {
         _name = name;
     }
 
-    private In _in;
+    private org.eclipse.microprofile.openapi.models.parameters.Parameter.In _in;
 
     @Override
-    public In getIn() {
+    public org.eclipse.microprofile.openapi.models.parameters.Parameter.In getIn() {
         return _in;
     }
 
     @Override
-    public void setIn(In in) {
+    public void setIn(org.eclipse.microprofile.openapi.models.parameters.Parameter.In in) {
         _in = in;
     }
 
