@@ -293,10 +293,10 @@ public class SwSchema implements Schema {
 
     @Override
     public void setRequired(java.util.List<String> required) {
-        _swSchema.setRequired(null);
+        _swSchema.required(null);
         if (required != null) {
             if (required.isEmpty()) {
-                _swSchema.setRequired(new java.util.ArrayList<>());
+                _swSchema.required(new java.util.ArrayList<>());
             } else {
                 for (String e : required) {
                     this.addRequired(e);

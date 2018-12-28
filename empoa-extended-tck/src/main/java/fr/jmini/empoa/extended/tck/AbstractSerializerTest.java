@@ -17,8 +17,8 @@ import fr.jmini.empoa.extended.tck.specs.PingSpec;
 
 public abstract class AbstractSerializerTest {
 
-    private static final String PING = "/extended-tck/specs/ping.json";
-    private static final String HELLO = "/extended-tck/specs/hello.json";
+    protected static final String PING = "/extended-tck/specs/ping.json";
+    protected static final String HELLO = "/extended-tck/specs/hello.json";
 
     @Test
     public void testSerializePing() throws Exception {

@@ -29,7 +29,7 @@ public class ParserAndSerializerWithGsonTckTest extends AbstractSerializerTest {
 
         OpenAPI openAPI = new SwOpenAPI(swaggerOpenAPI);
         // Swagger-Parser is adding some values (probably some default that make sense) that are not desirable for this test:
-        if (specPath.endsWith("hello.json")) {
+        if (HELLO.equals(specPath)) {
             List<Parameter> parameters = openAPI.getPaths()
                     .getPathItem("/hello/{name}")
                     .getGET()
