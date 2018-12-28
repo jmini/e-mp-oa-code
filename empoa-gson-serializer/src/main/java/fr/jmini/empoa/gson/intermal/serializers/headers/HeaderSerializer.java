@@ -30,7 +30,7 @@ public class HeaderSerializer implements JsonSerializer<Header> {
                 object.add("allowEmptyValue", context.serialize(src.getAllowEmptyValue()));
             }
             if (src.getStyle() != null) {
-                object.add("style", context.serialize(src.getStyle()));
+                object.add("style", context.serialize(src.getStyle().toString()));
             }
             if (src.getExplode() != null) {
                 object.add("explode", context.serialize(src.getExplode()));

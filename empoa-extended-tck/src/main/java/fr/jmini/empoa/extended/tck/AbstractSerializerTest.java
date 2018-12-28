@@ -12,18 +12,29 @@ import java.util.stream.Collectors;
 import org.eclipse.microprofile.openapi.models.OpenAPI;
 import org.testng.annotations.Test;
 
+import fr.jmini.empoa.extended.tck.specs.HelloSpec;
 import fr.jmini.empoa.extended.tck.specs.PingSpec;
 
 public abstract class AbstractSerializerTest {
 
     private static final String PING = "/extended-tck/specs/ping.json";
+    private static final String HELLO = "/extended-tck/specs/hello.json";
 
     @Test
     public void testSerializePing() throws Exception {
-        OpenAPI openAPI = createOpenAPI(PING);
+        runTest(PING);
+    }
+
+    @Test
+    public void testSerializeHello() throws Exception {
+        runTest(HELLO);
+    }
+
+    private void runTest(String spec) throws IOException {
+        OpenAPI openAPI = createOpenAPI(spec);
         assertThat(openAPI).isNotNull();
 
-        String expected = readFromResource(PING);
+        String expected = readFromResource(spec);
         String json = convertToJson(openAPI);
 
         assertThatJson(json).isEqualTo(expected);
@@ -33,6 +44,8 @@ public abstract class AbstractSerializerTest {
         switch (specPath) {
         case PING:
             return PingSpec.create();
+        case HELLO:
+            return HelloSpec.create();
         default:
             throw new IllegalArgumentException("Unknown spec: " + specPath);
         }

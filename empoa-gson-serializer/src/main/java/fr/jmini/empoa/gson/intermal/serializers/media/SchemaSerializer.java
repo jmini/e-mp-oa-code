@@ -27,7 +27,7 @@ public class SchemaSerializer implements JsonSerializer<Schema> {
                 object.add("defaultValue", context.serialize(src.getDefaultValue()));
             }
             if (src.getEnumeration() != null) {
-                object.add("enumeration", context.serialize(src.getEnumeration()));
+                object.add("enum", context.serialize(src.getEnumeration()));
             }
             if (src.getMultipleOf() != null) {
                 object.add("multipleOf", context.serialize(src.getMultipleOf()));
@@ -72,7 +72,7 @@ public class SchemaSerializer implements JsonSerializer<Schema> {
                 object.add("required", context.serialize(src.getRequired()));
             }
             if (src.getType() != null) {
-                object.add("type", context.serialize(src.getType()));
+                object.add("type", context.serialize(src.getType().toString()));
             }
             if (src.getNot() != null) {
                 object.add("not", context.serialize(src.getNot()));

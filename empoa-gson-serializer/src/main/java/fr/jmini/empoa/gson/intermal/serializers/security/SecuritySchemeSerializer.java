@@ -18,7 +18,7 @@ public class SecuritySchemeSerializer implements JsonSerializer<SecurityScheme> 
         } else {
             
             if (src.getType() != null) {
-                object.add("type", context.serialize(src.getType()));
+                object.add("type", context.serialize(src.getType().toString()));
             }
             if (src.getDescription() != null) {
                 object.add("description", context.serialize(src.getDescription()));
@@ -27,7 +27,7 @@ public class SecuritySchemeSerializer implements JsonSerializer<SecurityScheme> 
                 object.add("name", context.serialize(src.getName()));
             }
             if (src.getIn() != null) {
-                object.add("in", context.serialize(src.getIn()));
+                object.add("in", context.serialize(src.getIn().toString()));
             }
             if (src.getScheme() != null) {
                 object.add("scheme", context.serialize(src.getScheme()));
