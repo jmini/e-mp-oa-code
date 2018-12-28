@@ -14,7 +14,7 @@ public class ServerVariableSerializer implements JsonSerializer<ServerVariable> 
     public JsonElement serialize(ServerVariable src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject object = new JsonObject();
         if (src.getEnumeration() != null) {
-            object.add("enumeration", context.serialize(src.getEnumeration()));
+            object.add("enum", context.serialize(src.getEnumeration()));
         }
         if (src.getDefaultValue() != null) {
             object.add("defaultValue", context.serialize(src.getDefaultValue()));
