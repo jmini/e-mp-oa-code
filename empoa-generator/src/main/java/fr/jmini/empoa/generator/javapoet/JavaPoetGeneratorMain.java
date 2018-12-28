@@ -70,6 +70,12 @@ public class JavaPoetGeneratorMain {
                 }
                 sb.append("        }\n");
             }
+            if (element.referenceable) {
+                String getterName = "getRef";
+                sb.append("        if (" + varName + "." + getterName + "() != null) {\n");
+                sb.append("            list.add(CodeBlock.of(\"ref($S)\", " + varName + "." + getterName + "()));\n");
+                sb.append("        }\n");
+            }
             for (IMember m : element.members) {
                 if (m instanceof Member) {
                     Member member = (Member) m;
@@ -138,6 +144,20 @@ public class JavaPoetGeneratorMain {
                         sb.append("        }\n");
                     }
                 }
+            }
+            if (element.extensible) {
+                String entryVarName = "entry";
+                String getterName = "getExtensions";
+                String addName = "addExtension";
+                sb.append("        if (" + varName + "." + getterName + "() != null) {\n");
+                sb.append("            for (java.util.Map.Entry<String, Object> " + entryVarName + " : " + varName + "." + getterName + "().entrySet()) {\n");
+                sb.append("                if(" + entryVarName + ".getValue() instanceof String) {\n");
+                sb.append("                    list.add(CodeBlock.of(\"" + addName + "($S, $S)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
+                sb.append("                } else {\n");
+                sb.append("                    list.add(CodeBlock.of(\"" + addName + "($S, $L)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
+                sb.append("                }\n");
+                sb.append("            }\n");
+                sb.append("        }\n");
             }
             sb.append("        return CodeBlock.join(list, \"\\n.\");\n");
             sb.append("    }\n");

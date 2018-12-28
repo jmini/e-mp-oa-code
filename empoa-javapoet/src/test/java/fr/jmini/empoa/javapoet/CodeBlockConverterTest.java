@@ -5,7 +5,9 @@ import static org.eclipse.microprofile.openapi.OASFactory.*;
 
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Collections;
 
+import org.eclipse.microprofile.openapi.models.media.Schema;
 import org.eclipse.microprofile.openapi.models.parameters.Parameter;
 import org.eclipse.microprofile.openapi.models.security.SecurityRequirement;
 import org.testng.annotations.Test;
@@ -49,6 +51,28 @@ public class CodeBlockConverterTest {
                 "                .required(true)\n" +
                 "                .style(org.eclipse.microprofile.openapi.models.parameters.Parameter.Style.SIMPLE)\n" +
                 "                .explode(false)");
+    }
+
+    @Test
+    public void testSchemaWithReference() throws Exception {
+        Schema schmea = createObject(Schema.class)
+                .ref("#/components/schemas/Task");
+
+        CodeBlock block = CodeBlockConverter.createSchema(schmea);
+        assertThat(block.toString()).isEqualToNormalizingWhitespace("createObject(org.eclipse.microprofile.openapi.models.media.Schema.class)\n" +
+                "                .ref(\"#/components/schemas/Task\")");
+    }
+
+    @Test
+    public void testSchemaWithExtension() throws Exception {
+        Schema schmea = createObject(Schema.class)
+                .type(Schema.SchemaType.STRING);
+        schmea.setExtensions(Collections.singletonMap("x-custom", "value"));
+
+        CodeBlock block = CodeBlockConverter.createSchema(schmea);
+        assertThat(block.toString()).isEqualToNormalizingWhitespace("createObject(org.eclipse.microprofile.openapi.models.media.Schema.class)\n" +
+                "                .type(org.eclipse.microprofile.openapi.models.media.Schema.SchemaType.STRING)\n" +
+                "                .addExtension(\"x-custom\", \"value\")");
     }
 
     public static Path toFile(Path srcFolder, String packageName, String className) {

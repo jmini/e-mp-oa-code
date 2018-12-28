@@ -55,6 +55,15 @@ public class CodeBlockConverter {
                 list.add(CodeBlock.of("addCallback(\n$S, $L\n)", entry.getKey(), createCallback(entry.getValue())));
             }
         }
+        if (components.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : components.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
@@ -66,6 +75,15 @@ public class CodeBlockConverter {
         }
         if (externalDocumentation.getUrl() != null) {
             list.add(CodeBlock.of("url($S)", externalDocumentation.getUrl()));
+        }
+        if (externalDocumentation.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : externalDocumentation.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
         }
         return CodeBlock.join(list, "\n.");
     }
@@ -102,6 +120,15 @@ public class CodeBlockConverter {
         }
         if (openAPI.getComponents() != null) {
             list.add(CodeBlock.of("components(\n$L\n)", createComponents(openAPI.getComponents())));
+        }
+        if (openAPI.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : openAPI.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
         }
         return CodeBlock.join(list, "\n.");
     }
@@ -155,12 +182,24 @@ public class CodeBlockConverter {
                 list.add(CodeBlock.of("addServer(\n$L\n)", createServer(item)));
             }
         }
+        if (operation.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : operation.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
     public static CodeBlock createPathItem(org.eclipse.microprofile.openapi.models.PathItem pathItem) {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createObject($T.class)", org.eclipse.microprofile.openapi.models.PathItem.class));
+        if (pathItem.getRef() != null) {
+            list.add(CodeBlock.of("ref($S)", pathItem.getRef()));
+        }
         if (pathItem.getSummary() != null) {
             list.add(CodeBlock.of("summary($S)", pathItem.getSummary()));
         }
@@ -201,6 +240,15 @@ public class CodeBlockConverter {
                 list.add(CodeBlock.of("addParameter(\n$L\n)", createParameter(item)));
             }
         }
+        if (pathItem.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : pathItem.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
@@ -209,6 +257,15 @@ public class CodeBlockConverter {
         list.add(CodeBlock.of("createObject($T.class)", org.eclipse.microprofile.openapi.models.Paths.class));
         for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> entry : paths.entrySet()) {
             list.add(CodeBlock.of("addPathItem(\n$S, $L\n)", entry.getKey(), createPathItem(entry.getValue())));
+        }
+        if (paths.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : paths.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
         }
         return CodeBlock.join(list, "\n.");
     }
@@ -219,12 +276,27 @@ public class CodeBlockConverter {
         for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> entry : callback.entrySet()) {
             list.add(CodeBlock.of("addPathItem(\n$S, $L\n)", entry.getKey(), createPathItem(entry.getValue())));
         }
+        if (callback.getRef() != null) {
+            list.add(CodeBlock.of("ref($S)", callback.getRef()));
+        }
+        if (callback.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : callback.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
     public static CodeBlock createExample(org.eclipse.microprofile.openapi.models.examples.Example example) {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createObject($T.class)", org.eclipse.microprofile.openapi.models.examples.Example.class));
+        if (example.getRef() != null) {
+            list.add(CodeBlock.of("ref($S)", example.getRef()));
+        }
         if (example.getSummary() != null) {
             list.add(CodeBlock.of("summary($S)", example.getSummary()));
         }
@@ -241,12 +313,24 @@ public class CodeBlockConverter {
         if (example.getExternalValue() != null) {
             list.add(CodeBlock.of("externalValue($S)", example.getExternalValue()));
         }
+        if (example.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : example.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
     public static CodeBlock createHeader(org.eclipse.microprofile.openapi.models.headers.Header header) {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createObject($T.class)", org.eclipse.microprofile.openapi.models.headers.Header.class));
+        if (header.getRef() != null) {
+            list.add(CodeBlock.of("ref($S)", header.getRef()));
+        }
         if (header.getDescription() != null) {
             list.add(CodeBlock.of("description($S)", header.getDescription()));
         }
@@ -283,6 +367,15 @@ public class CodeBlockConverter {
         if (header.getContent() != null) {
             list.add(CodeBlock.of("content(\n$L\n)", createContent(header.getContent())));
         }
+        if (header.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : header.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
@@ -297,6 +390,15 @@ public class CodeBlockConverter {
         }
         if (contact.getEmail() != null) {
             list.add(CodeBlock.of("email($S)", contact.getEmail()));
+        }
+        if (contact.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : contact.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
         }
         return CodeBlock.join(list, "\n.");
     }
@@ -322,6 +424,15 @@ public class CodeBlockConverter {
         if (info.getVersion() != null) {
             list.add(CodeBlock.of("version($S)", info.getVersion()));
         }
+        if (info.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : info.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
@@ -334,12 +445,24 @@ public class CodeBlockConverter {
         if (license.getUrl() != null) {
             list.add(CodeBlock.of("url($S)", license.getUrl()));
         }
+        if (license.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : license.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
     public static CodeBlock createLink(org.eclipse.microprofile.openapi.models.links.Link link) {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createObject($T.class)", org.eclipse.microprofile.openapi.models.links.Link.class));
+        if (link.getRef() != null) {
+            list.add(CodeBlock.of("ref($S)", link.getRef()));
+        }
         if (link.getServer() != null) {
             list.add(CodeBlock.of("server(\n$L\n)", createServer(link.getServer())));
         }
@@ -367,6 +490,15 @@ public class CodeBlockConverter {
         }
         if (link.getDescription() != null) {
             list.add(CodeBlock.of("description($S)", link.getDescription()));
+        }
+        if (link.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : link.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
         }
         return CodeBlock.join(list, "\n.");
     }
@@ -414,6 +546,15 @@ public class CodeBlockConverter {
         if (encoding.getAllowReserved() != null) {
             list.add(CodeBlock.of("allowReserved($L)", encoding.getAllowReserved()));
         }
+        if (encoding.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : encoding.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
@@ -440,12 +581,24 @@ public class CodeBlockConverter {
                 list.add(CodeBlock.of("addEncoding(\n$S, $L\n)", entry.getKey(), createEncoding(entry.getValue())));
             }
         }
+        if (mediaType.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : mediaType.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
     public static CodeBlock createSchema(org.eclipse.microprofile.openapi.models.media.Schema schema) {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createObject($T.class)", org.eclipse.microprofile.openapi.models.media.Schema.class));
+        if (schema.getRef() != null) {
+            list.add(CodeBlock.of("ref($S)", schema.getRef()));
+        }
         if (schema.getDiscriminator() != null) {
             list.add(CodeBlock.of("discriminator(\n$L\n)", createDiscriminator(schema.getDiscriminator())));
         }
@@ -578,6 +731,15 @@ public class CodeBlockConverter {
                 list.add(CodeBlock.of("addOneOf(\n$L\n)", createSchema(item)));
             }
         }
+        if (schema.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : schema.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
@@ -599,12 +761,24 @@ public class CodeBlockConverter {
         if (xML.getWrapped() != null) {
             list.add(CodeBlock.of("wrapped($L)", xML.getWrapped()));
         }
+        if (xML.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : xML.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
     public static CodeBlock createParameter(org.eclipse.microprofile.openapi.models.parameters.Parameter parameter) {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createObject($T.class)", org.eclipse.microprofile.openapi.models.parameters.Parameter.class));
+        if (parameter.getRef() != null) {
+            list.add(CodeBlock.of("ref($S)", parameter.getRef()));
+        }
         if (parameter.getName() != null) {
             list.add(CodeBlock.of("name($S)", parameter.getName()));
         }
@@ -650,12 +824,24 @@ public class CodeBlockConverter {
         if (parameter.getContent() != null) {
             list.add(CodeBlock.of("content(\n$L\n)", createContent(parameter.getContent())));
         }
+        if (parameter.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : parameter.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
     public static CodeBlock createRequestBody(org.eclipse.microprofile.openapi.models.parameters.RequestBody requestBody) {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createObject($T.class)", org.eclipse.microprofile.openapi.models.parameters.RequestBody.class));
+        if (requestBody.getRef() != null) {
+            list.add(CodeBlock.of("ref($S)", requestBody.getRef()));
+        }
         if (requestBody.getDescription() != null) {
             list.add(CodeBlock.of("description($S)", requestBody.getDescription()));
         }
@@ -665,12 +851,24 @@ public class CodeBlockConverter {
         if (requestBody.getRequired() != null) {
             list.add(CodeBlock.of("required($L)", requestBody.getRequired()));
         }
+        if (requestBody.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : requestBody.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
     public static CodeBlock createAPIResponse(org.eclipse.microprofile.openapi.models.responses.APIResponse aPIResponse) {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createObject($T.class)", org.eclipse.microprofile.openapi.models.responses.APIResponse.class));
+        if (aPIResponse.getRef() != null) {
+            list.add(CodeBlock.of("ref($S)", aPIResponse.getRef()));
+        }
         if (aPIResponse.getDescription() != null) {
             list.add(CodeBlock.of("description($S)", aPIResponse.getDescription()));
         }
@@ -685,6 +883,15 @@ public class CodeBlockConverter {
         if (aPIResponse.getLinks() != null) {
             for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.links.Link> entry : aPIResponse.getLinks().entrySet()) {
                 list.add(CodeBlock.of("addLink(\n$S, $L\n)", entry.getKey(), createLink(entry.getValue())));
+            }
+        }
+        if (aPIResponse.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : aPIResponse.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
             }
         }
         return CodeBlock.join(list, "\n.");
@@ -717,6 +924,15 @@ public class CodeBlockConverter {
         if (oAuthFlow.getScopes() != null) {
             list.add(CodeBlock.of("scopes(\n$L\n)", createScopes(oAuthFlow.getScopes())));
         }
+        if (oAuthFlow.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : oAuthFlow.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
@@ -735,6 +951,15 @@ public class CodeBlockConverter {
         if (oAuthFlows.getAuthorizationCode() != null) {
             list.add(CodeBlock.of("authorizationCode(\n$L\n)", createOAuthFlow(oAuthFlows.getAuthorizationCode())));
         }
+        if (oAuthFlows.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : oAuthFlows.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
@@ -743,6 +968,15 @@ public class CodeBlockConverter {
         list.add(CodeBlock.of("createObject($T.class)", org.eclipse.microprofile.openapi.models.security.Scopes.class));
         for (java.util.Map.Entry<String, String> entry : scopes.entrySet()) {
             list.add(CodeBlock.of("addScope($S, $S)", entry.getKey(), entry.getValue()));
+        }
+        if (scopes.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : scopes.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
         }
         return CodeBlock.join(list, "\n.");
     }
@@ -771,6 +1005,9 @@ public class CodeBlockConverter {
     public static CodeBlock createSecurityScheme(org.eclipse.microprofile.openapi.models.security.SecurityScheme securityScheme) {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createObject($T.class)", org.eclipse.microprofile.openapi.models.security.SecurityScheme.class));
+        if (securityScheme.getRef() != null) {
+            list.add(CodeBlock.of("ref($S)", securityScheme.getRef()));
+        }
         if (securityScheme.getType() != null) {
             list.add(CodeBlock.of("type($T.$L)", org.eclipse.microprofile.openapi.models.security.SecurityScheme.Type.class, securityScheme.getType().name()));
         }
@@ -795,6 +1032,15 @@ public class CodeBlockConverter {
         if (securityScheme.getOpenIdConnectUrl() != null) {
             list.add(CodeBlock.of("openIdConnectUrl($S)", securityScheme.getOpenIdConnectUrl()));
         }
+        if (securityScheme.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : securityScheme.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
@@ -809,6 +1055,15 @@ public class CodeBlockConverter {
         }
         if (server.getVariables() != null) {
             list.add(CodeBlock.of("variables(\n$L\n)", createServerVariables(server.getVariables())));
+        }
+        if (server.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : server.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
         }
         return CodeBlock.join(list, "\n.");
     }
@@ -827,6 +1082,15 @@ public class CodeBlockConverter {
         if (serverVariable.getDescription() != null) {
             list.add(CodeBlock.of("description($S)", serverVariable.getDescription()));
         }
+        if (serverVariable.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : serverVariable.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
+        }
         return CodeBlock.join(list, "\n.");
     }
 
@@ -835,6 +1099,15 @@ public class CodeBlockConverter {
         list.add(CodeBlock.of("createObject($T.class)", org.eclipse.microprofile.openapi.models.servers.ServerVariables.class));
         for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> entry : serverVariables.entrySet()) {
             list.add(CodeBlock.of("addServerVariable(\n$S, $L\n)", entry.getKey(), createServerVariable(entry.getValue())));
+        }
+        if (serverVariables.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : serverVariables.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
         }
         return CodeBlock.join(list, "\n.");
     }
@@ -850,6 +1123,15 @@ public class CodeBlockConverter {
         }
         if (tag.getExternalDocs() != null) {
             list.add(CodeBlock.of("externalDocs(\n$L\n)", createExternalDocumentation(tag.getExternalDocs())));
+        }
+        if (tag.getExtensions() != null) {
+            for (java.util.Map.Entry<String, Object> entry : tag.getExtensions().entrySet()) {
+                if(entry.getValue() instanceof String) {
+                    list.add(CodeBlock.of("addExtension($S, $S)", entry.getKey(), entry.getValue()));
+                } else {
+                    list.add(CodeBlock.of("addExtension($S, $L)", entry.getKey(), entry.getValue()));
+                }
+            }
         }
         return CodeBlock.join(list, "\n.");
     }
