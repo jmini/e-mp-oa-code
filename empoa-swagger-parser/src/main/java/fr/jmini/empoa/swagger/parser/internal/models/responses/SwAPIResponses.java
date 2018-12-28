@@ -88,6 +88,7 @@ public class SwAPIResponses implements APIResponses {
         _swAPIResponses.clear();
         if (aPIResponses != null) {
             if (aPIResponses.isEmpty()) {
+                _aPIResponses = new java.util.LinkedHashMap<>();
             } else {
                 for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> e : aPIResponses.entrySet()) {
                     this.addAPIResponse(e.getKey(), e.getValue());

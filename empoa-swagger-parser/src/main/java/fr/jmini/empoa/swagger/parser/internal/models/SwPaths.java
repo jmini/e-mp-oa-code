@@ -88,6 +88,7 @@ public class SwPaths implements Paths {
         _swPaths.clear();
         if (pathItems != null) {
             if (pathItems.isEmpty()) {
+                _pathItems = new java.util.LinkedHashMap<>();
             } else {
                 for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.PathItem> e : pathItems.entrySet()) {
                     this.addPathItem(e.getKey(), e.getValue());

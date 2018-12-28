@@ -51,6 +51,7 @@ public class SwContent implements Content {
         _swContent.clear();
         if (mediaTypes != null) {
             if (mediaTypes.isEmpty()) {
+                _mediaTypes = new java.util.LinkedHashMap<>();
             } else {
                 for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.media.MediaType> e : mediaTypes.entrySet()) {
                     this.addMediaType(e.getKey(), e.getValue());

@@ -76,7 +76,7 @@ public class SwParameter implements Parameter {
     }
 
     @Override
-    public In getIn() {
+    public org.eclipse.microprofile.openapi.models.parameters.Parameter.In getIn() {
         if (_swParameter.getIn() == null) {
             return null;
         }
@@ -95,7 +95,7 @@ public class SwParameter implements Parameter {
     }
 
     @Override
-    public void setIn(In in) {
+    public void setIn(org.eclipse.microprofile.openapi.models.parameters.Parameter.In in) {
         if (in == null) {
             _swParameter.setIn(null);
         } else {

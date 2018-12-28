@@ -238,7 +238,9 @@ public class SwGenerator {
                 sb.append("        if (" + varName + " != null) {\n");
                 if (isMapMember || isListMember) {
                     sb.append("            if (" + varName + ".isEmpty()) {\n");
-                    if (isMapMember && !isSingleMapMember) {
+                    if (isSingleMapMember && isComplexType) {
+                        sb.append("                " + memberName + " = " + "new " + java.util.LinkedHashMap.class.getCanonicalName() + "<>();\n");
+                    } else if (isMapMember) {
                         sb.append("                " + swVarName + "." + swMember.setterName + "(new " + java.util.LinkedHashMap.class.getCanonicalName() + "<>());\n");
                     } else if (isListMember) {
                         sb.append("                " + swVarName + "." + swMember.setterName + "(new " + java.util.ArrayList.class.getCanonicalName() + "<>());\n");

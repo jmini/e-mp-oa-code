@@ -88,6 +88,7 @@ public class SwServerVariables implements ServerVariables {
         _swServerVariables.clear();
         if (serverVariables != null) {
             if (serverVariables.isEmpty()) {
+                _serverVariables = new java.util.LinkedHashMap<>();
             } else {
                 for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> e : serverVariables.entrySet()) {
                     this.addServerVariable(e.getKey(), e.getValue());
