@@ -10,8 +10,8 @@ public class APIResponseTest {
 
     @Test
     public void testCreateAPIResponse() {
-        APIResponse aPIResponse = OASFactory.createAPIResponse();
-        assertThat(aPIResponse).isNotNull();
+        APIResponse apiResponse = OASFactory.createAPIResponse();
+        assertThat(apiResponse).isNotNull();
     }
 
 }
