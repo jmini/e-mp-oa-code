@@ -42,10 +42,14 @@ public class APIResponseImpl implements APIResponse {
 
     @Override
     public APIResponse addExtension(String key, Object object) {
-        if (_extensions == null) {
-            _extensions = new java.util.LinkedHashMap<>();
+        if (object == null) {
+            this.removeExtension(key);
+        } else {
+            if (_extensions == null) {
+                _extensions = new java.util.LinkedHashMap<>();
+            }
+            _extensions.put(key, object);
         }
-        _extensions.put(key, object);
         return this;
     }
 
@@ -90,10 +94,14 @@ public class APIResponseImpl implements APIResponse {
 
     @Override
     public APIResponse addHeader(String key, org.eclipse.microprofile.openapi.models.headers.Header header) {
-        if (_headers == null) {
-            _headers = new java.util.LinkedHashMap<>();
+        if (header == null) {
+            this.removeHeader(key);
+        } else {
+            if (_headers == null) {
+                _headers = new java.util.LinkedHashMap<>();
+            }
+            _headers.put(key, header);
         }
-        _headers.put(key, header);
         return this;
     }
 
@@ -138,10 +146,14 @@ public class APIResponseImpl implements APIResponse {
 
     @Override
     public APIResponse addLink(String key, org.eclipse.microprofile.openapi.models.links.Link link) {
-        if (_links == null) {
-            _links = new java.util.LinkedHashMap<>();
+        if (link == null) {
+            this.removeLink(key);
+        } else {
+            if (_links == null) {
+                _links = new java.util.LinkedHashMap<>();
+            }
+            _links.put(key, link);
         }
-        _links.put(key, link);
         return this;
     }
 

@@ -43,10 +43,14 @@ public class CallbackImpl extends java.util.LinkedHashMap<String, org.eclipse.mi
 
     @Override
     public Callback addExtension(String key, Object object) {
-        if (_extensions == null) {
-            _extensions = new java.util.LinkedHashMap<>();
+        if (object == null) {
+            this.removeExtension(key);
+        } else {
+            if (_extensions == null) {
+                _extensions = new java.util.LinkedHashMap<>();
+            }
+            _extensions.put(key, object);
         }
-        _extensions.put(key, object);
         return this;
     }
 

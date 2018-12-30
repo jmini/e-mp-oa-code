@@ -42,10 +42,14 @@ public class SchemaImpl implements Schema {
 
     @Override
     public Schema addExtension(String key, Object object) {
-        if (_extensions == null) {
-            _extensions = new java.util.LinkedHashMap<>();
+        if (object == null) {
+            this.removeExtension(key);
+        } else {
+            if (_extensions == null) {
+                _extensions = new java.util.LinkedHashMap<>();
+            }
+            _extensions.put(key, object);
         }
-        _extensions.put(key, object);
         return this;
     }
 
@@ -366,10 +370,14 @@ public class SchemaImpl implements Schema {
 
     @Override
     public Schema addProperty(String key, org.eclipse.microprofile.openapi.models.media.Schema schema) {
-        if (_properties == null) {
-            _properties = new java.util.LinkedHashMap<>();
+        if (schema == null) {
+            this.removeProperty(key);
+        } else {
+            if (_properties == null) {
+                _properties = new java.util.LinkedHashMap<>();
+            }
+            _properties.put(key, schema);
         }
-        _properties.put(key, schema);
         return this;
     }
 

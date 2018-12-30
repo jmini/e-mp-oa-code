@@ -26,10 +26,14 @@ public class EncodingImpl implements Encoding {
 
     @Override
     public Encoding addExtension(String key, Object object) {
-        if (_extensions == null) {
-            _extensions = new java.util.LinkedHashMap<>();
+        if (object == null) {
+            this.removeExtension(key);
+        } else {
+            if (_extensions == null) {
+                _extensions = new java.util.LinkedHashMap<>();
+            }
+            _extensions.put(key, object);
         }
-        _extensions.put(key, object);
         return this;
     }
 
@@ -74,10 +78,14 @@ public class EncodingImpl implements Encoding {
 
     @Override
     public Encoding addHeader(String key, org.eclipse.microprofile.openapi.models.headers.Header header) {
-        if (_headers == null) {
-            _headers = new java.util.LinkedHashMap<>();
+        if (header == null) {
+            this.removeHeader(key);
+        } else {
+            if (_headers == null) {
+                _headers = new java.util.LinkedHashMap<>();
+            }
+            _headers.put(key, header);
         }
-        _headers.put(key, header);
         return this;
     }
 

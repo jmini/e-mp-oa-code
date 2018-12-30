@@ -42,10 +42,14 @@ public class HeaderImpl implements Header {
 
     @Override
     public Header addExtension(String key, Object object) {
-        if (_extensions == null) {
-            _extensions = new java.util.LinkedHashMap<>();
+        if (object == null) {
+            this.removeExtension(key);
+        } else {
+            if (_extensions == null) {
+                _extensions = new java.util.LinkedHashMap<>();
+            }
+            _extensions.put(key, object);
         }
-        _extensions.put(key, object);
         return this;
     }
 
@@ -162,10 +166,14 @@ public class HeaderImpl implements Header {
 
     @Override
     public Header addExample(String key, org.eclipse.microprofile.openapi.models.examples.Example example) {
-        if (_examples == null) {
-            _examples = new java.util.LinkedHashMap<>();
+        if (example == null) {
+            this.removeExample(key);
+        } else {
+            if (_examples == null) {
+                _examples = new java.util.LinkedHashMap<>();
+            }
+            _examples.put(key, example);
         }
-        _examples.put(key, example);
         return this;
     }
 
