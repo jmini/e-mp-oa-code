@@ -48,7 +48,11 @@ public class APIResponsesImpl extends java.util.LinkedHashMap<String, org.eclips
 
     @Override
     public void setDefaultValue(org.eclipse.microprofile.openapi.models.responses.APIResponse defaultValue) {
-        addAPIResponse(DEFAULT, defaultValue);
+        if (defaultValue == null) {
+            removeAPIResponse(DEFAULT);
+        } else {
+            addAPIResponse(DEFAULT, defaultValue);
+        }
     }
 
     @Override
