@@ -466,7 +466,11 @@ public class SwGenerator {
         case APIResponses_setDefaultValue:
             sb.append("    @Override\n");
             sb.append("    public void setDefaultValue(" + org.eclipse.microprofile.openapi.models.responses.APIResponse.class.getCanonicalName() + " defaultValue) {\n");
-            sb.append("        addAPIResponse(DEFAULT, defaultValue);\n");
+            sb.append("        if (defaultValue == null) {\n");
+            sb.append("            removeAPIResponse(DEFAULT);\n");
+            sb.append("        } else {\n");
+            sb.append("            addAPIResponse(DEFAULT, defaultValue);\n");
+            sb.append("        }\n");
             sb.append("    }\n");
             sb.append("\n");
             break;

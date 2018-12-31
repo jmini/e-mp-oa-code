@@ -1,6 +1,6 @@
 package fr.jmini.empoa.extended.tck.models.responses;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.Collections;
 
@@ -29,6 +29,20 @@ public class APIResponsesTest {
         assertThat(apiResponses.getAPIResponses()).containsOnlyKeys("200");
 
         apiResponses.setAPIResponses(Collections.emptyMap());
+        assertThat(apiResponses.getAPIResponses()).isEmpty();
+    }
+
+    @Test
+    public void testSetDefaultValue() {
+        APIResponses apiResponses = OASFactory.createAPIResponses();
+
+        apiResponses.setDefaultValue(
+                OASFactory.createAPIResponse()
+                        .description("OK")
+        );
+        assertThat(apiResponses.getAPIResponses()).containsOnlyKeys(APIResponses.DEFAULT);
+
+        apiResponses.setDefaultValue(null);
         assertThat(apiResponses.getAPIResponses()).isEmpty();
     }
 
