@@ -895,7 +895,9 @@ public class CodeBlockConverter {
         List<CodeBlock> list = new ArrayList<>();
         list.add(CodeBlock.of("createAPIResponses()"));
         for (java.util.Map.Entry<String, org.eclipse.microprofile.openapi.models.responses.APIResponse> entry : aPIResponses.entrySet()) {
-            list.add(CodeBlock.of("addAPIResponse(\n$S, $L\n)", entry.getKey(), createAPIResponse(entry.getValue())));
+            if(!org.eclipse.microprofile.openapi.models.responses.APIResponses.DEFAULT.equals(entry.getKey())) {
+                list.add(CodeBlock.of("addAPIResponse(\n$S, $L\n)", entry.getKey(), createAPIResponse(entry.getValue())));
+            }
         }
         if (aPIResponses.getExtensions() != null) {
             for (java.util.Map.Entry<String, Object> entry : aPIResponses.getExtensions().entrySet()) {

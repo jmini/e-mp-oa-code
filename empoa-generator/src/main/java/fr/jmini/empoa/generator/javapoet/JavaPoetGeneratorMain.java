@@ -4,7 +4,10 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import org.eclipse.microprofile.openapi.models.responses.APIResponses;
+
 import fr.jmini.empoa.specs.Element;
+import fr.jmini.empoa.specs.ElementType;
 import fr.jmini.empoa.specs.IMember;
 import fr.jmini.empoa.specs.ListMember;
 import fr.jmini.empoa.specs.MapMember;
@@ -43,27 +46,37 @@ public class JavaPoetGeneratorMain {
             if (element.mapOfItemFq != null) {
                 String entryVarName = "entry";
                 sb.append("        for (java.util.Map.Entry<String, " + element.mapOfItemFq + "> " + entryVarName + " : " + varName + ".entrySet()) {\n");
+                String prefix;
+                if (element.type == ElementType.APIResponses) {
+                    sb.append("            if(!" + APIResponses.class.getCanonicalName() + ".DEFAULT.equals(" + entryVarName + ".getKey())) {\n");
+                    prefix = "                ";
+                } else {
+                    prefix = "            ";
+                }
                 if (isString(element.mapOfItemFq)) {
-                    sb.append("            list.add(CodeBlock.of(\"" + element.mapAddName + "($S, $S)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
+                    sb.append(prefix + "list.add(CodeBlock.of(\"" + element.mapAddName + "($S, $S)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
                 } else if (isSimpleLitteral(element.mapOfItemFq)) {
-                    sb.append("            list.add(CodeBlock.of(\"" + element.mapAddName + "($S, $L)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
+                    sb.append(prefix + "list.add(CodeBlock.of(\"" + element.mapAddName + "($S, $L)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
                 } else if (isMp(element.mapOfItemFq)) {
-                    sb.append("            list.add(CodeBlock.of(\"" + element.mapAddName + "(\\n$S, $L\\n)\", " + entryVarName + ".getKey(), " + toCreateMethodName(element.mapOfItemFq) + "(" + entryVarName
+                    sb.append(prefix + "list.add(CodeBlock.of(\"" + element.mapAddName + "(\\n$S, $L\\n)\", " + entryVarName + ".getKey(), " + toCreateMethodName(element.mapOfItemFq) + "(" + entryVarName
                             + ".getValue())));\n");
                 } else {
-                    sb.append("            if (" + entryVarName + ".getValue()\n");
-                    sb.append("                    .isEmpty()) {\n");
-                    sb.append("                list.add(CodeBlock.of(\"addScheme($S)\", " + entryVarName + ".getKey()));\n");
-                    sb.append("            } else if (" + entryVarName + ".getValue()\n");
-                    sb.append("                    .size() == 1) {\n");
-                    sb.append("                list.add(CodeBlock.of(\"addScheme($S, $S)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()\n");
-                    sb.append("                        .get(0)));\n");
-                    sb.append("            } else {\n");
-                    sb.append("                list.add(CodeBlock.of(\"addScheme(\\n$S, $T.asList(\\n$L\\n)\\n)\", " + entryVarName + ".getKey(), " + Arrays.class.getCanonicalName() + ".class, CodeBlock.join(" + entryVarName
+                    sb.append(prefix + "if (" + entryVarName + ".getValue()\n");
+                    sb.append(prefix + "        .isEmpty()) {\n");
+                    sb.append(prefix + "    list.add(CodeBlock.of(\"addScheme($S)\", " + entryVarName + ".getKey()));\n");
+                    sb.append(prefix + "} else if (" + entryVarName + ".getValue()\n");
+                    sb.append(prefix + "        .size() == 1) {\n");
+                    sb.append(prefix + "    list.add(CodeBlock.of(\"addScheme($S, $S)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()\n");
+                    sb.append(prefix + "            .get(0)));\n");
+                    sb.append(prefix + "} else {\n");
+                    sb.append(prefix + "    list.add(CodeBlock.of(\"addScheme(\\n$S, $T.asList(\\n$L\\n)\\n)\", " + entryVarName + ".getKey(), " + Arrays.class.getCanonicalName() + ".class, CodeBlock.join(" + entryVarName
                             + ".getValue()\n");
-                    sb.append("                        .stream()\n");
-                    sb.append("                        .map(s -> CodeBlock.of(\"$S\", s))\n");
-                    sb.append("                        .collect(" + Collectors.class.getCanonicalName() + ".toList()), \",\\n\")));\n");
+                    sb.append(prefix + "            .stream()\n");
+                    sb.append(prefix + "            .map(s -> CodeBlock.of(\"$S\", s))\n");
+                    sb.append(prefix + "            .collect(" + Collectors.class.getCanonicalName() + ".toList()), \",\\n\")));\n");
+                    sb.append(prefix + "}\n");
+                }
+                if (element.type == ElementType.APIResponses) {
                     sb.append("            }\n");
                 }
                 sb.append("        }\n");
@@ -115,19 +128,21 @@ public class JavaPoetGeneratorMain {
                             MapMember mapMember = (MapMember) member;
                             String entryVarName = "entry";
                             sb.append("            for (java.util.Map.Entry<String, " + mapMember.valueFqType + "> " + entryVarName + " : " + varName + "." + member.getterName + "().entrySet()) {\n");
+
+                            String prefix = "                ";
                             if (isString(mapMember.valueFqType)) {
-                                sb.append("                list.add(CodeBlock.of(\"" + mapMember.addName + "($S, $S)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
+                                sb.append(prefix + "list.add(CodeBlock.of(\"" + mapMember.addName + "($S, $S)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
                             } else if (isSimpleLitteral(mapMember.valueFqType)) {
-                                sb.append("                list.add(CodeBlock.of(\"" + mapMember.addName + "($S, $L)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
+                                sb.append(prefix + "list.add(CodeBlock.of(\"" + mapMember.addName + "($S, $L)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
                             } else if (isMp(mapMember.valueFqType)) {
-                                sb.append("                list.add(CodeBlock.of(\"" + mapMember.addName + "(\\n$S, $L\\n)\", " + entryVarName + ".getKey(), " + toCreateMethodName(mapMember.valueFqType) + "(" + entryVarName
+                                sb.append(prefix + "list.add(CodeBlock.of(\"" + mapMember.addName + "(\\n$S, $L\\n)\", " + entryVarName + ".getKey(), " + toCreateMethodName(mapMember.valueFqType) + "(" + entryVarName
                                         + ".getValue())));\n");
                             } else if (isObject(mapMember.valueFqType)) {
-                                sb.append("                if(" + entryVarName + ".getValue() instanceof String) {\n");
-                                sb.append("                    list.add(CodeBlock.of(\"" + mapMember.addName + "($S, $S)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
-                                sb.append("                } else {\n");
-                                sb.append("                    list.add(CodeBlock.of(\"" + mapMember.addName + "($S, $L)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
-                                sb.append("                }\n");
+                                sb.append(prefix + "if(" + entryVarName + ".getValue() instanceof String) {\n");
+                                sb.append(prefix + "    list.add(CodeBlock.of(\"" + mapMember.addName + "($S, $S)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
+                                sb.append(prefix + "} else {\n");
+                                sb.append(prefix + "    list.add(CodeBlock.of(\"" + mapMember.addName + "($S, $L)\", " + entryVarName + ".getKey(), " + entryVarName + ".getValue()));\n");
+                                sb.append(prefix + "}\n");
                             }
                             sb.append("            }\n");
                         } else {
