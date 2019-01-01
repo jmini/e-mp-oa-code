@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 import org.eclipse.microprofile.openapi.models.media.Schema;
 import org.eclipse.microprofile.openapi.models.parameters.Parameter;
+import org.eclipse.microprofile.openapi.models.responses.APIResponses;
 import org.eclipse.microprofile.openapi.models.security.SecurityRequirement;
 import org.testng.annotations.Test;
 
@@ -72,6 +73,27 @@ public class CodeBlockConverterTest {
         assertThat(block.toString()).isEqualToNormalizingWhitespace("createSchema()\n" +
                 "                .type(org.eclipse.microprofile.openapi.models.media.Schema.SchemaType.STRING)\n" +
                 "                .addExtension(\"x-custom\", \"value\")");
+    }
+
+    @Test
+    public void testAPIResponses() throws Exception {
+        APIResponses apiResponses = createAPIResponses()
+                .defaultValue(createAPIResponse()
+                        .description("Default response"))
+                .addAPIResponse(
+                        "200", createAPIResponse()
+                                .description("OK response"));
+
+        CodeBlock block = CodeBlockConverter.createAPIResponses(apiResponses);
+        assertThat(block.toString()).isEqualToNormalizingWhitespace("createAPIResponses()\n" +
+                "                .addAPIResponse(\n" +
+                "                        \"default\", createAPIResponse()\n" +
+                "                                .description(\"Default response\")\n" +
+                "                        \n)" +
+                "                .addAPIResponse(\n" +
+                "                        \"200\", createAPIResponse()\n" +
+                "                                .description(\"OK response\")" +
+                "                        \n)");
     }
 
     public static Path toFile(Path srcFolder, String packageName, String className) {
