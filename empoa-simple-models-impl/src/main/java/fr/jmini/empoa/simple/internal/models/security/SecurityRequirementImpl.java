@@ -19,6 +19,9 @@ public class SecurityRequirementImpl extends java.util.LinkedHashMap<String, jav
 
     @Override
     public SecurityRequirement addScheme(String key, java.util.List<String> list) {
+        if (list == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        }
         this.put(key, list);
         return this;
     }

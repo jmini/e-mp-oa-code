@@ -7,6 +7,9 @@ public class ContentImpl extends java.util.LinkedHashMap<String, org.eclipse.mic
 
     @Override
     public Content addMediaType(String key, org.eclipse.microprofile.openapi.models.media.MediaType mediaType) {
+        if (mediaType == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        }
         this.put(key, mediaType);
         return this;
     }

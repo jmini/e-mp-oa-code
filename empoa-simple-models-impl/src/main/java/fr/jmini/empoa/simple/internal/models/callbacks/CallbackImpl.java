@@ -43,10 +43,14 @@ public class CallbackImpl extends java.util.LinkedHashMap<String, org.eclipse.mi
 
     @Override
     public Callback addExtension(String key, Object object) {
-        if (_extensions == null) {
-            _extensions = new java.util.LinkedHashMap<>();
+        if (object == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_extensions == null) {
+                _extensions = new java.util.LinkedHashMap<>();
+            }
+            _extensions.put(key, object);
         }
-        _extensions.put(key, object);
         return this;
     }
 
@@ -59,6 +63,9 @@ public class CallbackImpl extends java.util.LinkedHashMap<String, org.eclipse.mi
 
     @Override
     public Callback addPathItem(String key, org.eclipse.microprofile.openapi.models.PathItem pathItem) {
+        if (pathItem == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        }
         this.put(key, pathItem);
         return this;
     }

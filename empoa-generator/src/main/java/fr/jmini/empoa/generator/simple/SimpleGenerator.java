@@ -87,6 +87,9 @@ public class SimpleGenerator {
             String itemVarName = StringUtil.decapitalize(StringUtil.computeSimpleName(element.mapOfItemFq));
             sb.append("    @Override\n");
             sb.append("    public " + simpleName + " " + element.mapAddName + "(String key, " + element.mapOfItemFq + " " + itemVarName + ") {\n");
+            sb.append("        if (" + itemVarName + " == null) {\n");
+            sb.append("            throw new " + IllegalArgumentException.class.getSimpleName() + "(\"Null value for key '\" + key + \"' is not allowed\");\n");
+            sb.append("        }\n");
             sb.append("        this.put(key, " + itemVarName + ");\n");
             sb.append("        return this;\n");
             sb.append("    }\n");
@@ -184,10 +187,14 @@ public class SimpleGenerator {
                 String returnType = (mapMember.addReturnsVoid) ? "void" : simpleName;
                 sb.append("    @Override\n");
                 sb.append("    public " + returnType + " " + mapMember.addName + "(String key, " + mapMember.valueFqType + " " + itemVarName + ") {\n");
-                sb.append("        if (" + memberName + " == null) {\n");
-                sb.append("            " + memberName + " = new java.util.LinkedHashMap<>();\n");
+                sb.append("        if (" + itemVarName + " == null) {\n");
+                sb.append("            throw new " + IllegalArgumentException.class.getSimpleName() + "(\"Null value for key '\" + key + \"' is not allowed\");\n");
+                sb.append("        } else {\n");
+                sb.append("            if (" + memberName + " == null) {\n");
+                sb.append("                " + memberName + " = new java.util.LinkedHashMap<>();\n");
+                sb.append("            }\n");
+                sb.append("            " + memberName + ".put(key, " + itemVarName + ");\n");
                 sb.append("        }\n");
-                sb.append("        " + memberName + ".put(key, " + itemVarName + ");\n");
                 if (!mapMember.addReturnsVoid) {
                     sb.append("        return this;\n");
                 }

@@ -38,10 +38,14 @@ public class DiscriminatorImpl implements Discriminator {
 
     @Override
     public Discriminator addMapping(String key, String string) {
-        if (_mapping == null) {
-            _mapping = new java.util.LinkedHashMap<>();
+        if (string == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_mapping == null) {
+                _mapping = new java.util.LinkedHashMap<>();
+            }
+            _mapping.put(key, string);
         }
-        _mapping.put(key, string);
         return this;
     }
 
