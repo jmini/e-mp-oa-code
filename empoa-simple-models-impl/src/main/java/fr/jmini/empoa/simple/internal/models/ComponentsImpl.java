@@ -26,10 +26,14 @@ public class ComponentsImpl implements Components {
 
     @Override
     public Components addExtension(String key, Object object) {
-        if (_extensions == null) {
-            _extensions = new java.util.LinkedHashMap<>();
+        if (object == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_extensions == null) {
+                _extensions = new java.util.LinkedHashMap<>();
+            }
+            _extensions.put(key, object);
         }
-        _extensions.put(key, object);
         return this;
     }
 
@@ -62,10 +66,14 @@ public class ComponentsImpl implements Components {
 
     @Override
     public Components addSchema(String key, org.eclipse.microprofile.openapi.models.media.Schema schema) {
-        if (_schemas == null) {
-            _schemas = new java.util.LinkedHashMap<>();
+        if (schema == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_schemas == null) {
+                _schemas = new java.util.LinkedHashMap<>();
+            }
+            _schemas.put(key, schema);
         }
-        _schemas.put(key, schema);
         return this;
     }
 
@@ -98,10 +106,14 @@ public class ComponentsImpl implements Components {
 
     @Override
     public Components addResponse(String key, org.eclipse.microprofile.openapi.models.responses.APIResponse aPIResponse) {
-        if (_responses == null) {
-            _responses = new java.util.LinkedHashMap<>();
+        if (aPIResponse == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_responses == null) {
+                _responses = new java.util.LinkedHashMap<>();
+            }
+            _responses.put(key, aPIResponse);
         }
-        _responses.put(key, aPIResponse);
         return this;
     }
 
@@ -134,10 +146,14 @@ public class ComponentsImpl implements Components {
 
     @Override
     public Components addParameter(String key, org.eclipse.microprofile.openapi.models.parameters.Parameter parameter) {
-        if (_parameters == null) {
-            _parameters = new java.util.LinkedHashMap<>();
+        if (parameter == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_parameters == null) {
+                _parameters = new java.util.LinkedHashMap<>();
+            }
+            _parameters.put(key, parameter);
         }
-        _parameters.put(key, parameter);
         return this;
     }
 
@@ -170,10 +186,14 @@ public class ComponentsImpl implements Components {
 
     @Override
     public Components addExample(String key, org.eclipse.microprofile.openapi.models.examples.Example example) {
-        if (_examples == null) {
-            _examples = new java.util.LinkedHashMap<>();
+        if (example == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_examples == null) {
+                _examples = new java.util.LinkedHashMap<>();
+            }
+            _examples.put(key, example);
         }
-        _examples.put(key, example);
         return this;
     }
 
@@ -206,10 +226,14 @@ public class ComponentsImpl implements Components {
 
     @Override
     public Components addRequestBody(String key, org.eclipse.microprofile.openapi.models.parameters.RequestBody requestBody) {
-        if (_requestBodies == null) {
-            _requestBodies = new java.util.LinkedHashMap<>();
+        if (requestBody == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_requestBodies == null) {
+                _requestBodies = new java.util.LinkedHashMap<>();
+            }
+            _requestBodies.put(key, requestBody);
         }
-        _requestBodies.put(key, requestBody);
         return this;
     }
 
@@ -242,10 +266,14 @@ public class ComponentsImpl implements Components {
 
     @Override
     public Components addHeader(String key, org.eclipse.microprofile.openapi.models.headers.Header header) {
-        if (_headers == null) {
-            _headers = new java.util.LinkedHashMap<>();
+        if (header == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_headers == null) {
+                _headers = new java.util.LinkedHashMap<>();
+            }
+            _headers.put(key, header);
         }
-        _headers.put(key, header);
         return this;
     }
 
@@ -278,10 +306,14 @@ public class ComponentsImpl implements Components {
 
     @Override
     public Components addSecurityScheme(String key, org.eclipse.microprofile.openapi.models.security.SecurityScheme securityScheme) {
-        if (_securitySchemes == null) {
-            _securitySchemes = new java.util.LinkedHashMap<>();
+        if (securityScheme == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_securitySchemes == null) {
+                _securitySchemes = new java.util.LinkedHashMap<>();
+            }
+            _securitySchemes.put(key, securityScheme);
         }
-        _securitySchemes.put(key, securityScheme);
         return this;
     }
 
@@ -314,10 +346,14 @@ public class ComponentsImpl implements Components {
 
     @Override
     public Components addLink(String key, org.eclipse.microprofile.openapi.models.links.Link link) {
-        if (_links == null) {
-            _links = new java.util.LinkedHashMap<>();
+        if (link == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_links == null) {
+                _links = new java.util.LinkedHashMap<>();
+            }
+            _links.put(key, link);
         }
-        _links.put(key, link);
         return this;
     }
 
@@ -350,10 +386,14 @@ public class ComponentsImpl implements Components {
 
     @Override
     public Components addCallback(String key, org.eclipse.microprofile.openapi.models.callbacks.Callback callback) {
-        if (_callbacks == null) {
-            _callbacks = new java.util.LinkedHashMap<>();
+        if (callback == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_callbacks == null) {
+                _callbacks = new java.util.LinkedHashMap<>();
+            }
+            _callbacks.put(key, callback);
         }
-        _callbacks.put(key, callback);
         return this;
     }
 

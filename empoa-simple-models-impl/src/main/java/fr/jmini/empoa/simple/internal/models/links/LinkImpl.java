@@ -42,10 +42,14 @@ public class LinkImpl implements Link {
 
     @Override
     public Link addExtension(String key, Object object) {
-        if (_extensions == null) {
-            _extensions = new java.util.LinkedHashMap<>();
+        if (object == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_extensions == null) {
+                _extensions = new java.util.LinkedHashMap<>();
+            }
+            _extensions.put(key, object);
         }
-        _extensions.put(key, object);
         return this;
     }
 
@@ -126,10 +130,14 @@ public class LinkImpl implements Link {
 
     @Override
     public Link addParameter(String key, Object object) {
-        if (_parameters == null) {
-            _parameters = new java.util.LinkedHashMap<>();
+        if (object == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_parameters == null) {
+                _parameters = new java.util.LinkedHashMap<>();
+            }
+            _parameters.put(key, object);
         }
-        _parameters.put(key, object);
         return this;
     }
 

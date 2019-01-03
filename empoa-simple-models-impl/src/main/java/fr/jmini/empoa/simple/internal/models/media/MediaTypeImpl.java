@@ -26,10 +26,14 @@ public class MediaTypeImpl implements MediaType {
 
     @Override
     public MediaType addExtension(String key, Object object) {
-        if (_extensions == null) {
-            _extensions = new java.util.LinkedHashMap<>();
+        if (object == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_extensions == null) {
+                _extensions = new java.util.LinkedHashMap<>();
+            }
+            _extensions.put(key, object);
         }
-        _extensions.put(key, object);
         return this;
     }
 
@@ -74,10 +78,14 @@ public class MediaTypeImpl implements MediaType {
 
     @Override
     public MediaType addExample(String key, org.eclipse.microprofile.openapi.models.examples.Example example) {
-        if (_examples == null) {
-            _examples = new java.util.LinkedHashMap<>();
+        if (example == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_examples == null) {
+                _examples = new java.util.LinkedHashMap<>();
+            }
+            _examples.put(key, example);
         }
-        _examples.put(key, example);
         return this;
     }
 
@@ -122,10 +130,14 @@ public class MediaTypeImpl implements MediaType {
 
     @Override
     public MediaType addEncoding(String key, org.eclipse.microprofile.openapi.models.media.Encoding encoding) {
-        if (_encoding == null) {
-            _encoding = new java.util.LinkedHashMap<>();
+        if (encoding == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_encoding == null) {
+                _encoding = new java.util.LinkedHashMap<>();
+            }
+            _encoding.put(key, encoding);
         }
-        _encoding.put(key, encoding);
         return this;
     }
 

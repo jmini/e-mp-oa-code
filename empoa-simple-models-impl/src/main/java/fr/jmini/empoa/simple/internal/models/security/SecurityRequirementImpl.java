@@ -26,10 +26,14 @@ public class SecurityRequirementImpl implements SecurityRequirement {
 
     @Override
     public SecurityRequirement addScheme(String key, java.util.List<String> list) {
-        if (_schemes == null) {
-            _schemes = new java.util.LinkedHashMap<>();
+        if (list == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_schemes == null) {
+                _schemes = new java.util.LinkedHashMap<>();
+            }
+            _schemes.put(key, list);
         }
-        _schemes.put(key, list);
         return this;
     }
 

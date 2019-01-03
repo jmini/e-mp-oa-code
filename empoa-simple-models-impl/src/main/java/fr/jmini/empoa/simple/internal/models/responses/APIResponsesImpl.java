@@ -26,10 +26,14 @@ public class APIResponsesImpl implements APIResponses {
 
     @Override
     public APIResponses addExtension(String key, Object object) {
-        if (_extensions == null) {
-            _extensions = new java.util.LinkedHashMap<>();
+        if (object == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_extensions == null) {
+                _extensions = new java.util.LinkedHashMap<>();
+            }
+            _extensions.put(key, object);
         }
-        _extensions.put(key, object);
         return this;
     }
 
@@ -62,10 +66,14 @@ public class APIResponsesImpl implements APIResponses {
 
     @Override
     public APIResponses addAPIResponse(String key, org.eclipse.microprofile.openapi.models.responses.APIResponse aPIResponse) {
-        if (_aPIResponses == null) {
-            _aPIResponses = new java.util.LinkedHashMap<>();
+        if (aPIResponse == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_aPIResponses == null) {
+                _aPIResponses = new java.util.LinkedHashMap<>();
+            }
+            _aPIResponses.put(key, aPIResponse);
         }
-        _aPIResponses.put(key, aPIResponse);
         return this;
     }
 

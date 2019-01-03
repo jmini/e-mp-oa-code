@@ -26,10 +26,14 @@ public class ContentImpl implements Content {
 
     @Override
     public Content addMediaType(String key, org.eclipse.microprofile.openapi.models.media.MediaType mediaType) {
-        if (_mediaTypes == null) {
-            _mediaTypes = new java.util.LinkedHashMap<>();
+        if (mediaType == null) {
+            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+        } else {
+            if (_mediaTypes == null) {
+                _mediaTypes = new java.util.LinkedHashMap<>();
+            }
+            _mediaTypes.put(key, mediaType);
         }
-        _mediaTypes.put(key, mediaType);
         return this;
     }
 
