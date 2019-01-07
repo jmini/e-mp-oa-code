@@ -8,7 +8,9 @@ public class SecurityRequirementImpl extends java.util.LinkedHashMap<String, jav
     @Override
     public SecurityRequirement addScheme(String key, String scope) {
         java.util.List<String> list = new java.util.ArrayList<>();
-        list.add(scope);
+        if (scope != null) {
+            list.add(scope);
+        }
         return addScheme(key, list);
     }
 
@@ -20,7 +22,7 @@ public class SecurityRequirementImpl extends java.util.LinkedHashMap<String, jav
     @Override
     public SecurityRequirement addScheme(String key, java.util.List<String> list) {
         if (list == null) {
-            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
+            return addScheme(key);
         }
         this.put(key, list);
         return this;

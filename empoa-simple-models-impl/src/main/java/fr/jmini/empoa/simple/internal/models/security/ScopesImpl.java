@@ -47,9 +47,6 @@ public class ScopesImpl extends java.util.LinkedHashMap<String, String> implemen
 
     @Override
     public Scopes addScope(String key, String string) {
-        if (string == null) {
-            throw new IllegalArgumentException("Null value for key '" + key + "' is not allowed");
-        }
         this.put(key, string);
         return this;
     }

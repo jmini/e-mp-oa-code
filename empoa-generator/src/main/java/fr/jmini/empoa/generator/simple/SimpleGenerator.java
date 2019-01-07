@@ -6,6 +6,7 @@ import fr.jmini.empoa.generator.Input;
 import fr.jmini.empoa.specs.AdditionalMethod;
 import fr.jmini.empoa.specs.AdditionalMethod.Type;
 import fr.jmini.empoa.specs.Element;
+import fr.jmini.empoa.specs.ElementType;
 import fr.jmini.empoa.specs.IMember;
 import fr.jmini.empoa.specs.ListMember;
 import fr.jmini.empoa.specs.MapMember;
@@ -87,9 +88,15 @@ public class SimpleGenerator {
             String itemVarName = StringUtil.decapitalize(StringUtil.computeSimpleName(element.mapOfItemFq));
             sb.append("    @Override\n");
             sb.append("    public " + simpleName + " " + element.mapAddName + "(String key, " + element.mapOfItemFq + " " + itemVarName + ") {\n");
-            sb.append("        if (" + itemVarName + " == null) {\n");
-            sb.append("            throw new " + IllegalArgumentException.class.getSimpleName() + "(\"Null value for key '\" + key + \"' is not allowed\");\n");
-            sb.append("        }\n");
+            if (element.type != ElementType.Scopes) {
+                sb.append("        if (" + itemVarName + " == null) {\n");
+                if (element.type == ElementType.SecurityRequirement) {
+                    sb.append("            return addScheme(key);\n");
+                } else {
+                    sb.append("            throw new " + IllegalArgumentException.class.getSimpleName() + "(\"Null value for key '\" + key + \"' is not allowed\");\n");
+                }
+                sb.append("        }\n");
+            }
             sb.append("        this.put(key, " + itemVarName + ");\n");
             sb.append("        return this;\n");
             sb.append("    }\n");
@@ -279,7 +286,9 @@ public class SimpleGenerator {
             sb.append("    @Override\n");
             sb.append("    public " + org.eclipse.microprofile.openapi.models.security.SecurityRequirement.class.getSimpleName() + " addScheme(String key, String scope) {\n");
             sb.append("        java.util.List<String> list = new java.util.ArrayList<>();\n");
-            sb.append("        list.add(scope);\n");
+            sb.append("        if (scope != null) {\n");
+            sb.append("            list.add(scope);\n");
+            sb.append("        }\n");
             sb.append("        return addScheme(key, list);\n");
             sb.append("    }\n");
             sb.append("\n");
