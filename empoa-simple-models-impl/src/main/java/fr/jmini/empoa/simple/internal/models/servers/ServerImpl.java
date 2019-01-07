@@ -80,4 +80,14 @@ public class ServerImpl implements Server {
         _variables = variables;
     }
 
+    @Override
+    public void setVariables(java.util.Map<String, org.eclipse.microprofile.openapi.models.servers.ServerVariable> variables) {
+        if (variables == null) {
+            _variables = null;
+        } else {
+            _variables = new fr.jmini.empoa.simple.internal.models.servers.ServerVariablesImpl();
+            _variables.setServerVariables(variables);
+        }
+    }
+
 }
