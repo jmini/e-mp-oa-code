@@ -14,6 +14,45 @@ public class SwSchema implements Schema {
         this._swSchema = _swSchema;
     }
 
+    private static io.swagger.v3.oas.models.media.ComposedSchema transformToComposedSchema(io.swagger.v3.oas.models.media.Schema schema) {
+        io.swagger.v3.oas.models.media.ComposedSchema result = new io.swagger.v3.oas.models.media.ComposedSchema();
+        result.set$ref(schema.get$ref());
+        result.setAdditionalProperties(schema.getAdditionalProperties());
+        result.setDefault(schema.getDefault());
+        result.setDeprecated(schema.getDeprecated());
+        result.setDescription(schema.getDescription());
+        result.setDiscriminator(schema.getDiscriminator());
+        result.setEnum(schema.getEnum());
+        result.setExample(schema.getExample());
+        result.setExclusiveMaximum(schema.getExclusiveMaximum());
+        result.setExclusiveMinimum(schema.getExclusiveMinimum());
+        result.setExtensions(schema.getExtensions());
+        result.setExternalDocs(schema.getExternalDocs());
+        result.setFormat(schema.getFormat());
+        result.setMaximum(schema.getMaximum());
+        result.setMaxItems(schema.getMaxItems());
+        result.setMaxLength(schema.getMaxLength());
+        result.setMaxProperties(schema.getMaxProperties());
+        result.setMinimum(schema.getMinimum());
+        result.setMinItems(schema.getMinItems());
+        result.setMinLength(schema.getMinLength());
+        result.setMinProperties(schema.getMinProperties());
+        result.setMultipleOf(schema.getMultipleOf());
+        result.setName(schema.getName());
+        result.setNot(schema.getNot());
+        result.setNullable(schema.getNullable());
+        result.setPattern(schema.getPattern());
+        result.setProperties(schema.getProperties());
+        result.setReadOnly(schema.getReadOnly());
+        result.setRequired(schema.getRequired());
+        result.setTitle(schema.getTitle());
+        result.setType(schema.getType());
+        result.setUniqueItems(schema.getUniqueItems());
+        result.setWriteOnly(schema.getWriteOnly());
+        result.setXml(schema.getXml());
+        return result;
+    }
+
     public io.swagger.v3.oas.models.media.Schema getSw() {
         return _swSchema;
     }
@@ -453,10 +492,12 @@ public class SwSchema implements Schema {
     private fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema _additionalPropertiesSchema;
 
     private void initAdditionalPropertiesSchema() {
-        if (_swSchema.getAdditionalProperties() instanceof io.swagger.v3.oas.models.media.Schema) {
-            _additionalPropertiesSchema = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema((io.swagger.v3.oas.models.media.Schema) _swSchema.getAdditionalProperties());
-        } else {
-            _additionalPropertiesSchema = null;
+        if (_additionalPropertiesSchema == null) {
+            if (_swSchema.getAdditionalProperties() instanceof io.swagger.v3.oas.models.media.Schema) {
+                _additionalPropertiesSchema = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema((io.swagger.v3.oas.models.media.Schema) _swSchema.getAdditionalProperties());
+            } else {
+                _additionalPropertiesSchema = null;
+            }
         }
     }
 
@@ -661,13 +702,15 @@ public class SwSchema implements Schema {
     private java.util.List<fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema> _allOf;
 
     private void initAllOf() {
-        if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) || ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAllOf() == null) {
-            _allOf = null;
-        } else if (_allOf == null) {
-            _allOf = ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAllOf()
-                    .stream()
-                    .map(fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema::new)
-                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+        if (_allOf == null) {
+            if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) || ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAllOf() == null) {
+                _allOf = null;
+            } else if (_allOf == null) {
+                _allOf = ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAllOf()
+                        .stream()
+                        .map(fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema::new)
+                        .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+            }
         }
     }
 
@@ -685,11 +728,13 @@ public class SwSchema implements Schema {
         if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
             ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setAllOf(null);
         }
+        _allOf = null;
         if (allOf != null) {
             if (allOf.isEmpty()) {
-                if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
-                    ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setAllOf(new java.util.ArrayList<>());
+                if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema)) {
+                    _swSchema = transformToComposedSchema(_swSchema);
                 }
+                ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setAllOf(new java.util.ArrayList<>());
             } else {
                 for (org.eclipse.microprofile.openapi.models.media.Schema e : allOf) {
                     this.addAllOf(e);
@@ -704,18 +749,17 @@ public class SwSchema implements Schema {
             throw new IllegalArgumentException("Unexpected type: " + schema);
         }
         fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema element = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+        if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema)) {
+            _swSchema = transformToComposedSchema(_swSchema);
+        }
         initAllOf();
         if (_allOf == null) {
             _allOf = new java.util.ArrayList<>();
-            if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
-                ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setAllOf(new java.util.ArrayList<>());
-            }
+            ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setAllOf(new java.util.ArrayList<>());
         }
         _allOf.add(element);
-        if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
-            ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAllOf()
-                    .add(element.getSw());
-        }
+        ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAllOf()
+                .add(element.getSw());
         return this;
     }
 
@@ -725,26 +769,29 @@ public class SwSchema implements Schema {
             throw new IllegalArgumentException("Unexpected type: " + schema);
         }
         fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema element = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+        if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema)) {
+            _swSchema = transformToComposedSchema(_swSchema);
+        }
         initAllOf();
         if (_allOf != null) {
             _allOf.remove(schema);
-            if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
-                ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAllOf()
-                        .remove(element.getSw());
-            }
+            ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAllOf()
+                    .remove(element.getSw());
         }
     }
 
     private java.util.List<fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema> _anyOf;
 
     private void initAnyOf() {
-        if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) || ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAnyOf() == null) {
-            _anyOf = null;
-        } else {
-            _anyOf = ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAnyOf()
-                    .stream()
-                    .map(fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema::new)
-                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+        if (_anyOf == null) {
+            if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) || ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAnyOf() == null) {
+                _anyOf = null;
+            } else {
+                _anyOf = ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAnyOf()
+                        .stream()
+                        .map(fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema::new)
+                        .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+            }
         }
     }
 
@@ -762,11 +809,13 @@ public class SwSchema implements Schema {
         if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
             ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setAnyOf(null);
         }
+        _anyOf = null;
         if (anyOf != null) {
             if (anyOf.isEmpty()) {
-                if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
-                    ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setAnyOf(new java.util.ArrayList<>());
+                if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema)) {
+                    _swSchema = transformToComposedSchema(_swSchema);
                 }
+                ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setAnyOf(new java.util.ArrayList<>());
             } else {
                 for (org.eclipse.microprofile.openapi.models.media.Schema e : anyOf) {
                     this.addAnyOf(e);
@@ -781,18 +830,17 @@ public class SwSchema implements Schema {
             throw new IllegalArgumentException("Unexpected type: " + schema);
         }
         fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema element = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+        if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema)) {
+            _swSchema = transformToComposedSchema(_swSchema);
+        }
         initAnyOf();
         if (_anyOf == null) {
             _anyOf = new java.util.ArrayList<>();
-            if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
-                ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setAnyOf(new java.util.ArrayList<>());
-            }
+            ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setAnyOf(new java.util.ArrayList<>());
         }
         _anyOf.add(element);
-        if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
-            ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAnyOf()
-                    .add(element.getSw());
-        }
+        ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAnyOf()
+                .add(element.getSw());
         return this;
     }
 
@@ -802,26 +850,29 @@ public class SwSchema implements Schema {
             throw new IllegalArgumentException("Unexpected type: " + schema);
         }
         fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema element = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+        if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema)) {
+            _swSchema = transformToComposedSchema(_swSchema);
+        }
         initAnyOf();
         if (_anyOf != null) {
             _anyOf.remove(schema);
-            if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
-                ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAnyOf()
-                        .remove(element.getSw());
-            }
+            ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getAnyOf()
+                    .remove(element.getSw());
         }
     }
 
     private java.util.List<fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema> _oneOf;
 
     private void initOneOf() {
-        if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) || ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getOneOf() == null) {
-            _oneOf = null;
-        } else if (_oneOf == null) {
-            _oneOf = ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getOneOf()
-                    .stream()
-                    .map(fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema::new)
-                    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+        if (_oneOf == null) {
+            if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) || ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getOneOf() == null) {
+                _oneOf = null;
+            } else if (_oneOf == null) {
+                _oneOf = ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getOneOf()
+                        .stream()
+                        .map(fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema::new)
+                        .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+            }
         }
     }
 
@@ -839,11 +890,13 @@ public class SwSchema implements Schema {
         if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
             ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setOneOf(null);
         }
+        _oneOf = null;
         if (oneOf != null) {
             if (oneOf.isEmpty()) {
-                if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
-                    ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setOneOf(new java.util.ArrayList<>());
+                if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema)) {
+                    _swSchema = transformToComposedSchema(_swSchema);
                 }
+                ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setOneOf(new java.util.ArrayList<>());
             } else {
                 for (org.eclipse.microprofile.openapi.models.media.Schema e : oneOf) {
                     this.addOneOf(e);
@@ -858,18 +911,17 @@ public class SwSchema implements Schema {
             throw new IllegalArgumentException("Unexpected type: " + schema);
         }
         fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema element = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+        if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema)) {
+            _swSchema = transformToComposedSchema(_swSchema);
+        }
         initOneOf();
         if (_oneOf == null) {
             _oneOf = new java.util.ArrayList<>();
-            if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
-                ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setOneOf(new java.util.ArrayList<>());
-            }
+            ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).setOneOf(new java.util.ArrayList<>());
         }
         _oneOf.add(element);
-        if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
-            ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getOneOf()
-                    .add(element.getSw());
-        }
+        ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getOneOf()
+                .add(element.getSw());
         return this;
     }
 
@@ -879,13 +931,14 @@ public class SwSchema implements Schema {
             throw new IllegalArgumentException("Unexpected type: " + schema);
         }
         fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema element = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) schema;
+        if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema)) {
+            _swSchema = transformToComposedSchema(_swSchema);
+        }
         initOneOf();
         if (_oneOf != null) {
             _oneOf.remove(schema);
-            if (_swSchema instanceof io.swagger.v3.oas.models.media.ComposedSchema) {
-                ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getOneOf()
-                        .remove(element.getSw());
-            }
+            ((io.swagger.v3.oas.models.media.ComposedSchema) _swSchema).getOneOf()
+                    .remove(element.getSw());
         }
     }
 
