@@ -47,7 +47,9 @@ public class SecurityRequirementImpl implements SecurityRequirement {
     @Override
     public SecurityRequirement addScheme(String key, String scope) {
         java.util.List<String> list = new java.util.ArrayList<>();
-        list.add(scope);
+        if (scope != null) {
+            list.add(scope);
+        }
         return addScheme(key, list);
     }
 

@@ -220,7 +220,9 @@ public class SimpleGenerator {
             sb.append("    @Override\n");
             sb.append("    public " + org.eclipse.microprofile.openapi.models.security.SecurityRequirement.class.getSimpleName() + " addScheme(String key, String scope) {\n");
             sb.append("        java.util.List<String> list = new java.util.ArrayList<>();\n");
-            sb.append("        list.add(scope);\n");
+            sb.append("        if (scope != null) {\n");
+            sb.append("            list.add(scope);\n");
+            sb.append("        }\n");
             sb.append("        return addScheme(key, list);\n");
             sb.append("    }\n");
             sb.append("\n");
