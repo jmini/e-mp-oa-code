@@ -53,6 +53,45 @@ public class SwSchema implements Schema {
         return result;
     }
 
+    private static io.swagger.v3.oas.models.media.ArraySchema transformToArraySchema(io.swagger.v3.oas.models.media.Schema schema) {
+        io.swagger.v3.oas.models.media.ArraySchema result = new io.swagger.v3.oas.models.media.ArraySchema();
+        result.set$ref(schema.get$ref());
+        result.setAdditionalProperties(schema.getAdditionalProperties());
+        result.setDefault(schema.getDefault());
+        result.setDeprecated(schema.getDeprecated());
+        result.setDescription(schema.getDescription());
+        result.setDiscriminator(schema.getDiscriminator());
+        result.setEnum(schema.getEnum());
+        result.setExample(schema.getExample());
+        result.setExclusiveMaximum(schema.getExclusiveMaximum());
+        result.setExclusiveMinimum(schema.getExclusiveMinimum());
+        result.setExtensions(schema.getExtensions());
+        result.setExternalDocs(schema.getExternalDocs());
+        result.setFormat(schema.getFormat());
+        result.setMaximum(schema.getMaximum());
+        result.setMaxItems(schema.getMaxItems());
+        result.setMaxLength(schema.getMaxLength());
+        result.setMaxProperties(schema.getMaxProperties());
+        result.setMinimum(schema.getMinimum());
+        result.setMinItems(schema.getMinItems());
+        result.setMinLength(schema.getMinLength());
+        result.setMinProperties(schema.getMinProperties());
+        result.setMultipleOf(schema.getMultipleOf());
+        result.setName(schema.getName());
+        result.setNot(schema.getNot());
+        result.setNullable(schema.getNullable());
+        result.setPattern(schema.getPattern());
+        result.setProperties(schema.getProperties());
+        result.setReadOnly(schema.getReadOnly());
+        result.setRequired(schema.getRequired());
+        result.setTitle(schema.getTitle());
+        result.setType(schema.getType());
+        result.setUniqueItems(schema.getUniqueItems());
+        result.setWriteOnly(schema.getWriteOnly());
+        result.setXml(schema.getXml());
+        return result;
+    }
+
     public io.swagger.v3.oas.models.media.Schema getSw() {
         return _swSchema;
     }
@@ -668,10 +707,12 @@ public class SwSchema implements Schema {
     private fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema _items;
 
     private void initItems() {
-        if (_items == null && _swSchema instanceof io.swagger.v3.oas.models.media.ArraySchema && ((io.swagger.v3.oas.models.media.ArraySchema) _swSchema).getItems() != null) {
-            _items = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema(((io.swagger.v3.oas.models.media.ArraySchema) _swSchema).getItems());
-        } else {
-            _items = null;
+        if (_items == null) {
+            if (_swSchema instanceof io.swagger.v3.oas.models.media.ArraySchema && ((io.swagger.v3.oas.models.media.ArraySchema) _swSchema).getItems() != null) {
+                _items = new fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema(((io.swagger.v3.oas.models.media.ArraySchema) _swSchema).getItems());
+            } else {
+                _items = null;
+            }
         }
     }
 
@@ -687,10 +728,11 @@ public class SwSchema implements Schema {
             if (!(items instanceof fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema)) {
                 throw new IllegalArgumentException("Unexpected type: " + items);
             }
-            _items = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) items;
-            if (_swSchema instanceof io.swagger.v3.oas.models.media.ArraySchema) {
-                ((io.swagger.v3.oas.models.media.ArraySchema) _swSchema).setItems(_items.getSw());
+            if (!(_swSchema instanceof io.swagger.v3.oas.models.media.ArraySchema)) {
+                _swSchema = transformToArraySchema(_swSchema);
             }
+            _items = (fr.jmini.empoa.swagger.parser.internal.models.media.SwSchema) items;
+            ((io.swagger.v3.oas.models.media.ArraySchema) _swSchema).setItems(_items.getSw());
         } else {
             _items = null;
             if (_swSchema instanceof io.swagger.v3.oas.models.media.ArraySchema) {
