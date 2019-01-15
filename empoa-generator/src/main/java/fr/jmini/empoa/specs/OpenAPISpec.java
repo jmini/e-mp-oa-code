@@ -461,6 +461,7 @@ public class OpenAPISpec {
         members.add(new Member(MemberType.Server_Url, "Url", String.class.getSimpleName()));
         members.add(new Member(MemberType.Server_Description, "Description", String.class.getSimpleName()));
         members.add(new Member(MemberType.Server_Variables, "Variables", ServerVariables.class.getCanonicalName()));
+        members.add(new AdditionalMethod(Type.Server_setVariables));
         return new Element(ElementType.Server, Server.class.getName(), true, false, members);
     }
 
