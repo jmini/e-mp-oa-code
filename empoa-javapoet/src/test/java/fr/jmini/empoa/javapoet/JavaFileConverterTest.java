@@ -12,6 +12,7 @@ import com.squareup.javapoet.JavaFile;
 
 import fr.jmini.empoa.extended.tck.specs.HelloSpec;
 import fr.jmini.empoa.extended.tck.specs.PingSpec;
+import fr.jmini.empoa.extended.tck.specs.TodoappSpec;
 
 public class JavaFileConverterTest {
 
@@ -36,6 +37,21 @@ public class JavaFileConverterTest {
         String className = "HelloSpec";
 
         OpenAPI openAPI = HelloSpec.create();
+        JavaFile javaFile = JavaFileConverter.createOpenAPI(openAPI, packageName, className);
+
+        Path file = toFile(Paths.get("../empoa-extended-tck/src/main/java"), packageName, className);
+        String content = new String(Files.readAllBytes(file));
+
+        Assertions.assertThat(javaFile.toString())
+                .isEqualToNormalizingWhitespace(content);
+    }
+
+    @Test
+    public void testTodoappSpec() throws Exception {
+        String packageName = "fr.jmini.empoa.extended.tck.specs";
+        String className = "TodoappSpec";
+
+        OpenAPI openAPI = TodoappSpec.create();
         JavaFile javaFile = JavaFileConverter.createOpenAPI(openAPI, packageName, className);
 
         Path file = toFile(Paths.get("../empoa-extended-tck/src/main/java"), packageName, className);

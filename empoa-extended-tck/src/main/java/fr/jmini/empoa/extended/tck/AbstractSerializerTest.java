@@ -14,11 +14,13 @@ import org.testng.annotations.Test;
 
 import fr.jmini.empoa.extended.tck.specs.HelloSpec;
 import fr.jmini.empoa.extended.tck.specs.PingSpec;
+import fr.jmini.empoa.extended.tck.specs.TodoappSpec;
 
 public abstract class AbstractSerializerTest {
 
     protected static final String PING = "/extended-tck/specs/ping.json";
     protected static final String HELLO = "/extended-tck/specs/hello.json";
+    protected static final String TODOAPP = "/extended-tck/specs/todoapp.json";
 
     @Test
     public void testSerializePing() throws Exception {
@@ -28,6 +30,11 @@ public abstract class AbstractSerializerTest {
     @Test
     public void testSerializeHello() throws Exception {
         runTest(HELLO);
+    }
+
+    @Test
+    public void testSerializeTodoapp() throws Exception {
+        runTest(TODOAPP);
     }
 
     private void runTest(String spec) throws IOException {
@@ -46,6 +53,8 @@ public abstract class AbstractSerializerTest {
             return PingSpec.create();
         case HELLO:
             return HelloSpec.create();
+        case TODOAPP:
+            return TodoappSpec.create();
         default:
             throw new IllegalArgumentException("Unknown spec: " + specPath);
         }
