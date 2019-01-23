@@ -3,73 +3,44 @@ package fr.jmini.empoa.extended.tck;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
 import static org.assertj.core.api.Assertions.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
 
 import org.eclipse.microprofile.openapi.models.OpenAPI;
-import org.testng.annotations.Test;
 
-import fr.jmini.empoa.extended.tck.specs.HelloSpec;
-import fr.jmini.empoa.extended.tck.specs.PingSpec;
-import fr.jmini.empoa.extended.tck.specs.TodoappSpec;
+public abstract class AbstractSerializerTest extends AbstractSpecTest {
 
-public abstract class AbstractSerializerTest {
+    protected static final String PING_JSON = "/extended-tck/specs/ping.json";
+    protected static final String HELLO_JSON = "/extended-tck/specs/hello.json";
+    protected static final String TODOAPP_JSON = "/extended-tck/specs/todoapp.json";
 
-    protected static final String PING = "/extended-tck/specs/ping.json";
-    protected static final String HELLO = "/extended-tck/specs/hello.json";
-    protected static final String TODOAPP = "/extended-tck/specs/todoapp.json";
-
-    @Test
-    public void testSerializePing() throws Exception {
-        runTest(PING);
-    }
-
-    @Test
-    public void testSerializeHello() throws Exception {
-        runTest(HELLO);
-    }
-
-    @Test
-    public void testSerializeTodoapp() throws Exception {
-        runTest(TODOAPP);
-    }
-
-    private void runTest(String spec) throws IOException {
+    @Override
+    protected void runTest(Specs spec) throws Exception {
         OpenAPI openAPI = createOpenAPI(spec);
         assertThat(openAPI).isNotNull();
 
-        String expected = readFromResource(spec);
+        String expected = readExpectedFromResource(spec);
         String json = convertToJson(openAPI);
 
         assertThatJson(json).isEqualTo(expected);
     }
 
-    protected OpenAPI createOpenAPI(String specPath) throws IOException {
-        switch (specPath) {
-        case PING:
-            return PingSpec.create();
-        case HELLO:
-            return HelloSpec.create();
-        case TODOAPP:
-            return TodoappSpec.create();
-        default:
-            throw new IllegalArgumentException("Unknown spec: " + specPath);
-        }
-    }
-
     protected abstract String convertToJson(OpenAPI openAPI) throws IOException;
 
-    protected String readFromResource(String name) throws IOException {
+    protected String readExpectedFromResource(Specs spec) throws IOException {
+        String name = toResourceName(spec);
         return read(getClass().getResourceAsStream(name));
     }
 
-    public static String read(InputStream inputStream) throws IOException {
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
-            return bufferedReader.lines()
-                    .collect(Collectors.joining("\n"));
+    protected String toResourceName(Specs spec) {
+        switch (spec) {
+        case PING:
+            return PING_JSON;
+        case HELLO:
+            return HELLO_JSON;
+        case TODOAPP:
+            return TODOAPP_JSON;
+        default:
+            throw new IllegalArgumentException("Unknown spec: " + spec);
         }
     }
 }

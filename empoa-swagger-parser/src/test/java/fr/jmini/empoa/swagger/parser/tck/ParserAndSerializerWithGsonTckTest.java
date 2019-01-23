@@ -18,8 +18,8 @@ import io.swagger.v3.parser.core.models.ParseOptions;
 public class ParserAndSerializerWithGsonTckTest extends AbstractSerializerTest {
 
     @Override
-    protected OpenAPI createOpenAPI(String specPath) throws IOException {
-        String json = readFromResource(specPath);
+    protected OpenAPI createOpenAPI(Specs spec) throws IOException {
+        String json = readExpectedFromResource(spec);
 
         OpenAPIParser openApiParser = new OpenAPIParser();
         ParseOptions options = new ParseOptions();
@@ -29,7 +29,7 @@ public class ParserAndSerializerWithGsonTckTest extends AbstractSerializerTest {
 
         OpenAPI openAPI = new SwOpenAPI(swaggerOpenAPI);
         // Swagger-Parser is adding some values (probably some default that make sense) that are not desirable for this test:
-        if (HELLO.equals(specPath)) {
+        if (Specs.HELLO == spec) {
             List<Parameter> parameters = openAPI.getPaths()
                     .getPathItem("/hello/{name}")
                     .getGET()
