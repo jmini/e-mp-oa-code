@@ -12,7 +12,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 
 dependencies {
     implementation "org.eclipse.microprofile.openapi:microprofile-openapi-api:$mpOpenAPIVersion"
-    implementation "io.swagger.parser.v3:swagger-parser:$swaggerParserVersion"
+    implementation "io.swagger.core.v3:swagger-models:$swaggerCoreVersion"
 }
 
 publishing {
