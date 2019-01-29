@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class APIResponsesTest {
 
-    @Test
-    public void testCreateAPIResponses() {
-        APIResponses apiResponses = OASFactory.createObject(APIResponses.class);
-        assertThat(apiResponses).isNotNull();
-    }
+  @Test
+  public void testCreateAPIResponses() {
+    APIResponses apiResponses = OASFactory.createObject(APIResponses.class);
+    assertThat(apiResponses).isNotNull();
+  }
 
 }

@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class LinkTest {
 
-    @Test
-    public void testCreateLink() {
-        Link link = OASFactory.createObject(Link.class);
-        assertThat(link).isNotNull();
-    }
+  @Test
+  public void testCreateLink() {
+    Link link = OASFactory.createObject(Link.class);
+    assertThat(link).isNotNull();
+  }
 
 }

@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class ScopesTest {
 
-    @Test
-    public void testCreateScopes() {
-        Scopes scopes = OASFactory.createObject(Scopes.class);
-        assertThat(scopes).isNotNull();
-    }
+  @Test
+  public void testCreateScopes() {
+    Scopes scopes = OASFactory.createObject(Scopes.class);
+    assertThat(scopes).isNotNull();
+  }
 
 }

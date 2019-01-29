@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class PathsTest {
 
-    @Test
-    public void testCreatePaths() {
-        Paths paths = OASFactory.createObject(Paths.class);
-        assertThat(paths).isNotNull();
-    }
+  @Test
+  public void testCreatePaths() {
+    Paths paths = OASFactory.createObject(Paths.class);
+    assertThat(paths).isNotNull();
+  }
 
 }

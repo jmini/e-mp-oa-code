@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class OperationTest {
 
-    @Test
-    public void testCreateOperation() {
-        Operation operation = OASFactory.createObject(Operation.class);
-        assertThat(operation).isNotNull();
-    }
+  @Test
+  public void testCreateOperation() {
+    Operation operation = OASFactory.createObject(Operation.class);
+    assertThat(operation).isNotNull();
+  }
 
 }

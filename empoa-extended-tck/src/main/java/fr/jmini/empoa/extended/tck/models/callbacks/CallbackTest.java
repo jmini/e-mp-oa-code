@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class CallbackTest {
 
-    @Test
-    public void testCreateCallback() {
-        Callback callback = OASFactory.createObject(Callback.class);
-        assertThat(callback).isNotNull();
-    }
+  @Test
+  public void testCreateCallback() {
+    Callback callback = OASFactory.createObject(Callback.class);
+    assertThat(callback).isNotNull();
+  }
 
 }

@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class TagTest {
 
-    @Test
-    public void testCreateTag() {
-        Tag tag = OASFactory.createObject(Tag.class);
-        assertThat(tag).isNotNull();
-    }
+  @Test
+  public void testCreateTag() {
+    Tag tag = OASFactory.createObject(Tag.class);
+    assertThat(tag).isNotNull();
+  }
 
 }

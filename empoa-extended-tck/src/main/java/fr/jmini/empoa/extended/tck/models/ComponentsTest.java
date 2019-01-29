@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class ComponentsTest {
 
-    @Test
-    public void testCreateComponents() {
-        Components components = OASFactory.createObject(Components.class);
-        assertThat(components).isNotNull();
-    }
+  @Test
+  public void testCreateComponents() {
+    Components components = OASFactory.createObject(Components.class);
+    assertThat(components).isNotNull();
+  }
 
 }

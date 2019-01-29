@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class OAuthFlowTest {
 
-    @Test
-    public void testCreateOAuthFlow() {
-        OAuthFlow oAuthFlow = OASFactory.createObject(OAuthFlow.class);
-        assertThat(oAuthFlow).isNotNull();
-    }
+  @Test
+  public void testCreateOAuthFlow() {
+    OAuthFlow oAuthFlow = OASFactory.createObject(OAuthFlow.class);
+    assertThat(oAuthFlow).isNotNull();
+  }
 
 }

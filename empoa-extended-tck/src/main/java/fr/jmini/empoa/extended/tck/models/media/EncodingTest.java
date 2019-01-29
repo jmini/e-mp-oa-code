@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class EncodingTest {
 
-    @Test
-    public void testCreateEncoding() {
-        Encoding encoding = OASFactory.createObject(Encoding.class);
-        assertThat(encoding).isNotNull();
-    }
+  @Test
+  public void testCreateEncoding() {
+    Encoding encoding = OASFactory.createObject(Encoding.class);
+    assertThat(encoding).isNotNull();
+  }
 
 }

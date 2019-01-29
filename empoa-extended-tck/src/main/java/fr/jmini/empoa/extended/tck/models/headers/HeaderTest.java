@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class HeaderTest {
 
-    @Test
-    public void testCreateHeader() {
-        Header header = OASFactory.createObject(Header.class);
-        assertThat(header).isNotNull();
-    }
+  @Test
+  public void testCreateHeader() {
+    Header header = OASFactory.createObject(Header.class);
+    assertThat(header).isNotNull();
+  }
 
 }

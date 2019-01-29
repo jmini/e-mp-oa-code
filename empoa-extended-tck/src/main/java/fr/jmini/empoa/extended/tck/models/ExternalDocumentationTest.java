@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class ExternalDocumentationTest {
 
-    @Test
-    public void testCreateExternalDocumentation() {
-        ExternalDocumentation externalDocumentation = OASFactory.createObject(ExternalDocumentation.class);
-        assertThat(externalDocumentation).isNotNull();
-    }
+  @Test
+  public void testCreateExternalDocumentation() {
+    ExternalDocumentation externalDocumentation = OASFactory.createObject(ExternalDocumentation.class);
+    assertThat(externalDocumentation).isNotNull();
+  }
 
 }

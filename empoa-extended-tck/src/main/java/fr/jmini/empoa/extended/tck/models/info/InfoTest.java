@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class InfoTest {
 
-    @Test
-    public void testCreateInfo() {
-        Info info = OASFactory.createObject(Info.class);
-        assertThat(info).isNotNull();
-    }
+  @Test
+  public void testCreateInfo() {
+    Info info = OASFactory.createObject(Info.class);
+    assertThat(info).isNotNull();
+  }
 
 }

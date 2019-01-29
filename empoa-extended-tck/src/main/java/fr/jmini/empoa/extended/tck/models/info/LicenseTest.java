@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class LicenseTest {
 
-    @Test
-    public void testCreateLicense() {
-        License license = OASFactory.createObject(License.class);
-        assertThat(license).isNotNull();
-    }
+  @Test
+  public void testCreateLicense() {
+    License license = OASFactory.createObject(License.class);
+    assertThat(license).isNotNull();
+  }
 
 }

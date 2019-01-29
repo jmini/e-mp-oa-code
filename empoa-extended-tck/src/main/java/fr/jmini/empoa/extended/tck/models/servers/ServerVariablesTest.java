@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class ServerVariablesTest {
 
-    @Test
-    public void testCreateServerVariables() {
-        ServerVariables serverVariables = OASFactory.createObject(ServerVariables.class);
-        assertThat(serverVariables).isNotNull();
-    }
+  @Test
+  public void testCreateServerVariables() {
+    ServerVariables serverVariables = OASFactory.createObject(ServerVariables.class);
+    assertThat(serverVariables).isNotNull();
+  }
 
 }

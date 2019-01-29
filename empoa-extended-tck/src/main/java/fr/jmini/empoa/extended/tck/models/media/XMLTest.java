@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class XMLTest {
 
-    @Test
-    public void testCreateXML() {
-        XML xML = OASFactory.createObject(XML.class);
-        assertThat(xML).isNotNull();
-    }
+  @Test
+  public void testCreateXML() {
+    XML xML = OASFactory.createObject(XML.class);
+    assertThat(xML).isNotNull();
+  }
 
 }

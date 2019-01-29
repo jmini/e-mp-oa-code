@@ -20,12 +20,10 @@ Code (implementation, experiments, tools...) for the Eclipse MicroProfile OpenAP
 //tag::description[]
 == Description
 link:http://github.com/eclipse/microprofile-open-api[Eclipse MicroProfile OpenAPI] is a standardisation effort around OpenAPI.
-It contains some API and a TCK.
-This repository contains some projects/experiments for this project.
+In particular, it offers an API to model OpenAPI specification (interfaces in the `org.eclipse.microprofile.openapi.models` package and sub-packages).
 
-* `empoa-simple-models-impl`: a naive implementation of the interfaces in the `org.eclipse.microprofile.openapi.models` packages.
-* `empoa-generator`: a project that help to generate code in the other one.
-
+This repository contains different projects (implementations and utilities) for this API.
+Providing a complete vendor implementation for the Eclipse MicroProfile OpenAPI is out-of-scope.
 
 //end::description[]
 Read more on the link:{homepage}[project home page].

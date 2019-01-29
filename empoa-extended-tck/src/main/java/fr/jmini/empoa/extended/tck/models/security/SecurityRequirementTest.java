@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class SecurityRequirementTest {
 
-    @Test
-    public void testCreateSecurityRequirement() {
-        SecurityRequirement securityRequirement = OASFactory.createObject(SecurityRequirement.class);
-        assertThat(securityRequirement).isNotNull();
-    }
+  @Test
+  public void testCreateSecurityRequirement() {
+    SecurityRequirement securityRequirement = OASFactory.createObject(SecurityRequirement.class);
+    assertThat(securityRequirement).isNotNull();
+  }
 
 }

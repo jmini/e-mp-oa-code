@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class RequestBodyTest {
 
-    @Test
-    public void testCreateRequestBody() {
-        RequestBody requestBody = OASFactory.createObject(RequestBody.class);
-        assertThat(requestBody).isNotNull();
-    }
+  @Test
+  public void testCreateRequestBody() {
+    RequestBody requestBody = OASFactory.createObject(RequestBody.class);
+    assertThat(requestBody).isNotNull();
+  }
 
 }

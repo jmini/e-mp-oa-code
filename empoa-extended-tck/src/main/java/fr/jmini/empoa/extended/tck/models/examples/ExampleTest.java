@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class ExampleTest {
 
-    @Test
-    public void testCreateExample() {
-        Example example = OASFactory.createObject(Example.class);
-        assertThat(example).isNotNull();
-    }
+  @Test
+  public void testCreateExample() {
+    Example example = OASFactory.createObject(Example.class);
+    assertThat(example).isNotNull();
+  }
 
 }

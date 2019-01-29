@@ -44,6 +44,7 @@ asciidoctor {
     outputDir = file('build/docs')
     attributes = ['revdate'           : "${buildDate()}",
                   'project-version'   : "$version",
+                  'artifacts-version' : "$version",
                   'gh-repo-owner'     : "$githubRepositoryOwner",
                   'gh-repo-name'      : "$githubRepositoryName",
                   'source-highlighter': 'coderay',

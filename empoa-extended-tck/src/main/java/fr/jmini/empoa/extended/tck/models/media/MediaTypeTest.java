@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class MediaTypeTest {
 
-    @Test
-    public void testCreateMediaType() {
-        MediaType mediaType = OASFactory.createObject(MediaType.class);
-        assertThat(mediaType).isNotNull();
-    }
+  @Test
+  public void testCreateMediaType() {
+    MediaType mediaType = OASFactory.createObject(MediaType.class);
+    assertThat(mediaType).isNotNull();
+  }
 
 }

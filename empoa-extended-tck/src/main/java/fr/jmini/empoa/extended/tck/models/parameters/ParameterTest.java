@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class ParameterTest {
 
-    @Test
-    public void testCreateParameter() {
-        Parameter parameter = OASFactory.createObject(Parameter.class);
-        assertThat(parameter).isNotNull();
-    }
+  @Test
+  public void testCreateParameter() {
+    Parameter parameter = OASFactory.createObject(Parameter.class);
+    assertThat(parameter).isNotNull();
+  }
 
 }

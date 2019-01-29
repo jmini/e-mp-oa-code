@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class DiscriminatorTest {
 
-    @Test
-    public void testCreateDiscriminator() {
-        Discriminator discriminator = OASFactory.createObject(Discriminator.class);
-        assertThat(discriminator).isNotNull();
-    }
+  @Test
+  public void testCreateDiscriminator() {
+    Discriminator discriminator = OASFactory.createObject(Discriminator.class);
+    assertThat(discriminator).isNotNull();
+  }
 
 }

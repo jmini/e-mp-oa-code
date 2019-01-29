@@ -11,7 +11,10 @@ public class SerializerTckTest extends AbstractSerializerTest {
 
     @Override
     protected String convertToJson(OpenAPI openAPI) throws IOException {
-        return OpenAPISerializer.serialize(openAPI, OpenAPISerializer.Format.JSON);
+        // tag::usage[]
+        String json = OpenAPISerializer.serialize(openAPI, OpenAPISerializer.Format.JSON);
+        // end::usage[]
+        return json;
     }
 
     @Test
