@@ -11,9 +11,10 @@ import com.google.gson.Gson;
 
 import fr.jmini.empoa.extended.tck.AbstractSerializerTest;
 import fr.jmini.empoa.gson.OASGsonSerializer;
-import fr.jmini.empoa.swagger.core.internal.models.SwOpenAPI;
+import fr.jmini.empoa.swagger.core.internal.SwAdapter;
 import io.swagger.parser.OpenAPIParser;
 import io.swagger.v3.parser.core.models.ParseOptions;
+import io.swagger.v3.parser.core.models.SwaggerParseResult;
 
 public class ParserAndSerializerWithGsonTckTest extends AbstractSerializerTest {
 
@@ -24,10 +25,13 @@ public class ParserAndSerializerWithGsonTckTest extends AbstractSerializerTest {
         OpenAPIParser openApiParser = new OpenAPIParser();
         ParseOptions options = new ParseOptions();
 
-        io.swagger.v3.oas.models.OpenAPI swaggerOpenAPI = openApiParser.readContents(json, null, options)
-                .getOpenAPI();
+        SwaggerParseResult parserResult = openApiParser.readContents(json, null, options);
 
-        OpenAPI openAPI = new SwOpenAPI(swaggerOpenAPI);
+        // tag::usage[]
+        io.swagger.v3.oas.models.OpenAPI swaggerOpenAPI = parserResult.getOpenAPI();
+        OpenAPI openAPI = SwAdapter.toOpenAPI(swaggerOpenAPI);
+        // end::usage[]
+
         // Swagger-Parser is adding some values (probably some default that make sense) that are not desirable for this test:
         if (Specs.HELLO == spec) {
             List<Parameter> parameters = openAPI.getPaths()

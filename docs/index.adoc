@@ -57,6 +57,8 @@ This is why you need to provide one implementation on your classpah.
 
 include::../empoa-simple-models-impl/README.adoc[leveloffset=2]
 
+include::../empoa-swagger-core/README.adoc[leveloffset=2]
+
 [[serializer]]
 == Serializer projects
 
