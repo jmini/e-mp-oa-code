@@ -23,12 +23,15 @@ public class JavaFileConverterTest extends AbstractSpecTest {
         String className = toClassName(spec);
 
         OpenAPI openAPI = createOpenAPI(spec);
+        // tag::usage[]
         JavaFile javaFile = JavaFileConverter.createOpenAPI(openAPI, packageName, className);
+        String javaCode = javaFile.toString();
+        // end::usage[]
 
         Path file = toFile(Paths.get("../empoa-extended-tck/src/main/java"), packageName, className);
         String content = new String(Files.readAllBytes(file));
 
-        Assertions.assertThat(javaFile.toString())
+        Assertions.assertThat(javaCode)
                 .isEqualToNormalizingWhitespace(content);
     }
 

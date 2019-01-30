@@ -11,8 +11,11 @@ public class SerializerTckTest extends AbstractSerializerTest {
 
     @Override
     protected String convertToJson(OpenAPI openAPI) {
+        // tag::usage[]
         Gson gson = OASGsonSerializer.instance();
-        return gson.toJson(openAPI);
+        String json = gson.toJson(openAPI);
+        // end::usage[]
+        return json;
     }
 
     @Test
