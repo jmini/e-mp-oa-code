@@ -1,4 +1,4 @@
-:module-name: Generator
+:module-name: EMPOA Generator
 :module-artifactId: empoa-generator
 
 = {module-name}
