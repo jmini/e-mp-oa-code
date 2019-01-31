@@ -1,4 +1,4 @@
-:module-name: Gson Serializer
+:module-name: EMPOA Gson Serializer
 :module-artifactId: empoa-gson-serializer
 
 ifndef::artifacts-version[]

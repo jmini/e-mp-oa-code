@@ -1,4 +1,4 @@
-:module-name: Javapoet
+:module-name: EMPOA Javapoet
 :module-artifactId: empoa-javapoet
 
 ifndef::artifacts-version[]

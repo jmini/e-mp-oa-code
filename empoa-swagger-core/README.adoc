@@ -1,4 +1,4 @@
-:module-name: Swagger-Core
+:module-name: EMPOA Swagger-Core
 :module-artifactId: empoa-swagger-core
 
 ifndef::artifacts-version[]

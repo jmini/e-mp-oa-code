@@ -1,4 +1,4 @@
-:module-name: Jackson Serializer
+:module-name: EMPOA Jackson Serializer
 :module-artifactId: empoa-jackson-serializer
 
 ifndef::artifacts-version[]
