@@ -1,6 +1,6 @@
 package fr.jmini.empoa.swagger.core.tck;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.IOException;
 

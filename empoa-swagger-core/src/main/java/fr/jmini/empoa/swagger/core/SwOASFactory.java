@@ -9,6 +9,8 @@ public class SwOASFactory {
      *
      * @param sw
      *            swagger-core instance
+     * @param <T>
+     *            type of MicroProfile-OpenAPI that should be returned
      * @return the corresponding MicroProfile-OpenAPI instance
      */
     @SuppressWarnings("unchecked")

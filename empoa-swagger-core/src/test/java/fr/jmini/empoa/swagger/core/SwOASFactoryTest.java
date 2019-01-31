@@ -7,8 +7,6 @@ import java.util.Arrays;
 import org.eclipse.microprofile.openapi.models.media.Schema.SchemaType;
 import org.testng.annotations.Test;
 
-import fr.jmini.empoa.swagger.core.SwOASFactory;
-
 public class SwOASFactoryTest {
 
     @Test
