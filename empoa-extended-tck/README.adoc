@@ -1,4 +1,4 @@
-:module-name: Extended TCK
+:module-name: EMPOA Extended TCK
 :module-artifactId: empoa-extended-tck
 
 ifndef::artifacts-version[]

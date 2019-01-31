@@ -1,6 +1,6 @@
-:module-name: SmallRye
+:module-name: EMPOA SmallRye
 :module-artifactId: empoa-smallrye
 
 = {module-name}
 
-This project is used to validate the 'Extended TCK' project with an independent implementation.
+This project is used to validate the 'EMPOA Extended TCK' project with an independent implementation.

@@ -1,4 +1,4 @@
-:module-name: Simple models
+:module-name: EMPOA Simple models
 :module-artifactId: empoa-simple-models-impl
 
 ifndef::artifacts-version[]
