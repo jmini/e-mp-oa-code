@@ -14,6 +14,11 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
 }
 
+task javadocJar(type: Jar) {
+    from javadoc
+    classifier = 'javadoc'
+}
+
 dependencies {
     api "org.eclipse.microprofile.openapi:microprofile-openapi-api:$mpOpenAPIVersion"
     testImplementation "org.eclipse.microprofile.openapi:microprofile-openapi-tck:$mpOpenAPIVersion"
@@ -27,6 +32,7 @@ publishing {
         mavenJava(MavenPublication) {
             from components.java
             artifact sourcesJar
+            artifact javadocJar
         }
     }
 }
