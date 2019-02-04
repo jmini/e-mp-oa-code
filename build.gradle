@@ -10,6 +10,7 @@ wrapper {
 
 allprojects {
     apply plugin: 'maven-publish'
+    apply plugin: 'signing'
 
     group = 'fr.jmini.empoa'
 }
@@ -32,8 +33,16 @@ subprojects {
             }
         }
     }
-}
 
+    model {
+        tasks.publishMavenJavaPublicationToMavenLocal {
+            dependsOn(project.tasks.signArchives)
+        }
+        tasks.publishMavenJavaPublicationToMavenRepository {
+            dependsOn(project.tasks.signArchives)
+        }
+    }
+}
 
 def buildDate() {
     return new Date().format('yyyy-MM-dd')
