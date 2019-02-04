@@ -9,6 +9,13 @@ test {
     useTestNG() 
 }
 
+dependencies {
+    api "org.eclipse.microprofile.openapi:microprofile-openapi-api:$mpOpenAPIVersion"
+    api "org.testng:testng:$testngVersion"
+    implementation "org.assertj:assertj-core:$assertjVersion"
+    implementation "net.javacrumbs.json-unit:json-unit-assertj:$jsonUnitVersion"
+}
+
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
@@ -19,11 +26,15 @@ task javadocJar(type: Jar) {
     classifier = 'javadoc'
 }
 
-dependencies {
-    api "org.eclipse.microprofile.openapi:microprofile-openapi-api:$mpOpenAPIVersion"
-    api "org.testng:testng:$testngVersion"
-    implementation "org.assertj:assertj-core:$assertjVersion"
-    implementation "net.javacrumbs.json-unit:json-unit-assertj:$jsonUnitVersion"
+artifacts {
+    archives jar
+    archives sourcesJar
+    archives javadocJar
+}
+
+signing {
+    useGpgCmd()
+    sign configurations.archives
 }
 
 publishing {
@@ -55,6 +66,29 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact javadocJar
+
+            pom.withXml {
+                def pomFile = file("${project.buildDir}/generated-pom.xml")
+                writeTo(pomFile)
+                def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+                artifact(pomAscFile) {
+                    classifier = null
+                    extension = 'pom.asc'
+                }
+                pomFile.delete()
+            }
+
+            project.tasks.signArchives.signatureFiles.each {
+                artifact(it) {
+                    def matcher = it.file =~ /-(sources|javadoc)\.jar\.asc$/
+                    if (matcher.find()) {
+                        classifier = matcher.group(1)
+                    } else {
+                        classifier = null
+                    }
+                    extension = 'jar.asc'
+                }
+            }
         }
     }
 }
