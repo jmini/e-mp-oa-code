@@ -9,6 +9,16 @@ test {
     useTestNG() 
 }
 
+dependencies {
+    api "org.eclipse.microprofile.openapi:microprofile-openapi-api:$mpOpenAPIVersion"
+    implementation "io.smallrye:smallrye-open-api:$smallryeVersion"
+
+    testImplementation project(':empoa-extended-tck')
+    testImplementation "org.testng:testng:$testngVersion"
+    testImplementation "org.assertj:assertj-core:$assertjVersion"
+    testRuntime "ch.qos.logback:logback-classic:$logbackVersion"
+}
+
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
@@ -19,14 +29,15 @@ task javadocJar(type: Jar) {
     classifier = 'javadoc'
 }
 
-dependencies {
-    api "org.eclipse.microprofile.openapi:microprofile-openapi-api:$mpOpenAPIVersion"
-    implementation "io.smallrye:smallrye-open-api:$smallryeVersion"
+artifacts {
+    archives jar
+    archives sourcesJar
+    archives javadocJar
+}
 
-    testImplementation project(':empoa-extended-tck')
-    testImplementation "org.testng:testng:$testngVersion"
-    testImplementation "org.assertj:assertj-core:$assertjVersion"
-    testRuntime "ch.qos.logback:logback-classic:$logbackVersion"
+signing {
+    useGpgCmd()
+    sign configurations.archives
 }
 
 publishing {
@@ -58,6 +69,29 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact javadocJar
+
+            pom.withXml {
+                def pomFile = file("${project.buildDir}/generated-pom.xml")
+                writeTo(pomFile)
+                def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+                artifact(pomAscFile) {
+                    classifier = null
+                    extension = 'pom.asc'
+                }
+                pomFile.delete()
+            }
+
+            project.tasks.signArchives.signatureFiles.each {
+                artifact(it) {
+                    def matcher = it.file =~ /-(sources|javadoc)\.jar\.asc$/
+                    if (matcher.find()) {
+                        classifier = matcher.group(1)
+                    } else {
+                        classifier = null
+                    }
+                    extension = 'jar.asc'
+                }
+            }
         }
     }
 }
