@@ -1,3 +1,18 @@
+/*******************************************************************************
+ * Copyright 2019 Jeremie Bresson
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License.  You may obtain a copy
+ * of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ ******************************************************************************/
 package fr.jmini.empoa.javapoet;
 
 import java.nio.file.Files;
@@ -17,6 +32,24 @@ import fr.jmini.empoa.extended.tck.specs.TodoappSpec;
 
 public class JavaFileConverterTest extends AbstractSpecTest {
 
+    private static final String HEADER = "" +
+            "/*******************************************************************************\n" +
+            " * Copyright 2019 Jeremie Bresson\n" +
+            " * \n" +
+            " * Licensed under the Apache License, Version 2.0 (the \"License\"); you may not\n" +
+            " * use this file except in compliance with the License.  You may obtain a copy\n" +
+            " * of the License at\n" +
+            " * \n" +
+            " *   http://www.apache.org/licenses/LICENSE-2.0\n" +
+            " * \n" +
+            " * Unless required by applicable law or agreed to in writing, software\n" +
+            " * distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\n" +
+            " * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the\n" +
+            " * License for the specific language governing permissions and limitations under\n" +
+            " * the License.\n" +
+            " ******************************************************************************/\n" +
+            "";
+
     @Override
     protected void runTest(Specs spec) throws Exception {
         String packageName = "fr.jmini.empoa.extended.tck.specs";
@@ -25,7 +58,7 @@ public class JavaFileConverterTest extends AbstractSpecTest {
         OpenAPI openAPI = createOpenAPI(spec);
         // tag::usage[]
         JavaFile javaFile = JavaFileConverter.createOpenAPI(openAPI, packageName, className);
-        String javaCode = javaFile.toString();
+        String javaCode = HEADER + javaFile.toString();
         // end::usage[]
 
         Path file = toFile(Paths.get("../empoa-extended-tck/src/main/java"), packageName, className);
